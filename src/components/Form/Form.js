@@ -1,8 +1,8 @@
 import Styles from "./Form.module.css"
-import {useState} from "react"
+import { useState } from "react"
 
 function Form() {
-    const[tarefa, setTarefa] = useState(String)
+    const[tarefa, setTarefa] = useState()
     const[tarefas, setTarefas] = useState([])
 
     function Tarefa(event) {
@@ -13,36 +13,33 @@ function Form() {
         setTarefas((prevState) => {
             return [...prevState, tarefa]
         })
+        setTarefa("")
     }
 
     function removerTarefa(element) {
-        const novaLista = tarefas.filter((tarefa, index, array) => {
+        const novaLista = tarefas.filter((tarefa, index) => {
             return element != tarefa
         }) 
         setTarefas(novaLista)
     }
 
-    console.log(tarefas)
     return (
         <>
             <form className={Styles.form}>
-                <input onChange={Tarefa} className={Styles.inputTarefa} type="text" name="tarefa" placeholder="Descrição da tarefa"/>
-                <button type="button" onClick={adicionarTarefa} className={Styles.botao}>Adicionar</button>
+                <input value={tarefa} onChange={Tarefa} className={Styles.inputTarefa} type="text" name="tarefa" placeholder="Descrição da tarefa"/>
+                <button className={Styles.botao} type="button" onClick={adicionarTarefa}>Adicionar Tarefa</button>
             </form>
 
             <h2 className={Styles.subTitle}>TAREFAS</h2>
-            <ul className={Styles.tarefaItem}>
-                {tarefas &&(
+            <section className={Styles.tarefaItem}>
+            {tarefas &&(
                     tarefas.map((element, index) => (
-                        <li key={index} className={Styles.listItem}> {element} <input type="checkbox"/><button onClick={() => {
-                        removerTarefa(element)
-                        }}
-                        className={Styles.buttonRemove}>Remover</button> </li>
+                        <p key={index} className={Styles.listItem}><input type="checkbox"/> {element} <button className={Styles.buttonRemove} onClick={() => {removerTarefa(element)}}>Remover</button> </p>
                         ))
                     )}
-            </ul>
+            </section>
         </>
-        )
+    )
 }
 
 export default Form

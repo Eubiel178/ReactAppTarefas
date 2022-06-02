@@ -32,13 +32,11 @@
 }
 
 .tarefaItem {
-    margin-left: 1.3em;
+    margin-left: 0.5em;
 }
 
 .listItem {
-    list-style: square;
     font-size: 19px;
-    margin-left: 0.5em;
 }
 
 .buttonRemove {
