@@ -47,6 +47,8 @@
 
 .textWrap {
     text-align: justify;
+    padding-left: 0.5em;
+    word-break: break-all;
 }
 
 .buttonRemove {
