@@ -44,7 +44,7 @@ function Form() {
             <ul className={Styles.tarefaItem}>
                 {tarefas &&(
                     tarefas.map((element, index) => (
-                        <li key={index} className={Styles.listItem}><input type="checkbox"/> {element} <button onClick={() => {
+                        <li key={index} className={Styles.listItem}><input type="checkbox"/><span className={Styles.textWrap}>{element}</span><button onClick={() => {
                         removerTarefa(element)
                         }} className={Styles.buttonRemove}><FaTrashAlt/></button></li>
                     ))
