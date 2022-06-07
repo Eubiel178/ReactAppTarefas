@@ -1,45 +1,58 @@
 import Styles from "./Form.module.css"
 import { useState } from "react"
+import { FaTrashAlt } from "react-icons/fa"
 
 function Form() {
-    const[tarefa, setTarefa] = useState()
+    const[tarefa, setTarefa] = useState("")
     const[tarefas, setTarefas] = useState([])
-
-    function Tarefa(event) {
-        setTarefa(event.target.value)
-    }
-
+    
     function adicionarTarefa() {
-        setTarefas((prevState) => {
-            return [...prevState, tarefa]
-        })
-        setTarefa("")
+        if(tarefa.length > 0) {
+            setTarefas((prevState) => {
+                return [...prevState, tarefa]
+            })
+            setTarefa("")
+        }
     }
 
     function removerTarefa(element) {
-        const novaLista = tarefas.filter((tarefa, index) => {
+        const novaLista = tarefas.filter((tarefa, index, array) => {
             return element != tarefa
         }) 
         setTarefas(novaLista)
     }
 
+    function EventKey(event) {
+        if(event.key == "Enter") {
+            event.preventDefault()
+            adicionarTarefa()
+        }
+    }
+
     return (
         <>
             <form className={Styles.form}>
-                <input value={tarefa} onChange={Tarefa} className={Styles.inputTarefa} type="text" name="tarefa" placeholder="Descrição da tarefa"/>
-                <button className={Styles.botao} type="button" onClick={adicionarTarefa}>Adicionar Tarefa</button>
+                <input onChange={(event) => setTarefa(event.target.value)} onKeyPress={EventKey} className={Styles.inputTarefa} type="text" name="tarefa" placeholder="Descrição da tarefa" value={tarefa}/>
+                <button type="button" onClick={adicionarTarefa} className={Styles.botao} >Adicionar</button>
             </form>
 
             <h2 className={Styles.subTitle}>TAREFAS</h2>
-            <section className={Styles.tarefaItem}>
-            {tarefas &&(
+            {tarefas.length ==0 &&(
+                <p className={Styles.tarefaUndefined}>Nenhuma tarefa foi adicionada</p>
+            )}
+
+            <ul className={Styles.tarefaItem}>
+                {tarefas &&(
                     tarefas.map((element, index) => (
-                        <p key={index} className={Styles.listItem}><input type="checkbox"/> {element} <button className={Styles.buttonRemove} onClick={() => {removerTarefa(element)}}>Remover</button> </p>
-                        ))
-                    )}
-            </section>
+                        <li key={index} className={Styles.listItem}><input type="checkbox"/> {element} <button onClick={() => {
+                        removerTarefa(element)
+                        }} className={Styles.buttonRemove}><FaTrashAlt/></button></li>
+                    ))
+                )}
+            </ul>
+            
         </>
-    )
+        )
 }
 
 export default Form
