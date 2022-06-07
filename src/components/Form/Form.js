@@ -30,7 +30,7 @@ function Form() {
     }
 
     return (
-        <>
+        <section>
             <form className={Styles.form}>
                 <input onChange={(event) => setTarefa(event.target.value)} onKeyPress={EventKey} className={Styles.inputTarefa} type="text" name="tarefa" placeholder="Descrição da tarefa" value={tarefa}/>
                 <button type="button" onClick={adicionarTarefa} className={Styles.botao} >Adicionar</button>
@@ -51,7 +51,7 @@ function Form() {
                 )}
             </ul>
             
-        </>
+        </section>
         )
 }
 
