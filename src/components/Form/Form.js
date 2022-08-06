@@ -10,6 +10,7 @@ function Form() {
         event.preventDefault()
         if(tarefa.length > 0) {
             setTarefas((prevState) => {
+                console.log(prevState)
                 return [...prevState, {
                     value: tarefa, 
                     id: tarefas.length}]
