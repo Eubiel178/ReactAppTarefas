@@ -1,84 +1,62 @@
-.inputTarefa {
-    margin: 1em 1em 0em 0em;
-    height: 2.5em;
-    padding: 0em 6em 0em 1em;
-    font-size: 15px;
-    border-radius: 5px;
-    border: 1px solid rgba(0, 0, 0, 0.137);
-    font-size: 15px;
-    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.048);
+.inputTask {
+  margin: 1em 1em 0em 0em;
+  height: 2.5em;
+  padding: 0em 6em 0em 1em;
+  font-size: 15px;
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.137);
+  font-size: 15px;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.048);
 }
 
-.botao {
-    height: 2.5em;
-    margin-right: 1em;
-    padding: 0em 1em 0em 1em;
-    color: aliceblue;
-    background-color: #43BC70;
-    border-radius: 5px;
-    border: 1px solid rgba(0, 0, 0, 0.137);
-    font-size: 15px;
-    transition-duration: 0.5s;
+.button {
+  height: 2.5em;
+  margin-right: 1em;
+  padding: 0em 1em 0em 1em;
+  color: aliceblue;
+  background-color: #43bc70;
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.137);
+  font-size: 15px;
+  transition-duration: 0.5s;
 }
 
-.botao:hover {
-    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.192);
-    background-color: #3a8555;
+.button:hover {
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.192);
+  background-color: #3a8555;
 }
 
 .subTitle {
-    margin-top: 1.5em;
-    margin: 1.5em 0em 1em 0em;
+  margin-top: 1.5em;
+  margin: 1.5em 0em 1em 0em;
 }
 
-.tarefaItem {
-    margin-left: 1.3em;
+.taskList {
+  margin-left: 0.5em;
 }
 
 .listItem {
-    width: 90%;
-    margin-bottom: 0.5em;
-    list-style: square;
-    font-size: 20px;
-    list-style: none;
-    margin-left: -0.8em;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.144);
+  width: 90%;
+  margin-bottom: 0.5em;
+  list-style: square;
+  font-size: 20px;
+  list-style: none;
+  margin-left: -0.8em;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.144);
 }
 
-.textWrap {
-    text-align: justify;
-    padding-left: 0.5em;
-    word-break: break-all;
-}
-
-.buttonRemove {
-    border: none;
-    color: rgb(170, 34, 34);
-    font-size: 17px;
-    background-color: transparent;
-    transition-duration: 0.5s;
-    padding: 0.6em;
-    margin-left: 3em;
-}
-
-.buttonRemove:hover {
-    background-color: #d0d2d4;
-    border-radius: 6px;
-}
-
-.tarefaUndefined {
-    margin-left: 0.2em;
-    color: #686868;
+.taskUndefined {
+  margin-left: 0.2em;
+  color: #686868;
 }
 
 @media (max-width: 474px) {
-    .form {
-        display: flex;
-        flex-direction: column;
-    }
+  .form {
+    display: flex;
+    flex-direction: column;
+  }
 
-    .inputTarefa {
-        margin-bottom: 1em;
-
-    }
+  .inputTask {
+    margin-bottom: 1em;
+  }
 }

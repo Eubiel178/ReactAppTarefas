@@ -1,0 +1,20 @@
+.textWrap {
+  text-align: justify;
+  padding-left: 0.5em;
+  word-break: break-all;
+}
+
+.buttonRemove {
+  border: none;
+  color: rgb(170, 34, 34);
+  font-size: 17px;
+  background-color: transparent;
+  transition-duration: 0.5s;
+  padding: 0.6em;
+  margin-left: 3em;
+}
+
+.buttonRemove:hover {
+  background-color: #d0d2d4;
+  border-radius: 6px;
+}

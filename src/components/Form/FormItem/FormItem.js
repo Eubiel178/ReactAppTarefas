@@ -1,14 +1,18 @@
-import { FaTrashAlt } from "react-icons/fa"
-import Styles from "../Form.module.css"
+import { FaTrashAlt } from "react-icons/fa";
+import Styles from "./FormItem.module.css";
 
-function FormItem({element, event, id, key}) {
-    return (
-        <>
-            <li id={id} key={key} className={Styles.listItem}>
-                <input type="checkbox"/><span className={Styles.textWrap}>{element}</span><button onClick={event}className={Styles.buttonRemove}><FaTrashAlt/></button>
-            </li>
-        </>
-    )
+function FormItem({ element, event, id, key }) {
+  return (
+    <>
+      <p id={id} key={key}>
+        <input type="checkbox" />
+        <span className={Styles.textWrap}>{element}</span>
+        <button onClick={event} className={Styles.buttonRemove}>
+          <FaTrashAlt />
+        </button>
+      </p>
+    </>
+  );
 }
 
-export default FormItem
+export default FormItem;
