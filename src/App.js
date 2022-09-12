@@ -1,14 +1,11 @@
-import './App.css';
-import Form from './components/Form/Form';
-import Header from './components/Header/Header';
+import Routes from "./routes/routes";
 
 function App() {
   return (
-    <main className="container">
-      <Header/>
-      <Form/>
+    <main>
+      <Routes />
     </main>
-  )
+  );
 }
 
 export default App;
