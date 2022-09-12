@@ -15,7 +15,6 @@ export const NavItens = styled.div`
   }
 
   a {
-    margin-left: 1em;
     text-decoration: none;
     color: #fff;
     padding: 0.5em;
@@ -25,5 +24,9 @@ export const NavItens = styled.div`
 
   a:hover {
     background-color: #25613b;
+  }
+
+  @media (max-width: 350px) {
+    margin-left: 3em;
   }
 `;
