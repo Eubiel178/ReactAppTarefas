@@ -26,7 +26,7 @@ export const NavItens = styled.div`
     background-color: #25613b;
   }
 
-  @media (max-width: 350px) {
+  @media (max-width: 600px) {
     margin-left: 3em;
   }
 `;
