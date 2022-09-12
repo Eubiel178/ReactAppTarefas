@@ -17,5 +17,12 @@ export const NavItens = styled.div`
   a {
     text-decoration: none;
     color: #fff;
+    padding: 0.5em;
+    border-radius: 10px;
+    transition-duration: 0.5s;
+  }
+
+  a:hover {
+    background-color: #25613b;
   }
 `;
