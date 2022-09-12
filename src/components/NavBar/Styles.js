@@ -15,6 +15,7 @@ export const NavItens = styled.div`
   }
 
   a {
+    margin-left: 1em;
     text-decoration: none;
     color: #fff;
     padding: 0.5em;
