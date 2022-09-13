@@ -3,12 +3,10 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import TaskAppPage from "../pages/TaskApp/TaskAppPage";
 import LoginPage from "../pages/Login/LoginPage";
 import RegisterPage from "../pages/Register/RegisterPage";
-import NavBar from "../components/NavBar/NavBar";
 
-function routes() {
+const routes = () => {
   return (
     <Router>
-      <NavBar />
       <Routes>
         <Route path="/" element={<TaskAppPage />} />
 
@@ -18,5 +16,5 @@ function routes() {
       </Routes>
     </Router>
   );
-}
+};
 export default routes;

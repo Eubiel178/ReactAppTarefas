@@ -1,7 +1,7 @@
 import { AsideContent } from "./Styles";
 import { Link } from "react-router-dom";
 
-function Column({ primaryText, secondText, register, text, to }) {
+const Column = ({ primaryText, secondText, register, text, to }) => {
   return (
     <AsideContent>
       <aside>
@@ -21,6 +21,6 @@ function Column({ primaryText, secondText, register, text, to }) {
       </aside>
     </AsideContent>
   );
-}
+};
 
 export default Column;

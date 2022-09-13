@@ -2,9 +2,9 @@ import { FaTrashAlt } from "react-icons/fa";
 
 import { Task } from "./Styles";
 
-function TaskItem({ tasks, element, event, id, key }) {
+const TaskItem = ({ element, event, id }) => {
   return (
-    <Task id={id} key={key}>
+    <Task id={id} key={id}>
       <input type="checkbox" />
       <span>{element}</span>
       <button onClick={event}>
@@ -12,6 +12,6 @@ function TaskItem({ tasks, element, event, id, key }) {
       </button>
     </Task>
   );
-}
+};
 
 export default TaskItem;

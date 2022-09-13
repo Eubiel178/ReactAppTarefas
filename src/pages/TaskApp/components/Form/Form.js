@@ -1,6 +1,6 @@
 import { Container } from "./Styles";
 
-function Form({ AddTask, setTask, task }) {
+const Form = ({ AddTask, setTask, task }) => {
   return (
     <form onSubmit={AddTask}>
       <Container>
@@ -15,6 +15,6 @@ function Form({ AddTask, setTask, task }) {
       </Container>
     </form>
   );
-}
+};
 
 export default Form;

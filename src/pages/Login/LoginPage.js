@@ -5,7 +5,7 @@ import PrimaryColumn from "./components/PrimaryColumn/PrimaryColumn";
 import SecondColumn from "./components/SecondColumn/SecondColumn";
 import NavBar from "../../components/NavBar/NavBar";
 
-function LoginPage() {
+const LoginPage = () => {
   return (
     <section>
       <Body>
@@ -16,6 +16,6 @@ function LoginPage() {
       </Body>
     </section>
   );
-}
+};
 
 export default LoginPage;

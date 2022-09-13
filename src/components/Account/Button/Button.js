@@ -2,7 +2,7 @@ import { Container } from "./Styles";
 
 import { Link } from "react-router-dom";
 
-function Button({ value, to }) {
+const Button = ({ value, to }) => {
   return (
     <Container>
       <button>
@@ -10,6 +10,6 @@ function Button({ value, to }) {
       </button>
     </Container>
   );
-}
+};
 
 export default Button;

@@ -1,6 +1,6 @@
 import Column from "../../../../components/Account/Column/Column";
 
-function SecondColumn() {
+const SecondColumn = () => {
   return (
     <Column
       button="Cadastre-se"
@@ -11,6 +11,6 @@ function SecondColumn() {
       to="/register"
     />
   );
-}
+};
 
 export default SecondColumn;

@@ -6,7 +6,7 @@ import Body from "../../components/Account/Body/Body";
 import PrimaryColumn from "./components/PrimaryColumn/PrimaryColumn";
 import SecondColumn from "./components/SecondColumn/SecondColum";
 
-function RegisterPage() {
+const RegisterPage = () => {
   return (
     <section>
       <Body>
@@ -24,6 +24,6 @@ function RegisterPage() {
       </Body>
     </section>
   );
-}
+};
 
 export default RegisterPage;

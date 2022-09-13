@@ -1,11 +1,15 @@
-import { Title } from "./Styles";
+import { HeaderContents } from "./Styles";
+import NavBar from "../../../../components/NavBar/NavBar";
 
-function Header() {
+const Header = () => {
   return (
     <header>
-      <Title>ADICIONAR TAREFAS</Title>
+      <HeaderContents>
+        <NavBar />
+        <h1>ADICIONAR TAREFAS</h1>
+      </HeaderContents>
     </header>
   );
-}
+};
 
 export default Header;

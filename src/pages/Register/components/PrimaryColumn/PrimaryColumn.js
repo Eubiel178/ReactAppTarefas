@@ -1,6 +1,6 @@
 import Column from "../../../../components/Account/Column/Column";
 
-function PrimaryColumn() {
+const PrimaryColumn = () => {
   return (
     <Column
       primaryText=" Preencha todos os campos"
@@ -10,6 +10,6 @@ function PrimaryColumn() {
       to="/login"
     />
   );
-}
+};
 
 export default PrimaryColumn;

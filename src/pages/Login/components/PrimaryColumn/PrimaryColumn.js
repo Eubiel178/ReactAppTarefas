@@ -5,7 +5,7 @@ import Form from "./Form/Form";
 
 import { SectionContent, Register } from "./Styles";
 
-function PrimaryColumn() {
+const PrimaryColumn = () => {
   return (
     <SectionContent>
       <section>
@@ -20,6 +20,6 @@ function PrimaryColumn() {
       </section>
     </SectionContent>
   );
-}
+};
 
 export default PrimaryColumn;

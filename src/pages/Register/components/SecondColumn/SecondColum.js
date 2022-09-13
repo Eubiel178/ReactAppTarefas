@@ -3,7 +3,7 @@ import { SectionContent } from "./Styles";
 import Header from "../../../../components/Account/Header/Header";
 import Form from "./Form/Form";
 
-function SecondColumn() {
+const SecondColumn = () => {
   return (
     <SectionContent>
       <section>
@@ -12,6 +12,6 @@ function SecondColumn() {
       </section>
     </SectionContent>
   );
-}
+};
 
 export default SecondColumn;

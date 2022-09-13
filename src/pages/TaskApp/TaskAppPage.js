@@ -6,11 +6,11 @@ import { Container, Feedback, TaskList } from "./Styles";
 import SubTitle from "./components/SubTitle/SubTitle";
 import Tasks from "./components/TaskItem/TaskItem";
 
-function TaskAppPage() {
+const TaskAppPage = () => {
   const [task, setTask] = useState("");
   const [tasks, setTasks] = useState([]);
 
-  function AddTask(event) {
+  const AddTask = (event) => {
     event.preventDefault();
     if (task.length > 0) {
       setTasks((prevState) => {
@@ -18,25 +18,25 @@ function TaskAppPage() {
           ...prevState,
           {
             value: task,
-            id: task.length,
+            id: tasks.length,
           },
         ];
       });
       setTask("");
     }
-  }
+  };
 
-  function RemoveTask(elementId) {
+  const RemoveTask = (elementId) => {
     const newList = tasks.filter((task) => {
       return elementId != task.id;
     });
     setTasks(newList);
-  }
+  };
 
   return (
-    <Container>
+    <>
       <Header />
-      <section>
+      <Container>
         <Form AddTask={AddTask} task={task} setTask={setTask} />
         <div>
           <SubTitle tasks={tasks} />
@@ -46,7 +46,6 @@ function TaskAppPage() {
               tasks.map((element, index) => (
                 <Tasks
                   element={element.value}
-                  key={index}
                   id={element.id}
                   event={() => {
                     RemoveTask(element.id);
@@ -55,9 +54,9 @@ function TaskAppPage() {
               ))}
           </TaskList>
         </div>
-      </section>
-    </Container>
+      </Container>
+    </>
   );
-}
+};
 
 export default TaskAppPage;

@@ -1,7 +1,7 @@
 import FormItem from "../../../../../components/Account/FormITem/FormItem";
 import Button from "../../../../../components/Account/Button/Button";
 
-function Form() {
+const Form = () => {
   return (
     <form>
       <FormItem
@@ -22,6 +22,6 @@ function Form() {
       <Button value="Criar Conta" to="" />
     </form>
   );
-}
+};
 
 export default Form;
