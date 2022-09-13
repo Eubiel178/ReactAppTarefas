@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import Header from "./components/Header/Header";
 import Form from "./components/Form/Form";
@@ -9,6 +9,7 @@ import Tasks from "./components/TaskItem/TaskItem";
 const TaskAppPage = () => {
   const [task, setTask] = useState("");
   const [tasks, setTasks] = useState([]);
+  const [localGet, setLocalGet] = useState(undefined);
 
   const AddTask = (event) => {
     event.preventDefault();
@@ -18,10 +19,11 @@ const TaskAppPage = () => {
           ...prevState,
           {
             value: task,
-            id: tasks.length,
+            id: task.length,
           },
         ];
       });
+
       setTask("");
     }
   };
@@ -31,7 +33,19 @@ const TaskAppPage = () => {
       return elementId != task.id;
     });
     setTasks(newList);
+    if (localGet.length == 1) {
+      localStorage.clear("tasks");
+    }
   };
+
+  useEffect(() => {
+    tasks.map((element, index, array) => {
+      localStorage.setItem("tasks", JSON.stringify(array));
+      console.log(array);
+    });
+
+    setLocalGet(JSON.parse(localStorage.getItem("tasks")));
+  }, [tasks]);
 
   return (
     <>
@@ -39,13 +53,14 @@ const TaskAppPage = () => {
       <Container>
         <Form AddTask={AddTask} task={task} setTask={setTask} />
         <div>
-          <SubTitle tasks={tasks} />
+          <SubTitle localGet={localGet} />
 
           <TaskList>
-            {tasks &&
-              tasks.map((element, index) => (
+            {localGet &&
+              localGet.map((element, index) => (
                 <Tasks
                   element={element.value}
+                  key={index}
                   id={element.id}
                   event={() => {
                     RemoveTask(element.id);

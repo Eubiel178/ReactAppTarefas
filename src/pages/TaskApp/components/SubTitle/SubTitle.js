@@ -1,10 +1,10 @@
 import { Feedback } from "./Styles";
 
-const SubTitle = ({ tasks }) => {
+const SubTitle = ({ localGet }) => {
   return (
     <Feedback>
       <h2>TAREFAS</h2>
-      {tasks.length == 0 && <p>Nenhuma tarefa foi adicionada</p>}
+      {localGet == undefined && <p>Nenhuma tarefa foi adicionada</p>}
     </Feedback>
   );
 };

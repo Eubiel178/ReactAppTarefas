@@ -37,7 +37,7 @@ export const AsideContent = styled.div`
     color: #fff;
   }
 
-  @media (max-width: 970px) {
+  @media (max-width: 866px) {
     display: none;
   }
 `;
