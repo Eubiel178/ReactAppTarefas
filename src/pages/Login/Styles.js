@@ -5,9 +5,11 @@ export const ContainerContent = styled.div`
   height: 30em;
   display: flex;
   justify-content: space-between;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.096);
 
   @media (max-width: 866px) {
     width: 60%;
+    border-radius: 2em;
   }
 
   @media (max-width: 580px) {

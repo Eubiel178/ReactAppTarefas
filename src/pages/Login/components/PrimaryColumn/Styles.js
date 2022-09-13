@@ -6,7 +6,7 @@ export const SectionContent = styled.div`
   position: relative;
 
   @media (max-width: 866px) {
-    border-radius: 1em;
+    border-radius: 2em;
   }
 `;
 

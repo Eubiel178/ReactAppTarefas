@@ -5,6 +5,6 @@ export const SectionContent = styled.div`
   width: 100%;
 
   @media (max-width: 866px) {
-    border-radius: 1em;
+    border-radius: 2em;
   }
 `;

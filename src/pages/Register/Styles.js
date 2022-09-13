@@ -6,8 +6,10 @@ export const ContainerContent = styled.div`
   display: flex;
   position: relative;
   justify-content: space-between;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.096);
 
   @media (max-width: 866px) {
+    border-radius: 2em;
     width: 60%;
   }
 
