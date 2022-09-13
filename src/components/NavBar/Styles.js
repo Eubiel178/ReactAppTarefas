@@ -7,8 +7,9 @@ export const NavBarContent = styled.div`
 
 export const NavItens = styled.div`
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   width: 20%;
+  padding-left: 2em;
 
   li {
     list-style: none;
@@ -18,15 +19,12 @@ export const NavItens = styled.div`
     text-decoration: none;
     color: #fff;
     padding: 0.5em;
+    margin-right: 1em;
     border-radius: 10px;
     transition-duration: 0.5s;
   }
 
   a:hover {
     background-color: #25613b;
-  }
-
-  @media (max-width: 600px) {
-    margin-left: 3em;
   }
 `;
