@@ -7,8 +7,8 @@ export const ContainerContent = styled.div`
   position: relative;
   justify-content: space-between;
 
-  @media (max-width: 866px) {
-    width: 60%;
+  @media (max-width: 970px) {
+    width: 40%;
   }
 
   @media (max-width: 580px) {
