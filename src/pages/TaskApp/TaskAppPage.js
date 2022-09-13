@@ -41,7 +41,6 @@ const TaskAppPage = () => {
   useEffect(() => {
     tasks.map((element, index, array) => {
       localStorage.setItem("tasks", JSON.stringify(array));
-      console.log(array);
     });
 
     setLocalGet(JSON.parse(localStorage.getItem("tasks")));
