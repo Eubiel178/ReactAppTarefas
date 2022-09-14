@@ -29,10 +29,16 @@ const TaskAppPage = () => {
   };
 
   const RemoveTask = (elementId) => {
-    const newList = tasks.filter((task) => {
-      return elementId != task.id;
-    });
-    setTasks(newList);
+    if (tasks) {
+      const newList = tasks.filter((task) => {
+        return elementId != task.id;
+      });
+      console.log(newList);
+      setTasks(newList);
+    } else {
+      setTasks(localGet);
+    }
+
     if (localGet.length == 1) {
       localStorage.clear("tasks");
     }
