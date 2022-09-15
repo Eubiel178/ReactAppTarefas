@@ -1,8 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
+
+import { Container, TaskList } from "./Styles";
 
 import Header from "./components/Header/Header";
 import Form from "./components/Form/Form";
-import { Container, Feedback, TaskList } from "./Styles";
 import SubTitle from "./components/SubTitle/SubTitle";
 import Tasks from "./components/TaskItem/TaskItem";
 

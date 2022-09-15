@@ -2,10 +2,10 @@ import { Container } from "./Styles";
 
 import { Link } from "react-router-dom";
 
-const Button = ({ value, to, event }) => {
+const Button = ({ value, to }) => {
   return (
     <Container>
-      <button onClick={event}>
+      <button>
         <Link to={to}>{value}</Link>
       </button>
     </Container>
