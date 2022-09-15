@@ -12,8 +12,7 @@ const AppRoutes = () => {
 
   const Authenticated = () => {
     setAuth(!auth);
-
-    if (auth === true) {
+    if (auth === false) {
       setButton("Deslogar");
     } else {
       setButton("Logar");
