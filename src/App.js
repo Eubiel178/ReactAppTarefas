@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 import AppRoutes from "./routes/routes";
 
 const App = () => {

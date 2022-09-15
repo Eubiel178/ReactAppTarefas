@@ -5,7 +5,6 @@ import { useState } from "react";
 import TaskAppPage from "../pages/TaskApp/TaskAppPage";
 import LoginPage from "../pages/Login/LoginPage";
 import RegisterPage from "../pages/Register/RegisterPage";
-import { func } from "prop-types";
 
 const AppRoutes = () => {
   const [auth, setAuth] = useState(false);
@@ -14,10 +13,10 @@ const AppRoutes = () => {
   const Authenticated = () => {
     setAuth(!auth);
 
-    if (auth == true) {
-      setButton("Logar");
-    } else {
+    if (auth === true) {
       setButton("Deslogar");
+    } else {
+      setButton("Logar");
     }
   };
 
