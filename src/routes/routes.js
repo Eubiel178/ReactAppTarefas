@@ -15,9 +15,9 @@ const AppRoutes = () => {
     setAuth(!auth);
 
     if (auth == true) {
-      setButton("Deslogar");
-    } else {
       setButton("Logar");
+    } else {
+      setButton("Deslogar");
     }
   };
 
