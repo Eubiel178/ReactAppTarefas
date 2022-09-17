@@ -7,7 +7,7 @@ import LoginPage from "../pages/Login/LoginPage";
 import RegisterPage from "../pages/Register/RegisterPage";
 
 const AppRoutes = () => {
-  const [auth, setAuth] = useState(false);
+  const [auth, setAuth] = useState(true);
   const [button, setButton] = useState("Logar");
 
   const Authenticated = () => {
