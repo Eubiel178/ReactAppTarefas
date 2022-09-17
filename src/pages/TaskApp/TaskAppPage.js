@@ -10,9 +10,10 @@ import TaskItem from "./components/TaskItem/TaskItem";
 import { addTask, taskList } from "../../utils/task";
 
 const TaskAppPage = () => {
+  //const [toDoListSize, setToDoListSize] = useState();
   const [task, setTask] = useState("");
   const [input, setInput] = useState("");
-  const [toDoList, setToDoList] = useState([]);
+  const [toDoList, setToDoList] = useState();
 
   const AddTask = (event) => {
     event.preventDefault();
@@ -21,6 +22,10 @@ const TaskAppPage = () => {
 
     setInput("");
   };
+
+  useEffect(() => {
+    setToDoList(taskList);
+  }, [input]);
 
   /*
 
@@ -60,7 +65,7 @@ const TaskAppPage = () => {
           <SubTitle />
 
           <TaskList>
-            {toDoList.length > 0 &&
+            {toDoList &&
               toDoList.map((taskJSON, index) => {
                 return (
                   <TaskItem
