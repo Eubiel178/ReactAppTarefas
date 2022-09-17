@@ -31,7 +31,6 @@ const AppRoutes = () => {
         ) : (
           <Routes>
             <Route path="/" element={<TaskAppPage />} />
-            <Route path="/login" element={<LoginPage />} />s
           </Routes>
         )}
       </Router>
