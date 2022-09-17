@@ -7,13 +7,12 @@ import Form from "./components/Form/Form";
 import SubTitle from "./components/SubTitle/SubTitle";
 import TaskItem from "./components/TaskItem/TaskItem";
 
-import { addTask, removeTask, taskList } from "../../utils/task";
+import { addTask, removeTask, taskEdit, taskList } from "../../utils/task";
 
 const TaskAppPage = () => {
-  //const [toDoListSize, setToDoListSize] = useState();
   const [task, setTask] = useState("");
   const [input, setInput] = useState("");
-  const [toDoList, setToDoList] = useState();
+  const [toDoList, setToDoList] = useState([]);
 
   const AddTask = (event) => {
     event.preventDefault();
@@ -33,33 +32,14 @@ const TaskAppPage = () => {
     List();
   };
 
+  const TaskEdit = (task) => {
+    taskEdit(task, setInput);
+    RemoveTask(task.id);
+  };
+
   useEffect(() => {
     List();
   }, [input]);
-
-  /*
-
-
-              {tasks &&
-              tasks.map((element, index) => (
-                <Tasks
-                  element={element.value}
-                  key={index}
-                  id={element.id}
-                  event={() => {
-                    RemoveTask(element.id);
-                  }}
-                />
-              ))}
-  */
-
-  /*  const RemoveTask = (elementId) => {
-    const newList = tasks.filter((task) => {
-      return elementId !== task.id;
-    });
-    console.log(newList);
-    setTasks(newList);
-  }; */
 
   return (
     <>
@@ -72,7 +52,7 @@ const TaskAppPage = () => {
           setInput={setInput}
         />
         <div>
-          <SubTitle />
+          <SubTitle toDoList={toDoList} />
 
           <TaskList>
             {toDoList &&
@@ -85,7 +65,9 @@ const TaskAppPage = () => {
                     remove={() => {
                       RemoveTask(taskJSON.id);
                     }}
-                    edit
+                    edit={() => {
+                      TaskEdit(taskJSON);
+                    }}
                   />
                 );
               })}
