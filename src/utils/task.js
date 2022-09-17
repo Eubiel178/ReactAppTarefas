@@ -1,5 +1,6 @@
 export const addTask = (task) => {
   let list = [];
+
   if (localStorage.length > 0) {
     list = taskList();
     list.push(task);
@@ -18,7 +19,12 @@ export const taskList = () => {
   }
 };
 
-export const removeTask = () => {
-  //if (condition) {
-  //}
+export const removeTask = (taskid, setInput, input) => {
+  let list = taskList();
+
+  let newList = list.filter((task) => {
+    return taskid !== task.id;
+  });
+
+  localStorage.setItem("tasks", JSON.stringify(newList));
 };

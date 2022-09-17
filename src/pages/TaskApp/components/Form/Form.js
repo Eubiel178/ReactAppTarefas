@@ -1,12 +1,13 @@
 import { Container } from "./Styles";
 
-import { v4 as uuid } from "uuid";
-
+import { v4 as uuidv4 } from "uuid";
 const Form = ({ AddTask, setTask, setInput, input }) => {
+  let id = uuidv4();
+
   const Task = (event) => {
     setTask({
       taskDescription: event.target.value,
-      id: uuid,
+      id: id,
       isFinished: false,
       userID: "",
     });

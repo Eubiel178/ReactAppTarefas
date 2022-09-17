@@ -7,11 +7,10 @@ import Form from "./components/Form/Form";
 import SubTitle from "./components/SubTitle/SubTitle";
 import TaskItem from "./components/TaskItem/TaskItem";
 
-import { addTask, taskList } from "../../utils/task";
+import { addTask, removeTask, taskList } from "../../utils/task";
 
 const TaskAppPage = () => {
   //const [toDoListSize, setToDoListSize] = useState();
-  //const [render, setRender] = useState("renderizado");
   const [task, setTask] = useState("");
   const [input, setInput] = useState("");
   const [toDoList, setToDoList] = useState();
@@ -25,8 +24,17 @@ const TaskAppPage = () => {
     }
   };
 
-  useEffect(() => {
+  const List = () => {
     setToDoList(taskList);
+  };
+
+  const RemoveTask = (taskId) => {
+    removeTask(taskId, setInput, input);
+    List();
+  };
+
+  useEffect(() => {
+    List();
   }, [input]);
 
   /*
@@ -74,6 +82,9 @@ const TaskAppPage = () => {
                     task={taskJSON.taskDescription}
                     key={index}
                     id={taskJSON.id}
+                    event={() => {
+                      RemoveTask(taskJSON.id);
+                    }}
                   />
                 );
               })}
