@@ -1,10 +1,10 @@
 import { Feedback } from "./Styles";
 
-const SubTitle = ({ tasks }) => {
+const SubTitle = () => {
   return (
     <Feedback>
       <h2>TAREFAS</h2>
-      {tasks === "" && <p>Nenhuma tarefa foi adicionada</p>}
+      {localStorage.length === 0 && <p>Nenhuma tarefa foi adicionada</p>}
     </Feedback>
   );
 };

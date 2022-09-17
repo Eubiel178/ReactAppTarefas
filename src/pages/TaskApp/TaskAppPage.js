@@ -11,27 +11,20 @@ import { addTask, taskList } from "../../utils/task";
 
 const TaskAppPage = () => {
   const [task, setTask] = useState("");
-  const [tasks, setTasks] = useState([]);
-  const [toDoList, setToDoList] = useState();
+  const [input, setInput] = useState("");
+  const [toDoList, setToDoList] = useState([]);
 
   const AddTask = (event) => {
     event.preventDefault();
 
-    if (task.length > 0) {
-      tasks.push({
-        taskDescription: task,
-        id: tasks.length,
-        isFinished: false,
-        userID: "",
-      });
-    }
-    console.log(tasks);
-    addTask(tasks);
+    addTask(task);
 
-    setTask("");
+    setInput("");
   };
 
   /*
+
+
               {tasks &&
               tasks.map((element, index) => (
                 <Tasks
@@ -45,23 +38,6 @@ const TaskAppPage = () => {
               ))}
   */
 
-  const AddTaskk = (event) => {
-    event.preventDefault();
-    if (task.length > 0) {
-      setTasks((prevState) => {
-        return [
-          ...prevState,
-          {
-            value: task,
-            id: tasks.length,
-          },
-        ];
-      });
-
-      setTask("");
-    }
-  };
-
   /*  const RemoveTask = (elementId) => {
     const newList = tasks.filter((task) => {
       return elementId !== task.id;
@@ -74,12 +50,17 @@ const TaskAppPage = () => {
     <>
       <Header />
       <Container>
-        <Form AddTask={AddTask} task={task} setTask={setTask} />
+        <Form
+          AddTask={AddTask}
+          input={input}
+          setTask={setTask}
+          setInput={setInput}
+        />
         <div>
-          <SubTitle tasks={toDoList} />
+          <SubTitle />
 
           <TaskList>
-            {/*toDoList === " " &&
+            {toDoList.length > 0 &&
               toDoList.map((taskJSON, index) => {
                 return (
                   <TaskItem
@@ -88,7 +69,7 @@ const TaskAppPage = () => {
                     id={taskJSON.id}
                   />
                 );
-              }) */}
+              })}
           </TaskList>
         </div>
       </Container>

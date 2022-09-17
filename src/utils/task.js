@@ -1,10 +1,13 @@
 export const addTask = (task) => {
+  let list = [];
   if (localStorage.length > 0) {
-    let list = taskList();
+    list = taskList();
+    console.log(list);
     list.push(task);
     localStorage.setItem("tasks", JSON.stringify(list));
   } else {
-    localStorage.setItem("tasks", JSON.stringify(task));
+    list.push(task);
+    localStorage.setItem("tasks", JSON.stringify(list));
   }
 };
 
