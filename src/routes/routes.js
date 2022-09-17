@@ -20,21 +20,19 @@ const AppRoutes = () => {
   };
 
   return (
-    <>
+    <Router>
       <button onClick={Authenticated}>{button}</button>
-      <Router>
-        {auth === false ? (
-          <Routes>
-            <Route path="/" element={<LoginPage />} />
-            <Route path="/register" element={<RegisterPage />} />
-          </Routes>
-        ) : (
-          <Routes>
-            <Route path="/" element={<TaskAppPage />} />
-          </Routes>
-        )}
-      </Router>
-    </>
+      {auth === false ? (
+        <Routes>
+          <Route path="/" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+        </Routes>
+      ) : (
+        <Routes>
+          <Route path="/" element={<TaskAppPage />} />
+        </Routes>
+      )}
+    </Router>
   );
 };
 
