@@ -1,7 +1,7 @@
 export const addTask = (task) => {
   let list = [];
 
-  if (localStorage.length > 0) {
+  if (localStorage.getItem("tasks").length > 0) {
     list = taskList();
     list.push(task);
 
