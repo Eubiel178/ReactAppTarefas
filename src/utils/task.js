@@ -19,7 +19,7 @@ export const taskList = () => {
   }
 };
 
-export const removeTask = (taskid, setInput, input) => {
+export const removeTask = (taskid) => {
   let list = taskList();
 
   let newList = list.filter((task) => {

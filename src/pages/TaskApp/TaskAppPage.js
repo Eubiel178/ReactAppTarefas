@@ -82,9 +82,10 @@ const TaskAppPage = () => {
                     task={taskJSON.taskDescription}
                     key={index}
                     id={taskJSON.id}
-                    event={() => {
+                    remove={() => {
                       RemoveTask(taskJSON.id);
                     }}
+                    edit
                   />
                 );
               })}
