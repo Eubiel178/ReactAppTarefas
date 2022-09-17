@@ -11,16 +11,18 @@ import { addTask, taskList } from "../../utils/task";
 
 const TaskAppPage = () => {
   //const [toDoListSize, setToDoListSize] = useState();
+  //const [render, setRender] = useState("renderizado");
   const [task, setTask] = useState("");
   const [input, setInput] = useState("");
   const [toDoList, setToDoList] = useState();
 
   const AddTask = (event) => {
     event.preventDefault();
+    if (input.length > 0) {
+      addTask(task);
 
-    addTask(task);
-
-    setInput("");
+      setInput("");
+    }
   };
 
   useEffect(() => {
