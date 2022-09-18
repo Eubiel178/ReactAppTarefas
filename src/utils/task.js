@@ -29,7 +29,7 @@ export const removeTask = (taskid) => {
   localStorage.setItem("tasks", JSON.stringify(newList));
 };
 
-export const taskEdit = (task, setInput) => {
+export const taskEdit = (task, setInput, setTask) => {
   setInput(task.taskDescription);
   
   setTask({
