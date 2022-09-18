@@ -31,4 +31,11 @@ export const removeTask = (taskid) => {
 
 export const taskEdit = (task, setInput) => {
   setInput(task.taskDescription);
+  
+  setTask({
+    taskDescription: task.taskDescription,
+    id: uuidv4(),
+    isFinished: false,
+    userID: "",
+  });
 };
