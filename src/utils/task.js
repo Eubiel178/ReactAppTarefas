@@ -1,7 +1,7 @@
 export const addTask = (task) => {
   let list = [];
 
-  if (localStorage.getItem("tasks").length > 0) {
+  if (localStorage.length) {
     list = taskList();
     list.push(task);
 
@@ -14,7 +14,7 @@ export const addTask = (task) => {
 };
 
 export const taskList = () => {
-  if (localStorage.length > 0) {
+  if (localStorage.length) {
     return JSON.parse(localStorage.getItem("tasks"));
   }
 };
