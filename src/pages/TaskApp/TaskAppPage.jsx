@@ -35,7 +35,7 @@ const TaskAppPage = () => {
   };
 
   const TaskEdit = (task) => {
-    taskEdit(task, setInput);
+    taskEdit(task, setInput, setTask);
 
     RemoveTask(task.id);
   };
