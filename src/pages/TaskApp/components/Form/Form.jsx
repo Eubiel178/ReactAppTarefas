@@ -1,6 +1,7 @@
 import { Container } from "./Styles";
 
 import { v4 as uuidv4 } from "uuid";
+
 const Form = ({ AddTask, setTask, setInput, input }) => {
   let id = uuidv4();
 
@@ -20,6 +21,7 @@ const Form = ({ AddTask, setTask, setInput, input }) => {
       <Container>
         <input
           onChange={Task}
+          onFocus={Task}
           type="text"
           name="tarefa"
           placeholder="Descrição da tarefa"

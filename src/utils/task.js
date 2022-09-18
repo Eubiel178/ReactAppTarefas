@@ -1,5 +1,7 @@
+import { v4 as uuidv4 } from "uuid";
+
 export const addTask = (task) => {
-  let list = [];
+  let list;
 
   if (localStorage.getItem("tasks")) {
     list = taskList();
@@ -31,7 +33,7 @@ export const removeTask = (taskid) => {
 
 export const taskEdit = (task, setInput, setTask) => {
   setInput(task.taskDescription);
-  
+
   setTask({
     taskDescription: task.taskDescription,
     id: uuidv4(),

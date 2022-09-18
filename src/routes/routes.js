@@ -1,27 +1,18 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import { useState } from "react";
+import { useContext } from "react";
 
 import TaskAppPage from "../pages/TaskApp/TaskAppPage";
 import LoginPage from "../pages/Login/LoginPage";
 import RegisterPage from "../pages/Register/RegisterPage";
 
-const AppRoutes = () => {
-  const [auth, setAuth] = useState(false);
-  const [button, setButton] = useState("Logar");
+import Context from "../contexts/Contexts";
 
-  const Authenticated = () => {
-    setAuth(!auth);
-    if (auth === false) {
-      setButton("Deslogar");
-    } else {
-      setButton("Logar");
-    }
-  };
+const AppRoutes = () => {
+  const { auth, setAuth } = useContext(Context);
 
   return (
     <Router>
-      <button onClick={Authenticated}>{button}</button>
       {auth === false ? (
         <Routes>
           <Route path="/" element={<LoginPage />} />

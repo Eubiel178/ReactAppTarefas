@@ -9,6 +9,8 @@ import TaskItem from "./components/TaskItem/TaskItem";
 
 import { addTask, removeTask, taskEdit, taskList } from "../../utils/task";
 
+import { v4 as uuidv4 } from "uuid";
+
 const TaskAppPage = () => {
   const [task, setTask] = useState("");
   const [input, setInput] = useState("");
