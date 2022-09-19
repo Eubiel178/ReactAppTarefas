@@ -24,15 +24,9 @@ const TaskAppPage = () => {
     event.preventDefault();
 
     if (taskIdEdit && input.length > 0) {
-      setTask({
-        description: input,
-        id: taskIdEdit,
-        isFinished: false,
-        userID: "",
-      });
+      removeTask(taskIdEdit);
 
-      console.log(task.id);
-      removeTask(task.id);
+      task.id = taskIdEdit;
 
       addTask(task);
 
@@ -59,6 +53,15 @@ const TaskAppPage = () => {
 
     taskEditReturn.forEach((element) => {
       setInput(element.description);
+
+      setTask({
+        description: element.description,
+        id: element.id,
+        isFinished: false,
+        userID: "",
+      });
+
+      console.log(element.id);
 
       setTaskIdEdit(element.id);
     });
