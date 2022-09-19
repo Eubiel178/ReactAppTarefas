@@ -1,3 +1,9 @@
+export const taskList = () => {
+  if (localStorage.getItem("tasks")) {
+    return JSON.parse(localStorage.getItem("tasks"));
+  }
+};
+
 export const removeTask = (taskid) => {
   let list = taskList();
 
@@ -23,18 +29,19 @@ export const addTask = (task) => {
   }
 };
 
-export const taskList = () => {
-  if (localStorage.getItem("tasks")) {
-    return JSON.parse(localStorage.getItem("tasks"));
-  }
-};
+export const taskEdit = (task, id) => {
+  const list = taskList();
 
-export const taskEdit = (task) => {
-  let list = taskList();
+  let mirror = [...list];
 
-  let taskEdit = list.filter((element) => {
-    return task.id == element.id;
+  const target = mirror.findIndex((element) => {
+    return element.id === id;
   });
 
-  return taskEdit;
+  //mirror[target].description = task.description;
+
+  list.splice(target, target, task);
+  console.log(list);
+
+  localStorage.setItem("tasks", list);
 };

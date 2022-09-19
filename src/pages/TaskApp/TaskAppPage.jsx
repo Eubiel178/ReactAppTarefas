@@ -18,20 +18,17 @@ const TaskAppPage = () => {
   });
   const [input, setInput] = useState("");
   const [toDoList, setToDoList] = useState([]);
-  const [taskIdEdit, setTaskIdEdit] = useState("");
+
+  const RemoveTask = (taskId) => {
+    removeTask(taskId, setInput, input);
+
+    List();
+  };
 
   const AddTask = (event) => {
     event.preventDefault();
 
-    if (taskIdEdit && input.length > 0) {
-      removeTask(taskIdEdit);
-
-      task.id = taskIdEdit;
-
-      addTask(task);
-
-      setTaskIdEdit("");
-    } else if (input.length > 0) {
+    if (input.length > 0) {
       addTask(task);
     }
 
@@ -42,29 +39,8 @@ const TaskAppPage = () => {
     setToDoList(taskList);
   };
 
-  const RemoveTask = (taskId) => {
-    removeTask(taskId, setInput, input);
-
-    List();
-  };
-
-  const TaskEdit = (task) => {
-    let taskEditReturn = taskEdit(task);
-
-    taskEditReturn.forEach((element) => {
-      setInput(element.description);
-
-      setTask({
-        description: element.description,
-        id: element.id,
-        isFinished: false,
-        userID: "",
-      });
-
-      console.log(element.id);
-
-      setTaskIdEdit(element.id);
-    });
+  const TaskEdit = (task, id) => {
+    taskEdit(task, id);
   };
 
   useEffect(() => {
@@ -97,7 +73,7 @@ const TaskAppPage = () => {
                         RemoveTask(taskJSON.id);
                       }}
                       edit={() => {
-                        TaskEdit(taskJSON);
+                        TaskEdit(task, taskJSON.id);
                       }}
                     />
                   );

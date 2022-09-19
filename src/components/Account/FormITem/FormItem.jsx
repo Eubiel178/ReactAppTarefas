@@ -4,7 +4,7 @@ const FormItem = ({ label, id, type, placeholder }) => {
   return (
     <Container>
       <label htmlFor={id}>{label}</label>
-      <input type={type} id={id} placeholder={placeholder} />
+      <input type={type} id={id} placeholder={placeholder} required />
     </Container>
   );
 };
