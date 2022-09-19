@@ -10,18 +10,38 @@ import TaskItem from "./components/TaskItem/TaskItem";
 import { addTask, removeTask, taskEdit, taskList } from "../../utils/task";
 
 const TaskAppPage = () => {
-  const [task, setTask] = useState("");
+  const [task, setTask] = useState({
+    description: "",
+    id: "",
+    isFinished: false,
+    userID: "",
+  });
   const [input, setInput] = useState("");
   const [toDoList, setToDoList] = useState([]);
+  const [taskIdEdit, setTaskIdEdit] = useState("");
 
   const AddTask = (event) => {
     event.preventDefault();
 
-    if (input.length > 0) {
+    if (taskIdEdit && input.length > 0) {
+      setTask({
+        description: input,
+        id: taskIdEdit,
+        isFinished: false,
+        userID: "",
+      });
+
+      console.log(task.id);
+      removeTask(task.id);
+
       addTask(task);
 
-      setInput("");
+      setTaskIdEdit("");
+    } else if (input.length > 0) {
+      addTask(task);
     }
+
+    setInput("");
   };
 
   const List = () => {
@@ -35,9 +55,13 @@ const TaskAppPage = () => {
   };
 
   const TaskEdit = (task) => {
-    taskEdit(task, setInput, setTask);
+    let taskEditReturn = taskEdit(task);
 
-    RemoveTask(task.id);
+    taskEditReturn.forEach((element) => {
+      setInput(element.description);
+
+      setTaskIdEdit(element.id);
+    });
   };
 
   useEffect(() => {
@@ -63,7 +87,7 @@ const TaskAppPage = () => {
                 toDoList.map((taskJSON, index) => {
                   return (
                     <TaskItem
-                      task={taskJSON.taskDescription}
+                      task={taskJSON.description}
                       key={index}
                       id={taskJSON.id}
                       remove={() => {

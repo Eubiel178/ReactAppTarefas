@@ -7,7 +7,7 @@ const Form = ({ AddTask, setTask, setInput, input }) => {
 
   const Task = (event) => {
     setTask({
-      taskDescription: event.target.value,
+      description: event.target.value,
       id: id,
       isFinished: false,
       userID: "",
