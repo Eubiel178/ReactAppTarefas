@@ -7,7 +7,7 @@ const PrimaryColumn = () => {
       secondText="para criar sua conta"
       text="Já tem uma conta?"
       register="Login"
-      to="/login"
+      to="/"
     />
   );
 };

@@ -5,7 +5,7 @@ const Form = () => {
   return (
     <form>
       <FormItem
-        label="usuário"
+        label="Nome de usuário"
         placeholder="Nome de usuário"
         id="username"
         type="text"

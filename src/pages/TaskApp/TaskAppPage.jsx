@@ -47,36 +47,38 @@ const TaskAppPage = () => {
   return (
     <>
       <Header />
-      <Container>
-        <Form
-          AddTask={AddTask}
-          input={input}
-          setTask={setTask}
-          setInput={setInput}
-        />
-        <div>
-          <SubTitle toDoList={toDoList} />
+      <section>
+        <Container>
+          <Form
+            AddTask={AddTask}
+            input={input}
+            setTask={setTask}
+            setInput={setInput}
+          />
+          <div>
+            <SubTitle toDoList={toDoList} />
 
-          <TaskList>
-            {toDoList &&
-              toDoList.map((taskJSON, index) => {
-                return (
-                  <TaskItem
-                    task={taskJSON.taskDescription}
-                    key={index}
-                    id={taskJSON.id}
-                    remove={() => {
-                      RemoveTask(taskJSON.id);
-                    }}
-                    edit={() => {
-                      TaskEdit(taskJSON);
-                    }}
-                  />
-                );
-              })}
-          </TaskList>
-        </div>
-      </Container>
+            <TaskList>
+              {toDoList &&
+                toDoList.map((taskJSON, index) => {
+                  return (
+                    <TaskItem
+                      task={taskJSON.taskDescription}
+                      key={index}
+                      id={taskJSON.id}
+                      remove={() => {
+                        RemoveTask(taskJSON.id);
+                      }}
+                      edit={() => {
+                        TaskEdit(taskJSON);
+                      }}
+                    />
+                  );
+                })}
+            </TaskList>
+          </div>
+        </Container>
+      </section>
     </>
   );
 };

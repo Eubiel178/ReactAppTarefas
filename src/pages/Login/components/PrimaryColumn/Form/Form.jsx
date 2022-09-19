@@ -12,7 +12,7 @@ const Form = () => {
         id="password"
         type="password"
       />
-      <Button value="Logar" to="/Login" />
+      <Button value="Logar" to="" />
     </form>
   );
 };

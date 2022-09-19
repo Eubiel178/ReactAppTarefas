@@ -17,7 +17,7 @@ export const Container = styled.div`
     height: 2.5em;
     margin-right: 1em;
     padding: 0em 1em 0em 1em;
-    color: aliceblue;
+    color: #fff;
     background-color: #43bc70;
     border-radius: 5px;
     border: 1px solid rgba(0, 0, 0, 0.137);

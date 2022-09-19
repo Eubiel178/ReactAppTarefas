@@ -26,7 +26,7 @@ const Form = ({ AddTask, setTask, setInput, input }) => {
           placeholder="Descrição da tarefa"
           value={input}
         />
-        <button>Adicionar</button>
+        <button>Salvar</button>
       </Container>
     </form>
   );
