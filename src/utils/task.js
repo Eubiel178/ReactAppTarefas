@@ -29,6 +29,9 @@ export const addTask = (task) => {
   }
 };
 
+//Em desenvolvimento
+
+/*
 export const taskEdit = (task, id) => {
   const list = taskList();
 
@@ -45,3 +48,4 @@ export const taskEdit = (task, id) => {
 
   localStorage.setItem("tasks", list);
 };
+*/
