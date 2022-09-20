@@ -16,6 +16,7 @@ const TaskAppPage = () => {
     isFinished: false,
     userID: "",
   });
+  const [isEdit, setIsEdit] = useState();
   const [input, setInput] = useState("");
   const [toDoList, setToDoList] = useState([""]);
 
@@ -25,27 +26,38 @@ const TaskAppPage = () => {
     List();
   };
 
-  const AddTask = (event) => {
+  const HandleOnSubmit = (event) => {
     event.preventDefault();
-
-    addTask(task);
-
-    setInput("");
+    if (isEdit === "") {
+      addTask(task);
+      setInput("");
+    } else {
+      taskEdit(task, isEdit);
+      setInput("");
+      setIsEdit("");
+    }
   };
 
   const List = () => {
     setToDoList(taskList);
   };
 
-  const TaskEdit = (task, id) => {
-    taskEdit(task, id);
-
-    setInput("");
-  };
-
   useEffect(() => {
     List();
   }, [input]);
+
+  const TaskEdit = (task) => {
+    setTask({
+      description: task.description,
+      id: task.id,
+      isFinished: false,
+      userID: "",
+    });
+
+    setInput(task.description);
+
+    setIsEdit(task.id);
+  };
 
   return (
     <>
@@ -53,10 +65,11 @@ const TaskAppPage = () => {
       <section>
         <Container>
           <Form
-            AddTask={AddTask}
+            AddTask={HandleOnSubmit}
             input={input}
             setTask={setTask}
             setInput={setInput}
+            isEdit={isEdit}
           />
           <div>
             <SubTitle toDoList={toDoList} />
@@ -73,7 +86,7 @@ const TaskAppPage = () => {
                         RemoveTask(taskJSON.id);
                       }}
                       edit={() => {
-                        TaskEdit(task, taskJSON.id, input);
+                        TaskEdit(taskJSON);
                       }}
                     />
                   );

@@ -29,8 +29,6 @@ export const addTask = (task) => {
   }
 };
 
-//Em Desenvolvimento
-
 export const taskEdit = (task, id) => {
   const list = taskList();
 

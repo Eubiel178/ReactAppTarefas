@@ -2,7 +2,7 @@ import { Container } from "./Styles";
 
 import { v4 as uuidv4 } from "uuid";
 
-const Form = ({ AddTask, setTask, setInput, input }) => {
+const Form = ({ AddTask, setTask, setInput, input, isEdit }) => {
   let id = uuidv4();
 
   const Task = (event) => {
@@ -27,7 +27,7 @@ const Form = ({ AddTask, setTask, setInput, input }) => {
           value={input}
           required
         />
-        <button>Salvar</button>
+        <button>{isEdit !== "" ? "Atualizar" : "Salvar"}</button>
       </Container>
     </form>
   );
