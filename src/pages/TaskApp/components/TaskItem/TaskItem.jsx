@@ -2,17 +2,8 @@ import { FaTrashAlt } from "react-icons/fa";
 import { BsPencil } from "react-icons/bs";
 
 import { Task, Text, IconsContainer, ButtonEdit, ButtonRemove } from "./Styles";
-import { useState } from "react";
 
-const TaskItem = ({
-  task,
-  remove,
-  id,
-  edit,
-  completed,
-  isFinished,
-  setFinishTask,
-}) => {
+const TaskItem = ({ task, remove, id, edit, isFinished, setFinishTask }) => {
   return (
     <Task id={id} key={id}>
       <input

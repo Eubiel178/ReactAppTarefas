@@ -39,6 +39,7 @@ export const taskEdit = (task, id) => {
   });
 
   mirror[target].description = task.description;
+  mirror[target].isFinished = task.isFinished ? task.ifFinished : false;
 
   localStorage.setItem("tasks", JSON.stringify(mirror));
 };
