@@ -16,9 +16,9 @@ const TaskAppPage = () => {
     isFinished: false,
     userID: "",
   });
-  const [isEdit, setIsEdit] = useState();
+  const [isEdit, setIsEdit] = useState("");
   const [input, setInput] = useState("");
-  const [toDoList, setToDoList] = useState([""]);
+  const [toDoList, setToDoList] = useState([]);
 
   const RemoveTask = (taskId) => {
     removeTask(taskId, setInput, input);
@@ -28,14 +28,15 @@ const TaskAppPage = () => {
 
   const HandleOnSubmit = (event) => {
     event.preventDefault();
+
     if (isEdit === "") {
       addTask(task);
-      setInput("");
     } else {
       taskEdit(task, isEdit);
-      setInput("");
       setIsEdit("");
     }
+
+    setInput("");
   };
 
   const List = () => {
