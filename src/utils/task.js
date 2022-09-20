@@ -29,9 +29,6 @@ export const addTask = (task) => {
   }
 };
 
-//Em desenvolvimento
-
-/*
 export const taskEdit = (task, id) => {
   const list = taskList();
 
@@ -41,11 +38,7 @@ export const taskEdit = (task, id) => {
     return element.id === id;
   });
 
-  //mirror[target].description = task.description;
+  mirror[target].description = task.description;
 
-  list.splice(target, target, task);
-  console.log(list);
-
-  localStorage.setItem("tasks", list);
+  localStorage.setItem("tasks", JSON.stringify(mirror));
 };
-*/

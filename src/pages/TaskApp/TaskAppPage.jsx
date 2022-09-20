@@ -17,7 +17,7 @@ const TaskAppPage = () => {
     userID: "",
   });
   const [input, setInput] = useState("");
-  const [toDoList, setToDoList] = useState([]);
+  const [toDoList, setToDoList] = useState([""]);
 
   const RemoveTask = (taskId) => {
     removeTask(taskId, setInput, input);
@@ -41,6 +41,8 @@ const TaskAppPage = () => {
 
   const TaskEdit = (task, id) => {
     taskEdit(task, id);
+
+    setInput("");
   };
 
   useEffect(() => {
@@ -73,7 +75,7 @@ const TaskAppPage = () => {
                         RemoveTask(taskJSON.id);
                       }}
                       edit={() => {
-                        TaskEdit(task, taskJSON.id);
+                        TaskEdit(task, taskJSON.id, input);
                       }}
                     />
                   );
