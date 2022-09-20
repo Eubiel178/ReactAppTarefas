@@ -47,6 +47,23 @@ const TaskAppPage = () => {
     List();
   }, [input]);
 
+  const HandleSetFinishTask = async (task) => {
+    let data;
+
+    if (
+      window.confirm("Deseja mesmo marcar esta tarefa como concluida") === true
+    ) {
+      data = {
+        description: task.description,
+        isFinished: true,
+      };
+    }
+
+    await taskEdit(data, task.id);
+
+    List();
+  };
+
   const TaskEdit = (task) => {
     setTask({
       description: task.description,
@@ -80,6 +97,8 @@ const TaskAppPage = () => {
                 toDoList.map((taskJSON, index) => {
                   return (
                     <TaskItem
+                      setFinishTask={HandleSetFinishTask}
+                      isFinished={taskJSON.isFinished}
                       task={taskJSON.description}
                       key={index}
                       id={taskJSON.id}
