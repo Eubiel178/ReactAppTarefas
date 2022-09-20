@@ -49,10 +49,11 @@ const TaskAppPage = () => {
 
   const HandleSetFinishTask = async (task) => {
     let data;
+    let confirm = window.confirm(
+      "Deseja mesmo marcar esta tarefa como concluida?"
+    );
 
-    if (
-      window.confirm("Deseja mesmo marcar esta tarefa como concluida") === true
-    ) {
+    if (confirm === true) {
       data = {
         description: task.description,
         isFinished: true,
