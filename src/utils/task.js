@@ -1,7 +1,6 @@
 export const taskList = () => {
   if (localStorage.getItem("tasks")) {
-    let tasks = localStorage.getItem("tasks");
-    return JSON.parse(tasks);
+    return JSON.parse(localStorage.getItem("tasks"));
   }
 };
 
@@ -29,6 +28,8 @@ export const addTask = (task) => {
     localStorage.setItem("tasks", JSON.stringify(list));
   }
 };
+
+//Em Desenvolvimento
 
 export const taskEdit = (task, id) => {
   const list = taskList();

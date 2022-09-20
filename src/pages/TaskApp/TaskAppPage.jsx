@@ -28,9 +28,7 @@ const TaskAppPage = () => {
   const AddTask = (event) => {
     event.preventDefault();
 
-    if (input.length > 0) {
-      addTask(task);
-    }
+    addTask(task);
 
     setInput("");
   };
