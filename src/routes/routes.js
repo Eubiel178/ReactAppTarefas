@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import { useContext, useState } from "react";
+import { useContext } from "react";
 
 import TaskAppPage from "../pages/TaskApp/TaskAppPage";
 import LoginPage from "../pages/Login/LoginPage";
@@ -8,11 +8,10 @@ import RegisterPage from "../pages/Register/RegisterPage";
 import Contexts from "../contexts/Contexts";
 
 const AppRoutes = () => {
-const {auth,setAuth} = useContext(Contexts)
+  const { auth } = useContext(Contexts);
 
   return (
     <Router>
-    
       {auth === false ? (
         <Routes>
           <Route path="/" element={<LoginPage />} />

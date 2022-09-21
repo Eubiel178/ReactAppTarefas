@@ -1,16 +1,19 @@
 import { Container } from "./Styles";
 
 import { v4 as uuidv4 } from "uuid";
+import { login } from "../../../../utils/user";
 
 const Form = ({ AddTask, setTask, setInput, input, isEdit }) => {
   let id = uuidv4();
 
   const Task = (event) => {
+    let user = login();
+
     setTask({
       description: event.target.value,
       id: id,
       isFinished: false,
-      userID: "",
+      userID: user.id,
     });
 
     setInput(event.target.value);

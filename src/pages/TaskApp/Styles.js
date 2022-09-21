@@ -1,13 +1,15 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
+  height: 100vh;
   display: flex;
   justify-content: center;
+  align-items: center;
 `;
 
 export const ContainerContent = styled.div`
   background-color: #fff;
-  width: 90vh;
+  width: 80%;
   height: 90vh;
   box-shadow: 0 0.5em 1em -0.125em rgb(10 10 10 / 10%),
     0 0 0 1px rgb(10 10 10 / 2%);
@@ -19,6 +21,11 @@ export const ContainerContent = styled.div`
 
   ::-webkit-scrollbar {
     display: none;
+  }
+
+  @media (max-width: 650px) {
+    width: 100%;
+    height: 100vh;
   }
 `;
 

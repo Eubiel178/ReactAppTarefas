@@ -15,17 +15,20 @@ const Form = () => {
   const [password, setPassword] = useState();
 
   const Register = () => {
-    let user = {
-      name: name,
-      email: email,
-      password: password,
-      id: uuidv4(),
-    };
+    let user = {};
 
-    const userRegister = registerUser(user);
+    if (name && email && password) {
+      user = {
+        name: name,
+        email: email,
+        password: password,
+        id: uuidv4(),
+      };
+      const userRegister = registerUser(user);
 
-    if (userRegister === true) {
-      Swal.fire("Sua conta foi criada com sucesso");
+      if (userRegister === true) {
+        Swal.fire("Sua conta foi criada com sucesso");
+      }
     }
   };
 

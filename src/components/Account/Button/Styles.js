@@ -13,10 +13,6 @@ export const Container = styled.div`
     background-color: #50a59b;
     border-radius: 0.7em;
     padding: 0.5em;
-  }
-
-  a {
-    text-decoration: none;
     color: #fff;
   }
 `;

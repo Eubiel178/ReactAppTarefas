@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import {
   Container,
   TaskList,
-  FeedBack,
+  //FeedBack,
   MainContainer,
   ContainerContent,
 } from "./Styles";
@@ -50,6 +50,8 @@ const TaskAppPage = () => {
 
   const HandleOnSubmit = (event) => {
     event.preventDefault();
+
+    console.log(task);
 
     if (isEdit === "") {
       addTask(task);

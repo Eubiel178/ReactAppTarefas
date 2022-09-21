@@ -13,13 +13,13 @@ const Form = () => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
 
-  const { auth, setAuth } = useContext(Contexts);
+  const { setAuth } = useContext(Contexts);
 
   const Login = async () => {
     let data = await login();
 
-    if (data.email === email && data.password == password) {
-      Swal.fire(`Usuario ${data.name} logado com sucesso`);
+    if (data.email === email && data.password === password) {
+      await Swal.fire(`O usuario ${data.name} foi logado com sucesso`);
 
       setAuth(true);
     }
