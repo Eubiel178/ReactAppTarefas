@@ -1,13 +1,14 @@
 import { Container } from "./Styles";
 
-import { Link } from "react-router-dom";
+const Button = ({ calback, value }) => {
+  const Event = (event) => {
+    event.preventDefault();
 
-const Button = ({ value, to }) => {
+    calback();
+  };
   return (
     <Container>
-      <button>
-        <Link to={to}>{value}</Link>
-      </button>
+      <button onClick={Event}>{value}</button>
     </Container>
   );
 };
