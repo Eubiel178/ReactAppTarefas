@@ -3,12 +3,13 @@ import styled from "styled-components";
 export const Task = styled.p`
   text-align: justify;
   word-break: break-all;
+  display: flex;
+  justify-content: space-between;
 `;
 
 export const Text = styled.span`
   text-align: justify;
   padding-left: 0.5em;
-  //word-break: break-all;
 `;
 
 export const IconsContainer = styled.span`
