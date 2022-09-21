@@ -5,6 +5,10 @@ export const Task = styled.p`
   word-break: break-all;
   display: flex;
   justify-content: space-between;
+
+  input:hover {
+    cursor: grab;
+  }
 `;
 
 export const Text = styled.span`

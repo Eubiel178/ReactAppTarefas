@@ -17,7 +17,7 @@ const RegisterPage = () => {
           <Register>
             Já tem uma conta
             <button>
-              <Link to="/login">Login</Link>
+              <Link to="/">Login</Link>
             </button>
           </Register>
         </ContainerContent>

@@ -1,6 +1,8 @@
 export const taskList = () => {
   if (localStorage.getItem("tasks")) {
     return JSON.parse(localStorage.getItem("tasks"));
+  } else {
+    return [];
   }
 };
 
@@ -42,4 +44,8 @@ export const taskEdit = (task, id) => {
   mirror[target].isFinished = task.isFinished ? task.isFinished : false;
 
   localStorage.setItem("tasks", JSON.stringify(mirror));
+};
+
+export const clearList = () => {
+  localStorage.removeItem("tasks");
 };

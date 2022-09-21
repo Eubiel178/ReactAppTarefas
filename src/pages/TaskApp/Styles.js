@@ -13,7 +13,7 @@ export const ContainerContent = styled.div`
     0 0 0 1px rgb(10 10 10 / 2%);
   border: solid 2px 0 0.5em 1em -0.125em rgb(10 10 10 / 10%),
     0 0 0 1px rgb(10 10 10 / 2%);
-  border-radius: 1em;
+  border-radius: 1.2em;
   overflow: hidden;
   overflow-y: auto;
 

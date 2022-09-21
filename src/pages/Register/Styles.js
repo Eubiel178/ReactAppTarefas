@@ -12,7 +12,7 @@ export const ContainerContent = styled.div`
     0 0 0 1px rgb(10 10 10 / 2%);
 
   @media (max-width: 866px) {
-    border-radius: 1em;
+    border-radius: 1.2em;
   }
 
   @media (max-width: 580px) {

@@ -71,6 +71,7 @@ const TaskAppPage = () => {
 
   const HandleSetFinishTask = (task) => {
     let data;
+
     if (task.isFinished === false) {
       Swal.fire({
         title: "Deseja mesmo marcar esta tarefa como concluida?",
@@ -109,6 +110,12 @@ const TaskAppPage = () => {
       setInput(task.description);
 
       setIsEdit(task.id);
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Tarefa concluida não pode ser editada!",
+      });
     }
   };
 
@@ -125,10 +132,10 @@ const TaskAppPage = () => {
             isEdit={isEdit}
           />
           <div>
-            <SubTitle toDoList={toDoList} />
+            <SubTitle list={toDoList} setList={setToDoList} />
 
             <TaskList>
-              {toDoList[0] != undefined ? (
+              {toDoList &&
                 toDoList.map((taskJSON, index) => {
                   return (
                     <TaskItem
@@ -147,10 +154,7 @@ const TaskAppPage = () => {
                       }}
                     />
                   );
-                })
-              ) : (
-                <FeedBack>Nenhuma tarefa foi adicionada</FeedBack>
-              )}
+                })}
             </TaskList>
           </div>
         </MainContainer>
