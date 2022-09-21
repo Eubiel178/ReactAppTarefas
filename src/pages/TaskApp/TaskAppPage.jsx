@@ -122,7 +122,7 @@ const TaskAppPage = () => {
             <SubTitle toDoList={toDoList} />
 
             <TaskList>
-              {toDoList.length > 0 ? (
+              {toDoList[0] != undefined ? (
                 toDoList.map((taskJSON, index) => {
                   return (
                     <TaskItem
