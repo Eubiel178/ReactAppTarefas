@@ -20,7 +20,7 @@ const TaskAppPage = () => {
   });
   const [isEdit, setIsEdit] = useState("");
   const [input, setInput] = useState("");
-  const [toDoList, setToDoList] = useState([]);
+  const [toDoList, setToDoList] = useState();
 
   const RemoveTask = (taskId) => {
     Swal.fire({
@@ -124,7 +124,7 @@ const TaskAppPage = () => {
             <SubTitle toDoList={toDoList} />
 
             <TaskList>
-              {toDoList &&
+              {toDoList ? (
                 toDoList.map((taskJSON, index) => {
                   return (
                     <TaskItem
@@ -143,7 +143,10 @@ const TaskAppPage = () => {
                       }}
                     />
                   );
-                })}
+                })
+              ) : (
+                <p>Nenhuma tarefa foi adicionada</p>
+              )}
             </TaskList>
           </div>
         </Container>
