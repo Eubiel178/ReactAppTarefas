@@ -41,7 +41,12 @@ const SubTitle = ({ list, setList }) => {
     <Feedback>
       <h2>TAREFAS</h2>
 
-      <button onClick={ClearList}>Limpar Lista</button>
+      <button
+        style={{ display: list.length === 0 && "none" }}
+        onClick={ClearList}
+      >
+        Limpar Lista
+      </button>
     </Feedback>
   );
 };

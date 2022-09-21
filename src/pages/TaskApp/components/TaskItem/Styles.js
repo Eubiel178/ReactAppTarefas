@@ -32,9 +32,10 @@ export const ButtonEdit = styled.button`
   transition-duration: 0.5s;
   padding: 0.6em;
   margin-right: 1em;
+  cursor: pointer;
 
   :hover {
-    background-color: #d0d2d4;
+    background: #11a69b;
     border-radius: 6px;
   }
 `;
@@ -47,6 +48,7 @@ export const ButtonRemove = styled.button`
   transition-duration: 0.5s;
   padding: 0.6em;
   margin-right: 1em;
+  cursor: pointer;
 
   :hover {
     background-color: #d0d2d4;

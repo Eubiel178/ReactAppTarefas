@@ -17,7 +17,7 @@ const TaskItem = ({ task, remove, id, edit, isFinished, setFinishTask }) => {
         </Text>
       </div>
       <IconsContainer>
-        <ButtonEdit onClick={edit}>
+        <ButtonEdit style={{ color: isFinished && " #e0d2d4" }} onClick={edit}>
           <BsPencil />
         </ButtonEdit>
         <ButtonRemove onClick={remove}>
