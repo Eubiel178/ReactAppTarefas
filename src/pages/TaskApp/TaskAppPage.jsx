@@ -65,43 +65,47 @@ const TaskAppPage = () => {
 
   const HandleSetFinishTask = (task) => {
     let data;
+    if (task.isFinished === false) {
+      Swal.fire({
+        title: "Deseja mesmo marcar esta tarefa como concluida?",
+        icon: "question",
+        iconHtml: "?",
+        confirmButtonText: "confirmar",
+        cancelButtonText: "cancel",
+        showCancelButton: true,
+        showCloseButton: true,
 
-    Swal.fire({
-      title: "Deseja mesmo marcar esta tarefa como concluida?",
-      icon: "question",
-      iconHtml: "?",
-      confirmButtonText: "confirmar",
-      cancelButtonText: "cancel",
-      showCancelButton: true,
-      showCloseButton: true,
-
-      preConfirm: async (value) => {
-        if (value === true) {
+        preConfirm: async (value) => {
           if (value === true) {
-            data = {
-              description: task.description,
-              isFinished: true,
-            };
-            await taskEdit(data, task.id);
+            if (value === true) {
+              data = {
+                description: task.description,
+                id: task.id,
+                isFinished: true,
+              };
+              await taskEdit(data, task.id);
 
-            List();
+              List();
+            }
           }
-        }
-      },
-    });
+        },
+      });
+    }
   };
 
   const TaskEdit = (task) => {
-    setTask({
-      description: task.description,
-      id: task.id,
-      isFinished: false,
-      userID: "",
-    });
+    if (task.isFinished === false) {
+      setTask({
+        description: task.description,
+        id: task.id,
+        isFinished: false,
+        userID: "",
+      });
 
-    setInput(task.description);
+      setInput(task.description);
 
-    setIsEdit(task.id);
+      setIsEdit(task.id);
+    }
   };
 
   return (
@@ -124,7 +128,9 @@ const TaskAppPage = () => {
                 toDoList.map((taskJSON, index) => {
                   return (
                     <TaskItem
-                      setFinishTask={HandleSetFinishTask}
+                      setFinishTask={() => {
+                        HandleSetFinishTask(taskJSON);
+                      }}
                       isFinished={taskJSON.isFinished}
                       task={taskJSON.description}
                       key={index}
