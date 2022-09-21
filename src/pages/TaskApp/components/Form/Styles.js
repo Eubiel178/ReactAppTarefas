@@ -4,7 +4,7 @@ export const Container = styled.div`
   input {
     margin: 0em 1em 0em 0em;
     height: 2.5em;
-    width: 60%;
+    padding: 0em 6em 0em 1em;
     padding-left: 1em;
     border-radius: 5px;
 
