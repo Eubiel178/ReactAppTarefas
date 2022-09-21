@@ -77,16 +77,14 @@ const TaskAppPage = () => {
 
         preConfirm: async (value) => {
           if (value === true) {
-            if (value === true) {
-              data = {
-                description: task.description,
-                id: task.id,
-                isFinished: true,
-              };
-              await taskEdit(data, task.id);
+            data = {
+              description: task.description,
+              id: task.id,
+              isFinished: true,
+            };
+            await taskEdit(data, task.id);
 
-              List();
-            }
+            List();
           }
         },
       });
