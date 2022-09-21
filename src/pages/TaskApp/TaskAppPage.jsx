@@ -1,6 +1,12 @@
 import { useEffect, useState } from "react";
 
-import { Container, TaskList, FeedBack } from "./Styles";
+import {
+  Container,
+  TaskList,
+  FeedBack,
+  MainContainer,
+  ContainerContent,
+} from "./Styles";
 
 import Header from "./components/Header/Header";
 import Form from "./components/Form/Form";
@@ -107,10 +113,10 @@ const TaskAppPage = () => {
   };
 
   return (
-    <>
-      <Header />
-      <section>
-        <Container>
+    <Container>
+      <ContainerContent>
+        <Header />
+        <MainContainer>
           <Form
             AddTask={HandleOnSubmit}
             input={input}
@@ -147,9 +153,9 @@ const TaskAppPage = () => {
               )}
             </TaskList>
           </div>
-        </Container>
-      </section>
-    </>
+        </MainContainer>
+      </ContainerContent>
+    </Container>
   );
 };
 

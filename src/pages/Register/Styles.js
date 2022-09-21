@@ -6,10 +6,13 @@ export const ContainerContent = styled.div`
   display: flex;
   position: relative;
   justify-content: space-between;
-  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.096);
+  box-shadow: 0 0.5em 1em -0.125em rgb(10 10 10 / 10%),
+    0 0 0 1px rgb(10 10 10 / 2%);
+  border: solid 2px 0 0.5em 1em -0.125em rgb(10 10 10 / 10%),
+    0 0 0 1px rgb(10 10 10 / 2%);
 
   @media (max-width: 866px) {
-    border-radius: 2em;
+    border-radius: 1em;
   }
 
   @media (max-width: 580px) {
