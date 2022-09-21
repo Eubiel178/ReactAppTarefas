@@ -5,7 +5,7 @@ import Button from "../../../../../components/Account/Button/Button";
 
 import { v4 as uuidv4 } from "uuid";
 
-import { registerUser } from "../../../../../utils/user";
+import { login, registerUser } from "../../../../../utils/user";
 
 import Swal from "sweetalert2";
 
@@ -14,21 +14,22 @@ const Form = () => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
 
-  const Register = () => {
-    let user = {};
+  const HandleRegister = () => {
+    const getUser = login();
 
-    if (name && email && password) {
-      user = {
+    if (getUser.email === email) {
+      Swal.fire("Ja existe um registro com esse email");
+    } else if (name && email && password) {
+      const user = {
         name: name,
         email: email,
         password: password,
         id: uuidv4(),
       };
-      const userRegister = registerUser(user);
 
-      if (userRegister === true) {
-        Swal.fire("Sua conta foi criada com sucesso");
-      }
+      registerUser(user);
+
+      Swal.fire("Sua conta foi criada com sucesso");
     }
   };
 
@@ -57,7 +58,7 @@ const Form = () => {
         id="password"
         type="password"
       />
-      <Button calback={Register} value="Criar Conta" />
+      <Button calback={HandleRegister} value="Criar Conta" />
     </form>
   );
 };

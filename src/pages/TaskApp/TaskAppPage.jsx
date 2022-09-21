@@ -51,8 +51,6 @@ const TaskAppPage = () => {
   const HandleOnSubmit = (event) => {
     event.preventDefault();
 
-    console.log(task);
-
     if (isEdit === "") {
       addTask(task);
     } else {

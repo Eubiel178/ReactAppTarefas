@@ -15,7 +15,7 @@ const Form = () => {
 
   const { setAuth } = useContext(Contexts);
 
-  const Login = async () => {
+  const HandleLogin = async () => {
     let data = await login();
 
     if (data.email === email && data.password === password) {
@@ -42,7 +42,7 @@ const Form = () => {
         type="password"
         set={setPassword}
       />
-      <Button calback={Login} value="Logar" />
+      <Button calback={HandleLogin} value="Logar" />
     </form>
   );
 };

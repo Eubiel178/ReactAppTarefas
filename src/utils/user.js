@@ -6,10 +6,4 @@ export const login = () => {
 
 export const registerUser = (user) => {
   localStorage.setItem("user", JSON.stringify(user));
-
-  let getUser = login();
-
-  if (getUser) {
-    return true;
-  }
 };
