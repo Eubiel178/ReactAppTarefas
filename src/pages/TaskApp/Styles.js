@@ -7,3 +7,7 @@ export const Container = styled.div`
 export const TaskList = styled.div`
   margin-left: 0.5em;
 `;
+
+export const FeedBack = styled.p`
+  color: #686868;
+`;

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { Container, TaskList } from "./Styles";
+import { Container, TaskList, FeedBack } from "./Styles";
 
 import Header from "./components/Header/Header";
 import Form from "./components/Form/Form";
@@ -20,7 +20,7 @@ const TaskAppPage = () => {
   });
   const [isEdit, setIsEdit] = useState("");
   const [input, setInput] = useState("");
-  const [toDoList, setToDoList] = useState();
+  const [toDoList, setToDoList] = useState([]);
 
   const RemoveTask = (taskId) => {
     Swal.fire({
@@ -122,7 +122,7 @@ const TaskAppPage = () => {
             <SubTitle toDoList={toDoList} />
 
             <TaskList>
-              {toDoList ? (
+              {toDoList.length > 0 ? (
                 toDoList.map((taskJSON, index) => {
                   return (
                     <TaskItem
@@ -143,7 +143,7 @@ const TaskAppPage = () => {
                   );
                 })
               ) : (
-                <p>Nenhuma tarefa foi adicionada</p>
+                <FeedBack>Nenhuma tarefa foi adicionada</FeedBack>
               )}
             </TaskList>
           </div>
