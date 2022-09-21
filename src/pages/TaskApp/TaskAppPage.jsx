@@ -9,6 +9,8 @@ import TaskItem from "./components/TaskItem/TaskItem";
 
 import { addTask, removeTask, taskEdit, taskList } from "../../utils/task";
 
+import Swal from "sweetalert2";
+
 const TaskAppPage = () => {
   const [task, setTask] = useState({
     description: "",
@@ -21,9 +23,23 @@ const TaskAppPage = () => {
   const [toDoList, setToDoList] = useState([]);
 
   const RemoveTask = (taskId) => {
-    removeTask(taskId, setInput, input);
+    Swal.fire({
+      title: "Deseja remover essa tarefa?",
+      icon: "question",
+      iconHtml: "?",
+      confirmButtonText: "confirmar",
+      cancelButtonText: "cancel",
+      showCancelButton: true,
+      showCloseButton: true,
 
-    List();
+      preConfirm: async (value) => {
+        if (value === true) {
+          removeTask(taskId);
+
+          List();
+        }
+      },
+    });
   };
 
   const HandleOnSubmit = (event) => {
@@ -47,22 +63,32 @@ const TaskAppPage = () => {
     List();
   }, [input]);
 
-  const HandleSetFinishTask = async (task) => {
+  const HandleSetFinishTask = (task) => {
     let data;
-    let confirm = window.confirm(
-      "Deseja mesmo marcar esta tarefa como concluida?"
-    );
 
-    if (confirm === true) {
-      data = {
-        description: task.description,
-        isFinished: true,
-      };
-    }
+    Swal.fire({
+      title: "Deseja mesmo marcar esta tarefa como concluida?",
+      icon: "question",
+      iconHtml: "?",
+      confirmButtonText: "confirmar",
+      cancelButtonText: "cancel",
+      showCancelButton: true,
+      showCloseButton: true,
 
-    await taskEdit(data, task.id);
+      preConfirm: async (value) => {
+        if (value === true) {
+          if (value === true) {
+            data = {
+              description: task.description,
+              isFinished: true,
+            };
+            await taskEdit(data, task.id);
 
-    List();
+            List();
+          }
+        }
+      },
+    });
   };
 
   const TaskEdit = (task) => {
