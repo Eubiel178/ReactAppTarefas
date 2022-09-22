@@ -42,7 +42,7 @@ const SubTitle = ({ toDoList, setToDoList }) => {
       <h2>TAREFAS</h2>
 
       <button
-        style={{ display: list.length === 0 && "none" }}
+        style={{ display: toDoList.length === 0 && "none" }}
         onClick={clearList}
       >
         Limpar Lista

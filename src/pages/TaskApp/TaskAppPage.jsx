@@ -3,9 +3,9 @@ import { useEffect, useState } from "react";
 import {
   Container,
   TaskList,
-  //FeedBack,
   MainContainer,
   ContainerContent,
+  FeedBack,
 } from "./Styles";
 
 import Header from "./components/Header/Header";
@@ -125,7 +125,7 @@ const TaskAppPage = () => {
       Swal.fire({
         icon: "error",
         title: "Oops...",
-        text: "Tarefa concluida não pode ser editada!",
+        text: "Tarefa concluida não podem ser editada!",
       });
     }
   };
@@ -146,7 +146,9 @@ const TaskAppPage = () => {
             <SubTitle toDoList={toDoList} setToDoList={setToDoList} />
 
             <TaskList>
-              {toDoList &&
+              {toDoList.length === 0 ? (
+                <FeedBack>Nenhuma tarefa foi adicionada</FeedBack>
+              ) : (
                 toDoList.map((taskJSON, index) => {
                   return (
                     <TaskItem
@@ -165,7 +167,8 @@ const TaskAppPage = () => {
                       }}
                     />
                   );
-                })}
+                })
+              )}
             </TaskList>
           </div>
         </MainContainer>

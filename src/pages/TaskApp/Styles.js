@@ -9,7 +9,7 @@ export const Container = styled.div`
 
 export const ContainerContent = styled.div`
   background-color: #fff;
-  width: 70%;
+  width: 60%;
   height: 90vh;
   box-shadow: 0 0.5em 1em -0.125em rgb(10 10 10 / 10%),
     0 0 0 1px rgb(10 10 10 / 2%);

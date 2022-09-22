@@ -25,7 +25,14 @@ const Form = () => {
       Swal.fire({
         icon: "error",
         title: "Oops...",
-        text: "Os campos Estão  vazios!",
+        text: "Os campos estão  vazios!",
+      });
+    }
+    if (name === "" || password === "" || email === "") {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Alguns campos estão vazios..!",
       });
     } else if (existingEmail[0]) {
       Swal.fire({
@@ -43,12 +50,16 @@ const Form = () => {
 
       register(user);
 
-      Swal.fire("Sua conta foi criada com sucesso!", "Bom Trabalho", "success");
-    }
+      await Swal.fire(
+        "Sua conta foi criada com sucesso!",
+        "Bom Trabalho",
+        "success"
+      );
 
-    setName("");
-    setEmail("");
-    setPassword("");
+      setName("");
+      setEmail("");
+      setPassword("");
+    }
   };
 
   return (

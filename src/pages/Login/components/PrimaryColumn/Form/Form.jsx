@@ -22,10 +22,22 @@ const Form = () => {
       return element.email === email && element.password === password;
     });
 
-    if (email !== user[0].email && password !== user[0].password) {
+    if (email === "" && password === "") {
       Swal.fire({
         icon: "error",
-        text: "O email e a senha estão incorretos!",
+        title: "Oops...",
+        text: "Os campos estão vazios..!",
+      });
+    } else if (email === "" || password === "") {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Alguns campos estão vazios..!",
+      });
+    } else if (email !== user[0].email && password !== user[0].password) {
+      Swal.fire({
+        icon: "error",
+        text: "O usuario nao existe!",
       });
     } else if (email !== user[0].email) {
       Swal.fire({
