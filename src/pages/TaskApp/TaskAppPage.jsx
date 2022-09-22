@@ -13,9 +13,10 @@ import Form from "./components/Form/Form";
 import SubTitle from "./components/SubTitle/SubTitle";
 import TaskItem from "./components/TaskItem/TaskItem";
 
-import { addTask, removeTask, taskEdit, taskList } from "../../utils/task";
+import { add, remove, edit, list } from "../../utils/task";
 
 import Swal from "sweetalert2";
+import { getLoggedUser } from "../../utils/user";
 
 const TaskAppPage = () => {
   const [task, setTask] = useState({
@@ -28,7 +29,7 @@ const TaskAppPage = () => {
   const [input, setInput] = useState("");
   const [toDoList, setToDoList] = useState([]);
 
-  const RemoveTask = (taskId) => {
+  const removeTask = (taskId) => {
     Swal.fire({
       title: "Deseja remover essa tarefa?",
       icon: "question",
@@ -38,38 +39,48 @@ const TaskAppPage = () => {
       showCancelButton: true,
       showCloseButton: true,
 
-      preConfirm: async (value) => {
+      preConfirm: (value) => {
         if (value === true) {
-          removeTask(taskId);
+          remove(taskId);
 
-          List();
+          taskList();
         }
       },
     });
   };
 
-  const HandleOnSubmit = (event) => {
+  const handleOnSubmit = (event) => {
     event.preventDefault();
 
     if (isEdit === "") {
-      addTask(task);
+      add(task);
     } else {
-      taskEdit(task, isEdit);
+      edit(task, isEdit);
       setIsEdit("");
     }
 
     setInput("");
   };
 
-  const List = () => {
-    setToDoList(taskList);
+  const taskList = () => {
+    const user = getLoggedUser();
+    const allTasks = list();
+
+    const userTasks = allTasks.filter((element) => {
+      return element.userID === user[0].id;
+    });
+
+    console.log(userTasks);
+    if (userTasks) {
+      setToDoList(userTasks);
+    }
   };
 
   useEffect(() => {
-    List();
+    taskList();
   }, [input]);
 
-  const HandleSetFinishTask = (task) => {
+  const handleSetFinishTask = (task) => {
     let data;
 
     if (task.isFinished === false) {
@@ -89,16 +100,16 @@ const TaskAppPage = () => {
               id: task.id,
               isFinished: true,
             };
-            await taskEdit(data, task.id);
+            await edit(data, task.id);
 
-            List();
+            taskList();
           }
         },
       });
     }
   };
 
-  const TaskEdit = (task) => {
+  const taskEdit = (task) => {
     if (task.isFinished === false) {
       setTask({
         description: task.description,
@@ -125,14 +136,14 @@ const TaskAppPage = () => {
         <Header />
         <MainContainer>
           <Form
-            AddTask={HandleOnSubmit}
+            AddTask={handleOnSubmit}
             input={input}
             setTask={setTask}
             setInput={setInput}
             isEdit={isEdit}
           />
           <div>
-            <SubTitle list={toDoList} setList={setToDoList} />
+            <SubTitle toDoList={toDoList} setToDoList={setToDoList} />
 
             <TaskList>
               {toDoList &&
@@ -140,17 +151,17 @@ const TaskAppPage = () => {
                   return (
                     <TaskItem
                       setFinishTask={() => {
-                        HandleSetFinishTask(taskJSON);
+                        handleSetFinishTask(taskJSON);
                       }}
                       isFinished={taskJSON.isFinished}
                       task={taskJSON.description}
                       key={index}
                       id={taskJSON.id}
                       remove={() => {
-                        RemoveTask(taskJSON.id);
+                        removeTask(taskJSON.id);
                       }}
                       edit={() => {
-                        TaskEdit(taskJSON);
+                        taskEdit(taskJSON);
                       }}
                     />
                   );

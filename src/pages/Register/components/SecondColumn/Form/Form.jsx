@@ -5,7 +5,7 @@ import Button from "../../../../../components/Account/Button/Button";
 
 import { v4 as uuidv4 } from "uuid";
 
-import { login, registerUser } from "../../../../../utils/user";
+import { login, register } from "../../../../../utils/user";
 
 import Swal from "sweetalert2";
 
@@ -14,11 +14,25 @@ const Form = () => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
 
-  const HandleRegister = () => {
-    const getUser = login();
+  const handleRegister = async () => {
+    const users = await login();
 
-    if (getUser.email === email) {
-      Swal.fire("Ja existe um registro com esse email");
+    const existingEmail = users.filter((element) => {
+      return element.email === email;
+    });
+
+    if (email === "" && password === "" && name === "") {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Os campos Estão  vazios!",
+      });
+    } else if (existingEmail[0]) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Ja existe um registro com esse email!",
+      });
     } else if (name && email && password) {
       const user = {
         name: name,
@@ -27,10 +41,14 @@ const Form = () => {
         id: uuidv4(),
       };
 
-      registerUser(user);
+      register(user);
 
-      Swal.fire("Sua conta foi criada com sucesso");
+      Swal.fire("Sua conta foi criada com sucesso!", "Bom Trabalho", "success");
     }
+
+    setName("");
+    setEmail("");
+    setPassword("");
   };
 
   return (
@@ -41,6 +59,7 @@ const Form = () => {
         placeholder="Nome de usuário"
         id="username"
         type="text"
+        value={name}
       />
 
       <FormItem
@@ -49,6 +68,7 @@ const Form = () => {
         placeholder="Email"
         id="email"
         type="email"
+        value={email}
       />
 
       <FormItem
@@ -57,8 +77,9 @@ const Form = () => {
         placeholder="Senha"
         id="password"
         type="password"
+        value={password}
       />
-      <Button calback={HandleRegister} value="Criar Conta" />
+      <Button calback={handleRegister} value="Criar Conta" />
     </form>
   );
 };

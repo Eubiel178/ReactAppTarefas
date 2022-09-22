@@ -1,4 +1,4 @@
-export const taskList = () => {
+export const list = () => {
   if (localStorage.getItem("tasks")) {
     return JSON.parse(localStorage.getItem("tasks"));
   } else {
@@ -6,35 +6,33 @@ export const taskList = () => {
   }
 };
 
-export const removeTask = (taskid) => {
-  let list = taskList();
+export const remove = (taskid) => {
+  let taskList = list();
 
-  let newList = list.filter((task) => {
+  let newList = taskList.filter((task) => {
     return taskid !== task.id;
   });
 
   localStorage.setItem("tasks", JSON.stringify(newList));
 };
 
-export const addTask = (task) => {
-  let list = [];
+export const add = (task) => {
+  let taskList = [];
 
   if (localStorage.getItem("tasks")) {
-    list = taskList();
-    list.push(task);
-
-    localStorage.setItem("tasks", JSON.stringify(list));
+    taskList = list();
+    taskList.push(task);
   } else {
-    list.push(task);
-
-    localStorage.setItem("tasks", JSON.stringify(list));
+    taskList.push(task);
   }
+
+  localStorage.setItem("tasks", JSON.stringify(taskList));
 };
 
-export const taskEdit = (task, id) => {
-  const list = taskList();
+export const edit = (task, id) => {
+  const taskList = list();
 
-  let mirror = [...list];
+  let mirror = [...taskList];
 
   const target = mirror.findIndex((element) => {
     return element.id === id;
@@ -46,6 +44,6 @@ export const taskEdit = (task, id) => {
   localStorage.setItem("tasks", JSON.stringify(mirror));
 };
 
-export const clearList = () => {
+export const clear = () => {
   localStorage.removeItem("tasks");
 };

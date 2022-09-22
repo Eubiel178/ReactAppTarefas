@@ -1,26 +1,26 @@
-import { clearList, taskList } from "../../../../utils/task";
+import { clear, list } from "../../../../utils/task";
 
 import Swal from "sweetalert2";
 
 import { Feedback } from "./Styles";
 
-const SubTitle = ({ list, setList }) => {
+const SubTitle = ({ toDoList, setToDoList }) => {
   const AllTasksCompleted = () => {
-    let completed = list.filter((element) => {
+    let completed = toDoList.filter((element) => {
       return element.isFinished === true;
     });
 
     return completed;
   };
 
-  const ClearList = () => {
+  const clearList = () => {
     const completed = AllTasksCompleted();
 
-    if (list.length > 0 && completed.length === list.length) {
+    if (toDoList.length > 0 && completed.length === toDoList.length) {
       Swal.fire("Bom Trabalho!", "Você completou todas as tarefa", "success");
 
-      clearList();
-    } else if (list.length === 0) {
+      clear();
+    } else if (toDoList.length === 0) {
       Swal.fire({
         icon: "error",
         title: "",
@@ -34,7 +34,7 @@ const SubTitle = ({ list, setList }) => {
       });
     }
 
-    setList(taskList());
+    setToDoList(list());
   };
 
   return (
@@ -43,7 +43,7 @@ const SubTitle = ({ list, setList }) => {
 
       <button
         style={{ display: list.length === 0 && "none" }}
-        onClick={ClearList}
+        onClick={clearList}
       >
         Limpar Lista
       </button>

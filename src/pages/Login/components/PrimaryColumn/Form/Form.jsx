@@ -3,7 +3,7 @@ import Button from "../../../../../components/Account/Button/Button";
 
 import Contexts from "../../../../../contexts/Contexts";
 
-import { login } from "../../../../../utils/user";
+import { getLoggedUser, loggedInUser, login } from "../../../../../utils/user";
 
 import { useState, useContext } from "react";
 
@@ -16,28 +16,37 @@ const Form = () => {
   const { setAuth } = useContext(Contexts);
 
   const handleLogin = async () => {
-    let user = await login();
+    const users = await login();
 
-    if (email !== user.email && password !== user.password) {
+    const user = users.filter((element) => {
+      return element.email === email && element.password === password;
+    });
+
+    if (email !== user[0].email && password !== user[0].password) {
       Swal.fire({
         icon: "error",
         text: "O email e a senha estão incorretos!",
       });
-    } else if (email !== user.email) {
+    } else if (email !== user[0].email) {
       Swal.fire({
         icon: "error",
         text: "O email esta incorreto!",
       });
-    } else if (password !== user.email) {
+    } else if (password !== user[0].password) {
       Swal.fire({
         icon: "error",
         text: "Senha incorreta!",
       });
-    } else if (user.email === email && user.password === password) {
-      Swal.fire({
-        icon: "error",
-        text: "O usuario ${user.name} foi logado com sucesso",
-      });
+    } else if (user[0].email === email && user[0].password === password) {
+      loggedInUser(user);
+
+      const logged = await getLoggedUser();
+
+      Swal.fire(
+        `O usuario ${logged[0].name}  foi logado com sucesso!`,
+        "Parabéns",
+        "success"
+      );
 
       setAuth(true);
     }

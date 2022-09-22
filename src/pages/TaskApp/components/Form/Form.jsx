@@ -1,19 +1,18 @@
 import { Container } from "./Styles";
 
 import { v4 as uuidv4 } from "uuid";
-import { login } from "../../../../utils/user";
+import { getLoggedUser } from "../../../../utils/user";
 
 const Form = ({ AddTask, setTask, setInput, input, isEdit }) => {
-  let id = uuidv4();
+  const id = uuidv4();
+  const user = getLoggedUser();
 
-  const Task = (event) => {
-    let user = login();
-
+  const task = (event) => {
     setTask({
       description: event.target.value,
       id: id,
       isFinished: false,
-      userID: user.id,
+      userID: user[0].id,
     });
 
     setInput(event.target.value);
@@ -23,7 +22,7 @@ const Form = ({ AddTask, setTask, setInput, input, isEdit }) => {
     <form onSubmit={AddTask}>
       <Container>
         <input
-          onChange={Task}
+          onChange={task}
           type="text"
           name="tarefa"
           placeholder="Descrição da tarefa"
