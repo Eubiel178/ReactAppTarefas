@@ -34,12 +34,6 @@ const Form = () => {
         title: "Oops...",
         text: "Alguns campos estão vazios..!",
       });
-    } else if (email.includes("@") === false) {
-      Swal.fire({
-        icon: "error",
-
-        text: "Informe um email valido!!",
-      });
     } else if (email !== user[0].email && password !== user[0].password) {
       Swal.fire({
         icon: "error",
