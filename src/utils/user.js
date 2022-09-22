@@ -29,3 +29,7 @@ export const getLoggedUser = () => {
     return JSON.parse(localStorage.getItem("userLogged"));
   }
 };
+
+export const loggout = () => {
+  localStorage.removeItem("userLogged");
+};

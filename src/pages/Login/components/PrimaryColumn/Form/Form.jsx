@@ -3,9 +3,9 @@ import Button from "../../../../../components/Account/Button/Button";
 
 import Contexts from "../../../../../contexts/Contexts";
 
-import { getLoggedUser, loggedInUser, login } from "../../../../../utils/user";
+import { getLoggedUser, login, loggedInUser } from "../../../../../utils/user";
 
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 
 import Swal from "sweetalert2";
 
@@ -33,6 +33,12 @@ const Form = () => {
         icon: "error",
         title: "Oops...",
         text: "Alguns campos estão vazios..!",
+      });
+    } else if (email.includes("@") === false) {
+      Swal.fire({
+        icon: "error",
+
+        text: "Informe um email valido!!",
       });
     } else if (email !== user[0].email && password !== user[0].password) {
       Swal.fire({
@@ -64,6 +70,13 @@ const Form = () => {
     }
   };
 
+  useEffect(() => {
+    const user = getLoggedUser();
+
+    if (user) {
+      setAuth(true);
+    }
+  }, []);
   return (
     <form>
       <FormItem
