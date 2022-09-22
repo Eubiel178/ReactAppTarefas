@@ -125,7 +125,7 @@ const TaskAppPage = () => {
       Swal.fire({
         icon: "error",
         title: "Oops...",
-        text: "Tarefas concluida não podem ser editada!",
+        text: "Tarefa concluida não podem ser editada!",
       });
     }
   };
