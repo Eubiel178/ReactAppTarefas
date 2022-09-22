@@ -10,9 +10,9 @@ import { login, register } from "../../../../../utils/user";
 import Swal from "sweetalert2";
 
 const Form = () => {
-  const [name, setName] = useState();
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleRegister = async () => {
     const users = await login();

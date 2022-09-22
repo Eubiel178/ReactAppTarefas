@@ -10,8 +10,8 @@ import { useState, useContext, useEffect } from "react";
 import Swal from "sweetalert2";
 
 const Form = () => {
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const { setAuth } = useContext(Contexts);
 
@@ -33,6 +33,11 @@ const Form = () => {
         icon: "error",
         title: "Oops...",
         text: "Alguns campos estão vazios..!",
+      });
+    } else if (email.includes("@") === false) {
+      Swal.fire({
+        icon: "error",
+        text: "Por favor iinforme um email valido!",
       });
     } else if (email !== user[0].email && password !== user[0].password) {
       Swal.fire({
