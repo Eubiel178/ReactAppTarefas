@@ -35,7 +35,7 @@ export const Container = styled.div`
     background-color: #3a8555;
   }
 
-  @media (max-width: 474px) {
+  @media (max-width: 960px) {
     display: flex;
     flex-direction: column;
 

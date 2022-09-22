@@ -9,7 +9,7 @@ export const Container = styled.div`
     border: 0px;
     padding: 0.5em;
     font-size: 16px;
-    width: 93%;
+    width: 92%;
     background-color: #50a59b;
     border-radius: 0.7em;
     padding: 0.5em;

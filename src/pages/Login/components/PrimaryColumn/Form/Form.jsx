@@ -15,11 +15,29 @@ const Form = () => {
 
   const { setAuth } = useContext(Contexts);
 
-  const HandleLogin = async () => {
-    let data = await login();
+  const handleLogin = async () => {
+    let user = await login();
 
-    if (data.email === email && data.password === password) {
-      await Swal.fire(`O usuario ${data.name} foi logado com sucesso`);
+    if (email !== user.email && password !== user.password) {
+      Swal.fire({
+        icon: "error",
+        text: "O email e a senha estão incorretos!",
+      });
+    } else if (email !== user.email) {
+      Swal.fire({
+        icon: "error",
+        text: "O email esta incorreto!",
+      });
+    } else if (password !== user.email) {
+      Swal.fire({
+        icon: "error",
+        text: "Senha incorreta!",
+      });
+    } else if (user.email === email && user.password === password) {
+      Swal.fire({
+        icon: "error",
+        text: "O usuario ${user.name} foi logado com sucesso",
+      });
 
       setAuth(true);
     }
@@ -42,7 +60,7 @@ const Form = () => {
         type="password"
         set={setPassword}
       />
-      <Button calback={HandleLogin} value="Logar" />
+      <Button calback={handleLogin} value="Logar" />
     </form>
   );
 };
