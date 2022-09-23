@@ -6,9 +6,10 @@ import { useState } from "react";
 
 const App = () => {
   const [auth, setAuth] = useState(false);
+  const [calendar, setCalendar] = useState(false);
 
   return (
-    <Contexts.Provider value={{ auth, setAuth }}>
+    <Contexts.Provider value={{ auth, setAuth, calendar, setCalendar }}>
       <main>
         <AppRoutes />
       </main>

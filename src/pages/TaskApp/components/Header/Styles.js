@@ -3,8 +3,8 @@ import styled from "styled-components";
 export const HeaderContents = styled.div`
   div {
     display: flex;
-    justify-content: flex-end;
-    margin: 0.2em;
+    justify-content: space-between;
+    margin: 1em;
   }
 
   div button {

@@ -1,12 +1,16 @@
-import { useEffect, useState } from "react";
-
 import {
   Container,
   TaskList,
   MainContainer,
   ContainerContent,
   FeedBack,
+  CalendarContainer,
 } from "./Styles";
+
+import { useContext, useEffect, useState } from "react";
+
+import Calendar from "react-calendar";
+import "react-calendar/dist/Calendar.css";
 
 import Header from "./components/Header/Header";
 import Form from "./components/Form/Form";
@@ -17,6 +21,7 @@ import { add, remove, edit, list } from "../../utils/task";
 
 import Swal from "sweetalert2";
 import { getLoggedUser } from "../../utils/user";
+import Contexts from "../../contexts/Contexts";
 
 const TaskAppPage = () => {
   const [task, setTask] = useState({
@@ -130,9 +135,17 @@ const TaskAppPage = () => {
     }
   };
 
+  const [value, onClick] = useState(new Date());
+  const { calendar, setCalendar } = useContext(Contexts);
+
   return (
     <Container>
       <ContainerContent>
+        <CalendarContainer
+          style={{ display: calendar === false ? "none" : "initial" }}
+        >
+          <Calendar onclick={onClick} value={value} />
+        </CalendarContainer>
         <Header />
         <MainContainer>
           <Form
