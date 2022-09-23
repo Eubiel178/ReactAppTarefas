@@ -39,7 +39,7 @@ const Form = () => {
         icon: "error",
         text: "Por favor iinforme um email valido!",
       });
-    } else if (email != user[0].email) {
+    } else if (email !== user[0].email) {
       Swal.fire({
         icon: "error",
         text: "O usuario nao existe!",
