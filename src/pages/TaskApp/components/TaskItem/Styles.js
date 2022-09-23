@@ -18,7 +18,7 @@ export const Text = styled.span`
 
 export const IconsContainer = styled.span`
   margin-left: 3em;
-
+  display: flex;
   button:hover {
     background-color: #d0d2d4;
     border-radius: 6px;
