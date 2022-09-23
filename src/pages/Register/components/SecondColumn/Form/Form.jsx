@@ -32,7 +32,7 @@ const Form = () => {
       Swal.fire({
         icon: "error",
         title: "Oops...",
-        text: "Alguns campos estão vazios..!",
+        text: "Verifique se todos os campos estao preenchidos..!",
       });
     } else if (existingEmail[0]) {
       Swal.fire({
