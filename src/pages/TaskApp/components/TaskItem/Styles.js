@@ -43,7 +43,9 @@ export const Text = styled.span`
 export const IconsContainer = styled.span`
   margin-left: 1em;
   display: flex;
-  button:hover {
+  align-items: center;
+  height: 100%;
+  /Eubiel178/ReactAppTarefas/upload/main button:hover {
     background-color: #d0d2d4;
     border-radius: 6px;
   }
