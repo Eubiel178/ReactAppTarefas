@@ -39,10 +39,15 @@ const Form = () => {
         icon: "error",
         text: "Por favor iinforme um email valido!",
       });
-    } else if (email !== user[0].email && password !== user[0].password) {
+    } else if (email != user[0].email) {
       Swal.fire({
         icon: "error",
         text: "O usuario nao existe!",
+      });
+    } else if (password !== user[0].password && email === user[0].email) {
+      Swal.fire({
+        icon: "error",
+        text: "A senha esta incorreta!",
       });
     } else if (email !== user[0].email) {
       Swal.fire({
