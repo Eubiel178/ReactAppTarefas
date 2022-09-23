@@ -35,7 +35,6 @@ export const CalendarContainer = styled.div`
   position: absolute;
   top: 4em;
   left: 1em;
-  box-shadow: 0 1em 1em 25em rgb(10 10 10 / 10%), 0 0 0 1px rgb(10 10 10 / 2%);
 
   @media (max-width: 376px) {
     width: 80%;
