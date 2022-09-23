@@ -1,13 +1,14 @@
 import { Container } from "./Styles";
 
 import { v4 as uuidv4 } from "uuid";
+
 import { getLoggedUser } from "../../../../utils/user";
 
 const Form = ({ AddTask, setTask, setInput, input, isEdit }) => {
   const id = uuidv4();
   const user = getLoggedUser();
 
-  const task = (event) => {
+  const handleTask = (event) => {
     setTask({
       description: event.target.value,
       id: id,
@@ -22,7 +23,7 @@ const Form = ({ AddTask, setTask, setInput, input, isEdit }) => {
     <form onSubmit={AddTask}>
       <Container>
         <input
-          onChange={task}
+          onChange={handleTask}
           type="text"
           name="tarefa"
           placeholder="Descrição da tarefa"
