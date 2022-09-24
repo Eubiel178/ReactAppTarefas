@@ -19,7 +19,7 @@ const Form = () => {
     const users = await login();
 
     const user = users.filter((element) => {
-      return element.email === email && element.password === password;
+      return element.email === email;
     });
 
     console.log(user);
@@ -39,27 +39,17 @@ const Form = () => {
     } else if (email.includes("@") === false) {
       Swal.fire({
         icon: "error",
-        text: "Por favor iinforme um email valido!",
+        text: "Por favor informe um email valido!",
       });
     } else if (user.length === 0) {
       Swal.fire({
         icon: "error",
-        text: "O usuario nao existe!",
+        text: "O usuario nao existe!!",
       });
     } else if (password !== user[0].password && email === user[0].email) {
       Swal.fire({
         icon: "error",
         text: "A senha esta incorreta!",
-      });
-    } else if (email !== user[0].email) {
-      Swal.fire({
-        icon: "error",
-        text: "O email esta incorreto!",
-      });
-    } else if (password !== user[0].password) {
-      Swal.fire({
-        icon: "error",
-        text: "Senha incorreta!",
       });
     } else if (user[0].email === email && user[0].password === password) {
       loggedInUser(user);
