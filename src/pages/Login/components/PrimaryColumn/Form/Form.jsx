@@ -22,6 +22,8 @@ const Form = () => {
       return element.email === email && element.password === password;
     });
 
+    console.log(user);
+
     if (email === "" && password === "") {
       Swal.fire({
         icon: "error",
@@ -39,7 +41,7 @@ const Form = () => {
         icon: "error",
         text: "Por favor iinforme um email valido!",
       });
-    } else if (email !== user[0].email) {
+    } else if (user.length === 0) {
       Swal.fire({
         icon: "error",
         text: "O usuario nao existe!",
