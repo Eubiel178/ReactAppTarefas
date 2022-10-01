@@ -11,17 +11,18 @@ import { useContext, useEffect, useState } from "react";
 
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
+import Swal from "sweetalert2";
+import { useAutoAnimate } from "@formkit/auto-animate/react";
 
 import Header from "./components/Header/Header";
 import Form from "./components/Form/Form";
 import SubTitle from "./components/SubTitle/SubTitle";
 import TaskItem from "./components/TaskItem/TaskItem";
+import Contexts from "../../contexts/Contexts";
 
 import { add, remove, edit, list } from "../../utils/task";
 
-import Swal from "sweetalert2";
 import { getLoggedUser } from "../../utils/user";
-import Contexts from "../../contexts/Contexts";
 
 const TaskAppPage = () => {
   const [task, setTask] = useState({
@@ -33,6 +34,9 @@ const TaskAppPage = () => {
   const [isEdit, setIsEdit] = useState("");
   const [input, setInput] = useState("");
   const [toDoList, setToDoList] = useState([]);
+  const [items, setItems] = useState([0, 1, 2]);
+  const [parent] = useAutoAnimate();
+  const Add = () => setItems([...items, items.length]);
 
   const removeTask = (task) => {
     if (task.isFinished === false) {
@@ -167,7 +171,7 @@ const TaskAppPage = () => {
           <div>
             <SubTitle toDoList={toDoList} setToDoList={setToDoList} />
 
-            <TaskList>
+            <TaskList ref={parent}>
               {toDoList.length === 0 ? (
                 <FeedBack>Nenhuma tarefa foi adicionada</FeedBack>
               ) : (
