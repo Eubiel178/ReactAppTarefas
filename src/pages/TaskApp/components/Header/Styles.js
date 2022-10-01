@@ -8,7 +8,7 @@ export const HeaderContents = styled.div`
   }
 
   div button {
-    background-color: #1aaaaa;
+    background-color: #3085d6;
     padding: 1em;
     border: 0px;
     border-radius: 1em;
@@ -17,12 +17,12 @@ export const HeaderContents = styled.div`
   }
 
   div button:hover {
-    background-color: #119199;
+    background-color: #3005d6;
   }
 
   h1 {
     padding: 1em 0em 1em 0em;
-    color: #11a69b;
+    color: #3085d6;
     text-align: center;
   }
   @media (max-width: 390px) {

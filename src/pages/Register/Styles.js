@@ -26,21 +26,22 @@ export const ContainerContent = styled.div`
 
 export const Register = styled.p`
   position: absolute;
-  left: 1.5em;
+  left: 3em;
   bottom: 10px;
   display: none;
 
   button {
-    background-color: #50a59b;
+    background-color: #3085d6;
     padding: 0.5em;
     border-radius: 6px;
     margin-left: 0.5em;
     border: 0px;
     transition-duration: 0.5s;
+    font-size: 16px;
   }
 
   button:hover {
-    background-color: rgba(0, 0, 0, 0.438);
+    background-color: #3005d6;
   }
 
   a {

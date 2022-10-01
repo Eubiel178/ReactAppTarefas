@@ -54,14 +54,6 @@ const Form = () => {
     } else if (user[0].email === email && user[0].password === password) {
       loggedInUser(user);
 
-      const logged = await getLoggedUser();
-
-      Swal.fire(
-        `O usuario ${logged[0].name}  foi logado com sucesso!`,
-        "Parabéns",
-        "success"
-      );
-
       setAuth(true);
     }
   };

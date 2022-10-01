@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const AsideContent = styled.div`
   width: 100%;
-  background-color: #50a59b;
+  background-color: #3085d6;
   color: #fff;
   display: flex;
   flex-direction: column;

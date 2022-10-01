@@ -23,7 +23,7 @@ export const Container = styled.div`
     margin-right: 1em;
     padding: 0em 1em 0em 1em;
     color: #fff;
-    background-color: #11a69b;
+    background-color: #3085d6;
     border-radius: 5px;
     border: 1px solid rgba(0, 0, 0, 0.137);
     font-size: 16px;
@@ -32,7 +32,7 @@ export const Container = styled.div`
 
   button:hover {
     box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.192);
-    background-color: #3a8555;
+    background-color: #3005d6;
   }
 
   @media (max-width: 960px) {

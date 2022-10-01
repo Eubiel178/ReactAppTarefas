@@ -34,24 +34,32 @@ const TaskAppPage = () => {
   const [input, setInput] = useState("");
   const [toDoList, setToDoList] = useState([]);
 
-  const removeTask = (taskId) => {
-    Swal.fire({
-      title: "Deseja remover essa tarefa?",
-      icon: "question",
-      iconHtml: "?",
-      confirmButtonText: "confirmar",
-      cancelButtonText: "cancel",
-      showCancelButton: true,
-      showCloseButton: true,
+  const removeTask = (task) => {
+    if (task.isFinished === false) {
+      Swal.fire({
+        title: "Deseja remover essa tarefa?",
+        icon: "question",
+        iconHtml: "?",
+        confirmButtonText: "confirmar",
+        cancelButtonText: "cancel",
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        showCancelButton: true,
+        showCloseButton: true,
 
-      preConfirm: (value) => {
-        if (value === true) {
-          remove(taskId);
+        preConfirm: (value) => {
+          if (value === true) {
+            remove(task.id);
 
-          taskList();
-        }
-      },
-    });
+            taskList();
+          }
+        },
+      });
+    } else {
+      remove(task.id);
+
+      taskList();
+    }
   };
 
   const handleOnSubmit = (event) => {
@@ -95,6 +103,8 @@ const TaskAppPage = () => {
         iconHtml: "?",
         confirmButtonText: "confirmar",
         cancelButtonText: "cancel",
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
         showCancelButton: true,
         showCloseButton: true,
 
@@ -136,7 +146,7 @@ const TaskAppPage = () => {
   };
 
   const [value, onClick] = useState(new Date());
-  const { calendar, setCalendar } = useContext(Contexts);
+  const { calendar } = useContext(Contexts);
 
   return (
     <Container>
@@ -173,7 +183,7 @@ const TaskAppPage = () => {
                       key={index}
                       id={taskJSON.id}
                       remove={() => {
-                        removeTask(taskJSON.id);
+                        removeTask(taskJSON);
                       }}
                       edit={() => {
                         taskEdit(taskJSON);

@@ -1,7 +1,6 @@
-import { Link } from "react-router-dom";
 import { Container } from "./Styles";
 
-const Button = ({ calback, value, to }) => {
+const Button = ({ calback, value }) => {
   const Event = (event) => {
     event.preventDefault();
 

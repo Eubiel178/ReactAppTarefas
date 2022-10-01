@@ -2,15 +2,19 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   display: flex;
-  flex-direction: column;
-  width: 100%;
-  padding: 1em 1em;
+  justify-content: center;
+  section {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    padding: 0.5em 1em;
+  }
 
-  label {
+  section label {
     padding-bottom: 1em;
   }
 
-  input {
+  section input {
     font-size: 16px;
     padding: 0.5em;
 
