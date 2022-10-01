@@ -83,7 +83,6 @@ const TaskAppPage = () => {
       return element.userID === user[0].id;
     });
 
-    console.log(userTasks);
     if (userTasks) {
       setToDoList(userTasks);
     }

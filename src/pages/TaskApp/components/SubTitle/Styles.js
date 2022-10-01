@@ -4,7 +4,7 @@ export const Feedback = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-top: 1em;
+  padding-top: 4em;
 
   h2 {
     margin: 1.5em 0em 1em 0em;
