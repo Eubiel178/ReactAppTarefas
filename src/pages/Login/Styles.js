@@ -28,6 +28,7 @@ export const Register = styled.p`
   position: absolute;
   left: 3em;
   bottom: 10px;
+  color: #3085d6;
   display: none;
 
   button {
