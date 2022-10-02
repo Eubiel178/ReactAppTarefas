@@ -13,7 +13,9 @@ export const ContainerContent = styled.div`
   background-color: ${({ background }) => background};
   width: 60%;
   height: 90vh;
-  box-shadow: 5px 5px 5px black;
+  box-shadow: 0 0.5em 1em -0.125em hsl(0deg 0% 4% / 10%),
+    0 0 0 1px hsl(0deg 0% 4% / 2%);
+
   border-radius: 1.2em;
 
   overflow: hidden;
