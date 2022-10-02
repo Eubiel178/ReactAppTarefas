@@ -7,4 +7,8 @@ export const Container = styled.div`
   @media (max-width: 866px) {
     border-radius: 1em;
   }
+
+  @media (max-width: 340px) {
+    border-radius: 0px;
+  }
 `;

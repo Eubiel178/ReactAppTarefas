@@ -16,18 +16,23 @@ export const ContainerContent = styled.div`
   }
 
   @media (max-width: 580px) {
-    width: 70%;
+    width: 80%;
   }
 
-  @media (max-width: 410px) {
+  @media (max-width: 480px) {
     width: 90%;
+  }
+
+  @media (max-width: 340px) {
+    width: 100%;
+    height: 100vh;
   }
 `;
 
 export const Register = styled.p`
   position: absolute;
-  left: 3em;
-  bottom: 10px;
+  left: 10%;
+  bottom: 5%;
   color: #3085d6;
   display: none;
 
