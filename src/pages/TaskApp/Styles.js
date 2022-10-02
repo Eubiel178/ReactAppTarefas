@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
+  background-color: ${({ background }) => background};
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -9,7 +10,7 @@ export const Container = styled.div`
 
 export const ContainerContent = styled.div`
   position: relative;
-  background-color: #fff;
+  background-color: ${({ background }) => background};
   width: 60%;
   height: 90vh;
   box-shadow: 0 0.5em 1em -0.125em rgb(10 10 10 / 10%),
@@ -17,6 +18,7 @@ export const ContainerContent = styled.div`
   border: solid 2px 0 0.5em 1em -0.125em rgb(10 10 10 / 10%),
     0 0 0 1px rgb(10 10 10 / 2%);
   border-radius: 1.2em;
+  border: 1px solid #edf0f2;
   overflow: hidden;
   overflow-y: auto;
 
@@ -47,6 +49,8 @@ export const MainContainer = styled.div`
 
 export const TaskList = styled.div`
   margin-left: 0.5em;
+
+  color: ${({ color }) => color};
 `;
 
 export const FeedBack = styled.p`

@@ -2,10 +2,11 @@ import { useContext } from "react";
 import Swal from "sweetalert2";
 import Contexts from "../../../../contexts/Contexts";
 import { loggout } from "../../../../utils/user";
-import { HeaderContents } from "./Styles";
+import { HeaderContents, Button, Mode } from "./Styles";
 
 const Header = () => {
-  const { setAuth, setCalendar, calendar } = useContext(Contexts);
+  const { setAuth, setCalendar, calendar, mode, setMode } =
+    useContext(Contexts);
 
   const handleLogin = () => {
     Swal.fire({
@@ -34,14 +35,23 @@ const Header = () => {
     <header>
       <HeaderContents>
         <div>
-          <button
+          <Button
             onClick={() => {
               setCalendar(!calendar);
             }}
           >
             Calendário
-          </button>
-          <button onClick={handleLogin}>Deslogar</button>
+          </Button>
+          <div>
+            <Mode
+              onClick={() => setMode(!mode)}
+              background={mode === false ? "black" : "#fff"}
+              color={mode ? "black" : "white"}
+            >
+              {mode === false ? "Modo escuro" : "Modo claro"}
+            </Mode>
+            <Button onClick={handleLogin}>Deslogar</Button>
+          </div>
         </div>
         <h1>ADICIONAR TAREFAS</h1>
       </HeaderContents>

@@ -34,9 +34,9 @@ const TaskAppPage = () => {
   const [isEdit, setIsEdit] = useState("");
   const [input, setInput] = useState("");
   const [toDoList, setToDoList] = useState([]);
-  const [items, setItems] = useState([0, 1, 2]);
   const [parent] = useAutoAnimate();
-  const Add = () => setItems([...items, items.length]);
+  const [value, onClick] = useState(new Date());
+  const { calendar, mode } = useContext(Contexts);
 
   const removeTask = (task) => {
     if (task.isFinished === false) {
@@ -148,12 +148,9 @@ const TaskAppPage = () => {
     }
   };
 
-  const [value, onClick] = useState(new Date());
-  const { calendar } = useContext(Contexts);
-
   return (
-    <Container>
-      <ContainerContent>
+    <Container background={mode ? " rgb(32, 28, 28)" : "#edf0f2"}>
+      <ContainerContent background={mode ? "black" : "white"}>
         <CalendarContainer
           style={{ display: calendar === false ? "none" : "initial" }}
         >
@@ -171,7 +168,7 @@ const TaskAppPage = () => {
           <div>
             <SubTitle toDoList={toDoList} setToDoList={setToDoList} />
 
-            <TaskList ref={parent}>
+            <TaskList color={mode ? "white" : "black"} ref={parent}>
               {toDoList.length === 0 ? (
                 <FeedBack>Nenhuma tarefa foi adicionada</FeedBack>
               ) : (
