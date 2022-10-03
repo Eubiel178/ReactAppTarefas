@@ -9,6 +9,7 @@ export const Container = styled.div`
 `;
 
 export const ContainerContent = styled.div`
+  border-radius: 1.2em;
   background-color: ${({ background }) => background};
   overflow: hidden;
   overflow-y: auto;
