@@ -47,3 +47,27 @@ export const edit = (task, id) => {
 export const clear = () => {
   localStorage.removeItem("tasks");
 };
+
+export const getSavedTasks = () => {
+  if (localStorage.getItem("Historic")) {
+    return JSON.parse(localStorage.getItem("Historic"));
+  }
+};
+
+export const saveCompletedTasks = (task) => {
+  let tasks = [];
+
+  if (localStorage.getItem("Historic")) {
+    tasks = getSavedTasks();
+
+    tasks.push(task);
+  } else {
+    tasks.push(task);
+  }
+
+  localStorage.setItem("Historic", JSON.stringify(tasks));
+};
+
+export const clearHistoric = () => {
+  localStorage.removeItem("Historic");
+};

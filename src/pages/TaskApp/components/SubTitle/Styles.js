@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
-export const Feedback = styled.div`
+export const Container = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-top: 4em;
+  padding-top: 2em;
 
   h2 {
     margin: 1.5em 0em 1em 0em;

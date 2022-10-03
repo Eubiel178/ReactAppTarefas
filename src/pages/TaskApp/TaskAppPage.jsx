@@ -20,7 +20,7 @@ import SubTitle from "./components/SubTitle/SubTitle";
 import TaskItem from "./components/TaskItem/TaskItem";
 import Contexts from "../../contexts/Contexts";
 
-import { add, remove, edit, list } from "../../utils/task";
+import { add, remove, edit, list, saveCompletedTasks } from "../../utils/task";
 
 import { getLoggedUser } from "../../utils/user";
 
@@ -32,11 +32,10 @@ const TaskAppPage = () => {
     userID: "",
   });
   const [isEdit, setIsEdit] = useState("");
-  const [input, setInput] = useState("");
   const [toDoList, setToDoList] = useState([]);
   const [parent] = useAutoAnimate();
   const [value, onClick] = useState(new Date());
-  const { calendar, mode } = useContext(Contexts);
+  const { input, setInput, calendar, mode } = useContext(Contexts);
 
   const removeTask = (task) => {
     if (task.isFinished === false) {
@@ -118,6 +117,9 @@ const TaskAppPage = () => {
               id: task.id,
               isFinished: true,
             };
+
+            saveCompletedTasks(data);
+
             await edit(data, task.id);
 
             taskList();

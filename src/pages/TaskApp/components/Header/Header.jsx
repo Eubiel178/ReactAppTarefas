@@ -1,8 +1,13 @@
-import { useContext } from "react";
 import Swal from "sweetalert2";
-import Contexts from "../../../../contexts/Contexts";
+import { Link } from "react-router-dom";
+
+import { useContext } from "react";
+
+import { HeaderContents, Button, Historic, Mode } from "./Styles";
+
 import { loggout } from "../../../../utils/user";
-import { HeaderContents, Button, Mode } from "./Styles";
+
+import Contexts from "../../../../contexts/Contexts";
 
 const Header = () => {
   const { setAuth, setCalendar, calendar, mode, setMode } =
@@ -35,14 +40,18 @@ const Header = () => {
     <header>
       <HeaderContents>
         <div>
-          <Button
-            onClick={() => {
-              setCalendar(!calendar);
-            }}
-          >
-            Calendário
-          </Button>
-          <div>
+          <section>
+            <Button
+              onClick={() => {
+                setCalendar(!calendar);
+              }}
+            >
+              Calendário
+            </Button>
+            <Link to="/historic">
+              <Historic>Histórico</Historic>
+            </Link>
+
             <Mode
               onClick={() => setMode(!mode)}
               background={mode === false ? "black" : "#fff"}
@@ -50,8 +59,10 @@ const Header = () => {
             >
               {mode === false ? "Modo escuro" : "Modo claro"}
             </Mode>
+          </section>
+          <section>
             <Button onClick={handleLogin}>Deslogar</Button>
-          </div>
+          </section>
         </div>
         <h1>ADICIONAR TAREFAS</h1>
       </HeaderContents>

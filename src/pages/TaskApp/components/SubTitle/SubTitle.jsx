@@ -2,7 +2,7 @@ import { clear, list } from "../../../../utils/task";
 
 import Swal from "sweetalert2";
 
-import { Feedback } from "./Styles";
+import { Container } from "./Styles";
 
 const SubTitle = ({ toDoList, setToDoList }) => {
   const AllTasksCompleted = () => {
@@ -38,16 +38,15 @@ const SubTitle = ({ toDoList, setToDoList }) => {
   };
 
   return (
-    <Feedback>
+    <Container>
       <h2>TAREFAS</h2>
-
       <button
         style={{ display: toDoList.length === 0 && "none" }}
         onClick={clearList}
       >
         Limpar Lista
       </button>
-    </Feedback>
+    </Container>
   );
 };
 
