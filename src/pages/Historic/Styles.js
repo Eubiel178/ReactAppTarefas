@@ -10,21 +10,30 @@ export const Container = styled.div`
 
 export const ContainerContent = styled.div`
   background-color: ${({ background }) => background};
-  width: 30%;
-  height: 90vh;
-  box-shadow: 0 0.5em 1em -0.125em hsl(0deg 0% 4% / 10%),
-    0 0 0 1px hsl(0deg 0% 4% / 2%);
-  border-radius: 1.2em;
   overflow: hidden;
   overflow-y: auto;
+  width: 60%;
+  height: 30em;
+  box-shadow: 0 0.5em 1em -0.125em rgb(10 10 10 / 10%),
+    0 0 0 1px rgb(10 10 10 / 2%);
+  border: solid 2px 0 0.5em 1em -0.125em rgb(10 10 10 / 10%),
+    0 0 0 1px rgb(10 10 10 / 2%);
 
   ::-webkit-scrollbar {
     display: none;
   }
 
-  @media (max-width: 769px) {
+  @media (max-width: 580px) {
     width: 80%;
-    height: 80vh;
+  }
+
+  @media (max-width: 480px) {
+    width: 90%;
+  }
+
+  @media (max-width: 340px) {
+    width: 100%;
+    height: 100vh;
   }
 `;
 
