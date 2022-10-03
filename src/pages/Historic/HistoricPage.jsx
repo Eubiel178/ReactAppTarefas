@@ -12,7 +12,7 @@ import TaskItem from "./components/TaskItem/TaskItem";
 
 const HistoricPage = () => {
   const { input, mode } = useContext(Contexts);
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState();
 
   const [parent] = useAutoAnimate();
 
@@ -30,7 +30,7 @@ const HistoricPage = () => {
           <Header set={setTasks} />
 
           <TaskList color={mode ? "white" : "black"} ref={parent}>
-            {tasks.length > 0 &&
+            {tasks &&
               tasks.map((task) => {
                 return <TaskItem task={task.description} id={task.id} />;
               })}
