@@ -1,13 +1,5 @@
 import styled from "styled-components";
 
-export const HeaderContents = styled.div`
-  @media (max-width: 430px) {
-    div button {
-      font-size: 9px;
-    }
-  }
-`;
-
 export const ButtonContainer = styled.div`
   padding: 1em;
   display: flex;
@@ -28,6 +20,10 @@ export const Button = styled.button`
 
   :hover {
     background-color: #3005d6;
+  }
+
+  @media (max-width: 430px) {
+    font-size: 13px;
   }
 `;
 
@@ -65,5 +61,9 @@ export const TitleContainer = styled.div`
   button:hover {
     background-color: red;
     color: #fff;
+  }
+
+  @media (max-width: 430px) {
+    font-size: 13px;
   }
 `;

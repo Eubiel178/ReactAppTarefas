@@ -16,12 +16,6 @@ export const HeaderContents = styled.div`
     text-align: center;
   }
 
-  @media (max-width: 430px) {
-    div button {
-      font-size: 9px;
-    }
-  }
-
   @media (max-width: 390px) {
     h1 {
       font-size: 25px;
@@ -40,6 +34,10 @@ export const Button = styled.button`
 
   :hover {
     background-color: #3005d6;
+  }
+
+  @media (max-width: 430px) {
+    font-size: 11px;
   }
 `;
 

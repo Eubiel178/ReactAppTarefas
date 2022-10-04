@@ -32,16 +32,6 @@ export const ContainerContent = styled.div`
   }
 `;
 
-export const CalendarContainer = styled.div`
-  position: absolute;
-  top: 4em;
-  left: 1em;
-
-  @media (max-width: 376px) {
-    width: 80%;
-  }
-`;
-
 export const MainContainer = styled.div`
   padding: 1em 1em 0em 2em;
 `;

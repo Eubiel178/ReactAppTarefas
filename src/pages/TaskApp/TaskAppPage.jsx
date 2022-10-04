@@ -4,25 +4,23 @@ import {
   MainContainer,
   ContainerContent,
   FeedBack,
-  CalendarContainer,
 } from "./Styles";
 
 import { useContext, useEffect, useState } from "react";
 
-import Calendar from "react-calendar";
-import "react-calendar/dist/Calendar.css";
-import Swal from "sweetalert2";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
+
+import { add, remove, edit, list, saveCompletedTasks } from "../../utils/task";
+
+import { getLoggedUser } from "../../utils/user";
+
+import Swal from "sweetalert2";
 
 import Header from "./components/Header/Header";
 import Form from "./components/Form/Form";
 import SubTitle from "./components/SubTitle/SubTitle";
 import TaskItem from "./components/TaskItem/TaskItem";
 import Contexts from "../../contexts/Contexts";
-
-import { add, remove, edit, list, saveCompletedTasks } from "../../utils/task";
-
-import { getLoggedUser } from "../../utils/user";
 
 const TaskAppPage = () => {
   const [task, setTask] = useState({
@@ -34,8 +32,7 @@ const TaskAppPage = () => {
   const [isEdit, setIsEdit] = useState("");
   const [toDoList, setToDoList] = useState([]);
   const [parent] = useAutoAnimate();
-  const [value, onClick] = useState(new Date());
-  const { input, setInput, calendar, mode } = useContext(Contexts);
+  const { input, setInput, mode } = useContext(Contexts);
 
   const removeTask = (task) => {
     if (task.isFinished === false) {
@@ -153,11 +150,6 @@ const TaskAppPage = () => {
   return (
     <Container background={mode ? " rgb(32, 28, 28)" : "#edf0f2"}>
       <ContainerContent background={mode ? "black" : "white"}>
-        <CalendarContainer
-          style={{ display: calendar === false ? "none" : "initial" }}
-        >
-          <Calendar onclick={onClick} value={value} />
-        </CalendarContainer>
         <Header />
         <MainContainer>
           <Form

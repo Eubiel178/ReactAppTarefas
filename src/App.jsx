@@ -7,7 +7,6 @@ import { useState } from "react";
 const App = () => {
   const [input, setInput] = useState();
   const [auth, setAuth] = useState(false);
-  const [calendar, setCalendar] = useState(false);
   const [mode, setMode] = useState(false);
 
   return (
@@ -17,8 +16,7 @@ const App = () => {
         setInput,
         auth,
         setAuth,
-        calendar,
-        setCalendar,
+
         mode,
         setMode,
       }}

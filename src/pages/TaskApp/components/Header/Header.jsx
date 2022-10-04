@@ -10,8 +10,7 @@ import { loggout } from "../../../../utils/user";
 import Contexts from "../../../../contexts/Contexts";
 
 const Header = () => {
-  const { setAuth, setCalendar, calendar, mode, setMode } =
-    useContext(Contexts);
+  const { setAuth, mode, setMode } = useContext(Contexts);
 
   const handleLogin = () => {
     Swal.fire({
@@ -41,13 +40,6 @@ const Header = () => {
       <HeaderContents>
         <div>
           <section>
-            <Button
-              onClick={() => {
-                setCalendar(!calendar);
-              }}
-            >
-              Calendário
-            </Button>
             <Link to="/historic">
               <Historic>Histórico</Historic>
             </Link>

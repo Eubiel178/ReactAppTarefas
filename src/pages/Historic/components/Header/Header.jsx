@@ -2,13 +2,7 @@ import { Link } from "react-router-dom";
 
 import { useContext } from "react";
 
-import {
-  HeaderContents,
-  ButtonContainer,
-  Button,
-  Mode,
-  TitleContainer,
-} from "./Styles";
+import { ButtonContainer, Button, Mode, TitleContainer } from "./Styles";
 import { clearHistoric, getSavedTasks } from "../../../../utils/task";
 
 import Swal from "sweetalert2";
@@ -45,7 +39,7 @@ const Header = ({ set }) => {
 
   return (
     <header>
-      <HeaderContents>
+      <>
         <ButtonContainer>
           <Link to="/">
             <Button>Inicio</Button>
@@ -65,7 +59,7 @@ const Header = ({ set }) => {
 
           <button onClick={clear}>Limpar Lista</button>
         </TitleContainer>
-      </HeaderContents>
+      </>
     </header>
   );
 };
