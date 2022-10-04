@@ -24,15 +24,7 @@ export const ContainerContent = styled.div`
     display: none;
   }
 
-  @media (max-width: 580px) {
-    width: 80%;
-  }
-
-  @media (max-width: 480px) {
-    width: 90%;
-  }
-
-  @media (max-width: 340px) {
+  @media (max-width: 769px) {
     width: 100%;
     height: 100vh;
     border-radius: 0px;

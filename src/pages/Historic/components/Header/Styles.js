@@ -1,38 +1,36 @@
 import styled from "styled-components";
 
-export const ButtonContainer = styled.div`
+export const NavBar = styled.div`
   padding: 1em;
   display: flex;
   justify-content: space-between;
   flex-wrap: nowrap;
-
-  background: #3085d6;
+  background-color: ${({ background }) => background};
 `;
 
 export const Button = styled.button`
   padding: 1em;
+  font-size: 15px;
   border: 0px;
-  border-radius: 1em;
   color: #fff;
   transition-duration: 0.5s;
   background: none;
   cursor: grab;
+  border: ${({ border }) => border};
 
   :hover {
-    background-color: #3005d6;
-  }
-
-  @media (max-width: 430px) {
-    font-size: 13px;
+    border-bottom: 2px solid white;
   }
 `;
 
 export const Mode = styled(Button)`
+  border-radius: 1em;
   margin-left: 1em;
   background-color: ${({ background }) => background};
   color: ${({ color }) => color};
 
   :hover {
+    border: 0px;
     background-color: ${({ background }) => background};
   }
 `;
@@ -45,7 +43,7 @@ export const TitleContainer = styled.div`
   margin-top: 1.5em;
 
   h1 {
-    color: #3085d6;
+    color: ${({ color }) => color};
   }
 
   button {

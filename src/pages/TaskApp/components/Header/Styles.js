@@ -7,33 +7,25 @@ export const HeaderContents = styled.div`
     justify-content: space-between;
     flex-wrap: nowrap;
     margin-bottom: 2em;
-    background: #3085d6;
-  }
-
-  h1 {
-    padding: 1em 0em 1em 0em;
-    color: #3085d6;
-    text-align: center;
-  }
-
-  @media (max-width: 390px) {
-    h1 {
-      font-size: 25px;
-    }
+    background: ${({ background }) => background};
   }
 `;
 
 export const Button = styled.button`
+  margin-right: 1em;
   padding: 1em;
+
   border: 0px;
-  border-radius: 1em;
   color: #fff;
-  transition-duration: 0.5s;
+  transition-duration: 0.7s;
   background: none;
   cursor: grab;
+  font-size: 15px;
+
+  border-bottom: ${({ border }) => border};
 
   :hover {
-    background-color: #3005d6;
+    border-bottom: 2px solid white;
   }
 
   @media (max-width: 430px) {
@@ -41,15 +33,22 @@ export const Button = styled.button`
   }
 `;
 
-export const Historic = styled(Button)`
-  margin-left: 1em;
-`;
-
-export const Mode = styled(Historic)`
+export const Mode = styled(Button)`
   background-color: ${({ background }) => background};
   color: ${({ color }) => color};
+  border-radius: 1em;
 
   :hover {
+    border-bottom: 0px;
     background-color: ${({ background }) => background};
+  }
+`;
+
+export const Title = styled.h1`
+  padding: 1em 0em 1em 1em;
+  color: ${({ color }) => color};
+
+  @media (max-width: 390px) {
+    font-size: 25px;
   }
 `;

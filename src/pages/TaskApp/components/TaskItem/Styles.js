@@ -27,6 +27,7 @@ export const IconsContainer = styled.span`
 export const ButtonEdit = styled.button`
   border: none;
   font-size: 17px;
+  color: ${({ color }) => color};
   background-color: transparent;
   transition-duration: 0.5s;
   padding: 0.6em;
@@ -34,7 +35,7 @@ export const ButtonEdit = styled.button`
   cursor: pointer;
 `;
 
-export const ButtonRemove = styled.button`
+export const ButtonRemove = styled(ButtonEdit)`
   border: none;
   color: rgb(160, 52, 52);
   font-size: 17px;

@@ -8,7 +8,7 @@ export const Container = styled.div`
 
   h2 {
     margin: 1.5em 0em 1em 0em;
-    color: #3085d6;
+    color: ${({ colorSubTitle }) => colorSubTitle};
   }
 
   button {

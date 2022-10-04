@@ -148,8 +148,8 @@ const TaskAppPage = () => {
   };
 
   return (
-    <Container background={mode ? " rgb(32, 28, 28)" : "#edf0f2"}>
-      <ContainerContent background={mode ? "black" : "white"}>
+    <Container background={mode ? " rgb(0, 0, 0)" : "#edf0f2"}>
+      <ContainerContent background={mode ? "#121212" : "white"}>
         <Header />
         <MainContainer>
           <Form

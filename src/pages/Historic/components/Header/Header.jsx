@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 import { useContext } from "react";
 
-import { ButtonContainer, Button, Mode, TitleContainer } from "./Styles";
+import { NavBar, Button, Mode, TitleContainer } from "./Styles";
 import { clearHistoric, getSavedTasks } from "../../../../utils/task";
 
 import Swal from "sweetalert2";
@@ -39,27 +39,27 @@ const Header = ({ set }) => {
 
   return (
     <header>
-      <>
-        <ButtonContainer>
-          <Link to="/">
-            <Button>Inicio</Button>
-          </Link>
+      <NavBar background={mode ? "#1F1F1F" : "#3085d6"}>
+        <Link to="/">
+          <Button border={mode ? "solid 2px #1F1F1F" : " solid 2px #3085d6"}>
+            Início
+          </Button>
+        </Link>
 
-          <Mode
-            onClick={() => setMode(!mode)}
-            background={mode === false ? "black" : "#fff"}
-            color={mode ? "black" : "white"}
-          >
-            {mode === false ? "Modo escuro" : "Modo claro"}
-          </Mode>
-        </ButtonContainer>
+        <Mode
+          onClick={() => setMode(!mode)}
+          background={mode === false ? "black" : "#fff"}
+          color={mode ? "black" : "white"}
+        >
+          {mode === false ? "Modo escuro" : "Modo claro"}
+        </Mode>
+      </NavBar>
 
-        <TitleContainer>
-          <h1>Tarefas Concluídas</h1>
+      <TitleContainer color={mode ? "#B64FC8" : " #3085d6"}>
+        <h1>Tarefas Concluídas</h1>
 
-          <button onClick={clear}>Limpar Lista</button>
-        </TitleContainer>
-      </>
+        <button onClick={clear}>Limpar Lista</button>
+      </TitleContainer>
     </header>
   );
 };

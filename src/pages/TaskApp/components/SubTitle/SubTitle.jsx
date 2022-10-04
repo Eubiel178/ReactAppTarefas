@@ -3,8 +3,12 @@ import { clear, list } from "../../../../utils/task";
 import Swal from "sweetalert2";
 
 import { Container } from "./Styles";
+import { useContext } from "react";
+import Contexts from "../../../../contexts/Contexts";
 
 const SubTitle = ({ toDoList, setToDoList }) => {
+  const { mode } = useContext(Contexts);
+
   const AllTasksCompleted = () => {
     let completed = toDoList.filter((element) => {
       return element.isFinished === true;
@@ -38,7 +42,7 @@ const SubTitle = ({ toDoList, setToDoList }) => {
   };
 
   return (
-    <Container>
+    <Container colorSubTitle={mode ? "#B64FC8" : " #3085d6"}>
       <h2>TAREFAS</h2>
       <button
         style={{ display: toDoList.length === 0 && "none" }}

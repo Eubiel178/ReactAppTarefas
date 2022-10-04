@@ -23,7 +23,7 @@ export const Container = styled.div`
     margin-right: 1em;
     padding: 0em 1em 0em 1em;
     color: #fff;
-    background-color: #3085d6;
+    background-color: ${({ backgroundButton }) => backgroundButton};
     border-radius: 5px;
     border: 1px solid rgba(0, 0, 0, 0.137);
     font-size: 16px;

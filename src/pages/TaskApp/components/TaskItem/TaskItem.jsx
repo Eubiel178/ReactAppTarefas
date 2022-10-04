@@ -2,8 +2,12 @@ import { FaTrashAlt } from "react-icons/fa";
 import { BsPencil } from "react-icons/bs";
 
 import { Task, Text, IconsContainer, ButtonEdit, ButtonRemove } from "./Styles";
+import { useContext } from "react";
+import Contexts from "../../../../contexts/Contexts";
 
 const TaskItem = ({ task, remove, id, edit, isFinished, setFinishTask }) => {
+  const { mode } = useContext(Contexts);
+
   return (
     <Task id={id} key={id}>
       <div>
@@ -17,7 +21,11 @@ const TaskItem = ({ task, remove, id, edit, isFinished, setFinishTask }) => {
         </Text>
       </div>
       <IconsContainer>
-        <ButtonEdit style={{ color: isFinished && " #e0d2d4" }} onClick={edit}>
+        <ButtonEdit
+          color={mode && "white"}
+          style={{ color: isFinished && " #e0d2d4" }}
+          onClick={edit}
+        >
           <BsPencil />
         </ButtonEdit>
         <ButtonRemove onClick={remove}>
