@@ -24,7 +24,10 @@ const Form = ({ AddTask, setTask, setInput, input, isEdit }) => {
 
   return (
     <form onSubmit={AddTask}>
-      <Container backgroundButton={mode ? "#B64FC8" : " #3085d6"}>
+      <Container
+        backgroundButton={mode ? "#B64FC8" : " #3085d6"}
+        buttonHover={mode ? "#6105d6" : "#3005d6"}
+      >
         <input
           onChange={handleTask}
           type="text"

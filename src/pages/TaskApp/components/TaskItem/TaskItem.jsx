@@ -16,7 +16,10 @@ const TaskItem = ({ task, remove, id, edit, isFinished, setFinishTask }) => {
           type="checkbox"
           checked={isFinished}
         />
-        <Text style={{ textDecoration: isFinished && "line-through" }}>
+        <Text
+          color={mode && "#B64FC8"}
+          style={{ textDecoration: isFinished && "line-through" }}
+        >
           {task}
         </Text>
       </div>

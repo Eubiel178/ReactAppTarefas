@@ -14,6 +14,7 @@ export const Task = styled.p`
 
 export const Text = styled.span`
   text-align: justify;
+  color: ${({ color }) => color};
   padding-left: 0.5em;
 `;
 

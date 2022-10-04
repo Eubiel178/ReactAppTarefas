@@ -1,12 +1,13 @@
 import { Link } from "react-router-dom";
 
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 
 import { NavBar, Button, Mode, TitleContainer } from "./Styles";
 import { clearHistoric, getSavedTasks } from "../../../../utils/task";
 
 import Swal from "sweetalert2";
 import Contexts from "../../../../contexts/Contexts";
+import { getSaveMode, saveMode } from "../../../../utils/mode";
 
 const Header = ({ set }) => {
   const { setMode, mode } = useContext(Contexts);
@@ -37,6 +38,22 @@ const Header = ({ set }) => {
     }
   };
 
+  const handleMode = () => {
+    setMode(!mode);
+
+    saveMode(!mode);
+  };
+
+  useEffect(() => {
+    let getMode = getSaveMode();
+
+    if (getMode === "true") {
+      setMode(true);
+    } else {
+      setMode(false);
+    }
+  }, []);
+
   return (
     <header>
       <NavBar background={mode ? "#1F1F1F" : "#3085d6"}>
@@ -47,7 +64,7 @@ const Header = ({ set }) => {
         </Link>
 
         <Mode
-          onClick={() => setMode(!mode)}
+          onClick={handleMode}
           background={mode === false ? "black" : "#fff"}
           color={mode ? "black" : "white"}
         >

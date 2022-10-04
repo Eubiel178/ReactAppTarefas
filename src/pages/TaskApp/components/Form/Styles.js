@@ -32,7 +32,7 @@ export const Container = styled.div`
 
   button:hover {
     box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.192);
-    background-color: #3005d6;
+    background-color: ${({ buttonHover }) => buttonHover};
   }
 
   @media (max-width: 960px) {
