@@ -31,8 +31,9 @@ export const ContainerContent = styled.div`
   }
 `;
 
-export const TaskList = styled.div`
-  padding: 1em 2em 1em 2em;
+export const TaskList = styled.ul`
+  padding: 3em 3.5em;
+  font-size: 18px;
 
   color: ${({ color }) => color};
 `;

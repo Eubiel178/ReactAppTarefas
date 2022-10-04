@@ -39,8 +39,9 @@ export const TitleContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1em;
-  margin-top: 1.5em;
+  padding-left: 2em;
+  margin-top: 2em;
+  font-size: 20px;
 
   h1 {
     color: ${({ color }) => color};
