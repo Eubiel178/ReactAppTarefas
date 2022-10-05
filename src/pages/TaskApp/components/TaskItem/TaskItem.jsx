@@ -9,7 +9,7 @@ import {
   ButtonEdit,
   ButtonRemove,
 } from "./Styles";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import Contexts from "../../../../contexts/Contexts";
 
 const TaskItem = ({
@@ -21,9 +21,8 @@ const TaskItem = ({
   setFinishTask,
   position,
 }) => {
-  const { mode, inProgress } = useContext(Contexts);
-
-  const progress = () => {};
+  const { mode } = useContext(Contexts);
+  const [inProgress, setInProgress] = useState(true);
 
   return (
     <Task id={id} key={id}>

@@ -8,7 +8,6 @@ const App = () => {
   const [input, setInput] = useState("");
   const [auth, setAuth] = useState(false);
   const [mode, setMode] = useState(false);
-  const [inProgress, setInProgress] = useState(true);
 
   return (
     <Contexts.Provider
@@ -19,8 +18,6 @@ const App = () => {
         setAuth,
         mode,
         setMode,
-        inProgress,
-        setInProgress,
       }}
     >
       <main>
