@@ -23,7 +23,7 @@ const Header = () => {
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Sim!",
+      confirmButtonText: "Sim",
       cancelButtonText: "Não",
       preConfirm: (value) => {
         if (value === true) {
