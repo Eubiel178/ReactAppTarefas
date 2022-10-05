@@ -9,6 +9,7 @@ export const TaskContainer = styled.div`
 export const Task = styled.p`
   text-align: justify;
   word-break: break-all;
+  cursor: zoom-in;
 
   input:hover {
     cursor: grab;
@@ -34,7 +35,8 @@ export const Progress = styled.div`
   padding: 0.3em;
   cursor: zoom-in;
   background-color: ${({ background }) => background};
-  width: 8em;
+  width: ${({ width }) => width};
+  text-align: center;
 
   @media (max-width: 1020px) {
     font-size: 12px;
