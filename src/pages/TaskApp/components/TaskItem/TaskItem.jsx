@@ -32,14 +32,14 @@ const TaskItem = ({
         </Text>
       </div>
       <IconsContainer>
-        <button
+        {/*        <button
           onClick={() => {
             position(id, "up");
           }}
         >
           ⬆
         </button>
-        <button>⬇</button>
+        <button>⬇</button> */}
         <ButtonEdit
           color={mode && "white"}
           style={{ color: isFinished && " #e0d2d4" }}
