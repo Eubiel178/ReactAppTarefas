@@ -28,9 +28,9 @@ export const SecondSection = styled.span`
 
 export const Progress = styled.div`
   color: #fff;
-  cursor: grab;
   border-radius: 0.3em;
   padding: 0.3em;
+  cursor: zoom-in;
   background-color: ${({ background }) => background};
 `;
 

@@ -21,7 +21,7 @@ const TaskItem = ({
   setFinishTask,
   position,
 }) => {
-  const { mode, inProgress, setInProgress } = useContext(Contexts);
+  const { mode, inProgress } = useContext(Contexts);
 
   const progress = () => {};
 
@@ -44,19 +44,9 @@ const TaskItem = ({
       <section>
         <SecondSection>
           <Progress
-            onClick={() => setInProgress(!inProgress)}
-            o
-            background={
-              isFinished ? "#e0d2d4" : inProgress ? "#00A94C" : "#464040"
-            }
+            background={isFinished ? "#e0d2d4" : inProgress && "#00A94C"}
           >
-            <p>
-              {isFinished
-                ? "Completa"
-                : inProgress
-                ? "Em andamento "
-                : "Incompleta"}
-            </p>
+            <p>{isFinished ? "Completa" : inProgress && "Em andamento "}</p>
           </Progress>
 
           <div>
