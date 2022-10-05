@@ -65,22 +65,26 @@ const TaskAppPage = () => {
   const handleOnSubmit = (event) => {
     event.preventDefault();
 
-    if (isEdit === "") {
+    if (toDoList.length === 0 && isEdit !== "") {
       add(task);
-    } else {
+
+      taskList();
+    } else if (isEdit) {
       edit(task, isEdit);
-      setIsEdit("");
+    } else {
+      add(task);
     }
 
     setInput("");
+    setIsEdit("");
   };
 
-  const taskList = () => {
-    const user = getLoggedUser();
-    const allTasks = list();
+  const taskList = async () => {
+    const user = await getLoggedUser();
+    const allTasks = await list();
 
-    const userTasks = allTasks.filter((element) => {
-      return element.userID === user[0].id;
+    const userTasks = allTasks.filter((task) => {
+      return task.userID === user[0].id;
     });
 
     if (userTasks) {
@@ -132,7 +136,7 @@ const TaskAppPage = () => {
         description: task.description,
         id: task.id,
         isFinished: false,
-        userID: "",
+        userID: task.userID,
       });
 
       setInput(task.description);
