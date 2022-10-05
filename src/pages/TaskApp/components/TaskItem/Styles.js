@@ -4,6 +4,7 @@ export const Task = styled.p`
   text-align: justify;
   word-break: break-all;
   display: flex;
+  align-items: center;
   justify-content: space-between;
   position: relative;
 
@@ -18,11 +19,19 @@ export const Text = styled.span`
   padding-left: 0.5em;
 `;
 
-export const IconsContainer = styled.span`
+export const SecondSection = styled.span`
   margin-left: 1em;
   display: flex;
   align-items: center;
   height: 100%;
+`;
+
+export const Progress = styled.div`
+  color: #fff;
+  cursor: grab;
+  border-radius: 0.3em;
+  padding: 0.3em;
+  background-color: ${({ background }) => background};
 `;
 
 export const ButtonEdit = styled.button`

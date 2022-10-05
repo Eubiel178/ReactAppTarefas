@@ -1,7 +1,14 @@
 import { FaTrashAlt } from "react-icons/fa";
 import { BsPencil } from "react-icons/bs";
 
-import { Task, Text, IconsContainer, ButtonEdit, ButtonRemove } from "./Styles";
+import {
+  Task,
+  Text,
+  SecondSection,
+  Progress,
+  ButtonEdit,
+  ButtonRemove,
+} from "./Styles";
 import { useContext } from "react";
 import Contexts from "../../../../contexts/Contexts";
 
@@ -14,11 +21,13 @@ const TaskItem = ({
   setFinishTask,
   position,
 }) => {
-  const { mode } = useContext(Contexts);
+  const { mode, inProgress, setInProgress } = useContext(Contexts);
+
+  const progress = () => {};
 
   return (
     <Task id={id} key={id}>
-      <div>
+      <section>
         <input
           onClick={() => setFinishTask({ description: task, id: id })}
           type="checkbox"
@@ -30,9 +39,28 @@ const TaskItem = ({
         >
           {task}
         </Text>
-      </div>
-      <IconsContainer>
-        {/*        <button
+      </section>
+
+      <section>
+        <SecondSection>
+          <Progress
+            onClick={() => setInProgress(!inProgress)}
+            o
+            background={
+              isFinished ? "#e0d2d4" : inProgress ? "#00A94C" : "#464040"
+            }
+          >
+            <p>
+              {isFinished
+                ? "Completa"
+                : inProgress
+                ? "Em andamento "
+                : "Incompleta"}
+            </p>
+          </Progress>
+
+          <div>
+            {/*        <button
           onClick={() => {
             position(id, "up");
           }}
@@ -40,17 +68,20 @@ const TaskItem = ({
           ⬆
         </button>
         <button>⬇</button> */}
-        <ButtonEdit
-          color={mode && "white"}
-          style={{ color: isFinished && " #e0d2d4" }}
-          onClick={edit}
-        >
-          <BsPencil />
-        </ButtonEdit>
-        <ButtonRemove onClick={remove}>
-          <FaTrashAlt />
-        </ButtonRemove>
-      </IconsContainer>
+
+            <ButtonEdit
+              color={mode && "white"}
+              style={{ color: isFinished && " #e0d2d4" }}
+              onClick={edit}
+            >
+              <BsPencil />
+            </ButtonEdit>
+            <ButtonRemove onClick={remove}>
+              <FaTrashAlt />
+            </ButtonRemove>
+          </div>
+        </SecondSection>
+      </section>
     </Task>
   );
 };

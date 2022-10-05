@@ -32,9 +32,9 @@ const TaskAppPage = () => {
   const [isEdit, setIsEdit] = useState("");
   const [toDoList, setToDoList] = useState([]);
   const [parent] = useAutoAnimate();
-  const { input, setInput, mode } = useContext(Contexts);
+  const { input, setInput, mode, porgress } = useContext(Contexts);
 
-  const removeTask = (task) => {
+  const handleRemove = (task) => {
     if (task.isFinished === false) {
       Swal.fire({
         title: "Deseja remover essa tarefa?",
@@ -51,14 +51,14 @@ const TaskAppPage = () => {
           if (value === true) {
             remove(task.id);
 
-            taskList();
+            handleToDoList();
           }
         },
       });
     } else {
       remove(task.id);
 
-      taskList();
+      handleToDoList();
     }
   };
 
@@ -68,7 +68,7 @@ const TaskAppPage = () => {
     if (toDoList.length === 0 && isEdit !== "") {
       add(task);
 
-      taskList();
+      handleToDoList();
     } else if (isEdit) {
       edit(task, isEdit);
     } else {
@@ -79,7 +79,7 @@ const TaskAppPage = () => {
     setIsEdit("");
   };
 
-  const taskList = async () => {
+  const handleToDoList = async () => {
     const user = await getLoggedUser();
     const allTasks = await list();
 
@@ -93,7 +93,7 @@ const TaskAppPage = () => {
   };
 
   useEffect(() => {
-    taskList();
+    handleToDoList();
   }, [input]);
 
   const handleSetFinishTask = (task) => {
@@ -123,14 +123,14 @@ const TaskAppPage = () => {
 
             await edit(data, task.id);
 
-            taskList();
+            handleToDoList();
           }
         },
       });
     }
   };
 
-  const taskEdit = (task) => {
+  const handleEdit = (task) => {
     if (task.isFinished === false) {
       setTask({
         description: task.description,
@@ -151,7 +151,7 @@ const TaskAppPage = () => {
     }
   };
 
-  const taskPosition = (id, position) => {
+  const handlePosition = (id, position) => {
     if (position === "up") {
     }
   };
@@ -186,13 +186,13 @@ const TaskAppPage = () => {
                       key={index}
                       id={taskJSON.id}
                       remove={() => {
-                        removeTask(taskJSON);
+                        handleRemove(taskJSON);
                       }}
                       edit={() => {
-                        taskEdit(taskJSON);
+                        handleEdit(taskJSON);
                       }}
                       index={taskJSON.index}
-                      position={taskPosition}
+                      position={handlePosition}
                     />
                   );
                 })
