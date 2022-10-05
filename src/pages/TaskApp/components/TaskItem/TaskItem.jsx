@@ -2,9 +2,10 @@ import { FaTrashAlt } from "react-icons/fa";
 import { BsPencil } from "react-icons/bs";
 
 import {
+  TaskContainer,
   Task,
   Text,
-  SecondSection,
+  Container,
   Progress,
   ButtonEdit,
   ButtonRemove,
@@ -25,53 +26,49 @@ const TaskItem = ({
   const [inProgress, setInProgress] = useState(true);
 
   return (
-    <Task id={id} key={id}>
+    <TaskContainer>
       <section>
-        <input
-          onClick={() => setFinishTask({ description: task, id: id })}
-          type="checkbox"
-          checked={isFinished}
-        />
-        <Text
-          color={mode && "#B64FC8"}
-          style={{ textDecoration: isFinished && "line-through" }}
-        >
-          {task}
-        </Text>
-      </section>
-
-      <section>
-        <SecondSection>
-          <Progress
-            background={isFinished ? "#e0d2d4" : inProgress && "#00A94C"}
+        <Task id={id} key={id}>
+          <input
+            onClick={() => setFinishTask({ description: task, id: id })}
+            type="checkbox"
+            checked={isFinished}
+          />
+          <Text
+            color={mode && "#B64FC8"}
+            style={{ textDecoration: isFinished && "line-through" }}
           >
-            <p>{isFinished ? "Completa" : inProgress && "Em andamento "}</p>
-          </Progress>
-
-          <div>
-            {/*        <button
-          onClick={() => {
-            position(id, "up");
-          }}
-        >
-          ⬆
-        </button>
-        <button>⬇</button> */}
-
-            <ButtonEdit
-              color={mode && "white"}
-              style={{ color: isFinished && " #e0d2d4" }}
-              onClick={edit}
-            >
-              <BsPencil />
-            </ButtonEdit>
-            <ButtonRemove onClick={remove}>
-              <FaTrashAlt />
-            </ButtonRemove>
-          </div>
-        </SecondSection>
+            {task}
+          </Text>
+        </Task>
       </section>
-    </Task>
+
+      <Container>
+        <Progress background={isFinished ? "#e0d2d4" : inProgress && "#00A94C"}>
+          <p>{isFinished ? "Completa" : inProgress && "Em andamento "}</p>
+        </Progress>
+
+        {/*        <button
+            onClick={() => {
+              position(id, "up");
+            }}
+          >
+            ⬆
+          </button>
+          <button>⬇</button> */}
+
+        <ButtonEdit
+          color={mode && "white"}
+          style={{ color: isFinished && " #e0d2d4" }}
+          onClick={edit}
+        >
+          <BsPencil />
+        </ButtonEdit>
+        <ButtonRemove onClick={remove}>
+          <FaTrashAlt />
+        </ButtonRemove>
+      </Container>
+    </TaskContainer>
   );
 };
 

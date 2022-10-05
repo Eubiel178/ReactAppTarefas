@@ -1,12 +1,14 @@
 import styled from "styled-components";
 
-export const Task = styled.p`
-  text-align: justify;
-  word-break: break-all;
+export const TaskContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  position: relative;
+`;
+
+export const Task = styled.p`
+  text-align: justify;
+  word-break: break-all;
 
   input:hover {
     cursor: grab;
@@ -19,19 +21,28 @@ export const Text = styled.span`
   padding-left: 0.5em;
 `;
 
-export const SecondSection = styled.span`
+export const Container = styled.div`
   margin-left: 1em;
   display: flex;
   align-items: center;
-  height: 100%;
 `;
 
 export const Progress = styled.div`
   color: #fff;
+
   border-radius: 0.3em;
   padding: 0.3em;
   cursor: zoom-in;
   background-color: ${({ background }) => background};
+  width: 8em;
+
+  @media (max-width: 1020px) {
+    font-size: 12px;
+  }
+
+  @media (max-width: 645px) {
+    display: none;
+  }
 `;
 
 export const ButtonEdit = styled.button`
