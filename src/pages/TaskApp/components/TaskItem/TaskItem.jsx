@@ -5,7 +5,15 @@ import { Task, Text, IconsContainer, ButtonEdit, ButtonRemove } from "./Styles";
 import { useContext } from "react";
 import Contexts from "../../../../contexts/Contexts";
 
-const TaskItem = ({ task, remove, id, edit, isFinished, setFinishTask }) => {
+const TaskItem = ({
+  task,
+  remove,
+  id,
+  edit,
+  isFinished,
+  setFinishTask,
+  position,
+}) => {
   const { mode } = useContext(Contexts);
 
   return (
@@ -24,6 +32,14 @@ const TaskItem = ({ task, remove, id, edit, isFinished, setFinishTask }) => {
         </Text>
       </div>
       <IconsContainer>
+        <button
+          onClick={() => {
+            position(id, "up");
+          }}
+        >
+          ⬆
+        </button>
+        <button>⬇</button>
         <ButtonEdit
           color={mode && "white"}
           style={{ color: isFinished && " #e0d2d4" }}

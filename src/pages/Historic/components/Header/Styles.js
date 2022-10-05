@@ -16,10 +16,14 @@ export const Button = styled.button`
   transition-duration: 0.5s;
   background: none;
   cursor: grab;
-  border: ${({ border }) => border};
+  border-bottom: ${({ border }) => border};
 
   :hover {
     border-bottom: 2px solid white;
+  }
+
+  @media (max-width: 430px) {
+    font-size: 11px;
   }
 `;
 

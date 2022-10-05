@@ -147,6 +147,11 @@ const TaskAppPage = () => {
     }
   };
 
+  const taskPosition = (id, position) => {
+    if (position === "up") {
+    }
+  };
+
   return (
     <Container background={mode ? " rgb(0, 0, 0)" : "#edf0f2"}>
       <ContainerContent background={mode ? "#121212" : "white"}>
@@ -182,6 +187,8 @@ const TaskAppPage = () => {
                       edit={() => {
                         taskEdit(taskJSON);
                       }}
+                      index={taskJSON.index}
+                      position={taskPosition}
                     />
                   );
                 })
