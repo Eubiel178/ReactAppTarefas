@@ -10,7 +10,7 @@ import {
   ButtonEdit,
   ButtonRemove,
 } from "./Styles";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import Contexts from "../../../../contexts/Contexts";
 
 const TaskItem = ({
@@ -45,7 +45,8 @@ const TaskItem = ({
       <Container>
         <Progress
           background={isFinished ? "#e0d2d4" : "#00A94C"}
-          width={isFinished && "8em"}
+          color={isFinished ? "#B64FC8" : "#fff"}
+          width={isFinished ? "6em" : "8em"}
         >
           <p>{isFinished ? "Completa" : "Em andamento "}</p>
         </Progress>

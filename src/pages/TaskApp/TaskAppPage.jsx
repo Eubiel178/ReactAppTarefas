@@ -32,7 +32,7 @@ const TaskAppPage = () => {
   const [isEdit, setIsEdit] = useState("");
   const [toDoList, setToDoList] = useState([]);
   const [parent] = useAutoAnimate();
-  const { input, setInput, mode, porgress } = useContext(Contexts);
+  const { input, setInput, mode } = useContext(Contexts);
 
   const handleRemove = (task) => {
     if (task.isFinished === false) {

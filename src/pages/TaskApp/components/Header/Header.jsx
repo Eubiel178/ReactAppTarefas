@@ -1,7 +1,7 @@
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 
-import { useContext, useState } from "react";
+import { useContext } from "react";
 
 import { HeaderContents, Button, Mode, Title } from "./Styles";
 

@@ -29,7 +29,7 @@ export const Container = styled.div`
 `;
 
 export const Progress = styled.div`
-  color: #fff;
+  color: ${({ color }) => color};
 
   border-radius: 0.3em;
   padding: 0.3em;
