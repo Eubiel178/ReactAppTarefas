@@ -43,16 +43,11 @@ const TaskItem = ({
       </section>
 
       <Container>
-<<<<<<< HEAD
-        <Progress background={isFinished ? "#e0d2d4" : inProgress && "#00A94C"}>
-          <p>{isFinished ? "Completa" : inProgress && "Em andamento "}</p>
-=======
         <Progress
           background={isFinished ? "#e0d2d4" : "#00A94C"}
-          width={isFinished === false && "8em"}
+          width={isFinished && "8em"}
         >
           <p>{isFinished ? "Completa" : "Em andamento "}</p>
->>>>>>> 370e603 (Alteracao no style)
         </Progress>
 
         {/*        <button
