@@ -21,9 +21,9 @@ export const add = (task) => {
 
   if (localStorage.getItem("tasks")) {
     taskList = list();
-    taskList.push(task);
+    taskList.unshift(task);
   } else {
-    taskList.push(task);
+    taskList.unshift(task);
   }
 
   localStorage.setItem("tasks", JSON.stringify(taskList));
@@ -60,9 +60,9 @@ export const saveCompletedTasks = (task) => {
   if (localStorage.getItem("Historic")) {
     tasks = getSavedTasks();
 
-    tasks.push(task);
+    tasks.unshift(task);
   } else {
-    tasks.push(task);
+    tasks.unshift(task);
   }
 
   localStorage.setItem("Historic", JSON.stringify(tasks));
