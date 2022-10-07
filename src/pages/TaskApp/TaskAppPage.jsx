@@ -84,7 +84,7 @@ const TaskAppPage = () => {
     const allTasks = await list();
 
     const userTasks = allTasks.filter((task) => {
-      return task.userID === user[0].id;
+      return task.userID === user.id;
     });
 
     if (userTasks) {

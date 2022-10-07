@@ -16,7 +16,7 @@ const Form = ({ AddTask, setTask, setInput, input, isEdit }) => {
       description: event.target.value,
       id: id,
       isFinished: false,
-      userID: user[0].id,
+      userID: user.id,
     });
 
     setInput(event.target.value);

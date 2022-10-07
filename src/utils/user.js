@@ -1,27 +1,31 @@
-export const login = () => {
-  if (localStorage.getItem("users")) {
-    return JSON.parse(localStorage.getItem("users"));
-  } else {
-    return [];
-  }
+import api from "../services/api";
+
+export const register = async (data) => {
+  const request = await api.post("users", data).catch((error) => {
+    return error;
+  });
+
+  return request;
 };
 
-export const register = (user) => {
-  let users = [];
-
-  if (localStorage.getItem("users")) {
-    users = login();
-
-    users.push(user);
-  } else {
-    users.push(user);
-  }
-
-  localStorage.setItem("users", JSON.stringify(users));
+export const token = (tokenJSON) => {
+  localStorage.setItem("auth_token", tokenJSON.data.auth_token);
 };
 
 export const loggedInUser = (user) => {
   localStorage.setItem("userLogged", JSON.stringify(user));
+};
+
+export const login = async (data) => {
+  const request = await api.post("/authenticate", data).catch((error) => {
+    return error;
+  });
+
+  if (request.data.auth_token) {
+    token(request);
+    loggedInUser(request.data.user);
+  }
+  return request;
 };
 
 export const getLoggedUser = () => {

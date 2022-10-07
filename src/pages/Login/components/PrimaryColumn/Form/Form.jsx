@@ -10,20 +10,16 @@ import { useState, useContext, useEffect } from "react";
 import Swal from "sweetalert2";
 
 const Form = () => {
+  const [formData, setFormData] = useState({
+    user: "",
+    password: "",
+  });
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const { setAuth } = useContext(Contexts);
 
   const handleLogin = async () => {
-    const users = await login();
-
-    const user = users.filter((element) => {
-      return element.email === email;
-    });
-
-    console.log(user);
-
     if (email === "" && password === "") {
       Swal.fire({
         icon: "error",
@@ -41,20 +37,20 @@ const Form = () => {
         icon: "error",
         text: "Por favor informe um email valido!",
       });
-    } else if (user.length === 0) {
-      Swal.fire({
-        icon: "error",
-        text: "O usuario nao existe!!",
+    } else if (email && password) {
+      const response = await login({
+        user: email,
+        password: password,
       });
-    } else if (password !== user[0].password && email === user[0].email) {
-      Swal.fire({
-        icon: "error",
-        text: "A senha esta incorreta!",
-      });
-    } else if (user[0].email === email && user[0].password === password) {
-      loggedInUser(user);
-
-      setAuth(true);
+      console.log(response);
+      if (response.code === "ERR_BAD_REQUEST") {
+        Swal.fire({
+          icon: "error",
+          text: "Senha incorreta!",
+        });
+      } else {
+        setAuth(true);
+      }
     }
   };
 

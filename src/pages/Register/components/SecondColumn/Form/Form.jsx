@@ -3,9 +3,7 @@ import { useState } from "react";
 import FormItem from "../../../../../components/Account/FormITem/FormItem";
 import Button from "../../../../../components/Account/Button/Button";
 
-import { v4 as uuidv4 } from "uuid";
-
-import { login, register } from "../../../../../utils/user";
+import { register } from "../../../../../utils/user";
 
 import Swal from "sweetalert2";
 
@@ -13,14 +11,9 @@ const Form = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [password2, setPassword2] = useState("");
 
   const handleRegister = async () => {
-    const users = await login();
-
-    const existingEmail = users.filter((element) => {
-      return element.email === email;
-    });
-
     if (email === "" && password === "" && name === "") {
       Swal.fire({
         icon: "error",
@@ -28,51 +21,42 @@ const Form = () => {
         text: "Os campos estão  vazios!",
       });
     }
-    if (name === "" || password === "" || email === "") {
+    if (password === "" || email === "" || password2 === "") {
       Swal.fire({
         icon: "error",
         title: "Oops...",
         text: "Verifique se todos os campos estao preenchidos..!",
       });
-    } else if (existingEmail[0]) {
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "Ja existe um registro com esse email!",
+    } else if (email && password && password === password2) {
+      const response = await register({
+        user: {
+          name: email,
+          user: email,
+          email: email,
+          password: password,
+          password_confirmation: password2,
+        },
       });
-    } else if (name && email && password) {
-      const user = {
-        name: name,
-        email: email,
-        password: password,
-        id: uuidv4(),
-      };
 
-      register(user);
+      if (response.code === "ERR_BAD_REQUEST") {
+        await Swal.fire("Oops", "Ja existe uma conta com esse email!", "error");
 
-      await Swal.fire(
-        "Sua conta foi criada com sucesso!",
-        "Bom Trabalho",
-        "success"
-      );
-
-      setName("");
-      setEmail("");
-      setPassword("");
+        setName("");
+        setEmail("");
+        setPassword("");
+        setPassword2("");
+      } else {
+        await Swal.fire(
+          "Sua conta foi criada com sucesso!",
+          "Bom Trabalho",
+          "success"
+        );
+      }
     }
   };
 
   return (
     <form>
-      <FormItem
-        set={setName}
-        label="Nome de usuário"
-        placeholder="Nome de usuário"
-        id="username"
-        type="text"
-        value={name}
-      />
-
       <FormItem
         set={setEmail}
         label="Seu email"
@@ -90,6 +74,16 @@ const Form = () => {
         type="password"
         value={password}
       />
+
+      <FormItem
+        set={setPassword2}
+        label="Repita sua senha"
+        placeholder="Repita sua senha"
+        id="password2"
+        type="password"
+        value={password2}
+      />
+
       <Button calback={handleRegister} value="Criar Conta" />
     </form>
   );
