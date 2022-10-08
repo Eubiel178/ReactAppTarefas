@@ -3,7 +3,12 @@ import Button from "../../../../../components/Account/Button/Button";
 
 import Contexts from "../../../../../contexts/Contexts";
 
-import { getLoggedUser, login, loggedInUser } from "../../../../../utils/user";
+import {
+  getLoggedUser,
+  login,
+  loggedInUser,
+  getToken,
+} from "../../../../../utils/user";
 
 import { useState, useContext, useEffect } from "react";
 
@@ -42,8 +47,11 @@ const Form = () => {
         user: email,
         password: password,
       });
-      console.log(response);
+
+      const token = await getToken();
+
       if (response.code === "ERR_BAD_REQUEST") {
+        alert();
         Swal.fire({
           icon: "error",
           text: "Senha incorreta!",

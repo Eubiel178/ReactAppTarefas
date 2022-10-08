@@ -1,29 +1,26 @@
-import { clear, list } from "../../../../utils/task";
-
 import Swal from "sweetalert2";
 
 import { Container } from "./Styles";
-import { useContext } from "react";
-import Contexts from "../../../../contexts/Contexts";
 
-const SubTitle = ({ toDoList, setToDoList }) => {
+import { useContext } from "react";
+
+import Contexts from "../../../../contexts/Contexts";
+import { remove } from "../../../../utils/task";
+
+const SubTitle = ({ toDoList, setToDoList, renderList }) => {
   const { mode } = useContext(Contexts);
 
-  const AllTasksCompleted = () => {
-    let completed = toDoList.filter((element) => {
-      return element.isFinished === true;
+  const clearList = () => {
+    const completed = toDoList.filter((element) => {
+      return element.shelf === 2;
     });
 
-    return completed;
-  };
-
-  const clearList = () => {
-    const completed = AllTasksCompleted();
-
     if (toDoList.length > 0 && completed.length === toDoList.length) {
-      Swal.fire("Bom Trabalho!", "Você completou todas as tarefa", "success");
+      toDoList.forEach((element) => {
+        remove(element.id);
+      });
 
-      clear();
+      Swal.fire("Bom Trabalho!", "Você completou todas as tarefa", "success");
     } else if (toDoList.length === 0) {
       Swal.fire({
         icon: "error",
@@ -37,8 +34,6 @@ const SubTitle = ({ toDoList, setToDoList }) => {
         text: "Você não completou todas as tarefa!",
       });
     }
-
-    setToDoList(list());
   };
 
   return (

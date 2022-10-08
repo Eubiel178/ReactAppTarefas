@@ -1,24 +1,12 @@
 import { Container } from "./Styles";
 
-import { v4 as uuidv4 } from "uuid";
-
-import { getLoggedUser } from "../../../../utils/user";
 import { useContext } from "react";
 import Contexts from "../../../../contexts/Contexts";
 
-const Form = ({ AddTask, setTask, setInput, input, isEdit }) => {
+const Form = ({ AddTask, setInput, input, isEdit }) => {
   const { mode } = useContext(Contexts);
-  const id = uuidv4();
-  const user = getLoggedUser();
 
   const handleTask = (event) => {
-    setTask({
-      description: event.target.value,
-      id: id,
-      isFinished: false,
-      userID: user.id,
-    });
-
     setInput(event.target.value);
   };
 

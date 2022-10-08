@@ -1,73 +1,51 @@
-export const list = () => {
-  if (localStorage.getItem("tasks")) {
-    return JSON.parse(localStorage.getItem("tasks"));
-  } else {
-    return [];
-  }
+import api from "../services/api";
+
+import { getLoggedUser } from "./user";
+
+export const add = async (task) => {
+  const user = getLoggedUser();
+
+  return await api.post(
+    `/users/${user.id}/books/`,
+    { book: task },
+    {
+      headers: {
+        Authorization: localStorage.getItem("auth_token"),
+      },
+    }
+  );
 };
 
-export const remove = (taskid) => {
-  let taskList = list();
+export const getTask = async () => {
+  const user = getLoggedUser();
 
-  let newList = taskList.filter((task) => {
-    return taskid !== task.id;
+  return await api.get(`/users/${user.id}/books/`, {
+    headers: {
+      Authorization: localStorage.getItem("auth_token"),
+    },
   });
-
-  localStorage.setItem("tasks", JSON.stringify(newList));
 };
 
-export const add = (task) => {
-  let taskList = [];
+export const edit = async (task, id) => {
+  const user = getLoggedUser();
 
-  if (localStorage.getItem("tasks")) {
-    taskList = list();
-    taskList.unshift(task);
-  } else {
-    taskList.unshift(task);
-  }
-
-  localStorage.setItem("tasks", JSON.stringify(taskList));
+  return await api.put(
+    `/users/${user.id}/books/${id}/`,
+    { book: task },
+    {
+      headers: {
+        Authorization: localStorage.getItem("auth_token"),
+      },
+    }
+  );
 };
 
-export const edit = (task, id) => {
-  const taskList = list();
+export const remove = async (id) => {
+  const user = getLoggedUser();
 
-  let mirror = [...taskList];
-
-  const target = mirror.findIndex((element) => {
-    return element.id === id;
+  return await api.delete(`/users/${user.id}/books/${id}`, {
+    headers: {
+      Authorization: localStorage.getItem("auth_token"),
+    },
   });
-
-  mirror[target].description = task.description;
-  mirror[target].isFinished = task.isFinished ? task.isFinished : false;
-
-  localStorage.setItem("tasks", JSON.stringify(mirror));
-};
-
-export const clear = () => {
-  localStorage.removeItem("tasks");
-};
-
-export const getSavedTasks = () => {
-  if (localStorage.getItem("Historic")) {
-    return JSON.parse(localStorage.getItem("Historic"));
-  }
-};
-
-export const saveCompletedTasks = (task) => {
-  let tasks = [];
-
-  if (localStorage.getItem("Historic")) {
-    tasks = getSavedTasks();
-
-    tasks.unshift(task);
-  } else {
-    tasks.unshift(task);
-  }
-
-  localStorage.setItem("Historic", JSON.stringify(tasks));
-};
-
-export const clearHistoric = () => {
-  localStorage.removeItem("Historic");
 };

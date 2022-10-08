@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 
-import { getSavedTasks } from "../../utils/task";
+import { getTask } from "../../utils/task";
 
 import { Container, ContainerContent, TaskList } from "./Styles";
 
@@ -11,28 +11,26 @@ import Contexts from "../../contexts/Contexts";
 import TaskItem from "./components/TaskItem/TaskItem";
 
 const HistoricPage = () => {
-  const { input, mode } = useContext(Contexts);
-  const [tasks, setTasks] = useState();
+  const { mode } = useContext(Contexts);
+  const [toDoList, setToDoList] = useState([]);
 
   const [parent] = useAutoAnimate();
 
-  useEffect(() => {
-    if (localStorage.getItem("Historic") !== "") {
-      let tasks = getSavedTasks();
-      setTasks(tasks);
-    }
-  }, [input]);
+  useEffect(async () => {
+    const list = await getTask();
+
+    console.log(list);
+  }, []);
 
   return (
     <section>
       <Container background={mode ? " rgb(0, 0, 0)" : "#edf0f2"}>
         <ContainerContent background={mode ? "#121212" : "white"}>
-          <Header set={setTasks} />
-
+          <Header />
           <TaskList color={mode ? "white" : "black"} ref={parent}>
-            {tasks &&
-              tasks.map((task) => {
-                return <TaskItem task={task.description} id={task.id} />;
+            {toDoList &&
+              toDoList.map((element) => {
+                return <TaskItem task={element.title} id={element.id} />;
               })}
           </TaskList>
         </ContainerContent>

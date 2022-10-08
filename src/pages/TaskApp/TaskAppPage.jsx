@@ -10,9 +10,7 @@ import { useContext, useEffect, useState } from "react";
 
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 
-import { add, remove, edit, list, saveCompletedTasks } from "../../utils/task";
-
-import { getLoggedUser } from "../../utils/user";
+import { add, remove, edit, getTask } from "../../utils/task";
 
 import Swal from "sweetalert2";
 
@@ -23,19 +21,73 @@ import TaskItem from "./components/TaskItem/TaskItem";
 import Contexts from "../../contexts/Contexts";
 
 const TaskAppPage = () => {
-  const [task, setTask] = useState({
-    description: "",
-    id: "",
-    isFinished: false,
-    userID: "",
-  });
-  const [isEdit, setIsEdit] = useState("");
   const [toDoList, setToDoList] = useState([]);
+  const [editId, setEditId] = useState("");
   const [parent] = useAutoAnimate();
   const { input, setInput, mode } = useContext(Contexts);
 
+  const handleToDoList = async () => {
+    const tasks = await getTask();
+
+    setToDoList(tasks.data);
+  };
+
+  useEffect(() => {
+    handleToDoList();
+  }, [toDoList]);
+
+  const handleOnSubmit = async (event) => {
+    event.preventDefault();
+
+    if (editId) {
+      edit(
+        {
+          title: input,
+          author: input,
+          image_url: input,
+          grade: input,
+          categories: input,
+          review: input,
+          google_book_id: input,
+        },
+        editId
+      );
+
+      setEditId("");
+    } else if (input) {
+      await add({
+        title: input,
+        author: input,
+        shelf: 1,
+        image_url: input,
+        grade: input,
+        categories: input,
+        review: input,
+        google_book_id: input,
+      });
+    }
+
+    setInput("");
+    handleToDoList();
+  };
+
+  const handleEdit = (task) => {
+    if (task.shelf === 1) {
+      setInput(task.title);
+      setEditId(task.id);
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Tarefas concluidas não podem ser editada!",
+      });
+    }
+
+    handleToDoList();
+  };
+
   const handleRemove = (task) => {
-    if (task.isFinished === false) {
+    if (task.shelf === 1) {
       Swal.fire({
         title: "Deseja remover essa tarefa?",
         icon: "question",
@@ -50,56 +102,18 @@ const TaskAppPage = () => {
         preConfirm: (value) => {
           if (value === true) {
             remove(task.id);
-
-            handleToDoList();
           }
         },
       });
     } else {
       remove(task.id);
-
-      handleToDoList();
-    }
-  };
-
-  const handleOnSubmit = (event) => {
-    event.preventDefault();
-
-    if (toDoList.length === 0 && isEdit !== "") {
-      add(task);
-
-      handleToDoList();
-    } else if (isEdit) {
-      edit(task, isEdit);
-    } else {
-      add(task);
     }
 
-    setInput("");
-    setIsEdit("");
-  };
-
-  const handleToDoList = async () => {
-    const user = await getLoggedUser();
-    const allTasks = await list();
-
-    const userTasks = allTasks.filter((task) => {
-      return task.userID === user.id;
-    });
-
-    if (userTasks) {
-      setToDoList(userTasks);
-    }
-  };
-
-  useEffect(() => {
     handleToDoList();
-  }, [input]);
+  };
 
   const handleSetFinishTask = (task) => {
-    let data;
-
-    if (task.isFinished === false) {
+    if (task.shelf === 1) {
       Swal.fire({
         title: "Deseja mesmo marcar esta tarefa como concluida?",
         icon: "question",
@@ -111,48 +125,13 @@ const TaskAppPage = () => {
         showCancelButton: true,
         showCloseButton: true,
 
-        preConfirm: async (value) => {
+        preConfirm: (value) => {
           if (value === true) {
-            data = {
-              description: task.description,
-              id: task.id,
-              isFinished: true,
-            };
-
-            saveCompletedTasks(data);
-
-            await edit(data, task.id);
-
+            edit({ shelf: 2 }, task.id);
             handleToDoList();
           }
         },
       });
-    }
-  };
-
-  const handleEdit = (task) => {
-    if (task.isFinished === false) {
-      setTask({
-        description: task.description,
-        id: task.id,
-        isFinished: false,
-        userID: task.userID,
-      });
-
-      setInput(task.description);
-
-      setIsEdit(task.id);
-    } else {
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "Tarefas concluidas não podem ser editada!",
-      });
-    }
-  };
-
-  const handlePosition = (id, position) => {
-    if (position === "up") {
     }
   };
 
@@ -164,35 +143,27 @@ const TaskAppPage = () => {
           <Form
             AddTask={handleOnSubmit}
             input={input}
-            setTask={setTask}
             setInput={setInput}
-            isEdit={isEdit}
+            isEdit={editId}
           />
           <div>
-            <SubTitle toDoList={toDoList} setToDoList={setToDoList} />
+            <SubTitle
+              toDoList={toDoList}
+              setToDoList={setToDoList}
+              renderList={handleToDoList}
+            />
 
             <TaskList color={mode ? "white" : "black"} ref={parent}>
               {toDoList.length === 0 ? (
                 <FeedBack>Nenhuma tarefa foi adicionada</FeedBack>
               ) : (
-                toDoList.map((taskJSON, index) => {
+                toDoList.map((element) => {
                   return (
                     <TaskItem
-                      setFinishTask={() => {
-                        handleSetFinishTask(taskJSON);
-                      }}
-                      isFinished={taskJSON.isFinished}
-                      task={taskJSON.description}
-                      key={index}
-                      id={taskJSON.id}
-                      remove={() => {
-                        handleRemove(taskJSON);
-                      }}
-                      edit={() => {
-                        handleEdit(taskJSON);
-                      }}
-                      index={taskJSON.index}
-                      position={handlePosition}
+                      task={element}
+                      setFinish={handleSetFinishTask}
+                      edited={handleEdit}
+                      remove={handleRemove}
                     />
                   );
                 })

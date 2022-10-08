@@ -3,25 +3,24 @@ import { Link } from "react-router-dom";
 import { useContext, useEffect } from "react";
 
 import { NavBar, Button, Mode, TitleContainer } from "./Styles";
-import { clearHistoric, getSavedTasks } from "../../../../utils/task";
 
 import Swal from "sweetalert2";
 import Contexts from "../../../../contexts/Contexts";
 import { getSaveMode, saveMode } from "../../../../utils/mode";
+import { getTask } from "../../../../utils/task";
 
-const Header = ({ set }) => {
+const Header = () => {
   const { setMode, mode } = useContext(Contexts);
 
   const clear = () => {
-    let completed = getSavedTasks();
-
+    const completed = [];
     if (completed.length > 0) {
       Swal.fire({
         title: "Deseja limpar o histórico?",
         icon: "question",
         iconHtml: "?",
-        confirmButtonText: "confirmar",
-        cancelButtonText: "cancel",
+        confirmButtonText: "Sim",
+        cancelButtonText: "Não",
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
         showCancelButton: true,
@@ -29,9 +28,11 @@ const Header = ({ set }) => {
 
         preConfirm: (value) => {
           if (value === true) {
-            clearHistoric();
+            const list = getTask();
 
-            set("");
+            list.forEach((element) => {
+              console.log(element);
+            });
           }
         },
       });
