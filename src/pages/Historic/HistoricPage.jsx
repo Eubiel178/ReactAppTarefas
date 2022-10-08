@@ -13,20 +13,30 @@ import TaskItem from "./components/TaskItem/TaskItem";
 const HistoricPage = () => {
   const { mode } = useContext(Contexts);
   const [toDoList, setToDoList] = useState([]);
-
   const [parent] = useAutoAnimate();
 
-  useEffect(async () => {
-    const list = await getTask();
+  const handleToDoList = async () => {
+    const response = await getTask();
+    const tasks = response.data;
 
-    console.log(list);
-  }, []);
+    let concluded = tasks.filter((element) => {
+      return element.shelf === 2;
+    });
+
+    if (concluded) {
+      setToDoList(concluded);
+    }
+  };
+
+  useEffect(() => {
+    handleToDoList();
+  }, [toDoList]);
 
   return (
     <section>
       <Container background={mode ? " rgb(0, 0, 0)" : "#edf0f2"}>
         <ContainerContent background={mode ? "#121212" : "white"}>
-          <Header />
+          <Header list={toDoList} />
           <TaskList color={mode ? "white" : "black"} ref={parent}>
             {toDoList &&
               toDoList.map((element) => {

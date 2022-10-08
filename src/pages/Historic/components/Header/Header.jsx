@@ -7,14 +7,13 @@ import { NavBar, Button, Mode, TitleContainer } from "./Styles";
 import Swal from "sweetalert2";
 import Contexts from "../../../../contexts/Contexts";
 import { getSaveMode, saveMode } from "../../../../utils/mode";
-import { getTask } from "../../../../utils/task";
+import { getTask, remove } from "../../../../utils/task";
 
-const Header = () => {
+const Header = ({ list }) => {
   const { setMode, mode } = useContext(Contexts);
 
-  const clear = () => {
-    const completed = [];
-    if (completed.length > 0) {
+  const clearList = () => {
+    if (list.length > 0) {
       Swal.fire({
         title: "Deseja limpar o histórico?",
         icon: "question",
@@ -26,12 +25,10 @@ const Header = () => {
         showCancelButton: true,
         showCloseButton: true,
 
-        preConfirm: (value) => {
+        preConfirm: async (value) => {
           if (value === true) {
-            const list = getTask();
-
             list.forEach((element) => {
-              console.log(element);
+              remove(element.id);
             });
           }
         },
@@ -76,7 +73,7 @@ const Header = () => {
       <TitleContainer color={mode ? "#B64FC8" : " #3085d6"}>
         <h1>Tarefas Concluídas</h1>
 
-        <button onClick={clear}>Limpar Lista</button>
+        {list && <button onClick={clearList}>Limpar Lista</button>}
       </TitleContainer>
     </header>
   );

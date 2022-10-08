@@ -27,9 +27,9 @@ const TaskAppPage = () => {
   const { input, setInput, mode } = useContext(Contexts);
 
   const handleToDoList = async () => {
-    const tasks = await getTask();
+    const response = await getTask();
 
-    setToDoList(tasks.data);
+    setToDoList(response.data);
   };
 
   useEffect(() => {
