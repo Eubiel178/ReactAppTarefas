@@ -7,12 +7,7 @@ import { useState, useContext, useEffect } from "react";
 import Swal from "sweetalert2";
 
 //page utills
-import {
-  getLoggedUser,
-  login,
-  getToken,
-  loggedInUser,
-} from "../../../../../utils/user";
+import { getLoggedUser, login } from "../../../../../utils/user";
 
 //components
 import FormItem from "../../../../../components/Account/FormITem/index";

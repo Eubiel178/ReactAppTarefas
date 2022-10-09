@@ -1,4 +1,3 @@
-import { json } from "react-router-dom";
 import api from "../services/api";
 
 import { getLoggedUser } from "./user";
