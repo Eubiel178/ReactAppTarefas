@@ -93,7 +93,7 @@ const TaskApp = () => {
 
   const handleRemove = async (task) => {
     if (task.shelf === 1) {
-      await Swal.fire({
+      const swalAlert = await Swal.fire({
         title: "Deseja remover essa tarefa?",
         icon: "question",
         iconHtml: "?",
@@ -104,22 +104,26 @@ const TaskApp = () => {
         showCancelButton: true,
         showCloseButton: true,
 
-        preConfirm: async (value) => {
-          if (value === true) {
-            await remove(task.id);
-          }
+        preConfirm: (value) => {
+          return value;
         },
       });
+
+      if (swalAlert.value === true) {
+        await remove(task.id);
+
+        handleToDoList();
+      }
     } else {
       await remove(task.id);
-    }
 
-    handleToDoList();
+      handleToDoList();
+    }
   };
 
   const handleSetFinishTask = async (task) => {
     if (task.shelf === 1) {
-      await Swal.fire({
+      const swalAlert = await Swal.fire({
         title: "Deseja mesmo marcar esta tarefa como concluida?",
         icon: "question",
         iconHtml: "?",
@@ -130,15 +134,17 @@ const TaskApp = () => {
         showCancelButton: true,
         showCloseButton: true,
 
-        preConfirm: async (value) => {
-          if (value === true) {
-            await edit({ shelf: 2 }, task.id);
-            concluded(task);
-          }
+        preConfirm: (value) => {
+          return value;
         },
       });
 
-      handleToDoList();
+      if (swalAlert.value === true) {
+        await edit({ shelf: 2 }, task.id);
+        concluded(task);
+
+        handleToDoList();
+      }
     }
   };
 

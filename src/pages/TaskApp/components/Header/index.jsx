@@ -36,7 +36,6 @@ const Header = () => {
   const handleLogin = () => {
     Swal.fire({
       title: "Deseja deslogar?",
-
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
