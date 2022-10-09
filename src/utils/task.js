@@ -56,11 +56,11 @@ export const getConcluded = async () => {
   }
 };
 
-export const concluded = (task) => {
+export const concluded = async (task) => {
   let concluded = [];
 
   if (localStorage.getItem("concluded")) {
-    concluded = getConcluded();
+    concluded = await getConcluded();
     concluded.unshift(task);
   } else {
     concluded.unshift(task);
