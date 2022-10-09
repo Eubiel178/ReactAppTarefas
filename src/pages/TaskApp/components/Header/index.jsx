@@ -1,22 +1,37 @@
 import Contexts from "../../../../contexts/Contexts";
 
 //hooks
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 
 //styled-components
-import { HeaderContents, Button, Mode, Title } from "./styles";
+import {
+  HeaderContents,
+  Button,
+  Mode,
+  Profile,
+  ButtonClose,
+  InfoUser,
+  ButtonLoggout,
+  Title,
+} from "./styles";
 
 //libs
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
 //page utills
-import { loggout } from "../../../../utils/user";
+import { getLoggedUser, loggout } from "../../../../utils/user";
 import { saveMode, getSaveMode } from "../../../../utils/mode";
-//components
+
+//icons
+import { BiUser } from "react-icons/bi";
+import { ImCancelCircle } from "react-icons/im";
+import { MdOutlineAlternateEmail } from "react-icons/md";
 
 const Header = () => {
   const { setAuth, mode, setMode } = useContext(Contexts);
+  const [profile, setProfile] = useState(false);
+  const [user, setUser] = useState([]);
 
   const handleLogin = () => {
     Swal.fire({
@@ -47,6 +62,12 @@ const Header = () => {
     saveMode(!mode);
   };
 
+  const handleUser = async () => {
+    const user = await getLoggedUser();
+
+    setUser(user);
+  };
+
   useEffect(() => {
     let getMode = getSaveMode();
 
@@ -55,6 +76,8 @@ const Header = () => {
     } else {
       setMode(false);
     }
+
+    handleUser();
   }, []);
 
   return (
@@ -78,13 +101,48 @@ const Header = () => {
               {mode === false ? "Modo escuro" : "Modo claro"}
             </Mode>
           </section>
+
           <section>
-            <Button
-              border={mode ? "solid 2px #1F1F1F" : " solid 2px #3085d6"}
-              onClick={handleLogin}
-            >
-              Deslogar
-            </Button>
+            <Profile background={mode ? "#5e10c4" : "#310bc7"}>
+              <Button
+                onClick={() => {
+                  setProfile(!profile);
+                }}
+                border={mode ? "solid 2px #1F1F1F" : " solid 2px #3085d6"}
+              >
+                <BiUser style={{ fontSize: "25px" }} />
+              </Button>
+
+              {profile && (
+                <div>
+                  <ButtonClose>
+                    <button
+                      onClick={() => {
+                        setProfile(!profile);
+                      }}
+                    >
+                      <ImCancelCircle style={{ fontSize: "25px" }} />
+                    </button>
+                  </ButtonClose>
+
+                  <InfoUser>
+                    <BiUser style={{ fontSize: "25px" }} />
+                    <p>
+                      {user.name} - {user.id}
+                    </p>
+                  </InfoUser>
+
+                  <InfoUser>
+                    <MdOutlineAlternateEmail style={{ fontSize: "25px" }} />
+                    <p>{user.email}</p>
+                  </InfoUser>
+
+                  <ButtonLoggout>
+                    <button onClick={handleLogin}>Deslogar</button>
+                  </ButtonLoggout>
+                </div>
+              )}
+            </Profile>
           </section>
         </div>
         <Title color={mode ? "#B64FC8" : "#3085d6"}>ADICIONAR TAREFAS</Title>

@@ -1,10 +1,13 @@
 import styled from "styled-components";
 
 export const HeaderContents = styled.div`
+  position: relative;
+
   div {
     padding: 1em;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     flex-wrap: nowrap;
     margin-bottom: 2em;
     background: ${({ background }) => background};
@@ -14,7 +17,6 @@ export const HeaderContents = styled.div`
 export const Button = styled.button`
   margin-right: 1em;
   padding: 1em;
-
   border: 0px;
   color: #fff;
   transition-duration: 0.7s;
@@ -41,6 +43,61 @@ export const Mode = styled(Button)`
   :hover {
     border-bottom: 0px;
     background-color: ${({ background }) => background};
+  }
+`;
+
+export const Profile = styled.section`
+  position: relative;
+
+  div {
+    position: absolute;
+    top: 0.5em;
+    right: 0.5em;
+    background-color: ${({ background }) => background};
+    color: #fff;
+    height: 15em;
+    width: 17em;
+    border-radius: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+`;
+
+export const ButtonClose = styled.section`
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+
+  button {
+    background: none;
+    border: none;
+    color: #fff;
+  }
+`;
+
+export const InfoUser = styled.section`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 1em 0em;
+
+  p {
+    padding-left: 0.5em;
+  }
+`;
+
+export const ButtonLoggout = styled.section`
+  padding-top: 2.5em;
+  width: 92%;
+  display: flex;
+  justify-content: flex-start;
+
+  button {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 17px;
   }
 `;
 

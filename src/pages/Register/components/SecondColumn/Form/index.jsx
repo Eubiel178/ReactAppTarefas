@@ -25,16 +25,16 @@ const Form = () => {
         text: "Os campos estão  vazios!",
       });
     }
-    if (password === "" || email === "" || password2 === "") {
+    if (password === "" || email === "" || password2 === "" || name === "") {
       Swal.fire({
         icon: "error",
         title: "Oops...",
         text: "Verifique se todos os campos estao preenchidos..!",
       });
-    } else if (email && password && password === password2) {
+    } else if (name && email && password && password === password2) {
       const response = await register({
         user: {
-          name: email,
+          name: name,
           user: email,
           email: email,
           password: password,
@@ -61,6 +61,15 @@ const Form = () => {
 
   return (
     <form>
+      <FormItem
+        set={setName}
+        label="Nome"
+        placeholder="Nome"
+        id="name"
+        type="name"
+        value={name}
+      />
+
       <FormItem
         set={setEmail}
         label="Seu email"

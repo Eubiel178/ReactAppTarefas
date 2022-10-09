@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 export const ContainerContent = styled.div`
-  width: 60%;
-  height: 30em;
+  width: 70%;
+  height: 35em;
   display: flex;
   position: relative;
   justify-content: space-between;

@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 export const ContainerContent = styled.div`
-  width: 60%;
-  height: 30em;
+  width: 70%;
+  height: 35em;
   display: flex;
   position: relative;
   justify-content: space-between;
@@ -32,7 +32,7 @@ export const ContainerContent = styled.div`
 export const Login = styled.p`
   position: absolute;
   left: 10%;
-  bottom: 5%;
+  bottom: 2%;
   color: #3085d6;
   display: none;
 
