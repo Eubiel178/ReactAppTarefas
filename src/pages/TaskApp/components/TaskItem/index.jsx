@@ -53,7 +53,7 @@ const TaskItem = ({ task, setFinish, edited, remove }) => {
         <Progress
           background={task.shelf === 2 ? "#e0d2d4" : "#00A94C"}
           color={task.shelf === 2 ? "#B64FC8" : "#fff"}
-          width={mode ? "6em" : "8em"}
+          width={task.shelf === 2 ? "6em" : "8em"}
         >
           <p>{task.shelf === 2 ? "Completa" : "Em andamento "}</p>
         </Progress>
