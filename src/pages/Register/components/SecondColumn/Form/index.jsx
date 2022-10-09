@@ -1,11 +1,15 @@
+//hooks
 import { useState } from "react";
 
-import FormItem from "../../../../../components/Account/FormITem/FormItem";
-import Button from "../../../../../components/Account/Button/Button";
+//libs
+import Swal from "sweetalert2";
 
+//page utills
 import { register } from "../../../../../utils/user";
 
-import Swal from "sweetalert2";
+//components
+import FormItem from "../../../../../components/Account/FormITem/index";
+import Button from "../../../../../components/Account/Button/index";
 
 const Form = () => {
   const [name, setName] = useState("");

@@ -1,42 +1,39 @@
+//hooks
 import { useContext, useEffect, useState } from "react";
 
-import { getTask } from "../../utils/task";
+//styled-components
+import { Container, ContainerContent, TaskList } from "./styles";
 
-import { Container, ContainerContent, TaskList } from "./Styles";
-
+//libs
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 
-import Header from "./components/Header/Header";
-import Contexts from "../../contexts/Contexts";
-import TaskItem from "./components/TaskItem/TaskItem";
+//page utills
+import { getConcluded } from "../../utils/task";
 
-const HistoricPage = () => {
+//components
+import Header from "./components/Header/index";
+import Contexts from "../../contexts/Contexts";
+import TaskItem from "./components/TaskItem/index";
+
+const Historic = () => {
   const { mode } = useContext(Contexts);
   const [toDoList, setToDoList] = useState([]);
   const [parent] = useAutoAnimate();
 
-  const handleToDoList = async () => {
-    const response = await getTask();
-    const tasks = response.data;
-
-    let concluded = tasks.filter((element) => {
-      return element.shelf === 2;
-    });
-
-    if (concluded) {
-      setToDoList(concluded);
-    }
+  const handleList = async () => {
+    const conclued = await getConcluded();
+    setToDoList(conclued);
   };
 
   useEffect(() => {
-    handleToDoList();
-  }, [toDoList]);
+    handleList();
+  }, []);
 
   return (
     <section>
       <Container background={mode ? " rgb(0, 0, 0)" : "#edf0f2"}>
         <ContainerContent background={mode ? "#121212" : "white"}>
-          <Header list={toDoList} />
+          <Header list={toDoList} renderList={handleList} />
           <TaskList color={mode ? "white" : "black"} ref={parent}>
             {toDoList &&
               toDoList.map((element) => {
@@ -49,4 +46,4 @@ const HistoricPage = () => {
   );
 };
 
-export default HistoricPage;
+export default Historic;

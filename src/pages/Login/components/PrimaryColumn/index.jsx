@@ -1,7 +1,9 @@
-import Header from "../../../../components/Account/Header/Header";
-import Form from "./Form/Form";
+//styled-components
+import { SectionContent } from "./styles";
 
-import { SectionContent } from "./Styles";
+//components
+import Header from "../../../../components/Account/Header/index";
+import Form from "./Form/index";
 
 const PrimaryColumn = () => {
   return (

@@ -29,7 +29,7 @@ export const ContainerContent = styled.div`
   }
 `;
 
-export const Register = styled.p`
+export const Login = styled.p`
   position: absolute;
   left: 10%;
   bottom: 5%;

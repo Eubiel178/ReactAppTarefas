@@ -1,4 +1,5 @@
-import Column from "../../../../components/Account/Column/Column";
+//components
+import Column from "../../../../components/Account/Column/index";
 
 const SecondColumn = () => {
   return (

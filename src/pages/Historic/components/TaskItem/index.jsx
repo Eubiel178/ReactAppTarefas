@@ -1,6 +1,11 @@
+//hooks
 import { useContext } from "react";
+
+//contexts
 import Contexts from "../../../../contexts/Contexts";
-import { Task } from "./Styles";
+
+//styled-components
+import { Task } from "./styles";
 
 const TaskItem = ({ task, id }) => {
   const { mode } = useContext(Contexts);

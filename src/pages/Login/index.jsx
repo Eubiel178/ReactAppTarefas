@@ -1,12 +1,15 @@
-import { ContainerContent, Register } from "./Styles";
+//styled-components
+import { ContainerContent, Register } from "./styles";
 
+//libs
 import { Link } from "react-router-dom";
 
-import Body from "../../components/Account/Body/Body";
-import PrimaryColumn from "./components/PrimaryColumn/PrimaryColumn";
-import SecondColumn from "./components/SecondColumn/SecondColumn";
+//components
+import Body from "../../components/Account/Body/index";
+import PrimaryColumn from "./components/PrimaryColumn/index";
+import SecondColumn from "./components/SecondColumn/index";
 
-const LoginPage = () => {
+const Login = () => {
   return (
     <section>
       <Body>
@@ -25,4 +28,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default Login;

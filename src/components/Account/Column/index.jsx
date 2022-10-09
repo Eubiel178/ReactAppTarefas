@@ -1,4 +1,4 @@
-import { AsideContent } from "./Styles";
+import { AsideContent } from "./styles";
 import { Link } from "react-router-dom";
 
 const Column = ({ primaryText, secondText, register, text, to }) => {

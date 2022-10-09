@@ -1,16 +1,19 @@
-import Swal from "sweetalert2";
-import { Link } from "react-router-dom";
-
-import { useContext } from "react";
-
-import { HeaderContents, Button, Mode, Title } from "./Styles";
-
-import { loggout } from "../../../../utils/user";
-
-import { saveMode, getSaveMode } from "../../../../utils/mode";
-
 import Contexts from "../../../../contexts/Contexts";
-import { useEffect } from "react";
+
+//hooks
+import { useContext, useEffect } from "react";
+
+//styled-components
+import { HeaderContents, Button, Mode, Title } from "./styles";
+
+//libs
+import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
+
+//page utills
+import { loggout } from "../../../../utils/user";
+import { saveMode, getSaveMode } from "../../../../utils/mode";
+//components
 
 const Header = () => {
   const { setAuth, mode, setMode } = useContext(Contexts);

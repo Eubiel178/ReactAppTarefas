@@ -1,13 +1,16 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Contexts from "../contexts/Contexts";
 
+//hooks
 import { useContext } from "react";
 
-import TaskAppPage from "../pages/TaskApp/TaskAppPage";
-import LoginPage from "../pages/Login/LoginPage";
-import RegisterPage from "../pages/Register/RegisterPage";
-import HistoricPage from "../pages/Historic/HistoricPage";
+//libs
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import Contexts from "../contexts/Contexts";
+//pages
+import Historic from "../pages/Historic";
+import Login from "../pages/Login";
+import Register from "../pages/Register/index";
+import TaskApp from "../pages/TaskApp/index";
 
 const AppRoutes = () => {
   const { auth } = useContext(Contexts);
@@ -16,14 +19,13 @@ const AppRoutes = () => {
     <Router>
       {auth === false ? (
         <Routes>
-          <Route path="/" element={<LoginPage />} />
-          <Route path="/register" element={<RegisterPage />} />
-          <Route path="/historic" element={<HistoricPage />} />
+          <Route path="/" exact element={<Login />} />
+          <Route path="/register" exact element={<Register />} />
         </Routes>
       ) : (
         <Routes>
-          <Route path="/" element={<TaskAppPage />} />
-          <Route path="/historic" element={<HistoricPage />} />
+          <Route path="/" exact element={<TaskApp />} />
+          <Route path="/historic" exact element={<Historic />} />
         </Routes>
       )}
     </Router>

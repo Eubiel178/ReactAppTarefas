@@ -1,15 +1,20 @@
-import { Link } from "react-router-dom";
+import Contexts from "../../../../contexts/Contexts";
 
+//hooks
 import { useContext, useEffect } from "react";
 
-import { NavBar, Button, Mode, TitleContainer } from "./Styles";
+//styled-components
+import { NavBar, Button, Mode, TitleContainer } from "./styles";
 
+//libs
 import Swal from "sweetalert2";
-import Contexts from "../../../../contexts/Contexts";
-import { getSaveMode, saveMode } from "../../../../utils/mode";
-import { getTask, remove } from "../../../../utils/task";
+import { Link } from "react-router-dom";
 
-const Header = ({ list }) => {
+//page utills
+import { getSaveMode, saveMode } from "../../../../utils/mode";
+import { clearHistoric } from "../../../../utils/task";
+
+const Header = ({ list, renderList }) => {
   const { setMode, mode } = useContext(Contexts);
 
   const clearList = () => {
@@ -27,9 +32,8 @@ const Header = ({ list }) => {
 
         preConfirm: async (value) => {
           if (value === true) {
-            list.forEach((element) => {
-              remove(element.id);
-            });
+            clearHistoric();
+            renderList();
           }
         },
       });

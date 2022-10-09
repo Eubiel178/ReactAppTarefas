@@ -1,51 +1,46 @@
 import api from "../services/api";
 
 export const register = async (data) => {
-  const request = await api.post("users", data).catch((error) => {
-    return error;
-  });
-
-  return request;
+  await api.post("users", data);
 };
 
-export const token = (tokenJSON) => {
-  localStorage.setItem("auth_token", tokenJSON.data.auth_token);
-};
-
-export const getToken = () => {
-  if (localStorage.getItem("token")) {
-    return localStorage.getItem("token");
-  }
+export const token = (token) => {
+  localStorage.setItem("auth_token", token);
 };
 
 export const loggedInUser = (user) => {
   localStorage.setItem("userLogged", JSON.stringify(user));
 };
 
-export const login = async (data) => {
-  const request = await api.post("/authenticate", data);
+export const getLoggedUser = () => {
+  if (localStorage.getItem("userLogged")) {
+    return JSON.parse(localStorage.getItem("userLogged"));
+  }
+};
 
-  if (request.data.auth_token) {
-    token(request);
+export const login = async (data, logged) => {
+  const request = await api.post("/authenticate", data).catch((error) => {
+    if (error) {
+      return false;
+    }
+  });
+
+  if (request !== false) {
+    token(request.data.auth_token);
     loggedInUser(request.data.user);
 
-    const auth_token = await getToken();
-    const user = getLoggedUser();
+    logged(true);
+
+    const user = await getLoggedUser();
 
     await api.post(`/users/${user.id}/books/`, {
       headers: {
-        Authorization: `token ${auth_token}`,
+        Authorization: `token ${localStorage.getItem("auth_token")}`,
       },
     });
   }
 
   return request;
-};
-
-export const getLoggedUser = () => {
-  if (localStorage.getItem("userLogged")) {
-    return JSON.parse(localStorage.getItem("userLogged"));
-  }
 };
 
 export const loggout = () => {

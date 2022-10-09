@@ -1,4 +1,4 @@
-import { Container } from "./Styles";
+import { Container } from "./styles";
 
 const FormItem = ({ set, label, id, type, placeholder, value }) => {
   return (

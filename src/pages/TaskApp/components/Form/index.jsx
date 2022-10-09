@@ -1,7 +1,9 @@
-import { Container } from "./Styles";
-
-import { useContext } from "react";
 import Contexts from "../../../../contexts/Contexts";
+//hooks
+import { useContext } from "react";
+
+//styled-components
+import { Container } from "./styles";
 
 const Form = ({ AddTask, setInput, input, isEdit }) => {
   const { mode } = useContext(Contexts);

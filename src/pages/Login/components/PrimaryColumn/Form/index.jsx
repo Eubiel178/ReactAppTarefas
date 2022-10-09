@@ -1,28 +1,40 @@
-import FormItem from "../../../../../components/Account/FormITem/FormItem";
-import Button from "../../../../../components/Account/Button/Button";
-
 import Contexts from "../../../../../contexts/Contexts";
 
+//hooks
+import { useState, useContext, useEffect } from "react";
+
+//libs
+import Swal from "sweetalert2";
+
+//page utills
 import {
   getLoggedUser,
   login,
-  loggedInUser,
   getToken,
+  loggedInUser,
 } from "../../../../../utils/user";
 
-import { useState, useContext, useEffect } from "react";
-
-import Swal from "sweetalert2";
+//components
+import FormItem from "../../../../../components/Account/FormITem/index";
+import Button from "../../../../../components/Account/Button/index";
 
 const Form = () => {
-  const [formData, setFormData] = useState({
-    user: "",
-    password: "",
-  });
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const { setAuth } = useContext(Contexts);
+
+  const session = async () => {
+    const user = await getLoggedUser();
+
+    if (user) {
+      setAuth(true);
+    }
+  };
+
+  useEffect(() => {
+    session();
+  }, []);
 
   const handleLogin = async () => {
     if (email === "" && password === "") {
@@ -43,32 +55,24 @@ const Form = () => {
         text: "Por favor informe um email valido!",
       });
     } else if (email && password) {
-      const response = await login({
-        user: email,
-        password: password,
-      });
+      const response = await login(
+        {
+          user: email,
+          password: password,
+        },
+        setAuth
+      );
+      console.log(response);
 
-      const token = await getToken();
-
-      if (response.code === "ERR_BAD_REQUEST") {
-        alert();
+      if (response === false) {
         Swal.fire({
           icon: "error",
           text: "Senha incorreta!",
         });
-      } else {
-        setAuth(true);
       }
     }
   };
 
-  useEffect(() => {
-    const user = getLoggedUser();
-
-    if (user) {
-      setAuth(true);
-    }
-  }, []);
   return (
     <form>
       <FormItem

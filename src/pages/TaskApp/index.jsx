@@ -1,46 +1,50 @@
+import Contexts from "../../contexts/Contexts";
+
+//hooks
+import { useContext, useEffect, useState } from "react";
+
+//styled-components
 import {
   Container,
   TaskList,
   MainContainer,
   ContainerContent,
   FeedBack,
-} from "./Styles";
+} from "./styles";
 
-import { useContext, useEffect, useState } from "react";
-
+//libs
 import { useAutoAnimate } from "@formkit/auto-animate/react";
-
-import { add, remove, edit, getTask } from "../../utils/task";
-
 import Swal from "sweetalert2";
 
-import Header from "./components/Header/Header";
-import Form from "./components/Form/Form";
-import SubTitle from "./components/SubTitle/SubTitle";
-import TaskItem from "./components/TaskItem/TaskItem";
-import Contexts from "../../contexts/Contexts";
+//page utills
+import { add, remove, edit, get, concluded } from "../../utils/task";
+//components
+import Header from "./components/Header/index";
+import Form from "./components/Form/index";
+import SubTitle from "./components/SubTitle/index";
+import TaskItem from "./components/TaskItem/index";
 
-const TaskAppPage = () => {
+const TaskApp = () => {
   const [toDoList, setToDoList] = useState([]);
   const [editId, setEditId] = useState("");
   const [parent] = useAutoAnimate();
   const { input, setInput, mode } = useContext(Contexts);
 
   const handleToDoList = async () => {
-    const response = await getTask();
+    const response = await get();
 
     setToDoList(response.data);
   };
 
   useEffect(() => {
     handleToDoList();
-  }, [toDoList]);
+  }, []);
 
   const handleOnSubmit = async (event) => {
     event.preventDefault();
 
     if (editId) {
-      edit(
+      await edit(
         {
           title: input,
           author: input,
@@ -86,9 +90,9 @@ const TaskAppPage = () => {
     handleToDoList();
   };
 
-  const handleRemove = (task) => {
+  const handleRemove = async (task) => {
     if (task.shelf === 1) {
-      Swal.fire({
+      await Swal.fire({
         title: "Deseja remover essa tarefa?",
         icon: "question",
         iconHtml: "?",
@@ -99,22 +103,22 @@ const TaskAppPage = () => {
         showCancelButton: true,
         showCloseButton: true,
 
-        preConfirm: (value) => {
+        preConfirm: async (value) => {
           if (value === true) {
-            remove(task.id);
+            await remove(task.id);
           }
         },
       });
     } else {
-      remove(task.id);
+      await remove(task.id);
     }
 
     handleToDoList();
   };
 
-  const handleSetFinishTask = (task) => {
+  const handleSetFinishTask = async (task) => {
     if (task.shelf === 1) {
-      Swal.fire({
+      await Swal.fire({
         title: "Deseja mesmo marcar esta tarefa como concluida?",
         icon: "question",
         iconHtml: "?",
@@ -125,13 +129,15 @@ const TaskAppPage = () => {
         showCancelButton: true,
         showCloseButton: true,
 
-        preConfirm: (value) => {
+        preConfirm: async (value) => {
           if (value === true) {
-            edit({ shelf: 2 }, task.id);
-            handleToDoList();
+            await edit({ shelf: 2 }, task.id);
+            concluded(task);
           }
         },
       });
+
+      handleToDoList();
     }
   };
 
@@ -176,4 +182,4 @@ const TaskAppPage = () => {
   );
 };
 
-export default TaskAppPage;
+export default TaskApp;

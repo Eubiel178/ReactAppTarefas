@@ -1,4 +1,4 @@
-import { Container } from "./Styles";
+import { Container } from "./styles";
 
 const Button = ({ calback, value }) => {
   const Event = (event) => {

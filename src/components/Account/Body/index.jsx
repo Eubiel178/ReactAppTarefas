@@ -1,4 +1,4 @@
-import { Container } from "./Styles";
+import { Container } from "./styles";
 
 const Body = ({ children }) => {
   return <Container>{children}</Container>;

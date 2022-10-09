@@ -1,16 +1,21 @@
-import Swal from "sweetalert2";
+import Contexts from "../../../../contexts/Contexts";
 
-import { Container } from "./Styles";
-
+//hooks
 import { useContext } from "react";
 
-import Contexts from "../../../../contexts/Contexts";
+//styled-components
+import { Container } from "./styles";
+
+//libs
+import Swal from "sweetalert2";
+
+//page utills
 import { remove } from "../../../../utils/task";
 
 const SubTitle = ({ toDoList, setToDoList, renderList }) => {
   const { mode } = useContext(Contexts);
 
-  const clearList = () => {
+  const clearList = async () => {
     const completed = toDoList.filter((element) => {
       return element.shelf === 2;
     });
@@ -20,7 +25,13 @@ const SubTitle = ({ toDoList, setToDoList, renderList }) => {
         remove(element.id);
       });
 
-      Swal.fire("Bom Trabalho!", "Você completou todas as tarefa", "success");
+      await Swal.fire(
+        "Bom Trabalho!",
+        "Você completou todas as tarefa",
+        "success"
+      );
+
+      renderList();
     } else if (toDoList.length === 0) {
       Swal.fire({
         icon: "error",

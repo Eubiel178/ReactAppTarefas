@@ -1,6 +1,13 @@
+import Contexts from "../../../../contexts/Contexts";
+
+//hooks
+import { useContext } from "react";
+
+//icons
 import { FaTrashAlt } from "react-icons/fa";
 import { BsPencil } from "react-icons/bs";
 
+//styled-components
 import {
   TaskContainer,
   Task,
@@ -9,11 +16,7 @@ import {
   Progress,
   ButtonEdit,
   ButtonRemove,
-} from "./Styles";
-
-import { useContext } from "react";
-
-import Contexts from "../../../../contexts/Contexts";
+} from "./styles";
 
 const TaskItem = ({ task, setFinish, edited, remove }) => {
   const { mode } = useContext(Contexts);
