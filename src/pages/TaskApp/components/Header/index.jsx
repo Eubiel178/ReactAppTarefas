@@ -103,7 +103,7 @@ const Header = () => {
           </section>
 
           <section>
-            <Profile background={mode ? "#5e10c4" : "#310bc7"}>
+            <Profile>
               <Button
                 onClick={() => {
                   setProfile(!profile);
@@ -116,6 +116,7 @@ const Header = () => {
               {profile && (
                 <div>
                   <ButtonClose>
+                    <p>Informações do usuário</p>
                     <button
                       onClick={() => {
                         setProfile(!profile);

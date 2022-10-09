@@ -51,9 +51,9 @@ export const Profile = styled.section`
 
   div {
     position: absolute;
-    top: 0.5em;
-    right: 0.5em;
-    background-color: ${({ background }) => background};
+    top: 0.1em;
+    right: 0.4em;
+    background-color: #000000b9;
     color: #fff;
     height: 15em;
     width: 17em;
@@ -67,7 +67,9 @@ export const Profile = styled.section`
 export const ButtonClose = styled.section`
   width: 100%;
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-around;
+  align-items: center;
+  padding-bottom: 1em;
 
   button {
     background: none;
@@ -80,7 +82,7 @@ export const InfoUser = styled.section`
   width: 100%;
   display: flex;
   align-items: center;
-  padding: 1em 0em;
+  padding: 0.5em;
 
   p {
     padding-left: 0.5em;
