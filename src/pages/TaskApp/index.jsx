@@ -34,7 +34,12 @@ const TaskApp = () => {
   const handleRenderingToDoList = async () => {
     const response = await get();
 
-    setToDoList(response.data);
+    const tasks = response.data.filter((element) => {
+      if (element.shelf === 1 || element.shelf === 2) {
+        return element;
+      }
+    });
+    setToDoList(tasks);
   };
 
   useEffect(() => {
@@ -111,12 +116,12 @@ const TaskApp = () => {
       });
 
       if (swalAlert.value === true) {
-        await remove(task.id);
+        await edit({ shelf: 3 }, task.id);
 
         handleRenderingToDoList();
       }
     } else {
-      await remove(task.id);
+      await edit({ shelf: 3 }, task.id);
 
       handleRenderingToDoList();
     }
@@ -142,7 +147,6 @@ const TaskApp = () => {
 
       if (swalAlert.value === true) {
         await edit({ shelf: 2 }, task.id);
-        concluded(task);
 
         handleRenderingToDoList();
       }

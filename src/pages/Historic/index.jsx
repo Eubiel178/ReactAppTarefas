@@ -7,8 +7,8 @@ import { Container, ContainerContent, TaskList } from "./styles";
 //libs
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 
-//page utills
-import { getConcluded } from "../../utils/task";
+//page uttils
+import { get } from "../../utils/task";
 
 //components
 import Header from "./components/Header/index";
@@ -17,26 +17,33 @@ import TaskItem from "./components/TaskItem/index";
 
 const Historic = () => {
   const { mode } = useContext(Contexts);
-  const [toDoList, setToDoList] = useState([]);
+  const [completed, setCompleted] = useState([]);
   const [parent] = useAutoAnimate();
 
-  const handleList = async () => {
-    const conclued = await getConcluded();
-    setToDoList(conclued);
+  const handleRenderinglist = async () => {
+    const response = await get();
+
+    let tasksCompleted = response.data.filter((element) => {
+      if (element.shelf === 3) {
+        return element;
+      }
+    });
+
+    setCompleted(tasksCompleted);
   };
 
   useEffect(() => {
-    handleList();
+    handleRenderinglist();
   }, []);
 
   return (
     <section>
       <Container background={mode ? " rgb(0, 0, 0)" : "#edf0f2"}>
         <ContainerContent background={mode ? "#121212" : "white"}>
-          <Header list={toDoList} renderList={handleList} />
+          <Header list={completed} renderList={handleRenderinglist} />
           <TaskList color={mode ? "white" : "black"} ref={parent}>
-            {toDoList &&
-              toDoList.map((element) => {
+            {completed &&
+              completed.map((element) => {
                 return <TaskItem task={element.title} id={element.id} />;
               })}
           </TaskList>

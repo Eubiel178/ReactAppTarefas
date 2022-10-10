@@ -12,14 +12,14 @@ import { Link } from "react-router-dom";
 
 //page utills
 import { getSaveMode, saveMode } from "../../../../utils/mode";
-import { clearHistoric } from "../../../../utils/task";
+import { remove } from "../../../../utils/task";
 
-const Header = ({ list, renderList }) => {
+const Header = ({ list, setList, renderList }) => {
   const { setMode, mode } = useContext(Contexts);
 
-  const clearList = () => {
+  const clearList = async () => {
     if (list.length > 0) {
-      Swal.fire({
+      const swalAlert = await Swal.fire({
         title: "Deseja limpar o histórico?",
         icon: "question",
         iconHtml: "?",
@@ -30,13 +30,18 @@ const Header = ({ list, renderList }) => {
         showCancelButton: true,
         showCloseButton: true,
 
-        preConfirm: async (value) => {
-          if (value === true) {
-            clearHistoric();
-            renderList();
-          }
+        preConfirm: (value) => {
+          return value;
         },
       });
+
+      if (swalAlert.value === true) {
+        list.forEach(async (element) => {
+          await remove(element.id);
+        });
+
+        renderList();
+      }
     }
   };
 

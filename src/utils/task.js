@@ -55,20 +55,3 @@ export const getConcluded = async () => {
     return JSON.parse(localStorage.getItem("concluded"));
   }
 };
-
-export const concluded = async (task) => {
-  let concluded = [];
-
-  if (localStorage.getItem("concluded")) {
-    concluded = await getConcluded();
-    concluded.unshift(task);
-  } else {
-    concluded.unshift(task);
-  }
-
-  localStorage.setItem("concluded", JSON.stringify(concluded));
-};
-
-export const clearHistoric = () => {
-  localStorage.removeItem("concluded");
-};

@@ -10,7 +10,7 @@ import { Container } from "./styles";
 import Swal from "sweetalert2";
 
 //page utills
-import { remove } from "../../../../utils/task";
+import { edit } from "../../../../utils/task";
 
 const SubTitle = ({ toDoList, setToDoList, renderList }) => {
   const { mode } = useContext(Contexts);
@@ -21,8 +21,8 @@ const SubTitle = ({ toDoList, setToDoList, renderList }) => {
     });
 
     if (toDoList.length > 0 && completed.length === toDoList.length) {
-      toDoList.forEach((element) => {
-        remove(element.id);
+      toDoList.forEach(async (element) => {
+        await edit({ shelf: 3 }, element.id);
       });
 
       await Swal.fire(
