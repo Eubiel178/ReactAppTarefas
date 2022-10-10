@@ -73,7 +73,7 @@ const Form = () => {
       <FormItem
         set={setEmail}
         label="Seu email"
-        placeholder="Email"
+        placeholder="example@gmail.com"
         id="email"
         type="email"
         value={email}
