@@ -96,6 +96,7 @@ export const ButtonLoggout = styled.section`
   justify-content: flex-start;
 
   button {
+    cursor: grab;
     background: none;
     border: none;
     color: #fff;
