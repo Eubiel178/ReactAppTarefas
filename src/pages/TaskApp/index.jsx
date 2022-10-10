@@ -31,20 +31,20 @@ const TaskApp = () => {
   const [parent] = useAutoAnimate();
   const { input, setInput, mode } = useContext(Contexts);
 
-  const handleToDoList = async () => {
+  const handleRenderingToDoList = async () => {
     const response = await get();
 
     setToDoList(response.data);
   };
 
   useEffect(() => {
-    handleToDoList();
+    handleRenderingToDoList();
   }, []);
 
   const handleOnSubmit = async (event) => {
     event.preventDefault();
 
-    if (editId) {
+    if (toDoList.length > 0 && editId) {
       await edit(
         {
           title: input,
@@ -73,7 +73,8 @@ const TaskApp = () => {
     }
 
     setInput("");
-    handleToDoList();
+    setEditId("");
+    handleRenderingToDoList();
   };
 
   const handleEdit = (task) => {
@@ -88,7 +89,7 @@ const TaskApp = () => {
       });
     }
 
-    handleToDoList();
+    handleRenderingToDoList();
   };
 
   const handleRemove = async (task) => {
@@ -112,12 +113,12 @@ const TaskApp = () => {
       if (swalAlert.value === true) {
         await remove(task.id);
 
-        handleToDoList();
+        handleRenderingToDoList();
       }
     } else {
       await remove(task.id);
 
-      handleToDoList();
+      handleRenderingToDoList();
     }
   };
 
@@ -143,7 +144,7 @@ const TaskApp = () => {
         await edit({ shelf: 2 }, task.id);
         concluded(task);
 
-        handleToDoList();
+        handleRenderingToDoList();
       }
     }
   };
@@ -163,7 +164,7 @@ const TaskApp = () => {
             <SubTitle
               toDoList={toDoList}
               setToDoList={setToDoList}
-              renderList={handleToDoList}
+              renderList={handleRenderingToDoList}
             />
 
             <TaskList color={mode ? "white" : "black"} ref={parent}>
