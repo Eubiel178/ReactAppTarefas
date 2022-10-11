@@ -1,10 +1,9 @@
 import styled from "styled-components";
 
-export const HeaderContents = styled.div`
+export const HeaderContents = styled.nav`
   position: relative;
 
   div {
-    height: 6em;
     padding: 1em;
     display: flex;
     justify-content: space-between;

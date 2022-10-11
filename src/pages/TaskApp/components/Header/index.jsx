@@ -126,7 +126,7 @@ const Header = () => {
                   </ButtonClose>
 
                   <InfoUser>
-                    <BiUser style={{ fontSize: "25px" }} />
+                    <BiUser style={{ fontSize: "15px" }} />
                     <p>
                       {user.name} - {user.id}
                     </p>

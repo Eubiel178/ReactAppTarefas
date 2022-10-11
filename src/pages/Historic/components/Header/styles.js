@@ -1,9 +1,8 @@
 import styled from "styled-components";
 
 export const NavBar = styled.div`
-  padding: 1em;
+  padding: 21.7px;
   display: flex;
-  height: 6em;
   justify-content: space-between;
   align-items: center;
   flex-wrap: nowrap;
