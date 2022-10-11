@@ -14,7 +14,7 @@ import { Link } from "react-router-dom";
 import { getSaveMode, saveMode } from "../../../../utils/mode";
 import { remove } from "../../../../utils/task";
 
-const Header = ({ list, setList, renderList }) => {
+const Header = ({ list, renderList }) => {
   const { setMode, mode } = useContext(Contexts);
 
   const clearList = async () => {
@@ -31,18 +31,16 @@ const Header = ({ list, setList, renderList }) => {
         showCloseButton: true,
 
         preConfirm: (value) => {
-          return value;
+          if (value === true) {
+            list.forEach(async (element) => {
+              await remove(element.id);
+            });
+          }
         },
       });
-
-      if (swalAlert.value === true) {
-        list.forEach(async (element) => {
-          await remove(element.id);
-        });
-
-        renderList();
-      }
     }
+
+    renderList();
   };
 
   const handleMode = () => {
@@ -82,7 +80,7 @@ const Header = ({ list, setList, renderList }) => {
       <TitleContainer color={mode ? "#B64FC8" : " #3085d6"}>
         <h1>Tarefas Concluídas</h1>
 
-        {list && <button onClick={clearList}>Limpar Lista</button>}
+        {list.length > 0 && <button onClick={clearList}>Limpar Lista</button>}
       </TitleContainer>
     </header>
   );

@@ -16,24 +16,33 @@ import Contexts from "../../contexts/Contexts";
 import TaskItem from "./components/TaskItem/index";
 
 const Historic = () => {
-  const { mode } = useContext(Contexts);
+  const { setAuth, mode } = useContext(Contexts);
   const [completed, setCompleted] = useState([]);
   const [parent] = useAutoAnimate();
 
   const handleRenderinglist = async () => {
     const response = await get();
 
-    let tasksCompleted = response.data.filter((element) => {
+    const tasks = response.data;
+
+    let completed = tasks.filter((element) => {
       if (element.shelf === 3) {
         return element;
+      } else {
+        return;
       }
     });
 
-    setCompleted(tasksCompleted);
+    setCompleted(completed);
   };
 
   useEffect(() => {
-    handleRenderinglist();
+    const token = localStorage.getItem("auth_token");
+
+    if (token) {
+      setAuth(true);
+      handleRenderinglist();
+    }
   }, []);
 
   return (

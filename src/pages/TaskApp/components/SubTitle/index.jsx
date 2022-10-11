@@ -25,11 +25,7 @@ const SubTitle = ({ toDoList, setToDoList, renderList }) => {
         await edit({ shelf: 3 }, element.id);
       });
 
-      await Swal.fire(
-        "Bom Trabalho!",
-        "Você completou todas as tarefa",
-        "success"
-      );
+      Swal.fire("Bom Trabalho!", "Você completou todas as tarefa", "success");
 
       renderList();
     } else if (toDoList.length === 0) {

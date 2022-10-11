@@ -17,7 +17,7 @@ import { useAutoAnimate } from "@formkit/auto-animate/react";
 import Swal from "sweetalert2";
 
 //page utills
-import { add, remove, edit, get, concluded } from "../../utils/task";
+import { add, edit, get } from "../../utils/task";
 
 //components
 import Header from "./components/Header/index";
@@ -34,11 +34,14 @@ const TaskApp = () => {
   const handleRenderingToDoList = async () => {
     const response = await get();
 
-    const tasks = response.data.filter((element) => {
+    const list = response.data;
+
+    const tasks = list.filter((element) => {
       if (element.shelf === 1 || element.shelf === 2) {
         return element;
       }
     });
+
     setToDoList(tasks);
   };
 

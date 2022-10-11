@@ -4,6 +4,7 @@ export const HeaderContents = styled.div`
   position: relative;
 
   div {
+    height: 6em;
     padding: 1em;
     display: flex;
     justify-content: space-between;
@@ -52,7 +53,7 @@ export const Profile = styled.section`
   div {
     position: absolute;
     top: 0.1em;
-    right: 0.4em;
+    right: 0.1em;
     background-color: #000000b9;
     color: #fff;
     height: 15em;
