@@ -5,10 +5,10 @@ import { useContext, useEffect, useState } from "react";
 
 //styled-components
 import {
-  HeaderContents,
+  NavBar,
   Button,
   Mode,
-  Profile,
+  User,
   ButtonClose,
   InfoUser,
   ButtonLoggout,
@@ -81,8 +81,8 @@ const Header = () => {
 
   return (
     <header>
-      <HeaderContents background={mode ? "#1F1F1F" : "#3085d6"}>
-        <div>
+      <section>
+        <NavBar background={mode ? "#1F1F1F" : "#3085d6"}>
           <section>
             <Link to="/historic">
               <Button
@@ -91,7 +91,6 @@ const Header = () => {
                 Histórico
               </Button>
             </Link>
-
             <Mode
               onClick={handleMode}
               background={mode === false ? "black" : "#fff"}
@@ -102,51 +101,55 @@ const Header = () => {
           </section>
 
           <section>
-            <Profile>
+            <div>
               <Button
                 onClick={() => {
-                  setProfile(!profile);
+                  setProfile(true);
                 }}
                 border={mode ? "solid 2px #1F1F1F" : " solid 2px #3085d6"}
+                style={{ display: profile && "none" }}
               >
                 <BiUser style={{ fontSize: "25px" }} />
               </Button>
+            </div>
 
-              {profile && (
-                <div>
-                  <ButtonClose>
-                    <p>Informações do usuário</p>
-                    <button
-                      onClick={() => {
-                        setProfile(!profile);
-                      }}
-                    >
-                      <ImCancelCircle style={{ fontSize: "25px" }} />
-                    </button>
-                  </ButtonClose>
+            {profile && (
+              <User>
+                <ButtonClose>
+                  <p>Informações do usuário</p>
+                  <button
+                    onClick={() => {
+                      setProfile(false);
+                    }}
+                  >
+                    <ImCancelCircle style={{ fontSize: "25px" }} />
+                  </button>
+                </ButtonClose>
 
-                  <InfoUser>
-                    <BiUser style={{ fontSize: "15px" }} />
-                    <p>
-                      {user.name} - {user.id}
-                    </p>
-                  </InfoUser>
+                <InfoUser>
+                  <BiUser style={{ fontSize: "25px" }} />
+                  <p>
+                    {user.name} - {user.id}
+                  </p>
+                </InfoUser>
 
-                  <InfoUser>
-                    <MdOutlineAlternateEmail style={{ fontSize: "25px" }} />
-                    <p>{user.email}</p>
-                  </InfoUser>
+                <InfoUser>
+                  <MdOutlineAlternateEmail style={{ fontSize: "25px" }} />
+                  <p>{user.email}</p>
+                </InfoUser>
 
-                  <ButtonLoggout>
-                    <button onClick={handleLogin}>Deslogar</button>
-                  </ButtonLoggout>
-                </div>
-              )}
-            </Profile>
+                <ButtonLoggout>
+                  <button onClick={handleLogin}>Deslogar</button>
+                </ButtonLoggout>
+              </User>
+            )}
           </section>
-        </div>
+        </NavBar>
+      </section>
+
+      <section>
         <Title color={mode ? "#B64FC8" : "#3085d6"}>ADICIONAR TAREFAS</Title>
-      </HeaderContents>
+      </section>
     </header>
   );
 };

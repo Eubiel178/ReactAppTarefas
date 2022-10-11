@@ -40,13 +40,18 @@ const Historic = () => {
     <section>
       <Container background={mode ? " rgb(0, 0, 0)" : "#edf0f2"}>
         <ContainerContent background={mode ? "#121212" : "white"}>
-          <Header list={completed} renderList={handleRenderinglist} />
-          <TaskList color={mode ? "white" : "black"} ref={parent}>
-            {completed &&
-              completed.map((element) => {
-                return <TaskItem task={element.title} id={element.id} />;
-              })}
-          </TaskList>
+          <section>
+            <Header list={completed} renderList={handleRenderinglist} />
+          </section>
+
+          <section>
+            <TaskList color={mode ? "white" : "black"} ref={parent}>
+              {completed &&
+                completed.map((element) => {
+                  return <TaskItem task={element.title} id={element.id} />;
+                })}
+            </TaskList>
+          </section>
         </ContainerContent>
       </Container>
     </section>

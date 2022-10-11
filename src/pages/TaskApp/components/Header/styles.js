@@ -1,17 +1,15 @@
 import styled from "styled-components";
 
-export const HeaderContents = styled.nav`
+export const NavBar = styled.nav`
   position: relative;
-
-  div {
-    padding: 1em;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: nowrap;
-    margin-bottom: 2em;
-    background: ${({ background }) => background};
-  }
+  height: 5em;
+  padding: 1em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: nowrap;
+  margin-bottom: 2em;
+  background: ${({ background }) => background};
 `;
 
 export const Button = styled.button`
@@ -46,26 +44,22 @@ export const Mode = styled(Button)`
   }
 `;
 
-export const Profile = styled.section`
-  position: relative;
-
-  div {
-    position: absolute;
-    top: 0.1em;
-    right: 0.1em;
-    background-color: #000000b9;
-    color: #fff;
-    height: 15em;
-    width: 17em;
-    border-radius: 1em;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-  }
+export const User = styled.div`
+  top: 1em;
+  right: 1em;
+  position: absolute;
+  background-color: #000000b9;
+  color: #fff;
+  height: 15em;
+  width: 17em;
+  border-radius: 1em;
+  display: flex;
+  padding: 1em;
+  flex-direction: column;
+  justify-content: flex-start;
 `;
 
-export const ButtonClose = styled.section`
-  width: 100%;
+export const ButtonClose = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -78,8 +72,7 @@ export const ButtonClose = styled.section`
   }
 `;
 
-export const InfoUser = styled.section`
-  width: 100%;
+export const InfoUser = styled.div`
   display: flex;
   align-items: center;
   padding: 0.5em;
@@ -89,9 +82,8 @@ export const InfoUser = styled.section`
   }
 `;
 
-export const ButtonLoggout = styled.section`
-  padding-top: 2.5em;
-  width: 92%;
+export const ButtonLoggout = styled.div`
+  padding: 2.5em 0em 0em 0.8em;
   display: flex;
   justify-content: flex-start;
 
@@ -105,7 +97,8 @@ export const ButtonLoggout = styled.section`
 `;
 
 export const Title = styled.h1`
-  padding: 1em 0em 1em 1em;
+  font-size: 2em;
+  padding: 1em;
   color: ${({ color }) => color};
 
   @media (max-width: 390px) {

@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Container = styled.div`
   input {
     margin: 0em 1em 0em 0em;
-    height: 2.5em;
+    height: 3em;
     padding: 0em 6em 0em 1em;
     padding-left: 1em;
     border-radius: 5px;
@@ -19,7 +19,7 @@ export const Container = styled.div`
   }
 
   button {
-    height: 2.5em;
+    height: 3em;
     margin-right: 1em;
     padding: 0em 1em 0em 1em;
     color: #fff;

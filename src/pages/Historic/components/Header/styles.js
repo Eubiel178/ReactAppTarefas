@@ -1,7 +1,8 @@
 import styled from "styled-components";
 
 export const NavBar = styled.div`
-  padding: 21.7px;
+  padding: 1em;
+  height: 5em;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -44,11 +45,11 @@ export const TitleContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-left: 2em;
-  margin-top: 2em;
+  padding: 2em 1em 1em 1em;
   font-size: 20px;
 
   h1 {
+    font-size: 2em;
     color: ${({ color }) => color};
   }
 
@@ -67,7 +68,9 @@ export const TitleContainer = styled.div`
     color: #fff;
   }
 
-  @media (max-width: 430px) {
-    font-size: 13px;
+  @media (max-width: 580px) {
+    h1 {
+      font-size: 20px;
+    }
   }
 `;

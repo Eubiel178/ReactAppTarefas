@@ -61,27 +61,31 @@ const Header = ({ list, renderList }) => {
 
   return (
     <header>
-      <NavBar background={mode ? "#1F1F1F" : "#3085d6"}>
-        <Link to="/">
-          <Button border={mode ? "solid 2px #1F1F1F" : " solid 2px #3085d6"}>
-            Início
-          </Button>
-        </Link>
+      <section>
+        <NavBar background={mode ? "#1F1F1F" : "#3085d6"}>
+          <Link to="/">
+            <Button border={mode ? "solid 2px #1F1F1F" : " solid 2px #3085d6"}>
+              Início
+            </Button>
+          </Link>
 
-        <Mode
-          onClick={handleMode}
-          background={mode === false ? "black" : "#fff"}
-          color={mode ? "black" : "white"}
-        >
-          {mode === false ? "Modo escuro" : "Modo claro"}
-        </Mode>
-      </NavBar>
+          <Mode
+            onClick={handleMode}
+            background={mode === false ? "black" : "#fff"}
+            color={mode ? "black" : "white"}
+          >
+            {mode === false ? "Modo escuro" : "Modo claro"}
+          </Mode>
+        </NavBar>
+      </section>
 
-      <TitleContainer color={mode ? "#B64FC8" : " #3085d6"}>
-        <h1>Tarefas Concluídas</h1>
+      <section>
+        <TitleContainer color={mode ? "#B64FC8" : " #3085d6"}>
+          <h1>Tarefas Concluídas</h1>
 
-        {list.length > 0 && <button onClick={clearList}>Limpar Lista</button>}
-      </TitleContainer>
+          {list.length > 0 && <button onClick={clearList}>Limpar Lista</button>}
+        </TitleContainer>
+      </section>
     </header>
   );
 };
