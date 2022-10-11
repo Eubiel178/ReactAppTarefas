@@ -17,7 +17,7 @@ import { useAutoAnimate } from "@formkit/auto-animate/react";
 import Swal from "sweetalert2";
 
 //page utills
-import { add, edit, get } from "../../utils/task";
+import { add, remove, edit, get } from "../../utils/task";
 
 //components
 import Header from "./components/Header/index";
@@ -119,9 +119,13 @@ const TaskApp = () => {
       });
 
       if (swalAlert.value === true) {
-        await edit({ shelf: 3 }, task.id);
+        if (task.shelf === 2) {
+          await edit({ shelf: 3 }, task.id);
 
-        handleRenderingToDoList();
+          handleRenderingToDoList();
+        } else {
+          await remove(task.id);
+        }
       }
     } else {
       await edit({ shelf: 3 }, task.id);

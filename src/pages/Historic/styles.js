@@ -24,7 +24,7 @@ export const ContainerContent = styled.div`
     display: none;
   }
 
-  @media (max-width: 769px) {
+  @media (max-width: 950px) {
     width: 100%;
     height: 100vh;
     border-radius: 0px;

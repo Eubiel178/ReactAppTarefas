@@ -32,7 +32,7 @@ const Header = ({ list, renderList }) => {
 
         preConfirm: (value) => {
           if (value === true) {
-            list.forEach(async (element) => {
+            list.map(async (element) => {
               await remove(element.id);
             });
           }
