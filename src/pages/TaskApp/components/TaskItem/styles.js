@@ -10,6 +10,7 @@ export const Task = styled.p`
   text-align: justify;
   word-break: break-all;
   cursor: zoom-in;
+  font-size: 20px;
 
   input:hover {
     cursor: grab;
