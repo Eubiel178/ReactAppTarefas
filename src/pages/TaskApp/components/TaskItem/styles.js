@@ -54,7 +54,7 @@ export const ButtonEdit = styled.button`
   background-color: transparent;
   transition-duration: 0.5s;
   padding: 0.6em;
-  margin-right: 1em;
+  margin-right: 0.5em;
   cursor: pointer;
 `;
 
