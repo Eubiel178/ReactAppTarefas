@@ -36,15 +36,6 @@ const Historic = () => {
     setCompleted(completed);
   };
 
-  useEffect(() => {
-    const token = localStorage.getItem("auth_token");
-
-    if (token) {
-      setAuth(true);
-      handleRenderinglist();
-    }
-  }, []);
-
   return (
     <section>
       <Container background={mode ? " rgb(0, 0, 0)" : "#edf0f2"}>
