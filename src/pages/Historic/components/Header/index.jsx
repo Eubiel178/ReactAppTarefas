@@ -39,8 +39,6 @@ const Header = ({ list, renderList }) => {
         },
       });
     }
-
-    renderList();
   };
 
   const handleMode = () => {
@@ -50,6 +48,8 @@ const Header = ({ list, renderList }) => {
   };
 
   useEffect(() => {
+    renderList();
+
     let getMode = getSaveMode();
 
     if (getMode === "true") {
@@ -57,7 +57,7 @@ const Header = ({ list, renderList }) => {
     } else {
       setMode(false);
     }
-  }, []);
+  }, [list]);
 
   return (
     <header>
