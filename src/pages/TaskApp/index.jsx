@@ -125,6 +125,8 @@ const TaskApp = () => {
           handleRenderingToDoList();
         } else {
           await remove(task.id);
+
+          handleRenderingToDoList();
         }
       }
     } else {
