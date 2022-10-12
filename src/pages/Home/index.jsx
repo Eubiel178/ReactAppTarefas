@@ -25,7 +25,7 @@ import Form from "./components/Form/index";
 import SubTitle from "./components/SubTitle/index";
 import TaskItem from "./components/TaskItem/index";
 
-const TaskApp = () => {
+const Home = () => {
   const [toDoList, setToDoList] = useState([]);
   const [editId, setEditId] = useState("");
   const [parent] = useAutoAnimate();
@@ -203,4 +203,4 @@ const TaskApp = () => {
   );
 };
 
-export default TaskApp;
+export default Home;

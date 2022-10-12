@@ -10,7 +10,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Historic from "../pages/Historic";
 import Login from "../pages/Login";
 import Register from "../pages/Register/index";
-import TaskApp from "../pages/TaskApp/index";
+import Home from "../pages/Home/index";
 
 const AppRoutes = () => {
   const { auth } = useContext(Contexts);
@@ -24,7 +24,7 @@ const AppRoutes = () => {
         </Routes>
       ) : (
         <Routes>
-          <Route path="/" exact element={<TaskApp />} />
+          <Route path="/" exact element={<Home />} />
           <Route path="/historic" exact element={<Historic />} />
         </Routes>
       )}

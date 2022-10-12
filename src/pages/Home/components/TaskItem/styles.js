@@ -20,6 +20,7 @@ export const Text = styled.span`
   text-align: justify;
   color: ${({ color }) => color};
   padding-left: 0.5em;
+  font-size: 20px;
 `;
 
 export const Container = styled.div`
@@ -30,7 +31,7 @@ export const Container = styled.div`
 
 export const Progress = styled.div`
   color: ${({ color }) => color};
-
+  font-size: 18px;
   border-radius: 0.3em;
   padding: 0.3em;
   cursor: zoom-in;
