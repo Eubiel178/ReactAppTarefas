@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const NavBar = styled.div`
   padding: 1em;
+  margin-bottom: 2em;
   height: 5em;
   display: flex;
   justify-content: space-between;
@@ -45,11 +46,10 @@ export const TitleContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 2em 1em 1em 1em;
-  font-size: 20px;
 
   h1 {
     font-size: 2em;
+    padding: 1em;
     color: ${({ color }) => color};
   }
 
