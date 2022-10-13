@@ -34,7 +34,7 @@ const TaskItem = ({ task, setFinish, edited, remove }) => {
       <section>
         <Task id={task.id} key={task.id}>
           <input
-            type="checkbox"
+            type="radio"
             onClick={() => {
               setFinish(task);
             }}

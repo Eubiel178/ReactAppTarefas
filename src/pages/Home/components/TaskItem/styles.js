@@ -7,8 +7,8 @@ export const TaskContainer = styled.div`
 `;
 
 export const Task = styled.p`
-  text-align: justify;
-  word-break: break-all;
+  text-align: left;
+
   cursor: zoom-in;
 
   input:hover {
@@ -17,7 +17,6 @@ export const Task = styled.p`
 `;
 
 export const Text = styled.span`
-  text-align: justify;
   color: ${({ color }) => color};
   padding-left: 0.5em;
   font-size: 20px;
