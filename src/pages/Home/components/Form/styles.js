@@ -10,6 +10,8 @@ export const FormContainer = styled.div`
 
 export const Button = styled.button`
   height: 3em;
+  margin-left: 1em;
+  padding: 1em;
   color: #fff;
   background-color: ${({ backgroundButton }) => backgroundButton};
   border-radius: 5px;
@@ -20,6 +22,10 @@ export const Button = styled.button`
   :hover {
     box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.192);
     background-color: ${({ buttonHover }) => buttonHover};
+  }
+
+  @media (max-width: 960px) {
+    margin-left: 0em;
   }
 `;
 
