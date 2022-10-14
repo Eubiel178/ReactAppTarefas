@@ -1,18 +1,18 @@
 import styled from "styled-components";
 
 export const NavBar = styled.div`
-  padding: 1em;
+  display: flex;
   margin-bottom: 2em;
-  height: 5em;
+  padding: 0em 1em;
+  height: 3.5em;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: nowrap;
   background-color: ${({ background }) => background};
 `;
 
 export const Button = styled.button`
-  padding: 1em;
+  padding: 0.5em;
   font-size: 15px;
   border: 0px;
   color: #fff;
@@ -31,7 +31,7 @@ export const Button = styled.button`
 `;
 
 export const Mode = styled(Button)`
-  border-radius: 1em;
+  border-radius: 0.5em;
   margin-left: 1em;
   background-color: ${({ background }) => background};
   color: ${({ color }) => color};
@@ -46,31 +46,29 @@ export const TitleContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+`;
 
-  h1 {
-    font-size: 2em;
-    padding: 1em;
-    color: ${({ color }) => color};
-  }
-
-  button {
-    margin-right: 2em;
-    background: none;
-    border: 0px;
-    color: red;
-    padding: 0.5em;
-    border-radius: 1.3em;
-    transition-duration: 0.5s;
-  }
-
-  button:hover {
-    background-color: red;
-    color: #fff;
-  }
+export const Title = styled.h1`
+  font-size: 2em;
+  padding: 1em;
+  color: ${({ color }) => color};
 
   @media (max-width: 580px) {
-    h1 {
-      font-size: 20px;
-    }
+    font-size: 20px;
+  }
+`;
+
+export const Clear = styled.button`
+  margin-right: 2em;
+  background: none;
+  border: 0px;
+  color: red;
+  padding: 0.5em;
+  border-radius: 0.5em;
+  transition-duration: 0.5s;
+
+  :hover {
+    background-color: red;
+    color: #fff;
   }
 `;

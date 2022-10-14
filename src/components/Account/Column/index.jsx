@@ -1,25 +1,25 @@
-import { AsideContent } from "./styles";
+import { AsideContainer, SecondText, LinkContainer } from "./styles";
 import { Link } from "react-router-dom";
 
 const Column = ({ primaryText, secondText, register, text, to }) => {
   return (
-    <AsideContent>
+    <AsideContainer>
       <aside>
         <p>
           <strong>
             {primaryText} <br />
-            <span>{secondText}</span>
+            <SecondText>{secondText}</SecondText>
           </strong>
         </p>
 
-        <div>
+        <LinkContainer>
           <p>
             {text}
             <Link to={to}>{register}</Link>
           </p>
-        </div>
+        </LinkContainer>
       </aside>
-    </AsideContent>
+    </AsideContainer>
   );
 };
 

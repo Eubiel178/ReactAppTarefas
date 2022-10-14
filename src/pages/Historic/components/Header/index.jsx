@@ -4,7 +4,7 @@ import Contexts from "../../../../contexts/Contexts";
 import { useContext, useEffect } from "react";
 
 //styled-components
-import { NavBar, Button, Mode, TitleContainer } from "./styles";
+import { NavBar, Button, Mode, TitleContainer, Title, Clear } from "./styles";
 
 //libs
 import Swal from "sweetalert2";
@@ -80,10 +80,12 @@ const Header = ({ list, renderList }) => {
       </section>
 
       <section>
-        <TitleContainer color={mode ? "#B64FC8" : " #3085d6"}>
-          <h1>Tarefas Concluídas</h1>
+        <TitleContainer>
+          <Title color={mode ? "#B64FC8" : " #3085d6"}>
+            Tarefas Concluídas
+          </Title>
 
-          {list.length > 0 && <button onClick={clearList}>Limpar Lista</button>}
+          {list.length > 0 && <Clear onClick={clearList}>Limpar Lista</Clear>}
         </TitleContainer>
       </section>
     </header>

@@ -4,7 +4,7 @@ import Contexts from "../../../../contexts/Contexts";
 import { useContext } from "react";
 
 //styled-components
-import { Container } from "./styles";
+import { Container, Title, Button } from "./styles";
 
 //libs
 import Swal from "sweetalert2";
@@ -44,14 +44,14 @@ const SubTitle = ({ toDoList, setToDoList, renderList }) => {
   };
 
   return (
-    <Container colorSubTitle={mode ? "#B64FC8" : " #3085d6"}>
-      <h2>TAREFAS</h2>
-      <button
+    <Container>
+      <Title colorTitle={mode ? "#B64FC8" : " #3085d6"}>TAREFAS</Title>
+      <Button
         style={{ display: toDoList.length === 0 && "none" }}
         onClick={clearList}
       >
         Limpar Lista
-      </button>
+      </Button>
     </Container>
   );
 };

@@ -5,23 +5,23 @@ export const Container = styled.div`
   justify-content: space-between;
   align-items: center;
   padding-top: 2em;
+`;
 
-  h2 {
-    margin: 1.5em 0em 1em 0em;
-    color: ${({ colorSubTitle }) => colorSubTitle};
-  }
+export const Title = styled.h2`
+  margin: 1.5em 0em 1em 0em;
+  color: ${({ colorTitle }) => colorTitle};
+`;
 
-  button {
-    margin-right: 2em;
-    background: none;
-    border: 0px;
-    color: red;
-    padding: 0.5em;
-    border-radius: 1.3em;
-    transition-duration: 0.5s;
-  }
+export const Button = styled.button`
+  margin-right: 2em;
+  background: none;
+  border: 0px;
+  color: red;
+  padding: 0.5em;
+  border-radius: 1.3em;
+  transition-duration: 0.5s;
 
-  button:hover {
+  :hover {
     background-color: red;
     color: #fff;
   }

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const AsideContent = styled.div`
+export const AsideContainer = styled.div`
   width: 100%;
   background-color: #3085d6;
   color: #fff;
@@ -10,16 +10,20 @@ export const AsideContent = styled.div`
   justify-content: center;
   position: relative;
 
-  span {
-    padding-left: 3em;
+  @media (max-width: 866px) {
+    display: none;
   }
+`;
 
-  div {
-    width: 100%;
-    position: absolute;
-    left: 1em;
-    bottom: 1em;
-  }
+export const SecondText = styled.span`
+  padding-left: 3em;
+`;
+
+export const LinkContainer = styled.div`
+  width: 100%;
+  position: absolute;
+  left: 1em;
+  bottom: 1em;
 
   a {
     background-color: #fff;
@@ -30,14 +34,5 @@ export const AsideContent = styled.div`
     transition-duration: 0.5s;
     color: black;
     text-decoration: none;
-  }
-
-  a:hover {
-    background-color: rgba(0, 0, 0, 0.438);
-    color: #fff;
-  }
-
-  @media (max-width: 866px) {
-    display: none;
   }
 `;

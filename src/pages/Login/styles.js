@@ -32,7 +32,7 @@ export const ContainerContent = styled.div`
 export const Register = styled.p`
   position: absolute;
   left: 10%;
-  bottom: 5%;
+  bottom: 2%;
   color: #3085d6;
   display: none;
 

@@ -1,27 +1,25 @@
 import styled from "styled-components";
 
 export const NavBar = styled.nav`
-  position: relative;
-  height: 5em;
-  padding: 1em;
   display: flex;
+  position: relative;
+  padding: 0em 1em;
+  margin-bottom: 2em;
+  height: 3.5em;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: nowrap;
-  margin-bottom: 2em;
   background: ${({ background }) => background};
 `;
 
 export const Button = styled.button`
   margin-right: 1em;
-  padding: 1em;
+  padding: 0.5em;
   border: 0px;
   color: #fff;
   transition-duration: 0.7s;
   background: none;
   cursor: grab;
   font-size: 15px;
-
   border-bottom: ${({ border }) => border};
 
   :hover {
@@ -36,7 +34,7 @@ export const Button = styled.button`
 export const Mode = styled(Button)`
   background-color: ${({ background }) => background};
   color: ${({ color }) => color};
-  border-radius: 1em;
+  border-radius: 0.5em;
 
   :hover {
     border-bottom: 0px;
@@ -45,8 +43,8 @@ export const Mode = styled(Button)`
 `;
 
 export const User = styled.div`
-  top: 1em;
-  right: 1em;
+  top: 0.4em;
+  right: 0.8em;
   position: absolute;
   background-color: #000000b9;
   color: #fff;

@@ -3,7 +3,7 @@ import Contexts from "../../../../contexts/Contexts";
 import { useContext } from "react";
 
 //styled-components
-import { Container } from "./styles";
+import { FormContainer, Button, Input } from "./styles";
 
 const Form = ({ AddTask, setInput, input, isEdit }) => {
   const { mode } = useContext(Contexts);
@@ -14,11 +14,8 @@ const Form = ({ AddTask, setInput, input, isEdit }) => {
 
   return (
     <form onSubmit={AddTask}>
-      <Container
-        backgroundButton={mode ? "#B64FC8" : " #3085d6"}
-        buttonHover={mode ? "#6105d6" : "#3005d6"}
-      >
-        <input
+      <FormContainer>
+        <Input
           onChange={handleTask}
           type="text"
           name="tarefa"
@@ -26,8 +23,13 @@ const Form = ({ AddTask, setInput, input, isEdit }) => {
           value={input}
           required
         />
-        <button>{isEdit !== "" ? "Atualizar" : "Salvar"}</button>
-      </Container>
+        <Button
+          backgroundButton={mode ? "#B64FC8" : " #3085d6"}
+          buttonHover={mode ? "#6105d6" : "#3005d6"}
+        >
+          {isEdit !== "" ? "Atualizar" : "Salvar"}
+        </Button>
+      </FormContainer>
     </form>
   );
 };

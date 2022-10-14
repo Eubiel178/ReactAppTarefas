@@ -1,11 +1,11 @@
-import { Container } from "./styles";
+import { FormItemContainer, FormItems, Label, Input } from "./styles";
 
 const FormItem = ({ set, label, id, type, placeholder, value }) => {
   return (
-    <Container>
-      <section>
-        <label htmlFor={id}>{label}</label>
-        <input
+    <FormItemContainer>
+      <FormItems>
+        <Label htmlFor={id}>{label}</Label>
+        <Input
           onChange={(event) => {
             set(event.target.value);
           }}
@@ -15,8 +15,8 @@ const FormItem = ({ set, label, id, type, placeholder, value }) => {
           value={value}
           required
         />
-      </section>
-    </Container>
+      </FormItems>
+    </FormItemContainer>
   );
 };
 

@@ -40,9 +40,7 @@ const Historic = () => {
     <section>
       <Container background={mode ? " rgb(0, 0, 0)" : "#edf0f2"}>
         <ContainerContent background={mode ? "#121212" : "white"}>
-          <section>
-            <Header list={completed} renderList={handleRenderinglist} />
-          </section>
+          <Header list={completed} renderList={handleRenderinglist} />
 
           <section>
             <TaskList color={mode ? "white" : "black"} ref={parent}>

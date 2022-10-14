@@ -19,7 +19,7 @@ export const Task = styled.p`
 export const Text = styled.span`
   color: ${({ color }) => color};
   padding-left: 0.5em;
-  font-size: 20px;
+  word-break: break-all;
 `;
 
 export const Container = styled.div`
@@ -30,21 +30,13 @@ export const Container = styled.div`
 
 export const Progress = styled.div`
   color: ${({ color }) => color};
-  font-size: 18px;
   border-radius: 0.3em;
   padding: 0.3em;
   cursor: zoom-in;
   background-color: ${({ background }) => background};
+  font-size: 13px;
   width: ${({ width }) => width};
   text-align: center;
-
-  @media (max-width: 1020px) {
-    font-size: 12px;
-  }
-
-  @media (max-width: 645px) {
-    display: none;
-  }
 `;
 
 export const ButtonEdit = styled.button`
