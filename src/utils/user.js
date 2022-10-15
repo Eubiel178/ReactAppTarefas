@@ -1,7 +1,9 @@
 import api from "../services/api";
 
 export const register = async (data) => {
-  await api.post("users", data);
+  return await api.post("users", data).catch((error) => {
+    return error;
+  });
 };
 
 export const token = (token) => {

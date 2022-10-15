@@ -50,9 +50,7 @@ const Form = () => {
         setPassword("");
         setPassword2("");
       } else {
-        const router = History();
-
-        Swal.fire(
+        await Swal.fire(
           "Sua conta foi criada com sucesso!",
           "Bom Trabalho",
           "success"
