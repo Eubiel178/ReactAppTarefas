@@ -37,6 +37,10 @@ export const Progress = styled.div`
   font-size: 13px;
   width: ${({ width }) => width};
   text-align: center;
+
+  @media (max-width: 680px) {
+    display: none;
+  }
 `;
 
 export const ButtonEdit = styled.button`
