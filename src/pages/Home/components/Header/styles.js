@@ -5,7 +5,7 @@ export const NavBar = styled.nav`
   position: relative;
   padding: 0em 1em;
   margin-bottom: 2em;
-  height: 3.5em;
+  height: 4em;
   justify-content: space-between;
   align-items: center;
   background: ${({ background }) => background};

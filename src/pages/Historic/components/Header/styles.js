@@ -4,7 +4,7 @@ export const NavBar = styled.div`
   display: flex;
   margin-bottom: 2em;
   padding: 0em 1em;
-  height: 3.5em;
+  height: 4em;
   display: flex;
   justify-content: space-between;
   align-items: center;

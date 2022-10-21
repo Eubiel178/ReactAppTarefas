@@ -17,20 +17,24 @@ const Form = () => {
   const [password, setPassword] = useState("");
   const [password2, setPassword2] = useState("");
 
+  const swalModal = (text) => {
+    if (text) {
+      return Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: text,
+      });
+    } else {
+      Swal.fire("Sua conta foi criada com sucesso!", "Bom Trabalho", "success");
+    }
+  };
+
   const handleRegister = async () => {
     if (email === "" && password === "" && name === "") {
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "Os campos estão  vazios!",
-      });
+      swalModal("Os campos estão  vazios!");
     }
     if (password === "" || email === "" || password2 === "" || name === "") {
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "Verifique se todos os campos estao preenchidos..!",
-      });
+      swalModal("Verifique se todos os campos estao preenchidos..!");
     } else if (name && email && password && password === password2) {
       const response = await register({
         user: {
@@ -43,18 +47,14 @@ const Form = () => {
       });
 
       if (response.code === "ERR_BAD_REQUEST") {
-        await Swal.fire("Oops", "Ja existe uma conta com esse email!", "error");
+        await swalModal("Ja existe uma conta com esse email!");
 
         setName("");
         setEmail("");
         setPassword("");
         setPassword2("");
       } else {
-        await Swal.fire(
-          "Sua conta foi criada com sucesso!",
-          "Bom Trabalho",
-          "success"
-        );
+        await swalModal();
       }
     }
   };

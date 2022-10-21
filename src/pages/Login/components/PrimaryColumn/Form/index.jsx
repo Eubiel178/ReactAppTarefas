@@ -31,24 +31,21 @@ const Form = () => {
     session();
   }, []);
 
+  const swalModal = (text) => {
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: text,
+    });
+  };
+
   const handleLogin = async () => {
     if (email === "" && password === "") {
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "Os campos estão vazios..!",
-      });
+      swalModal("Os campos estão vazios..!");
     } else if (email === "" || password === "") {
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "Verifique se todos os campos estao preenchidos..!",
-      });
+      swalModal("Verifique se todos os campos estao preenchidos..!");
     } else if (email.includes("@") === false) {
-      Swal.fire({
-        icon: "error",
-        text: "Por favor informe um email valido!",
-      });
+      swalModal("Por favor informe um email valido!");
     } else if (email && password) {
       const response = await login(
         {
@@ -57,13 +54,9 @@ const Form = () => {
         },
         setAuth
       );
-      console.log(response);
 
       if (response === false) {
-        Swal.fire({
-          icon: "error",
-          text: "Senha incorreta!",
-        });
+        swalModal("Senha incorreta!");
       }
     }
   };
