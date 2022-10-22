@@ -19,11 +19,13 @@ export const add = async (task) => {
 export const get = async () => {
   const { id } = getLoggedUser();
 
-  return await api.get(`/users/${id}/books/`, {
+  const { data } = await api.get(`/users/${id}/books/`, {
     headers: {
       Authorization: localStorage.getItem("auth_token"),
     },
   });
+
+  return data;
 };
 
 export const edit = async (task, taskId) => {

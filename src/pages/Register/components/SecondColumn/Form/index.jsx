@@ -36,7 +36,7 @@ const Form = () => {
     if (password === "" || email === "" || password2 === "" || name === "") {
       swalModal("Verifique se todos os campos estao preenchidos..!");
     } else if (name && email && password && password === password2) {
-      const response = await register({
+      const status = await register({
         user: {
           name: name,
           user: email,
@@ -45,13 +45,12 @@ const Form = () => {
           password_confirmation: password2,
         },
       });
-
-      if (response.code === "ERR_BAD_REQUEST") {
-        await swalModal("Ja existe uma conta com esse email!");
-
-        setEmail("");
-      } else {
+      console.log(status);
+      if (status === 201 || status === 200) {
         await swalModal();
+      } else {
+        await swalModal("Ja existe uma conta com esse email!");
+        setEmail("");
       }
     }
   };

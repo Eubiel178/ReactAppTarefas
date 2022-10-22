@@ -55,7 +55,7 @@ const Form = () => {
         setAuth
       );
 
-      if (status === false) {
+      if (status !== 200) {
         swalModal("Senha incorreta!");
       }
     }

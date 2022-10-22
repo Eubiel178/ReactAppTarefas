@@ -32,9 +32,9 @@ const Home = () => {
   const { input, setInput, mode } = useContext(Contexts);
 
   const handleRenderingToDoList = async () => {
-    const { data } = await get();
+    const list = await get();
 
-    const tasks = data.filter((element) => {
+    const tasks = list.filter((element) => {
       if (element.shelf === 1 || element.shelf === 2) {
         return element;
       }
@@ -46,18 +46,6 @@ const Home = () => {
   useEffect(() => {
     handleRenderingToDoList();
   }, []);
-
-  const taskTemplate = (task) => {
-    return {
-      title: task,
-      author: task,
-      image_url: task,
-      grade: task,
-      categories: task,
-      review: task,
-      google_book_id: task,
-    };
-  };
 
   const swalModal = (title) => {
     if (title) {
@@ -89,15 +77,31 @@ const Home = () => {
     event.preventDefault();
 
     if (toDoList.length > 0 && editId) {
-      const taskJSON = taskTemplate(input);
-
-      await edit(taskJSON, editId);
+      await edit(
+        {
+          title: input,
+          author: input,
+          image_url: input,
+          grade: input,
+          categories: input,
+          review: input,
+          google_book_id: input,
+        },
+        editId
+      );
 
       setEditId("");
     } else if (input) {
-      const taskJSON = taskTemplate(input);
-
-      await add(taskJSON);
+      await add({
+        title: input,
+        author: input,
+        image_url: input,
+        grade: input,
+        categories: input,
+        shelf: 1,
+        review: input,
+        google_book_id: input,
+      });
     }
 
     setInput("");

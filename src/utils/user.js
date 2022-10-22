@@ -1,17 +1,13 @@
 import api from "../services/api";
 
-export const register = async (data) => {
-  return await api.post("users", data).catch((error) => {
-    return error;
-  });
+export const register = async (requestData) => {
+  const { status } = await api.post("users", requestData);
+
+  return status;
 };
 
-export const token = (token) => {
-  localStorage.setItem("auth_token", token);
-};
-
-export const loggedInUser = (user) => {
-  localStorage.setItem("userLogged", JSON.stringify(user));
+export const loggedInUser = (requestData) => {
+  localStorage.setItem("userLogged", JSON.stringify(requestData));
 };
 
 export const getLoggedUser = () => {
@@ -20,19 +16,18 @@ export const getLoggedUser = () => {
   }
 };
 
-export const login = async (data, logged) => {
-  const { status, auth_token, user } = await api
-    .post("/authenticate", data)
-    .catch((error) => {
-      if (error) {
-        return { status: false };
-      }
-    });
+export const token = (token) => {
+  localStorage.setItem("auth_token", token);
+};
 
-  if (status !== false) {
-    token(auth_token);
+export const login = async (requestData, logged) => {
+  const { status, data } = await api.post("/authenticate", requestData);
+
+  const { auth_token, user } = data;
+
+  if (status === 200) {
     loggedInUser(user);
-
+    token(auth_token);
     logged(true);
 
     const { id } = await getLoggedUser();
