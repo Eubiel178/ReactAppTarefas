@@ -32,11 +32,9 @@ const Home = () => {
   const { input, setInput, mode } = useContext(Contexts);
 
   const handleRenderingToDoList = async () => {
-    const response = await get();
+    const { data } = await get();
 
-    const list = response.data;
-
-    const tasks = list.filter((element) => {
+    const tasks = data.filter((element) => {
       if (element.shelf === 1 || element.shelf === 2) {
         return element;
       }
@@ -49,61 +47,22 @@ const Home = () => {
     handleRenderingToDoList();
   }, []);
 
-  const handleOnSubmit = async (event) => {
-    event.preventDefault();
-
-    if (toDoList.length > 0 && editId) {
-      await edit(
-        {
-          title: input,
-          author: input,
-          image_url: input,
-          grade: input,
-          categories: input,
-          review: input,
-          google_book_id: input,
-        },
-        editId
-      );
-
-      setEditId("");
-    } else if (input) {
-      await add({
-        title: input,
-        author: input,
-        shelf: 1,
-        image_url: input,
-        grade: input,
-        categories: input,
-        review: input,
-        google_book_id: input,
-      });
-    }
-
-    setInput("");
-    setEditId("");
-    handleRenderingToDoList();
+  const taskTemplate = (task) => {
+    return {
+      title: task,
+      author: task,
+      image_url: task,
+      grade: task,
+      categories: task,
+      review: task,
+      google_book_id: task,
+    };
   };
 
-  const handleEdit = (task) => {
-    if (task.shelf === 1) {
-      setInput(task.title);
-      setEditId(task.id);
-    } else {
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "Tarefas concluidas não podem ser editada!",
-      });
-    }
-
-    handleRenderingToDoList();
-  };
-
-  const handleRemove = async (task) => {
-    if (task.shelf === 1) {
-      const swalAlert = await Swal.fire({
-        title: "Deseja remover essa tarefa?",
+  const swalModal = (title) => {
+    if (title) {
+      return Swal.fire({
+        title: title,
         icon: "question",
         iconHtml: "?",
         confirmButtonText: "Sim",
@@ -117,6 +76,49 @@ const Home = () => {
           return value;
         },
       });
+    } else {
+      return Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Tarefas concluidas não podem ser editada!",
+      });
+    }
+  };
+
+  const handleOnSubmit = async (event) => {
+    event.preventDefault();
+
+    if (toDoList.length > 0 && editId) {
+      const taskJSON = taskTemplate(input);
+
+      await edit(taskJSON, editId);
+
+      setEditId("");
+    } else if (input) {
+      const taskJSON = taskTemplate(input);
+
+      await add(taskJSON);
+    }
+
+    setInput("");
+    setEditId("");
+    handleRenderingToDoList();
+  };
+
+  const handleEdit = (task) => {
+    if (task.shelf === 1) {
+      setInput(task.title);
+      setEditId(task.id);
+    } else {
+      swalModal();
+    }
+
+    handleRenderingToDoList();
+  };
+
+  const handleRemove = async (task) => {
+    if (task.shelf === 1) {
+      const swalAlert = await swalModal("Deseja remover essa tarefa?");
 
       if (swalAlert.value === true) {
         if (task.shelf === 2) {
@@ -138,21 +140,9 @@ const Home = () => {
 
   const handleSetFinishTask = async (task) => {
     if (task.shelf === 1) {
-      const swalAlert = await Swal.fire({
-        title: "Deseja mesmo marcar esta tarefa como concluida?",
-        icon: "question",
-        iconHtml: "?",
-        confirmButtonText: "Sim",
-        cancelButtonText: "Não",
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        showCancelButton: true,
-        showCloseButton: true,
-
-        preConfirm: (value) => {
-          return value;
-        },
-      });
+      const swalAlert = await swalModal(
+        "Deseja mesmo marcar esta tarefa como concluida?"
+      );
 
       if (swalAlert.value === true) {
         await edit({ shelf: 2 }, task.id);

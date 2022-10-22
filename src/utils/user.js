@@ -21,28 +21,30 @@ export const getLoggedUser = () => {
 };
 
 export const login = async (data, logged) => {
-  const request = await api.post("/authenticate", data).catch((error) => {
-    if (error) {
-      return false;
-    }
-  });
+  const { status, auth_token, user } = await api
+    .post("/authenticate", data)
+    .catch((error) => {
+      if (error) {
+        return { status: false };
+      }
+    });
 
-  if (request !== false) {
-    token(request.data.auth_token);
-    loggedInUser(request.data.user);
+  if (status !== false) {
+    token(auth_token);
+    loggedInUser(user);
 
     logged(true);
 
-    const user = await getLoggedUser();
+    const { id } = await getLoggedUser();
 
-    await api.post(`/users/${user.id}/books/`, {
+    await api.post(`/users/${id}/books/`, {
       headers: {
         Authorization: `token ${localStorage.getItem("auth_token")}`,
       },
     });
   }
 
-  return request;
+  return status;
 };
 
 export const loggout = () => {

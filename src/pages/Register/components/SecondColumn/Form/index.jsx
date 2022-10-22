@@ -49,10 +49,7 @@ const Form = () => {
       if (response.code === "ERR_BAD_REQUEST") {
         await swalModal("Ja existe uma conta com esse email!");
 
-        setName("");
         setEmail("");
-        setPassword("");
-        setPassword2("");
       } else {
         await swalModal();
       }

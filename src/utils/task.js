@@ -3,10 +3,10 @@ import api from "../services/api";
 import { getLoggedUser } from "./user";
 
 export const add = async (task) => {
-  const user = getLoggedUser();
+  const { id } = getLoggedUser();
 
   return await api.post(
-    `/users/${user.id}/books/`,
+    `/users/${id}/books/`,
     { book: task },
     {
       headers: {
@@ -17,20 +17,20 @@ export const add = async (task) => {
 };
 
 export const get = async () => {
-  const user = getLoggedUser();
+  const { id } = getLoggedUser();
 
-  return await api.get(`/users/${user.id}/books/`, {
+  return await api.get(`/users/${id}/books/`, {
     headers: {
       Authorization: localStorage.getItem("auth_token"),
     },
   });
 };
 
-export const edit = async (task, id) => {
-  const user = getLoggedUser();
+export const edit = async (task, taskId) => {
+  const { id } = getLoggedUser();
 
   return await api.put(
-    `/users/${user.id}/books/${id}/`,
+    `/users/${id}/books/${taskId}/`,
     { book: task },
     {
       headers: {
@@ -40,10 +40,10 @@ export const edit = async (task, id) => {
   );
 };
 
-export const remove = async (id) => {
-  const user = getLoggedUser();
+export const remove = async (taskId) => {
+  const { id } = getLoggedUser();
 
-  return await api.delete(`/users/${user.id}/books/${id}`, {
+  return await api.delete(`/users/${id}/books/${taskId}`, {
     headers: {
       Authorization: localStorage.getItem("auth_token"),
     },

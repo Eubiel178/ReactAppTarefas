@@ -47,7 +47,7 @@ const Form = () => {
     } else if (email.includes("@") === false) {
       swalModal("Por favor informe um email valido!");
     } else if (email && password) {
-      const response = await login(
+      const status = await login(
         {
           user: email,
           password: password,
@@ -55,7 +55,7 @@ const Form = () => {
         setAuth
       );
 
-      if (response === false) {
+      if (status === false) {
         swalModal("Senha incorreta!");
       }
     }
