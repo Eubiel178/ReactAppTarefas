@@ -12,7 +12,7 @@ import FormItem from "../../../../components/FormITem/Index";
 import Button from "../../../../components/Button/Index";
 import ButtonLink from "../../../../components/ButtonLink/Index";
 
-import { FormContainer } from "./Styles";
+import { FormContainer, ButtonContainer } from "./Styles";
 import { useNavigate } from "react-router-dom";
 
 const Form = () => {
@@ -106,7 +106,9 @@ const Form = () => {
 
       <Button calback={handleRegister} value="Criar Conta" />
 
-      <ButtonLink to="/" text="Já tem uma conta" textLink="Login" />
+      <ButtonContainer>
+        <ButtonLink to="/" text="Já tem uma conta" textLink="Login" />
+      </ButtonContainer>
     </FormContainer>
   );
 };

@@ -18,6 +18,6 @@ export const ContainerContent = styled.div`
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.13);
 
   @media (max-width: 1000px) {
-    width: 80%;
+    width: 90%;
   }
 `;

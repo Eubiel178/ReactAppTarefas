@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
-  padding-top: 12em;
-`;
+
 
 export const Button = styled.button`
+  color: #fff;
+
   background-color: #3085d6;
   padding: 0.5em;
   border-radius: 6px;
@@ -15,10 +15,5 @@ export const Button = styled.button`
 
   :hover {
     background-color: #3005d6;
-  }
-
-  a {
-    color: #fff;
-    text-decoration: none;
   }
 `;

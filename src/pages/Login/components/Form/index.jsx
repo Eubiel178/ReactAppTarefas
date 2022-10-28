@@ -14,7 +14,7 @@ import FormItem from "../../../../components/FormITem/Index";
 import Button from "../../../../components/Button/Index";
 import ButtonLink from "../../../../components/ButtonLink/Index";
 
-import { FormContainer } from "./Styles";
+import { FormContainer, ButtonContainer } from "./Styles";
 
 const Form = () => {
   const [email, setEmail] = useState("");
@@ -80,11 +80,13 @@ const Form = () => {
       />
       <Button calback={handleLogin} value="Logar" />
 
-      <ButtonLink
-        to="/register"
-        text=" Ainda não tem conta?"
-        textLink="Cadastre-se"
-      />
+      <ButtonContainer>
+        <ButtonLink
+          to="/register"
+          text=" Ainda não tem conta?"
+          textLink="Cadastre-se"
+        />
+      </ButtonContainer>
     </FormContainer>
   );
 };
