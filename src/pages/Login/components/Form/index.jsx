@@ -19,6 +19,7 @@ import { FormContainer, ButtonContainer } from "./Styles";
 const Form = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const { setAuth } = useContext(Contexts);
 
@@ -50,12 +51,14 @@ const Form = () => {
     } else if (email.includes("@") === false) {
       swalModal("Por favor informe um email valido!");
     } else if (email && password) {
+      setLoading(true);
       const status = await login({
         email: email,
         password: password,
       });
 
       if (status === 200) {
+        setLoading(false);
         setAuth(true);
       } else {
         swalModal("Email ou senha incorreto!");
@@ -78,7 +81,7 @@ const Form = () => {
         type="password"
         set={setPassword}
       />
-      <Button calback={handleLogin} value="Logar" />
+      <Button calback={handleLogin} value="Logar" loading={loading} />
 
       <ButtonContainer>
         <ButtonLink

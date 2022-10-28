@@ -33,8 +33,8 @@ const Header = () => {
   const [profile, setProfile] = useState(false);
   const [user, setUser] = useState([]);
 
-  const handleLogin = () => {
-    Swal.fire({
+  const handleLogin = async () => {
+    const { value } = await Swal.fire({
       title: "Deseja deslogar?",
       icon: "warning",
       showCancelButton: true,
@@ -43,16 +43,14 @@ const Header = () => {
       confirmButtonText: "Sim",
       cancelButtonText: "Não",
       preConfirm: (value) => {
-        if (value === true) {
-          loggout();
-          setAuth(false);
-        }
+        return value;
       },
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.fire("Usuario deslogado com sucesso");
-      }
     });
+    if (value === true) {
+      loggout();
+      Swal.fire("Usuario deslogado com sucesso!", "", "success");
+      setAuth(false);
+    }
   };
 
   const handleMode = () => {

@@ -6,7 +6,8 @@ export const ButtonItem = styled.div`
   font-size: 16px;
   background-color: #3085d6;
   border-radius: 0.7em;
-  text-align: center;
+  display: flex;
+  justify-content: center;
   color: #fff;
   transition-duration: 0.5s;
 

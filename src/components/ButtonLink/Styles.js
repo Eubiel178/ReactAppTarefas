@@ -12,7 +12,6 @@ export const Text = styled.p`
 
 export const Button = styled.button`
   color: #fff;
-
   background-color: #3085d6;
   padding: 0.5em;
   border-radius: 6px;

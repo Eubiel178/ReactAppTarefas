@@ -99,9 +99,9 @@ const Home = () => {
 
   const handleRemove = async (task) => {
     if (task.isFinished === false) {
-      const swalAlert = await swalModal("Deseja remover essa tarefa?");
+      const { value } = await swalModal("Deseja remover essa tarefa?");
 
-      if (swalAlert.value === true) {
+      if (value === true) {
         await remove(task._id);
       }
     } else {

@@ -20,6 +20,7 @@ const Form = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [password2, setPassword2] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const swalModal = (text) => {
@@ -47,6 +48,7 @@ const Form = () => {
       password === password2 &&
       password.length >= 6
     ) {
+      setLoading(true);
       const status = await register({
         name: name,
         email: email,
@@ -55,6 +57,7 @@ const Form = () => {
       });
 
       if (status === 201 || status === 200) {
+        setLoading(false);
         await swalModal();
         navigate("/");
       } else {
@@ -104,7 +107,7 @@ const Form = () => {
         value={password2}
       />
 
-      <Button calback={handleRegister} value="Criar Conta" />
+      <Button calback={handleRegister} value="Criar Conta" loading={loading} />
 
       <ButtonContainer>
         <ButtonLink to="/" text="Já tem uma conta" textLink="Login" />
