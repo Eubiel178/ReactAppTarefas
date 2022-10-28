@@ -1,4 +1,4 @@
-import { Container } from "./styles";
+import { ButtonItem } from "./styles";
 
 const Button = ({ calback, value }) => {
   const Event = (event) => {
@@ -6,11 +6,7 @@ const Button = ({ calback, value }) => {
 
     calback();
   };
-  return (
-    <Container>
-      <button onClick={Event}>{value}</button>
-    </Container>
-  );
+  return <ButtonItem onClick={Event}>{value}</ButtonItem>;
 };
 
 export default Button;

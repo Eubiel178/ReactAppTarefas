@@ -2,54 +2,24 @@ import api from "../services/api";
 
 import { getLoggedUser } from "./user";
 
-export const add = async (task) => {
-  const { id } = getLoggedUser();
-
-  return await api.post(
-    `/users/${id}/books/`,
-    { book: task },
-    {
-      headers: {
-        Authorization: localStorage.getItem("auth_token"),
-      },
-    }
-  );
+export const add = async (body) => {
+  const response = await api.post("/list", body);
 };
 
 export const get = async () => {
-  const { id } = getLoggedUser();
+  const { _id } = getLoggedUser();
 
-  const { data } = await api.get(`/users/${id}/books/`, {
-    headers: {
-      Authorization: localStorage.getItem("auth_token"),
-    },
-  });
+  const { data } = await api.get(`/list/user-id/${_id}`);
 
   return data;
 };
 
-export const edit = async (task, taskId) => {
-  const { id } = getLoggedUser();
-
-  return await api.put(
-    `/users/${id}/books/${taskId}/`,
-    { book: task },
-    {
-      headers: {
-        Authorization: localStorage.getItem("auth_token"),
-      },
-    }
-  );
+export const edit = async (body, taskId) => {
+  const response = await api.patch(`/list/task-id/${taskId}`, body);
 };
 
 export const remove = async (taskId) => {
-  const { id } = getLoggedUser();
-
-  return await api.delete(`/users/${id}/books/${taskId}`, {
-    headers: {
-      Authorization: localStorage.getItem("auth_token"),
-    },
-  });
+  const response = await api.delete(`/list/task-id/${taskId}`);
 };
 
 export const getConcluded = async () => {

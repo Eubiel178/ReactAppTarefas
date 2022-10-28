@@ -18,7 +18,15 @@ import {
   ButtonRemove,
 } from "./styles";
 
-const TaskItem = ({ task, setFinish, edited, remove }) => {
+const TaskItem = ({
+  task,
+  description,
+  id,
+  setFinish,
+  edited,
+  remove,
+  isFinished,
+}) => {
   const { mode } = useContext(Contexts);
 
   const editTask = () => {
@@ -32,30 +40,30 @@ const TaskItem = ({ task, setFinish, edited, remove }) => {
   return (
     <TaskContainer>
       <section>
-        <Task id={task.id} key={task.id}>
+        <Task id={id} key={id}>
           <input
             type="radio"
             onClick={() => {
               setFinish(task);
             }}
-            checked={task.shelf === 2 && true}
+            checked={isFinished === true && true}
           />
           <Text
             color={mode && "#B64FC8"}
-            style={{ textDecoration: task.shelf === 2 && "line-through" }}
+            style={{ textDecoration: isFinished === true && "line-through" }}
           >
-            {task.title}
+            {description}
           </Text>
         </Task>
       </section>
 
       <Container>
         <Progress
-          background={task.shelf === 2 ? "#e0d2d4" : "#00A94C"}
-          color={task.shelf === 2 ? "#B64FC8" : "#fff"}
-          width={task.shelf === 2 ? "5em" : "7.4em"}
+          background={isFinished === true ? "#e0d2d4" : "#00A94C"}
+          color={isFinished === true ? "#B64FC8" : "#fff"}
+          width={isFinished === true ? "5em" : "7.4em"}
         >
-          <p>{task.shelf === 2 ? "Completa" : "Em andamento "}</p>
+          <p>{isFinished === true ? "Completa" : "Em andamento "}</p>
         </Progress>
 
         {/*        <button

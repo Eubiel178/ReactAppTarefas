@@ -1,29 +1,17 @@
-//styled-components
-import { ContainerContent, Login } from "./styles";
-
 //libs
 import { Link } from "react-router-dom";
 
 //components
-import Body from "../../components/Account/Body/index";
-import PrimaryColumn from "./components/PrimaryColumn/index";
-import SecondColumn from "./components/SecondColumn/index";
+import Header from "../../components/Header/Index";
+import Body from "../../components/Body/Index";
+import Form from "./components/Form";
 
 const Register = () => {
   return (
     <section>
       <Body>
-        <ContainerContent>
-          <PrimaryColumn />
-          <SecondColumn />
-
-          <Login>
-            Já tem uma conta
-            <button>
-              <Link to="/">Login</Link>
-            </button>
-          </Login>
-        </ContainerContent>
+        <Header title="Cadastre-se" />
+        <Form />
       </Body>
     </section>
   );

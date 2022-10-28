@@ -1,4 +1,4 @@
-import Contexts from "../../../../../contexts/Contexts";
+import Contexts from "../../../../contexts/Contexts";
 
 //hooks
 import { useState, useContext, useEffect } from "react";
@@ -7,11 +7,14 @@ import { useState, useContext, useEffect } from "react";
 import Swal from "sweetalert2";
 
 //page utills
-import { getLoggedUser, login } from "../../../../../utils/user";
+import { getLoggedUser, login } from "../../../../utils/user";
 
 //components
-import FormItem from "../../../../../components/Account/FormITem/index";
-import Button from "../../../../../components/Account/Button/index";
+import FormItem from "../../../../components/FormITem/Index";
+import Button from "../../../../components/Button/Index";
+import ButtonLink from "../../../../components/ButtonLink/Index";
+
+import { FormContainer } from "./Styles";
 
 const Form = () => {
   const [email, setEmail] = useState("");
@@ -47,39 +50,42 @@ const Form = () => {
     } else if (email.includes("@") === false) {
       swalModal("Por favor informe um email valido!");
     } else if (email && password) {
-      const status = await login(
-        {
-          user: email,
-          password: password,
-        },
-        setAuth
-      );
+      const status = await login({
+        email: email,
+        password: password,
+      });
 
-      if (status !== 200) {
-        swalModal("Senha incorreta!");
+      if (status === 200) {
+        setAuth(true);
+      } else {
+        swalModal("Email ou senha incorreto!");
       }
     }
   };
 
   return (
-    <form>
+    <FormContainer>
       <FormItem
-        label="Seu email"
-        placeholder="example@gmail.com"
+        placeholder="Seu email"
         id="email"
         type="email"
         set={setEmail}
       />
 
       <FormItem
-        label="Sua senha"
-        placeholder="Senha"
+        placeholder="Sua senha"
         id="password"
         type="password"
         set={setPassword}
       />
       <Button calback={handleLogin} value="Logar" />
-    </form>
+
+      <ButtonLink
+        to="/register"
+        text=" Ainda não tem conta?"
+        textLink="Cadastre-se"
+      />
+    </FormContainer>
   );
 };
 

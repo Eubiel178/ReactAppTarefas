@@ -7,7 +7,6 @@ import { useContext } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 //pages
-import Historic from "../pages/Historic";
 import Login from "../pages/Login";
 import Register from "../pages/Register/index";
 import Home from "../pages/Home/index";
@@ -25,7 +24,6 @@ const AppRoutes = () => {
       ) : (
         <Routes>
           <Route path="/" exact element={<Home />} />
-          <Route path="/historic" exact element={<Historic />} />
         </Routes>
       )}
     </Router>

@@ -1,7 +1,23 @@
 import api from "../services/api";
 
-export const register = async (requestData) => {
-  const { status } = await api.post("users", requestData);
+export const register = async (body) => {
+  const { status } = await api.post("/users", body).catch((error) => {
+    return error;
+  });
+
+  return status;
+};
+
+export const login = async (body) => {
+  const { status, data } = await api
+    .post("/authenticate", body)
+    .catch((error) => {
+      return error;
+    });
+
+  if (status === 200) {
+    loggedInUser(...data);
+  }
 
   return status;
 };
@@ -16,33 +32,6 @@ export const getLoggedUser = () => {
   }
 };
 
-export const token = (token) => {
-  localStorage.setItem("auth_token", token);
-};
-
-export const login = async (requestData, logged) => {
-  const { status, data } = await api.post("/authenticate", requestData);
-
-  const { auth_token, user } = data;
-
-  if (status === 200) {
-    loggedInUser(user);
-    token(auth_token);
-    logged(true);
-
-    const { id } = await getLoggedUser();
-
-    await api.post(`/users/${id}/books/`, {
-      headers: {
-        Authorization: `token ${localStorage.getItem("auth_token")}`,
-      },
-    });
-  }
-
-  return status;
-};
-
 export const loggout = () => {
-  localStorage.removeItem("userLogged");
-  localStorage.removeItem("auth_token");
+  localStorage.clear();
 };

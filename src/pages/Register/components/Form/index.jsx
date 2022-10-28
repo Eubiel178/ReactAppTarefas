@@ -5,17 +5,22 @@ import { useState } from "react";
 import Swal from "sweetalert2";
 
 //page utills
-import { register } from "../../../../../utils/user";
+import { register } from "../../../../utils/user";
 
 //components
-import FormItem from "../../../../../components/Account/FormITem/index";
-import Button from "../../../../../components/Account/Button/index";
+import FormItem from "../../../../components/FormITem/Index";
+import Button from "../../../../components/Button/Index";
+import ButtonLink from "../../../../components/ButtonLink/Index";
+
+import { FormContainer } from "./Styles";
+import { useNavigate } from "react-router-dom";
 
 const Form = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [password2, setPassword2] = useState("");
+  const navigate = useNavigate();
 
   const swalModal = (text) => {
     if (text) {
@@ -35,28 +40,34 @@ const Form = () => {
     }
     if (password === "" || email === "" || password2 === "" || name === "") {
       swalModal("Verifique se todos os campos estao preenchidos..!");
-    } else if (name && email && password && password === password2) {
+    } else if (
+      name &&
+      email &&
+      password &&
+      password === password2 &&
+      password.length >= 6
+    ) {
       const status = await register({
-        user: {
-          name: name,
-          user: email,
-          email: email,
-          password: password,
-          password_confirmation: password2,
-        },
+        name: name,
+        email: email,
+        password: password,
+        password_confirmation: password2,
       });
-      console.log(status);
+
       if (status === 201 || status === 200) {
         await swalModal();
+        navigate("/");
       } else {
         await swalModal("Ja existe uma conta com esse email!");
-        setEmail("");
+        //setEmail("");
       }
+    } else if (password.length <= 6) {
+      swalModal("A senha deve conter no minimo 6 digitos");
     }
   };
 
   return (
-    <form>
+    <FormContainer>
       <FormItem
         set={setName}
         label="Nome"
@@ -94,7 +105,9 @@ const Form = () => {
       />
 
       <Button calback={handleRegister} value="Criar Conta" />
-    </form>
+
+      <ButtonLink to="/" text="Já tem uma conta" textLink="Login" />
+    </FormContainer>
   );
 };
 

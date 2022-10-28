@@ -8,32 +8,26 @@ import { Container, Title, Button } from "./styles";
 
 //libs
 import Swal from "sweetalert2";
+import { remove } from "../../../../utils/task";
 
 //page utills
-import { edit } from "../../../../utils/task";
 
 const SubTitle = ({ toDoList, setToDoList, renderList }) => {
   const { mode } = useContext(Contexts);
 
   const clearList = async () => {
     const completed = toDoList.filter((element) => {
-      return element.shelf === 2;
+      return element.isFinished === true;
     });
 
     if (toDoList.length > 0 && completed.length === toDoList.length) {
-      toDoList.forEach(async (element) => {
-        await edit({ shelf: 3 }, element.id);
-      });
-
       Swal.fire("Bom Trabalho!", "Você completou todas as tarefa", "success");
 
-      renderList();
-    } else if (toDoList.length === 0) {
-      Swal.fire({
-        icon: "error",
-        title: "",
-        text: "Nenhuma tarefa adicionada",
+      toDoList.forEach(async (element) => {
+        remove(element._id);
       });
+
+      renderList();
     } else {
       Swal.fire({
         icon: "error",

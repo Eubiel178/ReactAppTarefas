@@ -24,6 +24,7 @@ import Header from "./components/Header/index";
 import Form from "./components/Form/index";
 import SubTitle from "./components/SubTitle/index";
 import TaskItem from "./components/TaskItem/index";
+import { getLoggedUser } from "../../utils/user";
 
 const Home = () => {
   const [toDoList, setToDoList] = useState([]);
@@ -33,14 +34,7 @@ const Home = () => {
 
   const handleRenderingToDoList = async () => {
     const list = await get();
-
-    const tasks = list.filter((element) => {
-      if (element.shelf === 1 || element.shelf === 2) {
-        return element;
-      }
-    });
-
-    setToDoList(tasks);
+    setToDoList(list);
   };
 
   useEffect(() => {
@@ -75,32 +69,17 @@ const Home = () => {
 
   const handleOnSubmit = async (event) => {
     event.preventDefault();
+    const { _id } = getLoggedUser();
 
     if (toDoList.length > 0 && editId) {
-      await edit(
-        {
-          title: input,
-          author: input,
-          image_url: input,
-          grade: input,
-          categories: input,
-          review: input,
-          google_book_id: input,
-        },
-        editId
-      );
+      await edit({ description: input }, editId);
 
       setEditId("");
     } else if (input) {
       await add({
-        title: input,
-        author: input,
-        image_url: input,
-        grade: input,
-        categories: input,
-        shelf: 1,
-        review: input,
-        google_book_id: input,
+        description: input,
+        isFinished: false,
+        userID: _id,
       });
     }
 
@@ -110,46 +89,36 @@ const Home = () => {
   };
 
   const handleEdit = (task) => {
-    if (task.shelf === 1) {
-      setInput(task.title);
-      setEditId(task.id);
+    if (task.isFinished === false) {
+      setInput(task.description);
+      setEditId(task._id);
     } else {
       swalModal();
+    }
+  };
+
+  const handleRemove = async (task) => {
+    if (task.isFinished === false) {
+      const swalAlert = await swalModal("Deseja remover essa tarefa?");
+
+      if (swalAlert.value === true) {
+        await remove(task._id);
+      }
+    } else {
+      await remove(task._id);
     }
 
     handleRenderingToDoList();
   };
 
-  const handleRemove = async (task) => {
-    if (task.shelf === 1) {
-      const swalAlert = await swalModal("Deseja remover essa tarefa?");
-
-      if (swalAlert.value === true) {
-        if (task.shelf === 2) {
-          await edit({ shelf: 3 }, task.id);
-
-          handleRenderingToDoList();
-        } else {
-          await remove(task.id);
-
-          handleRenderingToDoList();
-        }
-      }
-    } else {
-      await edit({ shelf: 3 }, task.id);
-
-      handleRenderingToDoList();
-    }
-  };
-
   const handleSetFinishTask = async (task) => {
-    if (task.shelf === 1) {
+    if (task.isFinished === false) {
       const swalAlert = await swalModal(
         "Deseja mesmo marcar esta tarefa como concluida?"
       );
 
       if (swalAlert.value === true) {
-        await edit({ shelf: 2 }, task.id);
+        await edit({ isFinished: true }, task._id);
 
         handleRenderingToDoList();
       }
@@ -181,10 +150,13 @@ const Home = () => {
                 toDoList.map((element) => {
                   return (
                     <TaskItem
+                      description={element.description}
                       task={element}
                       setFinish={handleSetFinishTask}
                       edited={handleEdit}
                       remove={handleRemove}
+                      isFinished={element.isFinished}
+                      id={element._id}
                     />
                   );
                 })

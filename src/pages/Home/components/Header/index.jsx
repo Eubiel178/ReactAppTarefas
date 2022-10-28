@@ -84,13 +84,6 @@ const Header = () => {
       <section>
         <NavBar background={mode ? "#1F1F1F" : "#3085d6"}>
           <section>
-            <Link to="/historic">
-              <Button
-                border={mode ? "solid 2px #1F1F1F" : " solid 2px #3085d6"}
-              >
-                Histórico
-              </Button>
-            </Link>
             <Mode
               onClick={handleMode}
               background={mode === false ? "black" : "#fff"}
@@ -128,9 +121,7 @@ const Header = () => {
 
                 <InfoUser>
                   <BiUser style={{ fontSize: "25px" }} />
-                  <p>
-                    {user.name} - {user.id}
-                  </p>
+                  <p>{user.name}</p>
                 </InfoUser>
 
                 <InfoUser>
