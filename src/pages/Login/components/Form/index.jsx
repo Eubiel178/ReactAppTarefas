@@ -50,7 +50,7 @@ const Form = () => {
       swalModal("Verifique se todos os campos estao preenchidos..!");
     } else if (email.includes("@") === false) {
       swalModal("Por favor informe um email valido!");
-    } else if (email && password) {
+    } else if (email && password && loading === false) {
       setLoading(true);
       const status = await login({
         email: email,

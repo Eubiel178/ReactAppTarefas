@@ -46,7 +46,8 @@ const Form = () => {
       email &&
       password &&
       password === password2 &&
-      password.length >= 6
+      password.length >= 6 &&
+      loading === false
     ) {
       setLoading(true);
       const status = await register({
