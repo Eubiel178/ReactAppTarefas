@@ -1,16 +1,15 @@
 import { Link } from "react-router-dom";
 
-import {  Button } from "./Styles";
+import { Text, Button } from "./Styles";
 
 const ButtonLink = ({ to, text, textLink }) => {
   return (
-          <p>
-        {text}
-        <Link to={to}>
-          <Button>{textLink}</Button>
-        </Link>
-      </p>
-
+    <Text>
+      {text}
+      <Link to={to}>
+        <Button>{textLink}</Button>
+      </Link>
+    </Text>
   );
 };
 

@@ -1,6 +1,14 @@
 import styled from "styled-components";
 
+export const Text = styled.p`
+  @media (max-width: 480px) {
+    font-size: 12px;
+  }
 
+  @media (max-width: 370px) {
+    font-size: 10px;
+  }
+`;
 
 export const Button = styled.button`
   color: #fff;
@@ -15,5 +23,15 @@ export const Button = styled.button`
 
   :hover {
     background-color: #3005d6;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 12px;
+    padding: 0.5em;
+    margin-left: 0.3em;
+  }
+
+  @media (max-width: 370px) {
+    font-size: 10px;
   }
 `;
