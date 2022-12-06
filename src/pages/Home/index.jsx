@@ -37,10 +37,6 @@ const Home = () => {
     setToDoList(list);
   };
 
-  useEffect(() => {
-    handleRenderingToDoList();
-  }, []);
-
   const swalModal = (title) => {
     if (title) {
       return Swal.fire({
@@ -124,6 +120,10 @@ const Home = () => {
       }
     }
   };
+
+  useEffect(() => {
+    handleRenderingToDoList();
+  }, []);
 
   return (
     <Container background={mode ? " rgb(0, 0, 0)" : "#edf0f2"}>

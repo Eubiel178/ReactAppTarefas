@@ -9,15 +9,17 @@ const Button = ({ calback, value, loading }) => {
     calback();
   };
   return (
-    <>
+    <div>
       {loading ? (
-        <ButtonItem onClick={Event}>
+        <ButtonItem onClick={Event} type="submit">
           <ReactLoading type="spin" color="#ffffff" height="0%" width="3%" />
         </ButtonItem>
       ) : (
-        <ButtonItem onClick={Event}> {value}</ButtonItem>
+        <ButtonItem onClick={Event} type="submit">
+          {value}
+        </ButtonItem>
       )}
-    </>
+    </div>
   );
 };
 

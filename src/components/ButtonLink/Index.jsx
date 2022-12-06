@@ -7,7 +7,7 @@ const ButtonLink = ({ to, text, textLink }) => {
     <Text>
       {text}
       <Link to={to}>
-        <Button>{textLink}</Button>
+        <Button type="button">{textLink}</Button>
       </Link>
     </Text>
   );

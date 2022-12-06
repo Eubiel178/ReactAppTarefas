@@ -10,8 +10,6 @@ import { Container, Title, Button } from "./styles";
 import Swal from "sweetalert2";
 import { remove } from "../../../../utils/task";
 
-//page utills
-
 const SubTitle = ({ toDoList, setToDoList, renderList }) => {
   const { mode } = useContext(Contexts);
 

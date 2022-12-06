@@ -23,18 +23,6 @@ const Form = () => {
 
   const { setAuth } = useContext(Contexts);
 
-  const session = async () => {
-    const user = await getLoggedUser();
-
-    if (user) {
-      setAuth(true);
-    }
-  };
-
-  useEffect(() => {
-    session();
-  }, []);
-
   const swalModal = (text) => {
     Swal.fire({
       icon: "error",
@@ -58,16 +46,27 @@ const Form = () => {
       });
 
       if (status === 200) {
-        setLoading(false);
         setAuth(true);
       } else {
         swalModal("Email ou senha incorreto!");
       }
+
+      setLoading(false);
     }
   };
 
+  useEffect(() => {
+    (async () => {
+      const user = await getLoggedUser();
+
+      if (user) {
+        setAuth(true);
+      }
+    })();
+  }, []);
+
   return (
-    <FormContainer>
+    <FormContainer onSubmit={handleLogin}>
       <FormItem
         placeholder="Seu email"
         id="email"
