@@ -29,6 +29,7 @@ import { getLoggedUser } from "../../utils/user";
 const Home = () => {
   const [toDoList, setToDoList] = useState([]);
   const [editId, setEditId] = useState("");
+  const [loading, setLoading] = useState(false);
   const [parent] = useAutoAnimate();
   const { input, setInput, mode } = useContext(Contexts);
 
@@ -65,13 +66,16 @@ const Home = () => {
 
   const handleOnSubmit = async (event) => {
     event.preventDefault();
+
     const { _id } = getLoggedUser();
 
-    if (toDoList.length > 0 && editId) {
-      await edit({ description: input }, editId);
+    if (loading === false && toDoList.length > 0 && editId) {
+      setLoading(true);
 
-      setEditId("");
-    } else if (input) {
+      await edit({ description: input }, editId);
+    } else if (loading === false && input) {
+      setLoading(true);
+
       await add({
         description: input,
         isFinished: false,
@@ -79,6 +83,7 @@ const Home = () => {
       });
     }
 
+    setLoading(false);
     setInput("");
     setEditId("");
     handleRenderingToDoList();
