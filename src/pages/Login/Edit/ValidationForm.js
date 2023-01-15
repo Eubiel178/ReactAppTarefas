@@ -7,6 +7,6 @@ export const schema = yup.object().shape({
     .required("Campo obrigatório"),
   password: yup
     .string()
-    .min("O campo senha deve conter no minimo 6 digitos")
+    .min(6, "O campo senha deve conter no minimo 6 digitos")
     .required("Campo obrigatório"),
 });
