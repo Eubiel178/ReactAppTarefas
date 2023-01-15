@@ -3,7 +3,7 @@ import api from "../services/api";
 import { getLoggedUser } from "./user";
 
 export const add = async (body) => {
-  const response = await api.post("/list", body);
+  await api.post("/list", body);
 };
 
 export const get = async () => {
@@ -15,11 +15,11 @@ export const get = async () => {
 };
 
 export const edit = async (body, taskId) => {
-  const response = await api.patch(`/list/task-id/${taskId}`, body);
+  await api.patch(`/list/task-id/${taskId}`, body);
 };
 
 export const remove = async (taskId) => {
-  const response = await api.delete(`/list/task-id/${taskId}`);
+  await api.delete(`/list/task-id/${taskId}`);
 };
 
 export const getConcluded = async () => {

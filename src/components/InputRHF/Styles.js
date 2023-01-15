@@ -2,13 +2,13 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   margin-top: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 `;
 
 export const StyledInput = styled.input`
   width: 100%;
   font-size: 16px;
-  margin-bottom: 0.8rem;
+  margin-bottom: 0.5rem;
   padding: 1em;
   border-radius: 0.7em;
   outline: 0px;

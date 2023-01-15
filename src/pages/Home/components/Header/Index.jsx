@@ -74,6 +74,8 @@ const Header = () => {
     }
 
     handleUser();
+
+    // eslint-disable-next-line
   }, []);
 
   return (

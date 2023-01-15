@@ -55,6 +55,8 @@ const EditForm = () => {
         setAuth(true);
       }
     })();
+
+    // eslint-disable-next-line
   }, []);
 
   return (

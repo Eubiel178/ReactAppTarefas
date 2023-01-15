@@ -15,11 +15,7 @@ const InputRHF = ({ name, control, placeholder, error, type, ...rest }) => {
             {...rest}
           />
 
-          {error && (
-            <div>
-              <Error>{error}</Error>
-            </div>
-          )}
+          {error && <Error>{error}</Error>}
         </Container>
       )}
     />
