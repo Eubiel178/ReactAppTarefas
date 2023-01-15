@@ -7,9 +7,9 @@ import { useContext } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 //pages
-import Login from "../pages/Login";
-import Register from "../pages/Register/index";
-import Home from "../pages/Home/index";
+import Login from "../pages/Login/Index/Index";
+import Register from "../pages/Register/Index/Index";
+import Home from "../pages/Home/Index/Index";
 
 const AppRoutes = () => {
   const { auth } = useContext(Contexts);

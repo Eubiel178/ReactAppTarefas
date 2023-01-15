@@ -16,7 +16,7 @@ import {
   Progress,
   ButtonEdit,
   ButtonRemove,
-} from "./styles";
+} from "./Styles";
 
 const TaskItem = ({
   task,

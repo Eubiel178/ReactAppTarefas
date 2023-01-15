@@ -13,10 +13,9 @@ import {
   InfoUser,
   ButtonLoggout,
   Title,
-} from "./styles";
+} from "./Styles";
 
 //libs
-import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
 //page utills

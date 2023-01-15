@@ -1,4 +1,4 @@
-import Contexts from "../../contexts/Contexts";
+import Contexts from "../../../contexts/Contexts";
 
 //hooks
 import { useContext, useEffect, useState } from "react";
@@ -10,21 +10,21 @@ import {
   MainContainer,
   ContainerContent,
   FeedBack,
-} from "./styles";
+} from "./Styles";
 
 //libs
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 import Swal from "sweetalert2";
 
 //page utills
-import { add, remove, edit, get } from "../../utils/task";
+import { add, remove, edit, get } from "../../../utils/task";
 
 //components
-import Header from "./components/Header/index";
-import Form from "./components/Form/index";
-import SubTitle from "./components/SubTitle/index";
-import TaskItem from "./components/TaskItem/index";
-import { getLoggedUser } from "../../utils/user";
+import Header from "../components/Header/Index";
+import EditForm from "../components/Edit/Index";
+import SubTitle from "../components/SubTitle/Index";
+import TaskItem from "../components/TaskItem/Index";
+import { getLoggedUser } from "../../../utils/user";
 
 const Home = () => {
   const [toDoList, setToDoList] = useState([]);
@@ -135,7 +135,7 @@ const Home = () => {
       <ContainerContent background={mode ? "#121212" : "white"}>
         <Header />
         <MainContainer>
-          <Form
+          <EditForm
             AddTask={handleOnSubmit}
             input={input}
             setInput={setInput}

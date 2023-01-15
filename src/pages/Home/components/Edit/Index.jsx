@@ -3,9 +3,9 @@ import Contexts from "../../../../contexts/Contexts";
 import { useContext } from "react";
 
 //styled-components
-import { FormContainer, Button, Input } from "./styles";
+import { FormContainer, Button, Input } from "./Styles";
 
-const Form = ({ AddTask, setInput, input, isEdit }) => {
+const EditForm = ({ AddTask, setInput, input, isEdit }) => {
   const { mode } = useContext(Contexts);
 
   const handleTask = (event) => {
@@ -34,4 +34,4 @@ const Form = ({ AddTask, setInput, input, isEdit }) => {
   );
 };
 
-export default Form;
+export default EditForm;

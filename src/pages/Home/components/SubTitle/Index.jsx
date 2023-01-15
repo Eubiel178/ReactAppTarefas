@@ -4,7 +4,7 @@ import Contexts from "../../../../contexts/Contexts";
 import { useContext } from "react";
 
 //styled-components
-import { Container, Title, Button } from "./styles";
+import { Container, Title, Button } from "./Styles";
 
 //libs
 import Swal from "sweetalert2";

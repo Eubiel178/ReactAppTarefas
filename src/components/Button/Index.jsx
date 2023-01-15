@@ -1,22 +1,17 @@
-import { ButtonItem } from "./styles";
+import { ButtonItem } from "./Styles";
 
 import ReactLoading from "react-loading";
 
-const Button = ({ calback, value, loading }) => {
-  const Event = (event) => {
-    event.preventDefault();
-
-    calback();
-  };
+const Button = ({ value, loading }) => {
   return (
     <div>
       {loading ? (
-        <ButtonItem onClick={Event} type="submit">
-          <ReactLoading type="spin" color="#ffffff" height="0%" width="3%" />
+        <ButtonItem type="submit">
+          <ReactLoading type="spin" color="#ffffff" height="1em" width="1em" />
         </ButtonItem>
       ) : (
-        <ButtonItem onClick={Event} type="submit">
-          {value}
+        <ButtonItem type="submit">
+          <div>{value}</div>
         </ButtonItem>
       )}
     </div>
