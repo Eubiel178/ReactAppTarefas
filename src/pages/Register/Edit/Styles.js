@@ -7,6 +7,4 @@ export const FormContainer = styled.form`
   width: 70%;
 `;
 
-export const ButtonContainer = styled.div`
-  padding-top: 2em;
-`;
+export const ButtonContainer = styled.div``;

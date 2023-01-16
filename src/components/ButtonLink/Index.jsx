@@ -4,12 +4,14 @@ import { Text, Button } from "./Styles";
 
 const ButtonLink = ({ to, text, textLink }) => {
   return (
-    <Text>
-      {text}
-      <Link to={to}>
-        <Button type="button">{textLink}</Button>
-      </Link>
-    </Text>
+    <div>
+      <Text>
+        {text}
+        <Link to={to}>
+          <Button type="button">{textLink}</Button>
+        </Link>
+      </Text>
+    </div>
   );
 };
 

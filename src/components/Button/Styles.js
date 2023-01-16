@@ -9,6 +9,7 @@ export const ButtonItem = styled.button`
   font-size: 16px;
   background-color: #3085d6;
   border-radius: 0.7em;
+  margin-top: 1em;
 
   color: #fff;
   transition-duration: 0.5s;

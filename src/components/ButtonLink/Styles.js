@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
 export const Text = styled.p`
+  padding-top: 2em;
+
   @media (max-width: 480px) {
     font-size: 12px;
   }

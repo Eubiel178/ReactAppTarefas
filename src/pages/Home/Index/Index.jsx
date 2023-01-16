@@ -33,11 +33,6 @@ const Home = () => {
   const [parent] = useAutoAnimate();
   const { input, setInput, mode } = useContext(Contexts);
 
-  const handleRenderingToDoList = async () => {
-    const list = await get();
-    setToDoList(list);
-  };
-
   const swalModal = (title) => {
     if (title) {
       return Swal.fire({
@@ -64,37 +59,44 @@ const Home = () => {
     }
   };
 
+  const handleRenderingToDoList = async () => {
+    const list = await get();
+
+    setToDoList(list);
+  };
+
   const handleOnSubmit = async (event) => {
     event.preventDefault();
 
     const { _id } = getLoggedUser();
 
-    if (loading === false && toDoList.length > 0 && editId) {
+    if (loading === false) {
       setLoading(true);
 
-      await edit({ description: input }, editId);
-    } else if (loading === false && input) {
-      setLoading(true);
+      if (toDoList.length > 0 && editId) {
+        return await edit({ description: input }, editId);
+      }
 
-      await add({
-        description: input,
-        isFinished: false,
-        userID: _id,
-      });
+      if (input) {
+        return await add({
+          description: input,
+          isFinished: false,
+          userID: _id,
+        });
+      }
+
+      setInput("");
+      setEditId("");
+      handleRenderingToDoList();
+      setLoading(false);
     }
-
-    setLoading(false);
-    setInput("");
-    setEditId("");
-    handleRenderingToDoList();
   };
 
   const handleEdit = (task) => {
     if (task.isFinished === false) {
-      setInput(task.description);
-      setEditId(task._id);
+      return setInput(task.description) && setEditId(task._id);
     } else {
-      swalModal();
+      return swalModal();
     }
   };
 
@@ -104,30 +106,34 @@ const Home = () => {
 
       if (value === true) {
         await remove(task._id);
+
+        return handleRenderingToDoList();
       }
     } else {
       await remove(task._id);
-    }
 
-    handleRenderingToDoList();
+      return handleRenderingToDoList();
+    }
   };
 
   const handleSetFinishTask = async (task) => {
     if (task.isFinished === false) {
-      const swalAlert = await swalModal(
+      const { value } = await swalModal(
         "Deseja mesmo marcar esta tarefa como concluida?"
       );
 
-      if (swalAlert.value === true) {
+      if (value === true) {
         await edit({ isFinished: true }, task._id);
 
-        handleRenderingToDoList();
+        return handleRenderingToDoList();
       }
     }
   };
 
   useEffect(() => {
     handleRenderingToDoList();
+
+    // eslint-disable-next-line
   }, []);
 
   return (

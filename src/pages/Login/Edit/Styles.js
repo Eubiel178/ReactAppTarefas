@@ -5,8 +5,8 @@ export const FormContainer = styled.form`
   flex-direction: column;
   width: 70%;
   padding: 1em;
-`;
-
-export const ButtonContainer = styled.div`
-  padding-top: 9em;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 `;

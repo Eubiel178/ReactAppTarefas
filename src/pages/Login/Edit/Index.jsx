@@ -6,7 +6,6 @@ import { useForm } from "react-hook-form";
 
 //libs
 import { yupResolver } from "@hookform/resolvers/yup";
-import Swal from "sweetalert2";
 
 //page utills
 import { getLoggedUser, login } from "../../../utils/user";
@@ -16,11 +15,13 @@ import InputRHF from "../../../components/InputRHF/Index";
 import Button from "../../../components/Button/Index";
 import ButtonLink from "../../../components/ButtonLink/Index";
 
-import { FormContainer, ButtonContainer } from "./Styles";
+import { Error } from "../../../components/InputRHF/Styles";
+import { FormContainer } from "./Styles";
 import { schema } from "./ValidationForm";
 
 const EditForm = () => {
   const [loading, setLoading] = useState(false);
+  const [status, setStatus] = useState("");
   const { setAuth } = useContext(Contexts);
 
   const {
@@ -37,13 +38,14 @@ const EditForm = () => {
       if (status === 200) {
         setAuth(true);
       } else {
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: "Email ou senha incorreto!",
-        });
+        setLoading(false);
+
+        setStatus("Email ou senha incorreto!");
+
+        setTimeout(() => {
+          setStatus("");
+        }, 1000 * 3);
       }
-      setLoading(false);
     }
   };
 
@@ -61,31 +63,33 @@ const EditForm = () => {
 
   return (
     <FormContainer onSubmit={handleSubmit(handleLogin)}>
-      <InputRHF
-        name="email"
-        type="email"
-        placeholder="Seu email"
-        control={control}
-        error={errors?.email && errors.email?.message}
-      />
-
-      <InputRHF
-        name="password"
-        type="password"
-        placeholder="Sua senha"
-        control={control}
-        error={errors?.password && errors.password?.message}
-      />
-
-      <Button value="Logar" loading={loading} />
-
-      <ButtonContainer>
-        <ButtonLink
-          to="/register"
-          text=" Ainda não tem conta?"
-          textLink="Cadastre-se"
+      <div>
+        <InputRHF
+          name="email"
+          type="email"
+          placeholder="Seu email"
+          control={control}
+          error={errors?.email && errors.email?.message}
         />
-      </ButtonContainer>
+
+        <InputRHF
+          name="password"
+          type="password"
+          placeholder="Sua senha"
+          control={control}
+          error={errors?.password && errors.password?.message}
+        />
+
+        {status && <Error>{status}</Error>}
+
+        <Button value="Logar" loading={loading} />
+      </div>
+
+      <ButtonLink
+        to="/register"
+        text=" Ainda não tem conta?"
+        textLink="Cadastre-se"
+      />
     </FormContainer>
   );
 };
