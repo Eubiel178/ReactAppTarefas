@@ -54,6 +54,18 @@ const Home = () => {
     }
   };
 
+  const handleCompletedTask = (data) => {
+    const isFinished = data.filter((element) => {
+      return element.isFinished === true;
+    });
+
+    if (isFinished.length > 0) {
+      setCompletedTask(isFinished.length);
+    } else {
+      setCompletedTask([].length);
+    }
+  };
+
   const handleRenderingToDoList = async () => {
     const list = await get();
     list.sort((smallestElement, greatestElement) => {
@@ -61,6 +73,7 @@ const Home = () => {
     });
 
     setToDoList(list);
+    handleCompletedTask(list);
   };
 
   const handleOnSubmit = async (event) => {
@@ -97,18 +110,6 @@ const Home = () => {
     }
   };
 
-  const handleCompletedTask = (data) => {
-    const isFinished = data.filter((element) => {
-      return element.isFinished === true;
-    });
-
-    if (isFinished.length > 0) {
-      setCompletedTask(isFinished.length);
-    } else {
-      setCompletedTask([].length);
-    }
-  };
-
   const handleRemove = async (task) => {
     if (task.isFinished === false) {
       const { value } = await swalModal("Deseja remover essa tarefa?");
@@ -120,9 +121,8 @@ const Home = () => {
       }
     } else {
       await remove(task._id);
-      const list = await handleRenderingToDoList();
 
-      handleCompletedTask(list);
+      handleRenderingToDoList();
     }
   };
 
@@ -135,9 +135,7 @@ const Home = () => {
       if (value === true) {
         await edit({ isFinished: true }, task._id);
 
-        const list = await handleRenderingToDoList();
-
-        handleCompletedTask(list);
+        handleRenderingToDoList();
       }
     }
   };
@@ -167,10 +165,10 @@ const Home = () => {
 
   useEffect(() => {
     (async () => {
-      const list = await handleRenderingToDoList();
-
-      handleCompletedTask(list);
+      handleRenderingToDoList();
     })();
+
+    // eslint-disable-next-line
   }, []);
 
   return (
