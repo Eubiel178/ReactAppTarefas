@@ -10,6 +10,7 @@ import { BsPencil } from "react-icons/bs";
 //styled-components
 import {
   TaskContainer,
+  TaskDescription,
   Task,
   Text,
   Container,
@@ -39,10 +40,10 @@ const TaskItem = ({
 
   return (
     <TaskContainer>
-      <section>
+      <TaskDescription>
         <Task id={id} key={id}>
           <input
-            type="radio"
+            type="checkbox"
             onClick={() => {
               setFinish(task);
             }}
@@ -55,7 +56,7 @@ const TaskItem = ({
             {description}
           </Text>
         </Task>
-      </section>
+      </TaskDescription>
 
       <Container>
         <Progress

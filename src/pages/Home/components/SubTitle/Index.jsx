@@ -4,13 +4,19 @@ import Contexts from "../../../../contexts/Contexts";
 import { useContext } from "react";
 
 //styled-components
-import { Container, Title, Button } from "./Styles";
+import {
+  Container,
+  TitleContainer,
+  Title,
+  CompletedTasks,
+  Button,
+} from "./Styles";
 
 //libs
 import Swal from "sweetalert2";
 import { remove } from "../../../../utils/task";
 
-const SubTitle = ({ toDoList, setToDoList, renderList }) => {
+const SubTitle = ({ toDoList, renderList, completedTask }) => {
   const { mode } = useContext(Contexts);
 
   const clearList = async () => {
@@ -37,7 +43,14 @@ const SubTitle = ({ toDoList, setToDoList, renderList }) => {
 
   return (
     <Container>
-      <Title colorTitle={mode ? "#B64FC8" : " #3085d6"}>TAREFAS</Title>
+      <TitleContainer>
+        <Title colorTitle={mode ? "#B64FC8" : " #3085d6"}>TAREFAS</Title>
+
+        <CompletedTasks>
+          tarefas concluídas: {completedTask > 0 ? completedTask : "0"}
+        </CompletedTasks>
+      </TitleContainer>
+
       <Button
         style={{ display: toDoList.length === 0 && "none" }}
         onClick={clearList}

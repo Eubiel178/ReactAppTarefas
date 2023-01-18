@@ -6,6 +6,8 @@ export const TaskContainer = styled.div`
   justify-content: space-between;
 `;
 
+export const TaskDescription = styled.div``;
+
 export const Task = styled.p`
   text-align: left;
   word-break: break-all;

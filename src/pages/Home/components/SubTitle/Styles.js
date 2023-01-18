@@ -7,9 +7,16 @@ export const Container = styled.div`
   padding-top: 2em;
 `;
 
+export const TitleContainer = styled.div``;
+
 export const Title = styled.h2`
-  margin: 1.5em 0em 1em 0em;
+  margin-top: 1.5em;
   color: ${({ colorTitle }) => colorTitle};
+`;
+
+export const CompletedTasks = styled.p`
+  padding-bottom: 2em;
+  color: #686868;
 `;
 
 export const Button = styled.button`

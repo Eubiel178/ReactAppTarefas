@@ -30,6 +30,7 @@ const Home = () => {
   const [toDoList, setToDoList] = useState([]);
   const [editId, setEditId] = useState("");
   const [loading, setLoading] = useState(false);
+  const [completedTask, setCompletedTask] = useState([]);
   const [parent] = useAutoAnimate();
   const { input, setInput, mode } = useContext(Contexts);
 
@@ -61,8 +62,9 @@ const Home = () => {
 
   const handleRenderingToDoList = async () => {
     const list = await get();
-
     setToDoList(list);
+
+    return list;
   };
 
   const handleOnSubmit = async (event) => {
@@ -74,11 +76,9 @@ const Home = () => {
       setLoading(true);
 
       if (toDoList.length > 0 && editId) {
-        return await edit({ description: input }, editId);
-      }
-
-      if (input) {
-        return await add({
+        await edit({ description: input }, editId);
+      } else if (input) {
+        await add({
           description: input,
           isFinished: false,
           userID: _id,
@@ -94,9 +94,21 @@ const Home = () => {
 
   const handleEdit = (task) => {
     if (task.isFinished === false) {
-      return setInput(task.description) && setEditId(task._id);
+      setInput(task.description) && setEditId(task._id);
     } else {
-      return swalModal();
+      swalModal();
+    }
+  };
+
+  const handleCompletedTask = (data) => {
+    const isFinished = data.filter((element) => {
+      return element.isFinished === true;
+    });
+
+    if (isFinished.length > 0) {
+      setCompletedTask(isFinished.length);
+    } else {
+      setCompletedTask([].length);
     }
   };
 
@@ -107,12 +119,13 @@ const Home = () => {
       if (value === true) {
         await remove(task._id);
 
-        return handleRenderingToDoList();
+        handleRenderingToDoList();
       }
     } else {
       await remove(task._id);
+      const list = await handleRenderingToDoList();
 
-      return handleRenderingToDoList();
+      handleCompletedTask(list);
     }
   };
 
@@ -125,15 +138,19 @@ const Home = () => {
       if (value === true) {
         await edit({ isFinished: true }, task._id);
 
-        return handleRenderingToDoList();
+        const list = await handleRenderingToDoList();
+
+        handleCompletedTask(list);
       }
     }
   };
 
   useEffect(() => {
-    handleRenderingToDoList();
+    (async () => {
+      const list = await handleRenderingToDoList();
 
-    // eslint-disable-next-line
+      handleCompletedTask(list);
+    })();
   }, []);
 
   return (
@@ -151,6 +168,7 @@ const Home = () => {
             <SubTitle
               toDoList={toDoList}
               setToDoList={setToDoList}
+              completedTask={completedTask}
               renderList={handleRenderingToDoList}
             />
 

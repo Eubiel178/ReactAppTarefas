@@ -11,7 +11,7 @@ export const Container = styled.div`
 export const ContainerContent = styled.div`
   position: relative;
   background-color: ${({ background }) => background};
-  width: 60%;
+  width: 70%;
   height: 90vh;
   box-shadow: 0 0.5em 1em -0.125em hsl(0deg 0% 4% / 10%),
     0 0 0 1px hsl(0deg 0% 4% / 2%);
@@ -37,8 +37,6 @@ export const MainContainer = styled.div`
 `;
 
 export const TaskList = styled.div`
-  margin-left: 0.5em;
-
   color: ${({ color }) => color};
 `;
 

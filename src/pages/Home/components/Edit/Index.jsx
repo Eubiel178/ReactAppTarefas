@@ -24,6 +24,7 @@ const EditForm = ({ AddTask, setInput, input, isEdit }) => {
           required
         />
         <Button
+          type="submit"
           backgroundButton={mode ? "#B64FC8" : " #3085d6"}
           buttonHover={mode ? "#6105d6" : "#3005d6"}
         >
