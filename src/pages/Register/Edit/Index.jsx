@@ -17,9 +17,11 @@ import ButtonLink from "../../../components/ButtonLink/Index";
 import { FormContainer, ButtonContainer } from "./Styles";
 import { useNavigate } from "react-router-dom";
 import { schema } from "./ValidationForm";
+import Visibility from "../../../components/Visibility/Index";
 
 const EditForm = () => {
   const [loading, setLoading] = useState(false);
+  const [passwordVisible, setPasswordVisible] = useState(false);
   const navigate = useNavigate();
 
   const {
@@ -79,7 +81,7 @@ const EditForm = () => {
 
       <InputRHF
         name="password"
-        type="password"
+        type={passwordVisible ? "text" : "password"}
         placeholder="Senha"
         control={control}
         error={errors?.password && errors.password?.message}
@@ -87,13 +89,15 @@ const EditForm = () => {
 
       <InputRHF
         name="password_confirmation"
-        type="password"
+        type={passwordVisible ? "text" : "password"}
         placeholder="Repita sua senha"
         control={control}
         error={
           errors?.password_confirmation && errors.password_confirmation?.message
         }
       />
+
+      <Visibility value={passwordVisible} set={setPasswordVisible} />
 
       <Button value="Criar Conta" loading={loading} />
 

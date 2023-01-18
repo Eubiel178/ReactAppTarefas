@@ -18,9 +18,11 @@ import ButtonLink from "../../../components/ButtonLink/Index";
 import { Error } from "../../../components/InputRHF/Styles";
 import { FormContainer } from "./Styles";
 import { schema } from "./ValidationForm";
+import Visibility from "../../../components/Visibility/Index";
 
 const EditForm = () => {
   const [loading, setLoading] = useState(false);
+  const [passwordVisible, setPasswordVisible] = useState(false);
   const [status, setStatus] = useState("");
   const { setAuth } = useContext(Contexts);
 
@@ -74,13 +76,15 @@ const EditForm = () => {
 
         <InputRHF
           name="password"
-          type="password"
+          type={passwordVisible ? "text" : "password"}
           placeholder="Sua senha"
           control={control}
           error={errors?.password && errors.password?.message}
         />
 
         {status && <Error>{status}</Error>}
+
+        <Visibility value={passwordVisible} set={setPasswordVisible} />
 
         <Button value="Logar" loading={loading} />
       </div>

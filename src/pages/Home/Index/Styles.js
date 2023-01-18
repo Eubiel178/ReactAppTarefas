@@ -11,24 +11,13 @@ export const Container = styled.div`
 export const ContainerContent = styled.div`
   position: relative;
   background-color: ${({ background }) => background};
-  width: 70%;
-  height: 90vh;
-  box-shadow: 0 0.5em 1em -0.125em hsl(0deg 0% 4% / 10%),
-    0 0 0 1px hsl(0deg 0% 4% / 2%);
-
-  border-radius: 1.2em;
-
+  width: 100%;
+  height: 100vh;
   overflow: hidden;
   overflow-y: auto;
 
   ::-webkit-scrollbar {
     display: none;
-  }
-
-  @media (max-width: 950px) {
-    width: 100%;
-    height: 100vh;
-    border-radius: 0px;
   }
 `;
 
@@ -38,6 +27,7 @@ export const MainContainer = styled.div`
 
 export const TaskList = styled.div`
   color: ${({ color }) => color};
+  padding-bottom: 1em;
 `;
 
 export const FeedBack = styled.p`

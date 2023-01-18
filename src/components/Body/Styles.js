@@ -10,7 +10,7 @@ export const Container = styled.div`
 
 export const ContainerContent = styled.div`
   width: 50%;
-  height: 80%;
+  height: 90%;
   background-color: #fff;
   border-radius: 1em;
   display: flex;
