@@ -6,6 +6,7 @@ import { useContext } from "react";
 //icons
 import { FaTrashAlt } from "react-icons/fa";
 import { BsPencil } from "react-icons/bs";
+import { AiOutlineArrowUp, AiOutlineArrowDown } from "react-icons/ai";
 
 //styled-components
 import {
@@ -73,7 +74,7 @@ const TaskItem = ({
                 position("up", task, index);
               }}
             >
-              ⬆
+              <AiOutlineArrowUp />
             </button>
             <button
               style={{
@@ -83,7 +84,7 @@ const TaskItem = ({
                 position("bottom", task, index);
               }}
             >
-              ⬇
+              <AiOutlineArrowDown />
             </button>
           </PositionStyle>
 
