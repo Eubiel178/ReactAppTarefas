@@ -4,12 +4,13 @@ export const TaskContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: 1em;
 `;
 
 export const TaskDescription = styled.div``;
 
 export const Task = styled.p`
-  text-align: left;
+  text-align: justify;
   word-break: break-all;
   cursor: zoom-in;
 
@@ -26,6 +27,7 @@ export const Text = styled.span`
 export const Container = styled.div`
   margin-left: 1em;
   display: flex;
+
   align-items: center;
 `;
 
@@ -36,12 +38,45 @@ export const Progress = styled.div`
   cursor: zoom-in;
   background-color: ${({ background }) => background};
   font-size: 13px;
-  width: ${({ width }) => width};
   text-align: center;
 
-  @media (max-width: 680px) {
+  p {
+    width: ${({ width }) => width};
+  }
+
+  @media (max-width: 740px) {
     display: none;
   }
+`;
+
+export const ActionContainer = styled.div`
+  display: flex;
+  align-items: center;
+  padding-left: 0.5em;
+`;
+
+export const PositionStyle = styled.div`
+  display: flex;
+  margin-right: 0.5em;
+
+  button:first-child {
+    margin-right: 0.5em;
+  }
+
+  button {
+    border: 0px;
+    padding: 0.6em;
+    cursor: pointer;
+    font-size: 17px;
+  }
+
+  @media (max-width: 740px) {
+    display: none;
+  }
+`;
+
+export const RemoveAndEdit = styled.div`
+  display: flex;
 `;
 
 export const ButtonEdit = styled.button`
@@ -62,6 +97,5 @@ export const ButtonRemove = styled(ButtonEdit)`
   background-color: transparent;
   transition-duration: 0.5s;
   padding: 0.6em;
-  margin-right: 1em;
   cursor: pointer;
 `;

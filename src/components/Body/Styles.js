@@ -26,4 +26,9 @@ export const ContainerContent = styled.div`
   @media (max-width: 1000px) {
     width: 90%;
   }
+
+  @media (max-width: 480px) {
+    height: 100%;
+    width: 100%;
+  }
 `;

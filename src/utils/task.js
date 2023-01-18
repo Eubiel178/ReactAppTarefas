@@ -14,16 +14,10 @@ export const get = async () => {
   return data;
 };
 
-export const edit = async (body, taskId) => {
+export const edit = async (body, taskId, array) => {
   await api.patch(`/list/task-id/${taskId}`, body);
 };
 
 export const remove = async (taskId) => {
   await api.delete(`/list/task-id/${taskId}`);
-};
-
-export const getConcluded = async () => {
-  if (localStorage.getItem("concluded")) {
-    return JSON.parse(localStorage.getItem("concluded"));
-  }
 };

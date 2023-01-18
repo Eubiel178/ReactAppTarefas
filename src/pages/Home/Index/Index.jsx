@@ -4,13 +4,7 @@ import Contexts from "../../../contexts/Contexts";
 import { useContext, useEffect, useState } from "react";
 
 //styled-components
-import {
-  Container,
-  TaskList,
-  MainContainer,
-  ContainerContent,
-  FeedBack,
-} from "./Styles";
+import { TaskList, MainContainer, ContainerContent, FeedBack } from "./Styles";
 
 //libs
 import { useAutoAnimate } from "@formkit/auto-animate/react";
@@ -62,9 +56,11 @@ const Home = () => {
 
   const handleRenderingToDoList = async () => {
     const list = await get();
-    setToDoList(list);
+    list.sort((smallestElement, greatestElement) => {
+      return smallestElement.index - greatestElement.index;
+    });
 
-    return list;
+    setToDoList(list);
   };
 
   const handleOnSubmit = async (event) => {
@@ -82,6 +78,7 @@ const Home = () => {
           description: input,
           isFinished: false,
           userID: _id,
+          index: -toDoList.length,
         });
       }
 
@@ -145,6 +142,29 @@ const Home = () => {
     }
   };
 
+  const handlePositionTask = async (pos, task, index) => {
+    if (pos === "up" || pos === "bottom") {
+      const newArray = [...toDoList];
+
+      if (pos === "up" && index !== 0) {
+        newArray.splice(index, 1);
+
+        newArray.splice(index - 1, 0, task);
+      }
+
+      if (pos === "bottom" && index < toDoList.length) {
+        newArray.splice(index, 1);
+        newArray.splice(index + 1, 0, task);
+      }
+
+      setToDoList(newArray);
+
+      newArray.forEach(async (element, index) => {
+        await edit({ ...element, index: index }, element._id);
+      });
+    }
+  };
+
   useEffect(() => {
     (async () => {
       const list = await handleRenderingToDoList();
@@ -154,7 +174,7 @@ const Home = () => {
   }, []);
 
   return (
-    <Container background={mode ? " rgb(0, 0, 0)" : "#edf0f2"}>
+    <>
       <ContainerContent background={mode ? "#121212" : "white"}>
         <Header />
         <MainContainer>
@@ -176,9 +196,11 @@ const Home = () => {
               {toDoList.length === 0 ? (
                 <FeedBack>Nenhuma tarefa foi adicionada</FeedBack>
               ) : (
-                toDoList.map((element) => {
+                toDoList.map((element, index, array) => {
                   return (
                     <TaskItem
+                      array={array}
+                      index={index}
                       description={element.description}
                       task={element}
                       setFinish={handleSetFinishTask}
@@ -186,6 +208,7 @@ const Home = () => {
                       remove={handleRemove}
                       isFinished={element.isFinished}
                       id={element._id}
+                      position={handlePositionTask}
                     />
                   );
                 })
@@ -194,7 +217,7 @@ const Home = () => {
           </div>
         </MainContainer>
       </ContainerContent>
-    </Container>
+    </>
   );
 };
 

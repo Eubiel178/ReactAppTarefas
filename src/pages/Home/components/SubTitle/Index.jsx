@@ -28,7 +28,7 @@ const SubTitle = ({ toDoList, renderList, completedTask }) => {
       Swal.fire("Bom Trabalho!", "Você completou todas as tarefa", "success");
 
       toDoList.forEach(async (element) => {
-        remove(element._id);
+        await remove(element._id);
       });
 
       renderList();

@@ -1,15 +1,6 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
-  background-color: ${({ background }) => background};
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
 export const ContainerContent = styled.div`
-  position: relative;
   background-color: ${({ background }) => background};
   width: 100%;
   height: 100vh;
@@ -22,7 +13,7 @@ export const ContainerContent = styled.div`
 `;
 
 export const MainContainer = styled.div`
-  padding: 1em 1em 0em 2em;
+  padding: 1em 1em 0em 1.5em;
 `;
 
 export const TaskList = styled.div`

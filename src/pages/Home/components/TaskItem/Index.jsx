@@ -15,28 +15,26 @@ import {
   Text,
   Container,
   Progress,
+  ActionContainer,
+  PositionStyle,
+  RemoveAndEdit,
   ButtonEdit,
   ButtonRemove,
 } from "./Styles";
 
 const TaskItem = ({
-  task,
+  array,
+  index,
   description,
-  id,
+  task,
   setFinish,
   edited,
   remove,
   isFinished,
+  id,
+  position,
 }) => {
   const { mode } = useContext(Contexts);
-
-  const editTask = () => {
-    edited(task);
-  };
-
-  const removeTask = async () => {
-    remove(task);
-  };
 
   return (
     <TaskContainer>
@@ -67,29 +65,48 @@ const TaskItem = ({
           <p>{isFinished === true ? "Completa" : "Em andamento "}</p>
         </Progress>
 
-        {/*        <button
-            onClick={() => {
-              position(id, "up");
-            }}
-          >
-            ⬆
-          </button>
-          <button>⬇</button> */}
+        <ActionContainer>
+          <PositionStyle>
+            <button
+              style={{ visibility: index === 0 ? "hidden" : "initial" }}
+              onClick={() => {
+                position("up", task, index);
+              }}
+            >
+              ⬆
+            </button>
+            <button
+              style={{
+                visibility: index === array.length - 1 ? "hidden" : "initial",
+              }}
+              onClick={() => {
+                position("bottom", task, index);
+              }}
+            >
+              ⬇
+            </button>
+          </PositionStyle>
 
-        <ButtonEdit
-          color={mode && "white"}
-          style={{ color: mode && " #e0d2d4" }}
-          onClick={editTask}
-        >
-          <BsPencil />
-        </ButtonEdit>
-        <ButtonRemove
-          onClick={() => {
-            removeTask();
-          }}
-        >
-          <FaTrashAlt />
-        </ButtonRemove>
+          <RemoveAndEdit>
+            <ButtonEdit
+              color={mode ? "white" : "black"}
+              style={{ color: mode && " #e0d2d4" }}
+              onClick={() => {
+                edited(task);
+              }}
+            >
+              <BsPencil />
+            </ButtonEdit>
+
+            <ButtonRemove
+              onClick={() => {
+                remove(task);
+              }}
+            >
+              <FaTrashAlt />
+            </ButtonRemove>
+          </RemoveAndEdit>
+        </ActionContainer>
       </Container>
     </TaskContainer>
   );
