@@ -144,12 +144,13 @@ const Home = () => {
     }
 
     if (task.isFinished === false) {
-      const newArray = [...toDoList];
       const { value } = await swalModal(
         "Deseja mesmo marcar esta tarefa como concluida?"
       );
 
       if (value === true) {
+        const newArray = [...toDoList];
+
         await edit({ isFinished: true }, task._id);
 
         newArray[index].isFinished = true;

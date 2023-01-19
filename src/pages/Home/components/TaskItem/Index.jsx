@@ -45,7 +45,7 @@ const TaskItem = ({
             onChange={() => {
               setFinish(task, index);
             }}
-            checked={isFinished ? true : false}
+            checked={isFinished === true && true}
           />
           <Text
             color={mode === true ? "#B64FC8" : "black"}
