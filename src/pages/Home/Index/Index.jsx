@@ -56,16 +56,16 @@ const Home = () => {
     }
   };
 
-  const handleCompletedTask = (data) => {
-    const isFinished = data.filter((element) => {
-      return element.isFinished === true;
+  const handleRendering = async () => {
+    const list = await get();
+
+    list.sort((smallestElement, greatestElement) => {
+      return smallestElement.index - greatestElement.index;
     });
 
-    if (isFinished.length > 0) {
-      setCompletedTask(isFinished.length);
-    } else {
-      setCompletedTask([].length);
-    }
+    setToDoList(list);
+
+    return list;
   };
 
   const handleOnSubmit = async (event) => {
@@ -92,11 +92,9 @@ const Home = () => {
           index: toDoList.length,
           key: uuidv4(),
         };
-        const newArray = [task, ...toDoList];
 
         await add(task);
-
-        setToDoList(newArray);
+        handleRendering();
       }
 
       setInput("");
@@ -116,11 +114,17 @@ const Home = () => {
 
   const handleRemove = async (task, index) => {
     const newArray = [...toDoList];
-    if (editId) {
-      setEditId("");
-    }
 
-    if (task.isFinished === false) {
+    if (editId !== "") {
+      const { value } = await swalModal(
+        "Essa tarefa esta sendo editada. Deseja cancelar edição?"
+      );
+
+      if (value === true) {
+        setEditId("");
+        setInput("");
+      }
+    } else if (task.isFinished === false) {
       const { value } = await swalModal("Deseja remover essa tarefa?");
 
       if (value === true) {
@@ -134,16 +138,31 @@ const Home = () => {
 
       newArray.splice(index, 1);
 
+      setCompletedTask(completedTask - 1);
       setToDoList(newArray);
     }
   };
 
-  const handleSetFinishTask = async (task, index) => {
-    if (editId) {
-      setEditId("");
-    }
+  const handleSetFinishTask = async (task, taskId, index) => {
+    if (editId !== "") {
+      const { value } = await swalModal(
+        "Essa tarefa esta sendo editada. Deseja cancelar edição e finalizar a tarefa?"
+      );
 
-    if (task.isFinished === false) {
+      if (value === true) {
+        setEditId("");
+        setInput("");
+
+        const newArray = [...toDoList];
+
+        await edit({ isFinished: true }, taskId);
+
+        newArray[index].isFinished = true;
+
+        setCompletedTask(completedTask + 1);
+        setToDoList(newArray);
+      }
+    } else if (task.isFinished === false) {
       const { value } = await swalModal(
         "Deseja mesmo marcar esta tarefa como concluida?"
       );
@@ -151,10 +170,11 @@ const Home = () => {
       if (value === true) {
         const newArray = [...toDoList];
 
-        await edit({ isFinished: true }, task._id);
+        await edit({ isFinished: true }, taskId);
 
         newArray[index].isFinished = true;
 
+        setCompletedTask(completedTask + 1);
         setToDoList(newArray);
       }
     }
@@ -185,14 +205,18 @@ const Home = () => {
 
   useEffect(() => {
     (async () => {
-      const list = await get();
+      const list = await handleRendering();
 
-      list.sort((smallestElement, greatestElement) => {
-        return smallestElement.index - greatestElement.index;
+      const isFinished = list.filter((element) => {
+        return element.isFinished === true;
       });
+      console.log(isFinished);
 
-      setToDoList(list);
-      handleCompletedTask(list);
+      if (isFinished.length > 0) {
+        setCompletedTask(isFinished.length);
+      } else {
+        setCompletedTask(0);
+      }
     })();
 
     // eslint-disable-next-line
@@ -213,7 +237,6 @@ const Home = () => {
               toDoList={toDoList}
               setToDoList={setToDoList}
               completedTask={completedTask}
-              handleCompletedTask={handleCompletedTask}
             />
 
             <TaskList color={mode ? "white" : "black"} ref={animationParent}>
@@ -224,6 +247,7 @@ const Home = () => {
                   return (
                     <TaskItem
                       key={element.key}
+                      taskId={element._id}
                       array={array}
                       index={index}
                       description={element.description}

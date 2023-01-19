@@ -37,7 +37,6 @@ const SubTitle = ({
       });
 
       setToDoList([]);
-      handleCompletedTask([]);
     } else {
       Swal.fire({
         icon: "error",

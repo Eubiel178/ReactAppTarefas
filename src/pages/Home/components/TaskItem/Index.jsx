@@ -24,6 +24,7 @@ import {
 
 const TaskItem = ({
   array,
+  taskId,
   index,
   description,
   task,
@@ -43,7 +44,7 @@ const TaskItem = ({
           <input
             type="checkbox"
             onChange={() => {
-              setFinish(task, index);
+              setFinish(task, taskId, index);
             }}
             checked={isFinished === true && true}
           />
