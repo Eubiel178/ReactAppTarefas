@@ -16,7 +16,12 @@ import {
 import Swal from "sweetalert2";
 import { remove } from "../../../../utils/task";
 
-const SubTitle = ({ toDoList, renderList, completedTask }) => {
+const SubTitle = ({
+  toDoList,
+  completedTask,
+  setToDoList,
+  handleCompletedTask,
+}) => {
   const { mode } = useContext(Contexts);
 
   const clearList = async () => {
@@ -25,13 +30,16 @@ const SubTitle = ({ toDoList, renderList, completedTask }) => {
     });
 
     if (toDoList.length > 0 && completed.length === toDoList.length) {
+      const newArray = [];
+
       Swal.fire("Bom Trabalho!", "Você completou todas as tarefa", "success");
 
-      toDoList.forEach(async (element) => {
+      completed.forEach(async (element) => {
         await remove(element._id);
       });
 
-      renderList();
+      setToDoList(newArray);
+      handleCompletedTask(newArray);
     } else {
       Swal.fire({
         icon: "error",

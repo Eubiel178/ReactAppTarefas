@@ -188,7 +188,7 @@ const Home = () => {
               toDoList={toDoList}
               setToDoList={setToDoList}
               completedTask={completedTask}
-              renderList={handleRenderingToDoList}
+              handleCompletedTask={handleCompletedTask}
             />
 
             <TaskList color={mode ? "white" : "black"} ref={animationParent}>
