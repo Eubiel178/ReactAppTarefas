@@ -30,16 +30,14 @@ const SubTitle = ({
     });
 
     if (toDoList.length > 0 && completed.length === toDoList.length) {
-      const newArray = [];
-
       Swal.fire("Bom Trabalho!", "Você completou todas as tarefa", "success");
 
       completed.forEach(async (element) => {
         await remove(element._id);
       });
 
-      setToDoList(newArray);
-      handleCompletedTask(newArray);
+      setToDoList([]);
+      handleCompletedTask([]);
     } else {
       Swal.fire({
         icon: "error",

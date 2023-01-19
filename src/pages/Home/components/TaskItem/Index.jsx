@@ -43,7 +43,7 @@ const TaskItem = ({
           <input
             type="checkbox"
             onChange={() => {
-              setFinish(task);
+              setFinish(task, index);
             }}
             checked={isFinished ? true : false}
           />
@@ -93,7 +93,7 @@ const TaskItem = ({
 
             <ButtonRemove
               onClick={() => {
-                remove(task);
+                remove(task, index);
               }}
             >
               <FaTrashAlt />

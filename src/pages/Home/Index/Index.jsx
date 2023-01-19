@@ -8,6 +8,7 @@ import { TaskList, MainContainer, ContainerContent, FeedBack } from "./Styles";
 
 //libs
 import { useAutoAnimate } from "@formkit/auto-animate/react";
+import { uuid as v4 } from "uuid";
 import Swal from "sweetalert2";
 
 //page utills
@@ -87,18 +88,28 @@ const Home = () => {
 
       if (toDoList.length > 0 && editId) {
         await edit({ description: input }, editId);
+
+        const indexTaskEdit = toDoList.findIndex((element) => {
+          return element._id === editId;
+        });
+
+        toDoList[indexTaskEdit].description = input;
       } else if (input) {
-        await add({
+        const task = {
           description: input,
           isFinished: false,
           userID: _id,
-          index: -toDoList.length,
-        });
+          index: toDoList.length,
+        };
+        const newArray = [task, ...toDoList];
+
+        await add(task);
+
+        setToDoList(newArray);
       }
 
       setInput("");
       setEditId("");
-      handleRenderingToDoList();
       setLoading(false);
     }
   };
@@ -112,7 +123,8 @@ const Home = () => {
     }
   };
 
-  const handleRemove = async (task) => {
+  const handleRemove = async (task, index) => {
+    const newArray = [...toDoList];
     if (editId) {
       setEditId("");
     }
@@ -123,21 +135,25 @@ const Home = () => {
       if (value === true) {
         await remove(task._id);
 
-        handleRenderingToDoList();
+        newArray.splice(index, 1);
+        setToDoList(newArray);
       }
     } else {
       await remove(task._id);
 
-      handleRenderingToDoList();
+      newArray.splice(index, 1);
+
+      setToDoList(newArray);
     }
   };
 
-  const handleSetFinishTask = async (task) => {
+  const handleSetFinishTask = async (task, index) => {
     if (editId) {
       setEditId("");
     }
 
     if (task.isFinished === false) {
+      const newArray = [...toDoList];
       const { value } = await swalModal(
         "Deseja mesmo marcar esta tarefa como concluida?"
       );
@@ -145,7 +161,9 @@ const Home = () => {
       if (value === true) {
         await edit({ isFinished: true }, task._id);
 
-        handleRenderingToDoList();
+        newArray[index].isFinished = true;
+
+        setToDoList(newArray);
       }
     }
   };
@@ -207,7 +225,7 @@ const Home = () => {
                 toDoList.map((element, index, array) => {
                   return (
                     <TaskItem
-                      key={element._id + element._id}
+                      key={v4()}
                       array={array}
                       index={index}
                       description={element.description}
