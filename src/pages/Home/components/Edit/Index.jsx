@@ -5,8 +5,8 @@ import { useContext } from "react";
 //styled-components
 import { FormContainer, Button, Input } from "./Styles";
 
-const EditForm = ({ AddTask, setInput, input, isEdit }) => {
-  const { mode } = useContext(Contexts);
+const EditForm = ({ AddTask, setInput, isEdit }) => {
+  const { input, mode } = useContext(Contexts);
 
   const handleTask = (event) => {
     setInput(event.target.value);

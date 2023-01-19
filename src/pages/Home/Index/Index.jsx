@@ -8,7 +8,8 @@ import { TaskList, MainContainer, ContainerContent, FeedBack } from "./Styles";
 
 //libs
 import { useAutoAnimate } from "@formkit/auto-animate/react";
-import { uuid as v4 } from "uuid";
+import { v4 as uuidv4 } from "uuid";
+
 import Swal from "sweetalert2";
 
 //page utills
@@ -67,17 +68,6 @@ const Home = () => {
     }
   };
 
-  const handleRenderingToDoList = async () => {
-    const list = await get();
-
-    list.sort((smallestElement, greatestElement) => {
-      return smallestElement.index - greatestElement.index;
-    });
-
-    setToDoList(list);
-    handleCompletedTask(list);
-  };
-
   const handleOnSubmit = async (event) => {
     event.preventDefault();
 
@@ -100,6 +90,7 @@ const Home = () => {
           isFinished: false,
           userID: _id,
           index: toDoList.length,
+          key: uuidv4(),
         };
         const newArray = [task, ...toDoList];
 
@@ -193,7 +184,14 @@ const Home = () => {
 
   useEffect(() => {
     (async () => {
-      handleRenderingToDoList();
+      const list = await get();
+
+      list.sort((smallestElement, greatestElement) => {
+        return smallestElement.index - greatestElement.index;
+      });
+
+      setToDoList(list);
+      handleCompletedTask(list);
     })();
 
     // eslint-disable-next-line
@@ -206,7 +204,6 @@ const Home = () => {
         <MainContainer>
           <EditForm
             AddTask={handleOnSubmit}
-            input={input}
             setInput={setInput}
             isEdit={editId}
           />
@@ -225,7 +222,7 @@ const Home = () => {
                 toDoList.map((element, index, array) => {
                   return (
                     <TaskItem
-                      key={v4()}
+                      key={element.key}
                       array={array}
                       index={index}
                       description={element.description}
