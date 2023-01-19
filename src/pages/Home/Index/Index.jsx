@@ -68,6 +68,7 @@ const Home = () => {
 
   const handleRenderingToDoList = async () => {
     const list = await get();
+
     list.sort((smallestElement, greatestElement) => {
       return smallestElement.index - greatestElement.index;
     });

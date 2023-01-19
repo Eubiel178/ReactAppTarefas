@@ -6,7 +6,7 @@ import { useContext } from "react";
 //icons
 import { FaTrashAlt } from "react-icons/fa";
 import { BsPencil } from "react-icons/bs";
-import { AiOutlineArrowUp, AiOutlineArrowDown } from "react-icons/ai";
+import { AiOutlineCaretUp, AiOutlineCaretDown } from "react-icons/ai";
 
 //styled-components
 import {
@@ -15,7 +15,6 @@ import {
   Task,
   Text,
   Container,
-  Progress,
   ActionContainer,
   PositionStyle,
   RemoveAndEdit,
@@ -58,33 +57,26 @@ const TaskItem = ({
       </TaskDescription>
 
       <Container>
-        <Progress
-          background={isFinished === true ? "#e0d2d4" : "#00A94C"}
-          color={isFinished === true ? "#B64FC8" : "#fff"}
-          width={isFinished === true ? "5em" : "7.4em"}
-        >
-          <p>{isFinished === true ? "Completa" : "Em andamento "}</p>
-        </Progress>
-
         <ActionContainer>
           <PositionStyle>
             <button
-              style={{ color: index === 0 ? "#e0d2d4" : "black" }}
+              style={{ color: index === 0 ? "#e0d2d4" : "#3085d6" }}
               onClick={() => {
                 position("up", task, index);
               }}
             >
-              <AiOutlineArrowUp />
+              <AiOutlineCaretUp />
             </button>
+
             <button
               style={{
-                color: index === array.length - 1 ? "#e0d2d4" : "black",
+                color: index === array.length - 1 ? "#e0d2d4" : "#3085d6",
               }}
               onClick={() => {
                 position("bottom", task, index);
               }}
             >
-              <AiOutlineArrowDown />
+              <AiOutlineCaretDown />
             </button>
           </PositionStyle>
 
