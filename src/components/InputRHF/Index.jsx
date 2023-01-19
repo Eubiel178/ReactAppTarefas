@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Controller } from "react-hook-form";
 import { Container, StyledInput, Error } from "./Styles";
 
@@ -6,6 +7,7 @@ const InputRHF = ({ name, control, placeholder, error, type, ...rest }) => {
     <Controller
       name={name}
       control={control}
+      defaultValue=""
       render={({ field }) => (
         <Container>
           <StyledInput

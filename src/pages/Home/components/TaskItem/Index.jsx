@@ -40,16 +40,16 @@ const TaskItem = ({
   return (
     <TaskContainer>
       <TaskDescription>
-        <Task id={id} key={id}>
+        <Task id={id}>
           <input
             type="checkbox"
-            onClick={() => {
+            onChange={() => {
               setFinish(task);
             }}
-            checked={isFinished === true && true}
+            checked={isFinished ? true : false}
           />
           <Text
-            color={mode && "#B64FC8"}
+            color={mode === true ? "#B64FC8" : "black"}
             style={{ textDecoration: isFinished === true && "line-through" }}
           >
             {description}
@@ -67,9 +67,9 @@ const TaskItem = ({
         </Progress>
 
         <ActionContainer>
-          <PositionStyle style={{ display: array.length === 1 && "none" }}>
+          <PositionStyle>
             <button
-              style={{ visibility: index === 0 ? "hidden" : "initial" }}
+              style={{ color: index === 0 ? "#e0d2d4" : "black" }}
               onClick={() => {
                 position("up", task, index);
               }}
@@ -78,7 +78,7 @@ const TaskItem = ({
             </button>
             <button
               style={{
-                visibility: index === array.length - 1 ? "hidden" : "initial",
+                color: index === array.length - 1 ? "#e0d2d4" : "black",
               }}
               onClick={() => {
                 position("bottom", task, index);
@@ -91,7 +91,7 @@ const TaskItem = ({
           <RemoveAndEdit>
             <ButtonEdit
               color={mode ? "white" : "black"}
-              style={{ color: mode && " #e0d2d4" }}
+              style={{ color: mode && "#e0d2d4" }}
               onClick={() => {
                 edited(task);
               }}

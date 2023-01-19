@@ -25,7 +25,7 @@ const Home = () => {
   const [editId, setEditId] = useState("");
   const [loading, setLoading] = useState(false);
   const [completedTask, setCompletedTask] = useState([]);
-  const [parent] = useAutoAnimate();
+  const [animationParent] = useAutoAnimate();
   const { input, setInput, mode } = useContext(Contexts);
 
   const swalModal = (title) => {
@@ -190,13 +190,14 @@ const Home = () => {
               renderList={handleRenderingToDoList}
             />
 
-            <TaskList color={mode ? "white" : "black"} ref={parent}>
+            <TaskList color={mode ? "white" : "black"} ref={animationParent}>
               {toDoList.length === 0 ? (
                 <FeedBack>Nenhuma tarefa foi adicionada</FeedBack>
               ) : (
                 toDoList.map((element, index, array) => {
                   return (
                     <TaskItem
+                      key={element._id + element._id}
                       array={array}
                       index={index}
                       description={element.description}
