@@ -105,13 +105,18 @@ const Home = () => {
 
   const handleEdit = (task) => {
     if (task.isFinished === false) {
-      setInput(task.description) && setEditId(task._id);
+      setInput(task.description);
+      setEditId(task._id);
     } else {
       swalModal();
     }
   };
 
   const handleRemove = async (task) => {
+    if (editId) {
+      setEditId("");
+    }
+
     if (task.isFinished === false) {
       const { value } = await swalModal("Deseja remover essa tarefa?");
 
@@ -128,6 +133,10 @@ const Home = () => {
   };
 
   const handleSetFinishTask = async (task) => {
+    if (editId) {
+      setEditId("");
+    }
+
     if (task.isFinished === false) {
       const { value } = await swalModal(
         "Deseja mesmo marcar esta tarefa como concluida?"
