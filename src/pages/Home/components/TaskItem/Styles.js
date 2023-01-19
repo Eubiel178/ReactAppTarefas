@@ -5,6 +5,10 @@ export const TaskContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   margin-bottom: 1em;
+
+  div:nth-child(2) {
+    align-self: stretch;
+  }
 `;
 
 export const TaskDescription = styled.div``;
@@ -25,16 +29,21 @@ export const Text = styled.span`
 `;
 
 export const Container = styled.div`
-  margin-left: 1em;
+  margin-left: 0.5em;
   display: flex;
-
-  align-items: center;
+  align-items: flex-start;
 `;
 
 export const ActionContainer = styled.div`
   display: flex;
+  padding: 0em 0.5em;
   align-items: center;
-  padding-left: 0.5em;
+  position: sticky;
+  top: 0em;
+
+  button {
+    cursor: pointer;
+  }
 
   @media (max-width: 740px) {
     flex-direction: column;
@@ -43,22 +52,17 @@ export const ActionContainer = styled.div`
 
 export const PositionStyle = styled.div`
   display: flex;
-  align-items: center;
-  padding-right: 0.5em;
 
   button {
-    display: flex;
-    align-items: center;
-    border: 0px;
-    cursor: pointer;
-    font-size: 17px;
+    border: none;
     background: transparent;
-    border-radius: 0;
-    cursor: pointer;
+    padding: 0.5em;
+    font-size: 17px;
   }
 
   button:first-child {
-    margin-right: 0.75em;
+    margin-right: 0.5em;
+    /* margin-right: 0.5em; */
   }
 
   @media (max-width: 740px) {
@@ -68,23 +72,21 @@ export const PositionStyle = styled.div`
 
 export const RemoveAndEdit = styled.div`
   display: flex;
+
+  button {
+    border: none;
+    background: transparent;
+    padding: 0.5em;
+    font-size: 17px;
+  }
 `;
 
 export const ButtonEdit = styled.button`
-  border: none;
-  color: ${({ color }) => color};
-  background-color: transparent;
-  transition-duration: 0.5s;
-  padding: 0.6em;
   margin-right: 0.5em;
-  cursor: pointer;
+  color: ${({ color }) => color};
 `;
 
 export const ButtonRemove = styled(ButtonEdit)`
-  border: none;
   color: rgb(160, 52, 52);
-  background-color: transparent;
-  transition-duration: 0.5s;
-  padding: 0.6em;
-  cursor: pointer;
+  margin-right: initial;
 `;
