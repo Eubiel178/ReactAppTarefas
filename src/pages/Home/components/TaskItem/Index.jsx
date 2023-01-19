@@ -67,7 +67,7 @@ const TaskItem = ({
         </Progress>
 
         <ActionContainer>
-          <PositionStyle>
+          <PositionStyle style={{ display: array.length === 1 && "none" }}>
             <button
               style={{ visibility: index === 0 ? "hidden" : "initial" }}
               onClick={() => {

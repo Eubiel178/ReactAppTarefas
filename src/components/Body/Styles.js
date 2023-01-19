@@ -30,5 +30,6 @@ export const ContainerContent = styled.div`
   @media (max-width: 480px) {
     height: 100%;
     width: 100%;
+    border-radius: initial;
   }
 `;
