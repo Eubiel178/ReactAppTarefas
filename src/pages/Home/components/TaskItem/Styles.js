@@ -39,14 +39,11 @@ export const ActionContainer = styled.div`
   padding: 0em 0.5em;
   align-items: center;
   position: sticky;
-  top: 0em;
+  top: 0.5em;
+  flex-wrap: wrap;
 
   button {
     cursor: pointer;
-  }
-
-  @media (max-width: 740px) {
-    flex-direction: column;
   }
 `;
 
@@ -62,11 +59,6 @@ export const PositionStyle = styled.div`
 
   button:first-child {
     margin-right: 0.5em;
-    /* margin-right: 0.5em; */
-  }
-
-  @media (max-width: 740px) {
-    padding-bottom: 1em;
   }
 `;
 
