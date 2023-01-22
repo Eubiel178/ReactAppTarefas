@@ -16,6 +16,10 @@ export const login = async (body) => {
     });
 
   if (status === 200) {
+    // const {email,name,_id} = ...data;
+    delete data[0].password;
+    delete data[0].password_confirmation;
+
     loggedInUser(...data);
   }
 

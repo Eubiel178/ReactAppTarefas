@@ -90,13 +90,14 @@ const Home = () => {
           description: input,
           isFinished: false,
           userID: _id,
+          _id: uuidv4(),
           index: toDoList.length,
           key: uuidv4(),
         };
 
         await add(task);
-        handleRendering();
 
+        setToDoList([task, ...toDoList]);
         setRemainingTasks(remainingTasks + 1);
       }
 
