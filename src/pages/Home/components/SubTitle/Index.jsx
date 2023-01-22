@@ -20,7 +20,7 @@ const SubTitle = ({
   toDoList,
   completedTask,
   setToDoList,
-  handleCompletedTask,
+  setCompletedTask,
 }) => {
   const { mode } = useContext(Contexts);
 
@@ -37,6 +37,7 @@ const SubTitle = ({
       });
 
       setToDoList([]);
+      setCompletedTask([]);
     } else {
       Swal.fire({
         icon: "error",

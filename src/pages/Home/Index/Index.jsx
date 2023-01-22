@@ -237,6 +237,7 @@ const Home = () => {
               toDoList={toDoList}
               setToDoList={setToDoList}
               completedTask={completedTask}
+              setCompletedTask={setCompletedTask}
             />
 
             <TaskList color={mode ? "white" : "black"} ref={animationParent}>
