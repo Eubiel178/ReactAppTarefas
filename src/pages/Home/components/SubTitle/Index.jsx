@@ -9,6 +9,7 @@ import {
   TitleContainer,
   Title,
   CompletedTasks,
+  RemainingTasks,
   Button,
 } from "./Styles";
 
@@ -21,6 +22,7 @@ const SubTitle = ({
   completedTask,
   setToDoList,
   setCompletedTask,
+  remainingTasks,
 }) => {
   const { mode } = useContext(Contexts);
 
@@ -53,8 +55,12 @@ const SubTitle = ({
         <Title colorTitle={mode ? "#B64FC8" : " #3085d6"}>TAREFAS</Title>
 
         <CompletedTasks>
-          tarefas concluídas: {completedTask > 0 ? completedTask : "0"}
+          Tarefas concluídas: {completedTask > 0 ? completedTask : "0"}
         </CompletedTasks>
+
+        <RemainingTasks>
+          Tarefas restantes: {remainingTasks > 0 ? remainingTasks : "0"}
+        </RemainingTasks>
       </TitleContainer>
 
       <Button

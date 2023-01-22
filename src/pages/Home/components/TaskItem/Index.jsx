@@ -61,7 +61,14 @@ const TaskItem = ({
         <ActionContainer>
           <PositionStyle>
             <button
-              style={{ color: index === 0 ? "#e0d2d4" : "#3085d6" }}
+              style={{
+                color:
+                  index === 0
+                    ? "#e0d2d4"
+                    : mode === true
+                    ? "#B64FC8"
+                    : "#3085d6",
+              }}
               onClick={() => {
                 position("up", task, index);
               }}
@@ -71,7 +78,12 @@ const TaskItem = ({
 
             <button
               style={{
-                color: index === array.length - 1 ? "#e0d2d4" : "#3085d6",
+                color:
+                  index === array.length - 1
+                    ? "#e0d2d4"
+                    : mode === true
+                    ? "#B64FC8"
+                    : "#3085d6",
               }}
               onClick={() => {
                 position("bottom", task, index);

@@ -15,6 +15,11 @@ export const Title = styled.h2`
 `;
 
 export const CompletedTasks = styled.p`
+  padding: 1em 0em;
+  color: #686868;
+`;
+
+export const RemainingTasks = styled.p`
   padding-bottom: 2em;
   color: #686868;
 `;

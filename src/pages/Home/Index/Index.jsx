@@ -27,6 +27,7 @@ const Home = () => {
   const [editId, setEditId] = useState("");
   const [loading, setLoading] = useState(false);
   const [completedTask, setCompletedTask] = useState([]);
+  const [remainingTasks, setRemainingTasks] = useState([]);
   const [animationParent] = useAutoAnimate();
   const { input, setInput, mode } = useContext(Contexts);
 
@@ -95,6 +96,8 @@ const Home = () => {
 
         await add(task);
         handleRendering();
+
+        setRemainingTasks(remainingTasks + 1);
       }
 
       setInput("");
@@ -131,6 +134,7 @@ const Home = () => {
         await remove(task._id);
 
         newArray.splice(index, 1);
+        setRemainingTasks(remainingTasks - 1);
         setToDoList(newArray);
       }
     } else {
@@ -159,6 +163,7 @@ const Home = () => {
 
         newArray[index].isFinished = true;
 
+        setRemainingTasks(remainingTasks - 1);
         setCompletedTask(completedTask + 1);
         setToDoList(newArray);
       }
@@ -174,6 +179,7 @@ const Home = () => {
 
         newArray[index].isFinished = true;
 
+        setRemainingTasks(remainingTasks - 1);
         setCompletedTask(completedTask + 1);
         setToDoList(newArray);
       }
@@ -206,17 +212,19 @@ const Home = () => {
   useEffect(() => {
     (async () => {
       const list = await handleRendering();
+      let isFinishedTrue = [];
+      let isFinishedFalse = [];
 
-      const isFinished = list.filter((element) => {
-        return element.isFinished === true;
+      list.forEach((element) => {
+        if (element.isFinished) {
+          return (isFinishedTrue = [element, ...isFinishedTrue]);
+        }
+        return (isFinishedFalse = [element, ...isFinishedFalse]);
       });
-      console.log(isFinished);
 
-      if (isFinished.length > 0) {
-        setCompletedTask(isFinished.length);
-      } else {
-        setCompletedTask(0);
-      }
+      setCompletedTask(isFinishedTrue.length);
+
+      setRemainingTasks(isFinishedFalse.length);
     })();
 
     // eslint-disable-next-line
@@ -238,6 +246,7 @@ const Home = () => {
               setToDoList={setToDoList}
               completedTask={completedTask}
               setCompletedTask={setCompletedTask}
+              remainingTasks={remainingTasks}
             />
 
             <TaskList color={mode ? "white" : "black"} ref={animationParent}>
