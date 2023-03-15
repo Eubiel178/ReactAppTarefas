@@ -1,6 +1,6 @@
 import { PasswordVisible } from "./Styles";
 
-const Visibility = ({ set, value }) => {
+export const Visibility = ({ set, value }) => {
   return (
     <PasswordVisible>
       <input
@@ -15,4 +15,4 @@ const Visibility = ({ set, value }) => {
   );
 };
 
-export default Visibility;
+

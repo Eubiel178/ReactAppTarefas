@@ -7,9 +7,7 @@ import { useContext } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 //pages
-import Login from "../pages/Login/Index/Index";
-import Register from "../pages/Register/Index/Index";
-import Home from "../pages/Home/Index/Index";
+import * as Pages from "../pages/Index";
 
 const AppRoutes = () => {
   const { auth } = useContext(Contexts);
@@ -18,12 +16,12 @@ const AppRoutes = () => {
     <Router>
       {auth === false ? (
         <Routes>
-          <Route path="/" exact element={<Login />} />
-          <Route path="/register" exact element={<Register />} />
+          <Route path="/" exact element={<Pages.Login />} />
+          <Route path="/register" exact element={<Pages.Register />} />
         </Routes>
       ) : (
         <Routes>
-          <Route path="/" exact element={<Home />} />
+          <Route path="/" exact element={<Pages.Home />} />
         </Routes>
       )}
     </Router>

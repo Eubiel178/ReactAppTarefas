@@ -9,7 +9,6 @@ import { TaskList, MainContainer, ContainerContent, FeedBack } from "./Styles";
 //libs
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 import { v4 as uuidv4 } from "uuid";
-
 import Swal from "sweetalert2";
 
 //page utills
@@ -20,7 +19,6 @@ import Header from "../components/Header/Index";
 import EditForm from "../components/Edit/Index";
 import SubTitle from "../components/SubTitle/Index";
 import TaskItem from "../components/TaskItem/Index";
-import { getLoggedUser } from "../../../utils/user";
 
 const Home = () => {
   const [toDoList, setToDoList] = useState([]);
@@ -72,7 +70,7 @@ const Home = () => {
   const handleOnSubmit = async (event) => {
     event.preventDefault();
 
-    const { _id } = getLoggedUser();
+    const _id = localStorage.getItem("id");
 
     if (loading === false) {
       setLoading(true);
@@ -220,6 +218,7 @@ const Home = () => {
         if (element.isFinished) {
           return (isFinishedTrue = [element, ...isFinishedTrue]);
         }
+
         return (isFinishedFalse = [element, ...isFinishedFalse]);
       });
 

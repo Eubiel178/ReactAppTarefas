@@ -4,53 +4,18 @@ import Contexts from "../../../../contexts/Contexts";
 import { useContext, useEffect, useState } from "react";
 
 //styled-components
-import {
-  NavBar,
-  Button,
-  Mode,
-  User,
-  ButtonClose,
-  InfoUser,
-  ButtonLoggout,
-  Title,
-} from "./Styles";
-
-//libs
-import Swal from "sweetalert2";
+import { NavBar, Button, Mode, Title } from "./Styles";
 
 //page utills
-import { getLoggedUser, loggout } from "../../../../utils/user";
 import { saveMode, getSaveMode } from "../../../../utils/mode";
 
 //icons
 import { BiUser } from "react-icons/bi";
-import { ImCancelCircle } from "react-icons/im";
-import { MdOutlineAlternateEmail } from "react-icons/md";
+import ModalProfile from "../ModalProfile/Index";
 
 const Header = () => {
-  const { setAuth, mode, setMode } = useContext(Contexts);
-  const [profile, setProfile] = useState(false);
-  const [user, setUser] = useState([]);
-
-  const handleLogin = async () => {
-    const { value } = await Swal.fire({
-      title: "Deseja deslogar?",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Sim",
-      cancelButtonText: "Não",
-      preConfirm: (value) => {
-        return value;
-      },
-    });
-    if (value === true) {
-      loggout();
-      Swal.fire("Usuario deslogado com sucesso!", "", "success");
-      setAuth(false);
-    }
-  };
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const { mode, setMode, userJson } = useContext(Contexts);
 
   const handleMode = () => {
     setMode(!mode);
@@ -58,22 +23,14 @@ const Header = () => {
     saveMode(!mode);
   };
 
-  const handleUser = async () => {
-    const user = await getLoggedUser();
-
-    setUser(user);
-  };
-
   useEffect(() => {
-    let getMode = getSaveMode();
+    const getMode = getSaveMode();
 
     if (getMode === "true") {
       setMode(true);
     } else {
       setMode(false);
     }
-
-    handleUser();
 
     // eslint-disable-next-line
   }, []);
@@ -94,45 +51,18 @@ const Header = () => {
 
           <section>
             <div>
-              <Button
-                onClick={() => {
-                  setProfile(true);
-                }}
-                border={mode ? "solid 2px #1F1F1F" : " solid 2px #3085d6"}
-                style={{ display: profile && "none" }}
-              >
+              <Button onClick={() => setModalIsOpen(true)}>
                 <BiUser style={{ fontSize: "25px" }} />
               </Button>
+              <ModalProfile
+                modalIsOpen={modalIsOpen}
+                setModalIsOpen={setModalIsOpen}
+                name={userJson.name}
+                email={userJson.email}
+                img={userJson.img}
+                id={userJson._id}
+              />
             </div>
-
-            {profile && (
-              <User>
-                <ButtonClose>
-                  <p>Informações do usuário</p>
-                  <button
-                    onClick={() => {
-                      setProfile(false);
-                    }}
-                  >
-                    <ImCancelCircle style={{ fontSize: "25px" }} />
-                  </button>
-                </ButtonClose>
-
-                <InfoUser>
-                  <BiUser style={{ fontSize: "25px" }} />
-                  <p>{user.name}</p>
-                </InfoUser>
-
-                <InfoUser>
-                  <MdOutlineAlternateEmail style={{ fontSize: "25px" }} />
-                  <p>{user.email}</p>
-                </InfoUser>
-
-                <ButtonLoggout>
-                  <button onClick={handleLogin}>Deslogar</button>
-                </ButtonLoggout>
-              </User>
-            )}
           </section>
         </NavBar>
       </section>

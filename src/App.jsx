@@ -8,6 +8,7 @@ const App = () => {
   const [input, setInput] = useState("");
   const [auth, setAuth] = useState(false);
   const [mode, setMode] = useState(false);
+  const [userJson, setUserJson] = useState({});
 
   return (
     <Contexts.Provider
@@ -18,6 +19,8 @@ const App = () => {
         setAuth,
         mode,
         setMode,
+        userJson,
+        setUserJson,
       }}
     >
       <main>

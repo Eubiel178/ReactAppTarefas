@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 import { Text, Button } from "./Styles";
 
-const ButtonLink = ({ to, text, textLink }) => {
+export const ButtonLink = ({ to, text, textLink }) => {
   return (
     <div>
       <Text>
@@ -15,4 +15,4 @@ const ButtonLink = ({ to, text, textLink }) => {
   );
 };
 
-export default ButtonLink;
+

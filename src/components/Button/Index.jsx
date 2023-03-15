@@ -2,7 +2,7 @@ import { ButtonItem } from "./Styles";
 
 import ReactLoading from "react-loading";
 
-const Button = ({ value, loading }) => {
+export const Button = ({ value, loading }) => {
   return (
     <div>
       {loading ? (
@@ -17,5 +17,3 @@ const Button = ({ value, loading }) => {
     </div>
   );
 };
-
-export default Button;

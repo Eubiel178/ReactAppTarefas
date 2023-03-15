@@ -5,19 +5,22 @@ import { useForm } from "react-hook-form";
 //libs
 import Swal from "sweetalert2";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useNavigate } from "react-router-dom";
+import { schema } from "./ValidationForm";
 
 //page utills
 import { register } from "../../../utils/user";
 
 //components
-import InputRHF from "../../../components/InputRHF/Index";
-import Button from "../../../components/Button/Index";
-import ButtonLink from "../../../components/ButtonLink/Index";
+import {
+  InputRHF,
+  Button,
+  ButtonLink,
+  Visibility,
+} from "../../../components/Index";
 
+//styles
 import { FormContainer, ButtonContainer } from "./Styles";
-import { useNavigate } from "react-router-dom";
-import { schema } from "./ValidationForm";
-import Visibility from "../../../components/Visibility/Index";
 
 const EditForm = () => {
   const [loading, setLoading] = useState(false);

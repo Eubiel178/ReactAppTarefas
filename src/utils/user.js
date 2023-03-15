@@ -14,28 +14,22 @@ export const login = async (body) => {
     .catch((error) => {
       return error;
     });
-
   if (status === 200) {
-    // const {email,name,_id} = ...data;
-    delete data[0].password;
-    delete data[0].password_confirmation;
-
-    loggedInUser(...data);
+    localStorage.setItem("id", data[0]._id);
   }
 
   return status;
 };
 
-export const loggedInUser = (requestData) => {
-  localStorage.setItem("userLogged", JSON.stringify(requestData));
+export const editUser = async (body, id) => {
+  return await api.patch(`/users/${id}`, body);
 };
 
-export const getLoggedUser = () => {
-  if (localStorage.getItem("userLogged")) {
-    return JSON.parse(localStorage.getItem("userLogged"));
-  }
+export const getOne = async (id) => {
+  const { data } = await api.get(`/users/${id}`);
+  return data;
 };
 
-export const loggout = () => {
+export const logOff = () => {
   localStorage.clear();
 };

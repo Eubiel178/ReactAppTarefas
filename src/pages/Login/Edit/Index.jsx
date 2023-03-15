@@ -8,23 +8,26 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 //page utills
-import { getLoggedUser, login } from "../../../utils/user";
+import { getOne, login } from "../../../utils/user";
 
 //components
-import InputRHF from "../../../components/InputRHF/Index";
-import Button from "../../../components/Button/Index";
-import ButtonLink from "../../../components/ButtonLink/Index";
+import {
+  InputRHF,
+  Button,
+  ButtonLink,
+  Visibility,
+} from "../../../components/Index";
 
+//styles
 import { Error } from "../../../components/InputRHF/Styles";
 import { FormContainer } from "./Styles";
 import { schema } from "./ValidationForm";
-import Visibility from "../../../components/Visibility/Index";
 
 const EditForm = () => {
   const [loading, setLoading] = useState(false);
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [status, setStatus] = useState("");
-  const { setAuth } = useContext(Contexts);
+  const { setAuth, setUserJson } = useContext(Contexts);
 
   const {
     handleSubmit,
@@ -32,12 +35,14 @@ const EditForm = () => {
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
 
-  const handleLogin = async (data) => {
+  const handleLogin = async (fields) => {
     if (loading === false) {
       setLoading(true);
-      const status = await login(data);
+      const status = await login(fields);
+      const user = await getOne(localStorage.getItem("id"));
 
-      if (status === 200) {
+      if (status === 200 && user.name) {
+        setUserJson(user);
         setAuth(true);
       } else {
         setLoading(false);
@@ -53,9 +58,10 @@ const EditForm = () => {
 
   useEffect(() => {
     (async () => {
-      const user = await getLoggedUser();
+      const user = await getOne(localStorage.getItem("id"));
 
-      if (user) {
+      if (user.name) {
+        setUserJson(user);
         setAuth(true);
       }
     })();

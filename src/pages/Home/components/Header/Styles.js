@@ -42,58 +42,6 @@ export const Mode = styled(Button)`
   }
 `;
 
-export const User = styled.div`
-  top: 0.4em;
-  right: 0.8em;
-  position: absolute;
-  background-color: #000000b9;
-  color: #fff;
-  height: 15em;
-  width: 17em;
-  border-radius: 1em;
-  display: flex;
-  padding: 1em;
-  flex-direction: column;
-  justify-content: flex-start;
-`;
-
-export const ButtonClose = styled.div`
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  padding-bottom: 1em;
-
-  button {
-    background: none;
-    border: none;
-    color: #fff;
-  }
-`;
-
-export const InfoUser = styled.div`
-  display: flex;
-  align-items: center;
-  padding: 0.5em;
-
-  p {
-    padding-left: 0.5em;
-  }
-`;
-
-export const ButtonLoggout = styled.div`
-  padding: 2.5em 0em 0em 0.8em;
-  display: flex;
-  justify-content: flex-start;
-
-  button {
-    cursor: grab;
-    background: none;
-    border: none;
-    color: #fff;
-    font-size: 17px;
-  }
-`;
-
 export const Title = styled.h1`
   font-size: 2em;
   padding: 1em;

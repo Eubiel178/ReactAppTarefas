@@ -1,20 +1,16 @@
 import api from "../services/api";
 
-import { getLoggedUser } from "./user";
-
 export const add = async (body) => {
   await api.post("/list", body);
 };
 
 export const get = async () => {
-  const { _id } = getLoggedUser();
-
-  const { data } = await api.get(`/list/user-id/${_id}`);
+  const { data } = await api.get(`/list/user-id/${localStorage.get("id")}`);
 
   return data;
 };
 
-export const edit = async (body, taskId, array) => {
+export const edit = async (body, taskId) => {
   await api.patch(`/list/task-id/${taskId}`, body);
 };
 

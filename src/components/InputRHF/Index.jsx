@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Controller } from "react-hook-form";
 import { Container, StyledInput, Error } from "./Styles";
 
-const InputRHF = ({ name, control, placeholder, error, type, ...rest }) => {
+export const InputRHF = ({ name, control, placeholder, error, type, ...rest }) => {
   return (
     <Controller
       name={name}
@@ -24,4 +24,3 @@ const InputRHF = ({ name, control, placeholder, error, type, ...rest }) => {
   );
 };
 
-export default InputRHF;

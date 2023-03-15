@@ -1,6 +1,6 @@
 import { HeaderContents } from "./Styles";
 
-const Header = ({ title }) => {
+export const Header = ({ title }) => {
   return (
     <header>
       <HeaderContents>
@@ -10,4 +10,4 @@ const Header = ({ title }) => {
   );
 };
 
-export default Header;
+

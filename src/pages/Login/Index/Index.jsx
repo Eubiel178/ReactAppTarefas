@@ -1,6 +1,6 @@
 //components
-import Header from "../../../components/Header/Index";
-import Body from "../../../components/Body/Index";
+import { Header, Body } from "../../../components/Index";
+
 import EditForm from "../Edit/Index";
 
 const Login = () => {
