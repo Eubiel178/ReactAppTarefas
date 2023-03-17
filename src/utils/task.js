@@ -5,7 +5,7 @@ export const add = async (body) => {
 };
 
 export const get = async () => {
-  const { data } = await api.get(`/list/user-id/${localStorage.get("id")}`);
+  const { data } = await api.get(`/list/user-id/${localStorage.getItem("id")}`);
 
   return data;
 };

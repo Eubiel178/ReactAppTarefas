@@ -38,15 +38,15 @@ const EditForm = () => {
   const handleLogin = async (fields) => {
     if (loading === false) {
       setLoading(true);
-      const status = await login(fields);
-      const user = await getOne(localStorage.getItem("id"));
+      try {
+        const status = await login(fields);
+        const user = await getOne(localStorage.getItem("id"));
 
-      if (status === 200 && user.name) {
-        setUserJson(user);
-        setAuth(true);
-      } else {
-        setLoading(false);
-
+        if (status === 200 && user.name) {
+          setUserJson(user);
+          setAuth(true);
+        }
+      } catch (error) {
         setStatus("Email ou senha incorreto!");
 
         setTimeout(() => {
@@ -54,15 +54,20 @@ const EditForm = () => {
         }, 1000 * 3);
       }
     }
+    setLoading(false);
   };
 
   useEffect(() => {
     (async () => {
-      const user = await getOne(localStorage.getItem("id"));
+      const id = localStorage.getItem("id");
 
-      if (user.name) {
-        setUserJson(user);
-        setAuth(true);
+      if (id) {
+        const user = await getOne(id);
+
+        if (user.name) {
+          setUserJson(user);
+          setAuth(true);
+        }
       }
     })();
 

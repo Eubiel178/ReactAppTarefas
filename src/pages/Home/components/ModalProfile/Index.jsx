@@ -1,8 +1,10 @@
+import { useContext, useState, useEffect } from "react";
+
 import Modal from "react-modal";
+
 import { BiUser } from "react-icons/bi";
 import { MdOutlineAlternateEmail } from "react-icons/md";
 import { AiOutlineLogin } from "react-icons/ai";
-import { useContext, useState, useEffect } from "react";
 
 import {
   ContainerModal,
@@ -107,94 +109,92 @@ const ModalProfile = ({
   }, []);
 
   return (
-    <div>
-      <Modal
-        isOpen={modalIsOpen}
-        onRequestClose={() => setModalIsOpen(false)}
-        style={customStyles}
-      >
-        <ContainerModal>
-          <Header borderBottom={mode ? "#B64FC8" : "#3085d6"}>
-            <p>
-              <strong>Informações do usuário</strong>
-            </p>
+    <Modal
+      isOpen={modalIsOpen}
+      onRequestClose={() => setModalIsOpen(false)}
+      style={customStyles}
+    >
+      <ContainerModal>
+        <Header borderBottom={mode ? "#B64FC8" : "#3085d6"}>
+          <p>
+            <strong>Informações do usuário</strong>
+          </p>
 
-            <p>
-              <Loggout onClick={handleLogOff}>
-                <AiOutlineLogin />
-              </Loggout>
-            </p>
-          </Header>
+          <p>
+            <Loggout onClick={handleLogOff}>
+              <AiOutlineLogin />
+            </Loggout>
+          </p>
+        </Header>
 
-          <InfoUser>
-            <ImageContainer color={mode ? "#B64FC8" : "#3085d6"}>
-              <img
-                style={{ filter: edit === true && "blur(2px)" }}
-                src={image ? image : profile}
-                alt=""
-              />
-
-              <div>
-                <label
-                  htmlFor="photo"
-                  style={{ display: edit ? "block" : "none" }}
-                  color={mode ? "#B64FC8" : "#3085d6"}
-                >
-                  Selecionar imagem
-                </label>
-                <input
-                  onChange={(event) => {
-                    handleImage(event);
-                  }}
-                  id="photo"
-                  type="file"
-                />
-              </div>
-            </ImageContainer>
+        <InfoUser>
+          <ImageContainer color={mode ? "#B64FC8" : "#3085d6"}>
+            <img
+              style={{ filter: edit === true && "blur(2px)" }}
+              src={image ? image : profile}
+              alt=""
+            />
 
             <div>
-              <UserItem>
-                <BiUser
-                  style={{
-                    fontSize: "25px",
-                    fill: mode ? "#B64FC8" : "#3085d6",
-                  }}
-                />
-                <p>{name}</p>
-              </UserItem>
-
-              <UserItem>
-                <MdOutlineAlternateEmail
-                  style={{
-                    fontSize: "25px",
-                    fill: mode ? "#B64FC8" : "#3085d6",
-                  }}
-                />
-                <p>{email}</p>
-              </UserItem>
+              <label
+                htmlFor="photo"
+                style={{ display: edit ? "block" : "none" }}
+                color={mode ? "#B64FC8" : "#3085d6"}
+              >
+                Selecionar imagem
+              </label>
+              <input
+                onChange={(event) => {
+                  handleImage(event);
+                }}
+                id="photo"
+                type="file"
+              />
             </div>
-          </InfoUser>
+          </ImageContainer>
 
-          <Action background={mode ? "#B64FC8" : "#3085d6"}>
-            <button
-              onClick={
-                edit
-                  ? () => {
-                      setImage(img);
-                      setEdit(false);
-                    }
-                  : () => {
-                      setModalIsOpen(false);
-                    }
-              }
-            >
-              {edit ? "Cancelar" : "Fechar"}
-            </button>
-            <button onClick={handleOnSave}>{edit ? "Salvar" : "Editar"}</button>
-          </Action>
-        </ContainerModal>
-      </Modal>
-    </div>
+          <div>
+            <UserItem>
+              <BiUser
+                style={{
+                  fontSize: "25px",
+                  fill: mode ? "#B64FC8" : "#3085d6",
+                }}
+              />
+              <p>{name}</p>
+            </UserItem>
+
+            <UserItem>
+              <MdOutlineAlternateEmail
+                style={{
+                  fontSize: "25px",
+                  fill: mode ? "#B64FC8" : "#3085d6",
+                }}
+              />
+              <p>{email}</p>
+            </UserItem>
+          </div>
+        </InfoUser>
+
+        <Action background={mode ? "#B64FC8" : "#3085d6"}>
+          <button
+            onClick={
+              edit
+                ? () => {
+                    setImage(img);
+                    setEdit(false);
+                  }
+                : () => {
+                    setModalIsOpen(false);
+                  }
+            }
+          >
+            {edit ? "Cancelar" : "Fechar"}
+          </button>
+          <button onClick={handleOnSave}>{edit ? "Salvar" : "Editar"}</button>
+        </Action>
+      </ContainerModal>
+    </Modal>
   );
 };
 

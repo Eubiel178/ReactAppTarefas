@@ -27,7 +27,7 @@ const Home = () => {
   const [completedTask, setCompletedTask] = useState([]);
   const [remainingTasks, setRemainingTasks] = useState([]);
   const [animationParent] = useAutoAnimate();
-  const { input, setInput, mode } = useContext(Contexts);
+  const { input, setInput, mode, userJson } = useContext(Contexts);
 
   const swalModal = (title) => {
     if (title) {
@@ -70,7 +70,7 @@ const Home = () => {
   const handleOnSubmit = async (event) => {
     event.preventDefault();
 
-    const _id = localStorage.getItem("id");
+    const _id = userJson._id;
 
     if (loading === false) {
       setLoading(true);

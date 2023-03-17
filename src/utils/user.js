@@ -9,13 +9,10 @@ export const register = async (body) => {
 };
 
 export const login = async (body) => {
-  const { status, data } = await api
-    .post("/authenticate", body)
-    .catch((error) => {
-      return error;
-    });
+  const { status, data } = await api.post("/authenticate", body);
+
   if (status === 200) {
-    localStorage.setItem("id", data[0]._id);
+    localStorage.setItem("id", data._id);
   }
 
   return status;

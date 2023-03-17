@@ -14,14 +14,14 @@ const AppRoutes = () => {
 
   return (
     <Router>
-      {auth === false ? (
+      {auth ? (
         <Routes>
-          <Route path="/" exact element={<Pages.Login />} />
-          <Route path="/register" exact element={<Pages.Register />} />
+          <Route path="/" exact element={<Pages.Home />} />
         </Routes>
       ) : (
         <Routes>
-          <Route path="/" exact element={<Pages.Home />} />
+          <Route path="/" exact element={<Pages.Login />} />
+          <Route path="/register" exact element={<Pages.Register />} />
         </Routes>
       )}
     </Router>
