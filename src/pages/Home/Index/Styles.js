@@ -17,7 +17,6 @@ export const MainContainer = styled.div`
 `;
 
 export const TaskList = styled.div`
-  color: ${({ color }) => color};
   padding-bottom: 1em;
 `;
 

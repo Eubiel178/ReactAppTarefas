@@ -16,7 +16,9 @@ export const TaskDescription = styled.div``;
 export const Task = styled.p`
   text-align: justify;
   word-break: break-all;
-  cursor: zoom-in;
+  font-weight: 900;
+  font-size: 14px;
+  cursor: grabbing;
 
   input:hover {
     cursor: grab;
@@ -40,7 +42,6 @@ export const ActionContainer = styled.div`
   align-items: center;
   position: sticky;
   top: 0.5em;
-  flex-wrap: wrap;
 
   button {
     cursor: pointer;
@@ -55,6 +56,7 @@ export const PositionStyle = styled.div`
     background: transparent;
     padding: 0.5em;
     font-size: 17px;
+    color: ${({ color }) => color};
   }
 
   button:first-child {
@@ -78,7 +80,11 @@ export const ButtonEdit = styled.button`
   color: ${({ color }) => color};
 `;
 
+export const ButtonCancelEdit = styled(ButtonEdit)`
+  color: #f27474;
+`;
+
 export const ButtonRemove = styled(ButtonEdit)`
-  color: rgb(160, 52, 52);
+  color: #f27474;
   margin-right: initial;
 `;

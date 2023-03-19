@@ -28,13 +28,13 @@ export const Button = styled.button`
   margin-right: 2em;
   background: none;
   border: 0px;
-  color: red;
+  color: #f27474;
   padding: 0.5em;
-  border-radius: 1.3em;
+  border-radius: 0.5em;
   transition-duration: 0.5s;
 
   :hover {
-    background-color: red;
+    background-color: #f27474;
     color: #fff;
   }
 `;

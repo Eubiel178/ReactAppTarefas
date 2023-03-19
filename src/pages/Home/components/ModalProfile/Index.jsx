@@ -111,8 +111,9 @@ const ModalProfile = ({
   return (
     <Modal
       isOpen={modalIsOpen}
-      onRequestClose={() => setModalIsOpen(false)}
       style={customStyles}
+      ariaHideApp={false}
+      onRequestClose={() => setModalIsOpen(false)}
     >
       <ContainerModal>
         <Header borderBottom={mode ? "#B64FC8" : "#3085d6"}>

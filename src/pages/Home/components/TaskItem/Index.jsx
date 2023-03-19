@@ -7,6 +7,7 @@ import { useContext } from "react";
 import { FaTrashAlt } from "react-icons/fa";
 import { BsPencil } from "react-icons/bs";
 import { AiOutlineCaretUp, AiOutlineCaretDown } from "react-icons/ai";
+import { MdOutlineBlock } from "react-icons/md";
 
 //styled-components
 import {
@@ -19,6 +20,7 @@ import {
   PositionStyle,
   RemoveAndEdit,
   ButtonEdit,
+  ButtonCancelEdit,
   ButtonRemove,
 } from "./Styles";
 
@@ -30,10 +32,12 @@ const TaskItem = ({
   task,
   setFinish,
   edited,
+  cancelEdited,
   remove,
   isFinished,
   id,
   position,
+  editId,
 }) => {
   const { mode } = useContext(Contexts);
 
@@ -49,7 +53,7 @@ const TaskItem = ({
             checked={isFinished === true && true}
           />
           <Text
-            color={mode === true ? "#B64FC8" : "black"}
+            color={mode ? "#B64FC8" : " #174b7a"}
             style={{ textDecoration: isFinished === true && "line-through" }}
           >
             {description}
@@ -59,15 +63,10 @@ const TaskItem = ({
 
       <Container>
         <ActionContainer>
-          <PositionStyle>
+          <PositionStyle color={mode ? "#B64FC8" : "#3085d6"}>
             <button
               style={{
-                color:
-                  index === 0
-                    ? "#e0d2d4"
-                    : mode === true
-                    ? "#B64FC8"
-                    : "#3085d6",
+                color: index === 0 && "#ccc",
               }}
               onClick={() => {
                 position("up", task, index);
@@ -78,12 +77,7 @@ const TaskItem = ({
 
             <button
               style={{
-                color:
-                  index === array.length - 1
-                    ? "#e0d2d4"
-                    : mode === true
-                    ? "#B64FC8"
-                    : "#3085d6",
+                color: index === array.length - 1 && "#ccc",
               }}
               onClick={() => {
                 position("bottom", task, index);
@@ -94,15 +88,20 @@ const TaskItem = ({
           </PositionStyle>
 
           <RemoveAndEdit>
-            <ButtonEdit
-              color={mode ? "white" : "black"}
-              style={{ color: mode && "#e0d2d4" }}
-              onClick={() => {
-                edited(task);
-              }}
-            >
-              <BsPencil />
-            </ButtonEdit>
+            {editId === taskId ? (
+              <ButtonCancelEdit onClick={cancelEdited}>
+                <MdOutlineBlock style={{ color: "red" }} />
+              </ButtonCancelEdit>
+            ) : (
+              <ButtonEdit
+                color={isFinished ? "#ccc" : mode ? "white" : "black"}
+                onClick={() => {
+                  edited(task);
+                }}
+              >
+                <BsPencil />
+              </ButtonEdit>
+            )}
 
             <ButtonRemove
               onClick={() => {

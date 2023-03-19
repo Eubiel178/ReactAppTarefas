@@ -21,6 +21,7 @@ import {
 
 //styles
 import { FormContainer, ButtonContainer } from "./Styles";
+import { useEffect } from "react";
 
 const EditForm = () => {
   const [loading, setLoading] = useState(false);
@@ -63,6 +64,12 @@ const EditForm = () => {
       }
     }
   };
+
+  useEffect(() => {
+    if (localStorage.getItem("id")) {
+      navigate("/");
+    }
+  }, []);
 
   return (
     <FormContainer onSubmit={handleSubmit(handleRegister)}>

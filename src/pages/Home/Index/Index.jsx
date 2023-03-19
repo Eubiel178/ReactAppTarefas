@@ -55,18 +55,6 @@ const Home = () => {
     }
   };
 
-  const handleRendering = async () => {
-    const list = await get();
-
-    list.sort((smallestElement, greatestElement) => {
-      return smallestElement.index - greatestElement.index;
-    });
-
-    setToDoList(list);
-
-    return list;
-  };
-
   const handleOnSubmit = async (event) => {
     event.preventDefault();
 
@@ -114,19 +102,21 @@ const Home = () => {
     }
   };
 
+  const handleCancelEdit = async () => {
+    const { value } = await swalModal(
+      "Essa tarefa esta sendo editada. Deseja cancelar edição?"
+    );
+
+    if (value === true) {
+      setEditId("");
+      setInput("");
+    }
+  };
+
   const handleRemove = async (task, index) => {
     const newArray = [...toDoList];
 
-    if (editId !== "") {
-      const { value } = await swalModal(
-        "Essa tarefa esta sendo editada. Deseja cancelar edição?"
-      );
-
-      if (value === true) {
-        setEditId("");
-        setInput("");
-      }
-    } else if (task.isFinished === false) {
+    if (task.isFinished === false) {
       const { value } = await swalModal("Deseja remover essa tarefa?");
 
       if (value === true) {
@@ -210,20 +200,24 @@ const Home = () => {
 
   useEffect(() => {
     (async () => {
-      const list = await handleRendering();
+      const list = await get();
       let isFinishedTrue = [];
       let isFinishedFalse = [];
 
-      list.forEach((element) => {
-        if (element.isFinished) {
-          return (isFinishedTrue = [element, ...isFinishedTrue]);
-        }
-
-        return (isFinishedFalse = [element, ...isFinishedFalse]);
+      list.sort((smallestElement, greatestElement) => {
+        return smallestElement.index - greatestElement.index;
       });
 
-      setCompletedTask(isFinishedTrue.length);
+      list.forEach((element) => {
+        if (element.isFinished) {
+          isFinishedTrue = [element, ...isFinishedTrue];
+        } else {
+          isFinishedFalse = [element, ...isFinishedFalse];
+        }
+      });
 
+      setToDoList(list);
+      setCompletedTask(isFinishedTrue.length);
       setRemainingTasks(isFinishedFalse.length);
     })();
 
@@ -249,7 +243,7 @@ const Home = () => {
               remainingTasks={remainingTasks}
             />
 
-            <TaskList color={mode ? "white" : "black"} ref={animationParent}>
+            <TaskList ref={animationParent}>
               {toDoList.length === 0 ? (
                 <FeedBack>Nenhuma tarefa foi adicionada</FeedBack>
               ) : (
@@ -264,10 +258,12 @@ const Home = () => {
                       task={element}
                       setFinish={handleSetFinishTask}
                       edited={handleEdit}
+                      cancelEdited={handleCancelEdit}
                       remove={handleRemove}
                       isFinished={element.isFinished}
                       id={element._id}
                       position={handlePositionTask}
+                      editId={editId}
                     />
                   );
                 })
