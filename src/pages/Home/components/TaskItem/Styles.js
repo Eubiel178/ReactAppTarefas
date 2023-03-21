@@ -5,10 +5,6 @@ export const TaskContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   margin-bottom: 1em;
-
-  div:nth-child(2) {
-    align-self: stretch;
-  }
 `;
 
 export const TaskDescription = styled.div``;
@@ -16,17 +12,26 @@ export const TaskDescription = styled.div``;
 export const Task = styled.p`
   text-align: justify;
   word-break: break-all;
-  font-weight: 900;
   font-size: 14px;
   cursor: grabbing;
+  display: flex;
+  font-weight: 600;
+  color: black;
 
   input:hover {
     cursor: grab;
   }
 `;
 
+export const TextInAndroid = styled.button`
+  text-align: start;
+  background-color: transparent;
+  border: none;
+  padding-left: 0.5em;
+  font-weight: 600;
+`;
+
 export const Text = styled.span`
-  color: ${({ color }) => color};
   padding-left: 0.5em;
 `;
 
@@ -46,6 +51,10 @@ export const ActionContainer = styled.div`
   button {
     cursor: pointer;
   }
+
+  @media (max-width: 700px) {
+    flex-direction: column;
+  }
 `;
 
 export const PositionStyle = styled.div`
@@ -64,7 +73,7 @@ export const PositionStyle = styled.div`
   }
 `;
 
-export const RemoveAndEdit = styled.div`
+export const DivButtons = styled.div`
   display: flex;
 
   button {

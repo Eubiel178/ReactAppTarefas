@@ -9,16 +9,21 @@ import { BsPencil } from "react-icons/bs";
 import { AiOutlineCaretUp, AiOutlineCaretDown } from "react-icons/ai";
 import { MdOutlineBlock } from "react-icons/md";
 
+//libs
+
+import Swal from "sweetalert2";
+
 //styled-components
 import {
   TaskContainer,
   TaskDescription,
   Task,
+  TextInAndroid,
   Text,
   Container,
   ActionContainer,
   PositionStyle,
-  RemoveAndEdit,
+  DivButtons,
   ButtonEdit,
   ButtonCancelEdit,
   ButtonRemove,
@@ -41,6 +46,33 @@ const TaskItem = ({
 }) => {
   const { mode } = useContext(Contexts);
 
+  const swalModal = () => {
+    description.length > 110 &&
+      Swal.fire({
+        title: description,
+        showCancelButton: true,
+        showConfirmButton: false,
+        cancelButtonText: "Fechar",
+        cancelButtonColor: "#f27474",
+        showClass: {
+          popup: "animate__animated animate__fadeInDown",
+        },
+        hideClass: {
+          popup: "animate__animated animate__fadeOutUp",
+        },
+      });
+  };
+
+  const handleDescription = (string) => {
+    if (window.screen.width <= 500 && string.length > 110) {
+      const newString = string.substring(0, 110);
+
+      return newString + "...";
+    } else {
+      return string;
+    }
+  };
+
   return (
     <TaskContainer>
       <TaskDescription>
@@ -52,12 +84,21 @@ const TaskItem = ({
             }}
             checked={isFinished === true && true}
           />
-          <Text
-            color={mode ? "#B64FC8" : " #174b7a"}
-            style={{ textDecoration: isFinished === true && "line-through" }}
-          >
-            {description}
-          </Text>
+
+          {window.screen.width <= 500 ? (
+            <TextInAndroid
+              onClick={swalModal}
+              style={{ textDecoration: isFinished === true && "line-through" }}
+            >
+              {handleDescription(description)}
+            </TextInAndroid>
+          ) : (
+            <Text
+              style={{ textDecoration: isFinished === true && "line-through" }}
+            >
+              {handleDescription(description)}
+            </Text>
+          )}
         </Task>
       </TaskDescription>
 
@@ -87,7 +128,7 @@ const TaskItem = ({
             </button>
           </PositionStyle>
 
-          <RemoveAndEdit>
+          <DivButtons>
             {editId === taskId ? (
               <ButtonCancelEdit onClick={cancelEdited}>
                 <MdOutlineBlock style={{ color: "red" }} />
@@ -110,7 +151,7 @@ const TaskItem = ({
             >
               <FaTrashAlt />
             </ButtonRemove>
-          </RemoveAndEdit>
+          </DivButtons>
         </ActionContainer>
       </Container>
     </TaskContainer>
