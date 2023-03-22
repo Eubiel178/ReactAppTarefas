@@ -76,7 +76,7 @@ const TaskItem = ({
   return (
     <TaskContainer>
       <TaskDescription>
-        <Task id={id}>
+        <Task id={id} style={{ color: mode === true && "#fff" }}>
           <input
             type="checkbox"
             onChange={() => {

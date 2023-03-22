@@ -14,16 +14,21 @@ export const Text = styled.p`
 
 export const Button = styled.button`
   color: #fff;
-  background-color: #3085d6;
   padding: 0.5em;
   border-radius: 6px;
   margin-left: 0.5em;
   border: 0px;
   transition-duration: 0.5s;
   font-size: 16px;
+  color: black;
+  background-color: #fff;
+  border: 0px;
 
   :hover {
-    background-color: #3005d6;
+    background: #8b80f9;
+    color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #8b80f9, 0 0 10px #8b80f9, 0 0 #8b80f9, 0 0 #8b80f9;
   }
 
   @media (max-width: 480px) {

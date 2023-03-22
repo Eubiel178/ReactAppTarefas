@@ -6,22 +6,18 @@ export const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  background: linear-gradient(#8b80f9, #212123);
 `;
 
 export const ContainerContent = styled.div`
   width: 50%;
   height: 90%;
-  background-color: #fff;
-  border-radius: 1em;
+  border-radius: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.13);
-  overflow-y: auto;
-
-  ::-webkit-scrollbar {
-    display: none;
-  }
+  background: rgba(0, 0, 0, 0.5);
+  box-shadow: 0 15px 25px rgba(139, 128, 249, 0.6);
 
   @media (max-width: 1000px) {
     width: 90%;

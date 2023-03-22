@@ -1,5 +1,5 @@
 import { Controller } from "react-hook-form";
-import { Container, StyledInput, Error } from "./Styles";
+import { Container, StyledInput, Error, Label } from "./Styles";
 
 export const InputRHF = ({
   name,
@@ -18,11 +18,10 @@ export const InputRHF = ({
         <Container>
           <StyledInput
             type={type}
-            placeholder={placeholder}
             {...field}
             {...rest}
+            placeholder={placeholder}
           />
-
           {error && <Error>{error}</Error>}
         </Container>
       )}
