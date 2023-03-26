@@ -1,8 +1,3 @@
-import Contexts from "../../../../contexts/Contexts";
-
-//hooks
-import { useContext } from "react";
-
 //icons
 import { FaTrashAlt } from "react-icons/fa";
 import { BsPencil } from "react-icons/bs";
@@ -18,6 +13,7 @@ import {
   TaskContainer,
   TaskDescription,
   Task,
+  ConcluedButton,
   TextInAndroid,
   Text,
   Container,
@@ -44,8 +40,6 @@ const TaskItem = ({
   position,
   editId,
 }) => {
-  const { mode } = useContext(Contexts);
-
   const swalModal = () => {
     description.length > 110 &&
       Swal.fire({
@@ -76,8 +70,8 @@ const TaskItem = ({
   return (
     <TaskContainer>
       <TaskDescription>
-        <Task id={id} style={{ color: mode === true && "#fff" }}>
-          <input
+        <Task id={id}>
+          <ConcluedButton
             type="checkbox"
             onChange={() => {
               setFinish(task, taskId, index);
@@ -104,10 +98,10 @@ const TaskItem = ({
 
       <Container>
         <ActionContainer>
-          <PositionStyle color={mode ? "#B64FC8" : "#3085d6"}>
+          <PositionStyle>
             <button
               style={{
-                color: index === 0 && "#ccc",
+                color: index === 0 && "#686868",
               }}
               onClick={() => {
                 position("up", task, index);
@@ -131,11 +125,11 @@ const TaskItem = ({
           <DivButtons>
             {editId === taskId ? (
               <ButtonCancelEdit onClick={cancelEdited}>
-                <MdOutlineBlock style={{ color: "red" }} />
+                <MdOutlineBlock />
               </ButtonCancelEdit>
             ) : (
               <ButtonEdit
-                color={isFinished ? "#ccc" : mode ? "white" : "black"}
+                style={{ color: isFinished && "#686868" }}
                 onClick={() => {
                   edited(task);
                 }}

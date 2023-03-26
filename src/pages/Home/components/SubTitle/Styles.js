@@ -11,7 +11,7 @@ export const TitleContainer = styled.div``;
 
 export const Title = styled.h2`
   margin-top: 1.5em;
-  color: ${({ colorTitle }) => colorTitle};
+  color: ${(props) => props.theme.title};
 `;
 
 export const CompletedTasks = styled.p`

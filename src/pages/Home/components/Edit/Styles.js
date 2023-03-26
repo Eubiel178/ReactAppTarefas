@@ -9,24 +9,18 @@ export const FormContainer = styled.div`
 `;
 
 export const Button = styled.button`
-  height: 3em;
-  margin-left: 1em;
+  height: 100%;
   padding: 1em;
   color: #fff;
-  background-color: ${({ backgroundButton }) => backgroundButton};
+  background-color: ${(props) => props.theme.background_button};
   border-radius: 0.7em;
   border: 1px solid rgba(0, 0, 0, 0.137);
   font-size: 16px;
   transition-duration: 0.5s;
   box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.048);
 
-  :hover {
-    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.192);
-    background-color: ${({ buttonHover }) => buttonHover};
-  }
-
-  @media (max-width: 960px) {
-    margin-left: 0em;
+  @media (min-width: 960px) {
+    margin-left: 1em;
   }
 `;
 

@@ -22,14 +22,6 @@ export const StyledInput = styled.input`
     -webkit-box-shadow: 0 0 0px 1000px #fff inset;
     border-radius: 10px;
   }
-
-  /* :focus ~ label,
-  :valid ~ label {
-    top: -20px;
-    left: 0;
-    color: #8b80f9;
-    font-size: 12px;
-  } */
 `;
 
 export const Label = styled.label`

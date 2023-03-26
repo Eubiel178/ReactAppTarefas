@@ -1,8 +1,3 @@
-import Contexts from "../../../../contexts/Contexts";
-
-//hooks
-import { useContext } from "react";
-
 //styled-components
 import {
   Container,
@@ -24,8 +19,6 @@ const SubTitle = ({
   setCompletedTask,
   remainingTasks,
 }) => {
-  const { mode } = useContext(Contexts);
-
   const clearList = async () => {
     const completed = toDoList.filter((element) => {
       return element.isFinished === true;
@@ -52,7 +45,7 @@ const SubTitle = ({
   return (
     <Container>
       <TitleContainer>
-        <Title colorTitle={mode ? "#B64FC8" : " #3085d6"}>TAREFAS</Title>
+        <Title>TAREFAS</Title>
 
         <CompletedTasks>
           Tarefas concluídas: {completedTask > 0 ? completedTask : "0"}

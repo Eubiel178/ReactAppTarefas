@@ -1,7 +1,5 @@
 import { useContext, useState, useEffect } from "react";
 
-import Modal from "react-modal";
-
 import { BiUser } from "react-icons/bi";
 import { MdOutlineAlternateEmail } from "react-icons/md";
 import { AiOutlineLogin } from "react-icons/ai";
@@ -19,6 +17,8 @@ import {
 import profile from "../../../../images/profile.jpg";
 import Contexts from "../../../../contexts/Contexts";
 import { editUser, getOne, logOff } from "../../../../utils/user";
+
+import Modal from "react-modal";
 import Swal from "sweetalert2";
 
 const ModalProfile = ({
@@ -31,9 +31,17 @@ const ModalProfile = ({
 }) => {
   const [edit, setEdit] = useState(false);
   const [image, setImage] = useState("");
-  const { mode, setAuth, setUserJson } = useContext(Contexts);
+  const { setAuth, setUserJson, mode } = useContext(Contexts);
 
   const customStyles = {
+    overlay: {
+      position: "fixed",
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      backgroundColor: mode ? "rgb(0 0 0 / 72%)" : "rgba(255, 255, 255, 0.75)",
+    },
     content: {
       top: "50%",
       left: "50%",
@@ -42,10 +50,12 @@ const ModalProfile = ({
       marginRight: "-50%",
       transform: "translate(-50%, -50%)",
       height: "30em",
-      width: "20em",
-      backgroundColor: "#ffffff",
+      width: "22em",
+      backgroundColor: mode ? "#282A36" : "#ffffff",
       border: "1px solid rgb(0 0 0 / 44%)",
       boxShadow: "6px 6px 8px #00000030",
+      transitionDuration: "5s",
+      // : `${animateModal} 1s linear infinite`,
     },
   };
 
@@ -116,7 +126,7 @@ const ModalProfile = ({
       onRequestClose={() => setModalIsOpen(false)}
     >
       <ContainerModal>
-        <Header borderBottom={mode ? "#B64FC8" : "#3085d6"}>
+        <Header>
           <p>
             <strong>Informações do usuário</strong>
           </p>
@@ -129,7 +139,7 @@ const ModalProfile = ({
         </Header>
 
         <InfoUser>
-          <ImageContainer color={mode ? "#B64FC8" : "#3085d6"}>
+          <ImageContainer>
             <img
               style={{ filter: edit === true && "blur(2px)" }}
               src={image ? image : profile}
@@ -140,7 +150,6 @@ const ModalProfile = ({
               <label
                 htmlFor="photo"
                 style={{ display: edit ? "block" : "none" }}
-                color={mode ? "#B64FC8" : "#3085d6"}
               >
                 Selecionar imagem
               </label>
@@ -159,7 +168,6 @@ const ModalProfile = ({
               <BiUser
                 style={{
                   fontSize: "25px",
-                  fill: mode ? "#B64FC8" : "#3085d6",
                 }}
               />
               <p>{name}</p>
@@ -169,7 +177,6 @@ const ModalProfile = ({
               <MdOutlineAlternateEmail
                 style={{
                   fontSize: "25px",
-                  fill: mode ? "#B64FC8" : "#3085d6",
                 }}
               />
               <p>{email}</p>
@@ -177,7 +184,7 @@ const ModalProfile = ({
           </div>
         </InfoUser>
 
-        <Action background={mode ? "#B64FC8" : "#3085d6"}>
+        <Action>
           <button
             onClick={
               edit

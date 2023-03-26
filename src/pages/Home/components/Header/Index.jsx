@@ -38,13 +38,9 @@ const Header = () => {
   return (
     <header>
       <section>
-        <NavBar background={mode ? "#1F1F1F" : "#3085d6"}>
+        <NavBar>
           <section>
-            <Mode
-              onClick={handleMode}
-              background={mode === false ? "black" : "#fff"}
-              color={mode ? "black" : "white"}
-            >
+            <Mode onClick={handleMode}>
               {mode === false ? "Modo escuro" : "Modo claro"}
             </Mode>
           </section>
@@ -68,7 +64,7 @@ const Header = () => {
       </section>
 
       <section>
-        <Title color={mode ? "#B64FC8" : "#3085d6"}>ADICIONAR TAREFAS</Title>
+        <Title>ADICIONAR TAREFAS</Title>
       </section>
     </header>
   );

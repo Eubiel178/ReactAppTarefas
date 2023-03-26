@@ -1,11 +1,11 @@
 import styled from "styled-components";
 
 export const ContainerContent = styled.div`
-  background-color: ${({ background }) => background};
   width: 100%;
   height: 100vh;
   overflow: hidden;
   overflow-y: auto;
+  background: ${(props) => props.theme.background_page};
 
   ::-webkit-scrollbar {
     display: none;
