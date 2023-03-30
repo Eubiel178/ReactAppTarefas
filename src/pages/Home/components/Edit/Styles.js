@@ -1,26 +1,35 @@
 import styled from "styled-components";
 
 export const FormContainer = styled.div`
+  display: flex;
+
   @media (max-width: 960px) {
-    display: flex;
     flex-direction: column;
     width: 98%;
   }
 `;
 
 export const Button = styled.button`
-  height: 100%;
+  display: flex;
+  justify-content: center;
   padding: 1em;
   color: #fff;
   background-color: ${(props) => props.theme.background_button};
   border-radius: 0.7em;
   border: 1px solid rgba(0, 0, 0, 0.137);
   font-size: 16px;
-  transition-duration: 0.5s;
-  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.048);
+  height: 100%;
+  width: 5em;
+  margin-left: 1em;
 
-  @media (min-width: 960px) {
-    margin-left: 1em;
+  div {
+    height: 1em;
+    width: 100%;
+  }
+
+  @media (max-width: 960px) {
+    margin-left: initial;
+    width: 100%;
   }
 `;
 

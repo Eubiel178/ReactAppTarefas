@@ -1,5 +1,5 @@
 //hooks
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 
 //libs
@@ -13,19 +13,16 @@ import { register } from "../../../utils/user";
 
 //components
 import {
+  FormContainer,
   InputRHF,
   Button,
   ButtonLink,
-  Visibility,
+  InputPassword,
 } from "../../../components/Index";
-
-//styles
-import { FormContainer, ButtonContainer } from "./Styles";
-import { useEffect } from "react";
 
 const EditForm = () => {
   const [loading, setLoading] = useState(false);
-  const [passwordVisible, setPasswordVisible] = useState(false);
+
   const navigate = useNavigate();
 
   const {
@@ -75,47 +72,45 @@ const EditForm = () => {
 
   return (
     <FormContainer onSubmit={handleSubmit(handleRegister)}>
-      <InputRHF
-        name="name"
-        type="text"
-        placeholder="Nome"
-        control={control}
-        error={errors?.name && errors.name?.message}
-      />
+      <div>
+        <InputRHF
+          name="name"
+          type="text"
+          placeholder="Nome"
+          control={control}
+          error={errors?.name && errors.name?.message}
+        />
 
-      <InputRHF
-        name="email"
-        type="email"
-        placeholder="example@gmail.com"
-        control={control}
-        error={errors?.email && errors.email?.message}
-      />
+        <InputRHF
+          name="email"
+          type="email"
+          placeholder="example@gmail.com"
+          control={control}
+          error={errors?.email && errors.email?.message}
+        />
 
-      <InputRHF
-        name="password"
-        type={passwordVisible ? "text" : "password"}
-        placeholder="Senha"
-        control={control}
-        error={errors?.password && errors.password?.message}
-      />
+        <InputPassword
+          name="password"
+          placeholder="Senha"
+          control={control}
+          error={errors?.password && errors.password?.message}
+        />
 
-      <InputRHF
-        name="password_confirmation"
-        type={passwordVisible ? "text" : "password"}
-        placeholder="Repita sua senha"
-        control={control}
-        error={
-          errors?.password_confirmation && errors.password_confirmation?.message
-        }
-      />
+        <InputPassword
+          name="password_confirmation"
+          placeholder="Repita sua senha"
+          control={control}
+          error={
+            errors?.password_confirmation &&
+            errors.password_confirmation?.message
+          }
+        />
 
-      <Visibility value={passwordVisible} set={setPasswordVisible} />
-
-      <Button value="Criar Conta" loading={loading} />
-
-      <ButtonContainer>
+        <Button value="Criar Conta" loading={loading} />
+      </div>
+      <div>
         <ButtonLink to="/" text="Já tem uma conta" textLink="Login" />
-      </ButtonContainer>
+      </div>
     </FormContainer>
   );
 };

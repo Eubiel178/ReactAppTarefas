@@ -231,6 +231,7 @@ const Home = () => {
             AddTask={handleOnSubmit}
             setInput={setInput}
             isEdit={editId}
+            load={loading}
           />
           <div>
             <SubTitle

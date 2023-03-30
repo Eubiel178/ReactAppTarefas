@@ -18,12 +18,24 @@ export const ContainerContent = styled.div`
   align-items: center;
   background: rgba(0, 0, 0, 0.5);
   box-shadow: 0 15px 25px rgba(139, 128, 249, 0.6);
+  overflow: hidden;
+  overflow-y: auto;
 
-  @media (max-width: 1000px) {
-    width: 90%;
+  ::-webkit-scrollbar {
+    display: none;
   }
 
-  @media (max-width: 480px) {
+  @media (max-width: 1000px) {
+    width: 40em;
+    height: 90%;
+  }
+
+  @media (max-width: 720px) {
+    width: 95%;
+    height: 95%;
+  }
+
+  @media (max-width: 550px) {
     height: 100%;
     width: 100%;
     border-radius: initial;
