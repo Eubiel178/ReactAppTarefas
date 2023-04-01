@@ -12,20 +12,19 @@ import { getOne, login } from "../../../utils/user";
 
 //components
 import {
+  FormContainer,
+  InputPassword,
   InputRHF,
   Button,
   ButtonLink,
-  Visibility,
 } from "../../../components/Index";
 
 //styles
-import { Error } from "../../../components/InputRHF/Styles";
-import { FormContainer } from "./Styles";
+import { Error } from "../../../components/Form/InputRHF/Styles";
 import { schema } from "./ValidationForm";
 
 const EditForm = () => {
   const [loading, setLoading] = useState(false);
-  const [passwordVisible, setPasswordVisible] = useState(false);
   const [status, setStatus] = useState("");
   const { setAuth, setUserJson } = useContext(Contexts);
 
@@ -84,27 +83,23 @@ const EditForm = () => {
           control={control}
           error={errors?.email && errors.email?.message}
         />
-
-        <InputRHF
+        <InputPassword
           name="password"
-          type={passwordVisible ? "text" : "password"}
           placeholder="Sua senha"
           control={control}
           error={errors?.password && errors.password?.message}
         />
-
         {status && <Error>{status}</Error>}
-
-        <Visibility value={passwordVisible} set={setPasswordVisible} />
-
         <Button value="Logar" loading={loading} />
       </div>
 
-      <ButtonLink
-        to="/register"
-        text=" Ainda não tem conta?"
-        textLink="Cadastre-se"
-      />
+      <div>
+        <ButtonLink
+          to="/register"
+          text=" Ainda não tem conta?"
+          textLink="Cadastre-se"
+        />
+      </div>
     </FormContainer>
   );
 };
