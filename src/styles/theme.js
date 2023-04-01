@@ -1,21 +1,23 @@
-// animate__animated animate__fadeInDown
-
 export const lightTheme = {
-  background_navbar: "#3085d6",
-  background_page: "#fff",
-  color: "#322f2f ",
+  background_navbar: "#C9C9C9",
+  background_card: "#C9C9C9",
+  background_page: "#E9E9E9",
+  color: "#212121 ",
   color_icon: "black",
-  title: "#3085d6",
-  background_button: "#3085d6",
-  switch_theme_button: { color: "white", background: "black" },
+  title: "#212121",
+  background_button: "rgba(0, 0, 0, 0.5)",
+  switch_theme_button: { color: "black" },
+  background_grafic_text: "#9f98985e",
 };
 
 export const darkTheme = {
-  background_navbar: "#212121",
+  background_navbar: "rgba(0, 0, 0, 0.5)",
+  background_card: "rgba(0, 0, 0, 0.5)",
   background_page: "#282A36",
   color: "#E1E1E1",
   color_icon: "#fff",
-  title: "#8b80f9",
-  background_button: "#8b80f9",
-  switch_theme_button: { color: "black", background: "white" },
+  title: "#E9E9E9 ",
+  background_button: "rgba(0, 0, 0, 0.5)",
+  switch_theme_button: { color: "white" },
+  background_grafic_text: "rgb(0 0 0 / 24%)",
 };

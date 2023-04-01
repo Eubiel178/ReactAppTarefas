@@ -9,5 +9,3 @@ export const Header = ({ title }) => {
     </header>
   );
 };
-
-

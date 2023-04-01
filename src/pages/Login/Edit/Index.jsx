@@ -22,11 +22,13 @@ import {
 //styles
 import { Error } from "../../../components/Form/InputRHF/Styles";
 import { schema } from "./ValidationForm";
+import { useNavigate } from "react-router-dom";
 
 const EditForm = () => {
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState("");
   const { setAuth, setUserJson } = useContext(Contexts);
+  const navigate = useNavigate();
 
   const {
     handleSubmit,
@@ -37,13 +39,15 @@ const EditForm = () => {
   const handleLogin = async (fields) => {
     if (loading === false) {
       setLoading(true);
+
       try {
         const status = await login(fields);
-        const user = await getOne(localStorage.getItem("id"));
+        const user = await getOne(localStorage.getItem("token"));
 
         if (status === 200 && user.name) {
           setUserJson(user);
           setAuth(true);
+          navigate("/home");
         }
       } catch (error) {
         setStatus("Email ou senha incorreto!");
@@ -57,18 +61,10 @@ const EditForm = () => {
   };
 
   useEffect(() => {
-    (async () => {
-      const id = localStorage.getItem("id");
-
-      if (id) {
-        const user = await getOne(id);
-
-        if (user.name) {
-          setUserJson(user);
-          setAuth(true);
-        }
-      }
-    })();
+    if (setUserJson.name) {
+      setAuth(true);
+      navigate("/home");
+    }
 
     // eslint-disable-next-line
   }, []);

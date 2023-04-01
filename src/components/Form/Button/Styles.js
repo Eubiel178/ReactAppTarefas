@@ -53,9 +53,9 @@ export const ButtonItem = styled.button`
   transition: 0.5s;
   margin-top: 40px;
   letter-spacing: 4px;
-  background-color: ${({ background }) => background};
   border: 0px;
   display: flex;
+  background: rgba(0, 0, 0, 0.5);
   justify-content: center;
 
   :hover {

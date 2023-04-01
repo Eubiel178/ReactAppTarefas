@@ -16,7 +16,13 @@ const AppRoutes = () => {
     <Router>
       {auth ? (
         <Routes>
-          <Route path="/" exact element={<Pages.Home />} />
+          <Route path="/home" exact element={<Pages.Home />} />
+          <Route path="/home/list" exact element={<Pages.List />} />
+          <Route
+            path="/home/list-checked"
+            exact
+            element={<Pages.ListChecked />}
+          />
         </Routes>
       ) : (
         <Routes>

@@ -20,6 +20,8 @@ import {
   InputPassword,
 } from "../../../components/Index";
 
+import profile from "../../../images/profile.jpg";
+
 const EditForm = () => {
   const [loading, setLoading] = useState(false);
 
@@ -48,7 +50,7 @@ const EditForm = () => {
     if (loading === false) {
       setLoading(true);
 
-      const status = await register(data);
+      const status = await register({ ...data, img: profile });
 
       if (status === 201 || status === 200) {
         await swalModal();

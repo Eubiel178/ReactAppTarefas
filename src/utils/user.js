@@ -12,14 +12,16 @@ export const login = async (body) => {
   const { status, data } = await api.post("/authenticate", body);
 
   if (status === 200) {
-    localStorage.setItem("id", data._id);
+    localStorage.setItem("token", data._id);
   }
 
   return status;
 };
 
 export const editUser = async (body, id) => {
-  return await api.patch(`/users/${id}`, body);
+  const response = await api.patch(`/users/${id}`, body);
+
+  console.log(response);
 };
 
 export const getOne = async (id) => {
