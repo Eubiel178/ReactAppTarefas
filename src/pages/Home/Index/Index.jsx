@@ -27,7 +27,7 @@ const Home = () => {
   const [completedTask, setCompletedTask] = useState([]);
   const [remainingTasks, setRemainingTasks] = useState([]);
   const [animationParent] = useAutoAnimate();
-  const { input, setInput, mode, userJson } = useContext(Contexts);
+  const { input, setInput, userJson } = useContext(Contexts);
 
   const swalModal = (title) => {
     if (title) {
@@ -178,15 +178,13 @@ const Home = () => {
   const handlePositionTask = async (pos, task, index) => {
     if (pos === "up" || pos === "bottom") {
       const newArray = [...toDoList];
+      newArray.splice(index, 1);
 
-      if (pos === "up" && index !== 0) {
-        newArray.splice(index, 1);
-
+      if (pos === "up" && index > 0) {
         newArray.splice(index - 1, 0, task);
       }
 
       if (pos === "bottom" && index < toDoList.length) {
-        newArray.splice(index, 1);
         newArray.splice(index + 1, 0, task);
       }
 
@@ -204,8 +202,8 @@ const Home = () => {
       let isFinishedTrue = [];
       let isFinishedFalse = [];
 
-      list.sort((smallestElement, greatestElement) => {
-        return smallestElement.index - greatestElement.index;
+      const newArray = list.sort((currentElement, nextElement) => {
+        return parseInt(currentElement.index) - parseInt(nextElement.index);
       });
 
       list.forEach((element) => {
@@ -216,7 +214,7 @@ const Home = () => {
         }
       });
 
-      setToDoList(list);
+      setToDoList(newArray);
       setCompletedTask(isFinishedTrue.length);
       setRemainingTasks(isFinishedFalse.length);
     })();
@@ -226,7 +224,7 @@ const Home = () => {
 
   return (
     <>
-      <ContainerContent background={mode ? "#121212" : "white"}>
+      <ContainerContent>
         <Header />
         <MainContainer>
           <EditForm

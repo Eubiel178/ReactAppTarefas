@@ -6,7 +6,7 @@ import { useContext } from "react";
 import { FormContainer, Button, Input } from "./Styles";
 
 const EditForm = ({ AddTask, setInput, isEdit }) => {
-  const { input, mode } = useContext(Contexts);
+  const { input } = useContext(Contexts);
 
   const handleTask = (event) => {
     setInput(event.target.value);
@@ -23,13 +23,7 @@ const EditForm = ({ AddTask, setInput, isEdit }) => {
           value={input}
           required
         />
-        <Button
-          type="submit"
-          backgroundButton={mode ? "#B64FC8" : " #3085d6"}
-          buttonHover={mode ? "#6105d6" : "#3005d6"}
-        >
-          {isEdit !== "" ? "Atualizar" : "Salvar"}
-        </Button>
+        <Button type="submit">{isEdit !== "" ? "Atualizar" : "Salvar"}</Button>
       </FormContainer>
     </form>
   );

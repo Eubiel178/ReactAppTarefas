@@ -69,6 +69,8 @@ const EditForm = () => {
     if (localStorage.getItem("id")) {
       navigate("/");
     }
+
+    //eslint-disable-next-line
   }, []);
 
   return (

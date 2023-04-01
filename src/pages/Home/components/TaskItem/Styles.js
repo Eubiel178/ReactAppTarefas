@@ -13,12 +13,18 @@ export const Task = styled.p`
   text-align: justify;
   word-break: break-all;
   font-size: 14px;
-  cursor: grabbing;
   display: flex;
+  align-items: center;
   font-weight: 600;
-  color: black;
+  cursor: grabbing;
+`;
 
-  input:hover {
+export const ConcluedButton = styled.input`
+  display: block;
+  width: 1.2em;
+  height: 1.2em;
+
+  :hover {
     cursor: grab;
   }
 `;
@@ -33,6 +39,7 @@ export const TextInAndroid = styled.button`
 
 export const Text = styled.span`
   padding-left: 0.5em;
+  color: ${(props) => props.theme.color};
 `;
 
 export const Container = styled.div`
@@ -65,7 +72,7 @@ export const PositionStyle = styled.div`
     background: transparent;
     padding: 0.5em;
     font-size: 17px;
-    color: ${({ color }) => color};
+    color: ${(props) => props.theme.color_icon};
   }
 
   button:first-child {
@@ -86,7 +93,7 @@ export const DivButtons = styled.div`
 
 export const ButtonEdit = styled.button`
   margin-right: 0.5em;
-  color: ${({ color }) => color};
+  color: ${(props) => props.theme.color_icon};
 `;
 
 export const ButtonCancelEdit = styled(ButtonEdit)`
