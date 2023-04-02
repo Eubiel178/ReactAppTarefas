@@ -4,6 +4,7 @@ import GlobalStyle from "./styles/global";
 import { useState, useEffect } from "react";
 import { ThemeProvider } from "styled-components";
 import { lightTheme, darkTheme } from "./styles/theme";
+
 import { getOne } from "./utils/user";
 
 const App = () => {

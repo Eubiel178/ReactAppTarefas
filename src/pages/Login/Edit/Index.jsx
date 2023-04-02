@@ -27,7 +27,7 @@ import { useNavigate } from "react-router-dom";
 const EditForm = () => {
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState("");
-  const { setAuth, setUserJson } = useContext(Contexts);
+  const { setAuth, userJson, setUserJson } = useContext(Contexts);
   const navigate = useNavigate();
 
   const {
@@ -61,7 +61,7 @@ const EditForm = () => {
   };
 
   useEffect(() => {
-    if (setUserJson.name) {
+    if (userJson.name) {
       setAuth(true);
       navigate("/home");
     }

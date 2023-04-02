@@ -9,15 +9,8 @@ export const Loading = styled.div`
   background: ${(props) => props.theme.background_card};
 `;
 
-export const PageContainer = styled.div`
-  position: relative;
-  display: flex;
-  height: 100vh;
-  background-color: ${(props) => props.theme.background_page};
-`;
-
 export const Container = styled(Loading)`
-  background: none;
+  background-color: transparent;
 `;
 
 export const Content = styled.div`
@@ -28,11 +21,22 @@ export const Content = styled.div`
   justify-content: space-between;
   border-radius: 10px 10px 0px 0px;
   border: solid 1px rgba(0, 0, 0, 0.5);
+
+  @media (max-width: 480px) {
+    border: initial;
+    box-shadow: initial;
+    height: 100vh;
+    width: 100%;
+    border-radius: 0px;
+    background: ${(props) => props.theme.background_page};
+  }
 `;
 
 export const UserProgress = styled.div`
   position: relative;
   overflow: hidden;
+  display: flex;
+  justify-content: center;
 
   svg,
   img {

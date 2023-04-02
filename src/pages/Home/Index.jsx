@@ -5,10 +5,9 @@ import ReactLoading from "react-loading";
 
 import Contexts from "../../contexts/Contexts";
 
-import { NavBar } from "../../components/Index";
+import { ContainerPages, NavBar } from "../../components/Index";
 
 import {
-  PageContainer,
   Container,
   Content,
   UserProgress,
@@ -89,7 +88,7 @@ const Home = () => {
           <ReactLoading type="spin" color={"red"} height="5em" width="5em" />
         </Loading>
       ) : (
-        <PageContainer>
+        <ContainerPages>
           <NavBar />
           <Container>
             <Content>
@@ -129,7 +128,7 @@ const Home = () => {
               </TextContainer>
             </Content>
           </Container>
-        </PageContainer>
+        </ContainerPages>
       )}
     </>
   );

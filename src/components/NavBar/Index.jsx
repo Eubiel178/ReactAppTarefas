@@ -4,6 +4,7 @@ import { useEffect, useContext, useState } from "react";
 import {
   Container,
   NavContainer,
+  NavContainerCloseAnimation,
   NavItems,
   ButtonSwitchTheme,
   CloseNavBarContainer,
@@ -118,6 +119,10 @@ export const NavBar = () => {
           </div>
         </NavItems>
       </NavContainer>
+
+      <NavContainerCloseAnimation
+        style={{ display: isOpen === true && "none" }}
+      ></NavContainerCloseAnimation>
       <OpenNavBarContainer
         isOpen={isOpen}
         style={{ visibility: isOpen === true && "hidden" }}

@@ -2,36 +2,50 @@ import styled, { keyframes } from "styled-components";
 
 const OpenNav = keyframes`
   0% {
-    width: 0.5em;
+    width: 0em;
   }
+
   25%{
-    width:2em
+    width:2em;
   }
+
   50% {
-width:3em  
+    width:3em;  
+  }
 
-}
-100%{
-  width:4em  
-
-}
+  100%{
+    width:4em;  
+  }
 `;
 
 const CloseNav = keyframes`
-0%{
-  width:4em  
+  0%{
+    width:4em ;
+  }
 
-}
-25% {
-width:3em  
+  25% {
+    width:3em ;
+  }
 
-}
   50%{
-    width:2em
+    width:2em;
   }
+
   100% {
-    width: 0.5em;
+    width: 0em;
   }
+`;
+
+export const OpenNavBarContainer = styled.div`
+  position: absolute;
+  top: 1em;
+  left: 1em;
+`;
+
+export const CloseNavBarContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  margin: 1em 1em 0em 1em;
 `;
 
 export const Container = styled.div`
@@ -55,8 +69,11 @@ export const NavContainer = styled.nav`
   display: flex;
   flex-direction: column;
   background-color: ${(props) => props.theme.background_navbar};
-  height: 100%;
-  animation: ${({ isOpen }) => (isOpen ? CloseNav : OpenNav)} 0.2s linear 1;
+  animation: ${OpenNav} 0.3s linear 1;
+`;
+
+export const NavContainerCloseAnimation = styled(NavContainer)`
+  animation: ${CloseNav} 0.3s linear 1;
 `;
 
 export const NavItems = styled.ul`
@@ -85,18 +102,4 @@ export const ButtonSwitchTheme = styled.button`
   span {
     color: ${(props) => props.theme.switch_theme_button.color};
   }
-`;
-
-export const CloseNavBarContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  margin: 1em 1em 0em 1em;
-`;
-
-export const OpenNavBarContainer = styled.div`
-  width: 4em;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 4em;
 `;
