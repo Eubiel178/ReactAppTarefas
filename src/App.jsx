@@ -18,17 +18,22 @@ const App = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    (async () => {
-      const token = await localStorage.getItem("token");
+    const token = localStorage.getItem("token");
 
-      const user = await getOne(token);
-      if (user.name) {
-        setAuth(true);
-        setUserJson(user);
-      }
-    })();
+    if (token) {
+      (async () => {
+        const user = await getOne(token);
+
+        if (user.name) {
+          setUserJson(user);
+          setAuth(true);
+        }
+      })();
+    }
+
     // eslint-disable-next-line
   }, []);
+
   return (
     <>
       <GlobalStyle />

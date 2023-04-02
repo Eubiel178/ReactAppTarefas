@@ -24,7 +24,6 @@ import profile from "../../../images/profile.jpg";
 
 const EditForm = () => {
   const [loading, setLoading] = useState(false);
-
   const navigate = useNavigate();
 
   const {
@@ -65,11 +64,11 @@ const EditForm = () => {
   };
 
   useEffect(() => {
-    if (localStorage.getItem("id")) {
+    if (localStorage.getItem("token")) {
       navigate("/");
     }
 
-    //eslint-disable-next-line
+    // eslint-disable-next-line
   }, []);
 
   return (

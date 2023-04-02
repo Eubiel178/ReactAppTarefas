@@ -61,9 +61,18 @@ const EditForm = () => {
   };
 
   useEffect(() => {
-    if (userJson.name) {
-      setAuth(true);
-      navigate("/home");
+    const token = localStorage.getItem("token");
+
+    if (token) {
+      (async () => {
+        const user = await getOne(token);
+
+        if (user.name) {
+          setUserJson(user);
+          navigate("/home");
+          setAuth(true);
+        }
+      })();
     }
 
     // eslint-disable-next-line

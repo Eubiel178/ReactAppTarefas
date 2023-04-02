@@ -123,6 +123,7 @@ export const NavBar = () => {
       <NavContainerCloseAnimation
         style={{ display: isOpen === true && "none" }}
       ></NavContainerCloseAnimation>
+
       <OpenNavBarContainer
         isOpen={isOpen}
         style={{ visibility: isOpen === true && "hidden" }}

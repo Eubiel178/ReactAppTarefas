@@ -84,13 +84,13 @@ export const TaskItem = ({
               onClick={swalModal}
               style={{ textDecoration: isFinished === true && "line-through" }}
             >
-              {handleDescription(description)}
+              <span> {handleDescription(description)}</span>
             </TextInAndroid>
           ) : (
             <Text
               style={{ textDecoration: isFinished === true && "line-through" }}
             >
-              {handleDescription(description)}
+              <span> {handleDescription(description)}</span>
             </Text>
           )}
         </Task>

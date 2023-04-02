@@ -35,6 +35,7 @@ export const TextInAndroid = styled.button`
   border: none;
   padding-left: 0.5em;
   font-weight: 600;
+  color: ${(props) => props.theme.color};
 `;
 
 export const Text = styled.span`

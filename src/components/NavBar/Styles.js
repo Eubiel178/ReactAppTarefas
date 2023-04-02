@@ -37,10 +37,7 @@ const CloseNav = keyframes`
 `;
 
 export const OpenNavBarContainer = styled.div`
-  position: absolute;
-  top: 1em;
-  left: 1em;
-  z-index: 1;
+  margin: 1em 1em 0em 1em;
 `;
 
 export const CloseNavBarContainer = styled.div`

@@ -34,6 +34,7 @@ export const TextInAndroid = styled.button`
   background-color: transparent;
   border: none;
   padding-left: 0.5em;
+  color: ${(props) => props.theme.color};
   font-weight: 600;
 `;
 
