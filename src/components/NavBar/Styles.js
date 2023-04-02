@@ -40,6 +40,7 @@ export const OpenNavBarContainer = styled.div`
   position: absolute;
   top: 1em;
   left: 1em;
+  z-index: 1;
 `;
 
 export const CloseNavBarContainer = styled.div`
