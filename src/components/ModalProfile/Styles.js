@@ -2,11 +2,11 @@ import styled, { keyframes } from "styled-components";
 
 export const animateModal = keyframes`
  0% {
-     transform: scale(0.7);
+     transform: scale(0);
  }
  
  45% {
-     transform: scale(1.05);
+     transform: scale(0.75);
  }
 
  
@@ -22,7 +22,7 @@ export const animateModal = keyframes`
 export const ContainerModal = styled.div`
   height: 100%;
   color: ${(props) => props.theme.color};
-  animation: ${animateModal} 0.3s linear 1;
+  animation: ${animateModal} 0.5s linear 1;
 `;
 
 export const Header = styled.div`

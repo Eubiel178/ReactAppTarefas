@@ -74,18 +74,11 @@ const TaskItem = ({
           />
 
           {window.screen.width <= 500 ? (
-            <TextInAndroid
-              onClick={swalModal}
-              style={{ textDecoration: isFinished === true && "line-through" }}
-            >
+            <TextInAndroid onClick={swalModal}>
               {handleDescription(description)}
             </TextInAndroid>
           ) : (
-            <Text
-              style={{ textDecoration: isFinished === true && "line-through" }}
-            >
-              {handleDescription(description)}
-            </Text>
+            <Text>{handleDescription(description)}</Text>
           )}
         </Task>
       </TaskDescription>

@@ -21,6 +21,7 @@ import Photo from "../../images/profile.jpg";
 
 import Modal from "react-modal";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 export const ModalProfile = ({
   modalIsOpen,
@@ -33,6 +34,7 @@ export const ModalProfile = ({
   const [edit, setEdit] = useState(false);
   const [image, setImage] = useState("");
   const { setAuth, setUserJson, mode } = useContext(Contexts);
+  const navigate = useNavigate();
 
   const customStyles = {
     overlay: {
@@ -106,6 +108,7 @@ export const ModalProfile = ({
       preConfirm: () => {
         logOff();
         Swal.fire("Usuario deslogado com sucesso!", "", "success");
+        navigate("/");
         setAuth(false);
       },
     });

@@ -19,7 +19,7 @@ const OpenNav = keyframes`
 `;
 
 const CloseNav = keyframes`
-  0%{
+  0%{  
     width:4em ;
   }
 
@@ -37,41 +37,39 @@ const CloseNav = keyframes`
 `;
 
 export const OpenNavBarContainer = styled.div`
-  margin: 1em 1em 0em 1em;
-`;
+  margin: 1em 0em 0em 1em;
 
-export const CloseNavBarContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  margin: 1em 1em 0em 1em;
-`;
-
-export const Container = styled.div`
   button {
     background: transparent;
     border: 0px;
     cursor: grab;
-    color: ${(props) => props.theme.color_icon};
-  }
-
-  span {
-    color: ${(props) => props.theme.color_icon};
-    font-size: 2em;
+    color: ${(props) => props.theme.color};
+    font-size: 1.8em;
   }
 `;
 
 export const NavContainer = styled.nav`
-  position: absolute;
-  z-index: 1;
-  height: 100%;
+  position: fixed;
+  top: 0em;
+  bottom: 0em;
+  z-index: 11;
   display: flex;
   flex-direction: column;
-  background-color: ${(props) => props.theme.background_navbar};
-  animation: ${OpenNav} 0.3s linear 1;
-`;
 
-export const NavContainerCloseAnimation = styled(NavContainer)`
-  animation: ${CloseNav} 0.3s linear 1;
+  button {
+    background: transparent;
+    border: 0px;
+    cursor: grab;
+  }
+
+  span {
+    color: ${(props) => props.theme.color};
+    font-size: 2em;
+  }
+
+  @media (max-width: 480px) {
+    justify-content: center;
+  }
 `;
 
 export const NavItems = styled.ul`
@@ -80,6 +78,9 @@ export const NavItems = styled.ul`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  background-color: ${(props) => props.theme.background_navbar};
+  animation: ${({ isOpen }) => (isOpen ? OpenNav : CloseNav)} 0.3s linear 1;
+  box-shadow: 3px 0px 8px #00000024;
 
   li {
     display: flex;
@@ -91,8 +92,13 @@ export const NavItems = styled.ul`
     padding: 0.5em 1em 0em 1em;
 
     :hover {
-      border-color: white;
+      border-color: ${(props) => props.theme.border.color};
     }
+  }
+
+  @media (max-width: 480px) {
+    height: initial;
+    border-radius: 0px 1em 1em 0px;
   }
 `;
 

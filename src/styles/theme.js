@@ -1,17 +1,20 @@
 export const lightTheme = {
-  background_navbar: "#C9C9C9",
-  background_card: "#C9C9C9",
-  background_page: "#E9E9E9",
-  color: "#212121 ",
-  color_icon: "black",
+  background_navbar: "#eFEFfF",
+  background_card: "#eFEFfF",
+  background_page: "#E1E1E1",
+  color: "#3e3b3b ",
+  color_icon: "#3e3b3b",
   title: "#212121",
   background_button: "rgba(0, 0, 0, 0.5)",
   switch_theme_button: { color: "black" },
   background_grafic_text: "#9f98985e",
+  border: {
+    color: "black",
+  },
 };
 
 export const darkTheme = {
-  background_navbar: "rgba(0, 0, 0, 0.5)",
+  background_navbar: "black",
   background_card: "rgba(0, 0, 0, 0.5)",
   background_page: "#282A36",
   color: "#E1E1E1",
@@ -20,4 +23,7 @@ export const darkTheme = {
   background_button: "rgba(0, 0, 0, 0.5)",
   switch_theme_button: { color: "white" },
   background_grafic_text: "rgb(0 0 0 / 24%)",
+  border: {
+    color: "#fff",
+  },
 };

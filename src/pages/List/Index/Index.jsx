@@ -223,57 +223,55 @@ const List = () => {
   }, []);
 
   return (
-    <>
-      <ContainerPages>
-        <NavBar />
-        <MainContainer>
-          <Title text="ADICIONAR TAREFAS" />
+    <ContainerPages>
+      <NavBar />
+      <MainContainer>
+        <Title text="ADICIONAR TAREFAS" />
 
-          <EditForm
-            AddTask={handleOnSubmit}
-            setInput={setInput}
-            isEdit={editId}
-            load={loading}
+        <EditForm
+          AddTask={handleOnSubmit}
+          setInput={setInput}
+          isEdit={editId}
+          load={loading}
+        />
+        <div>
+          <SubTitle
+            toDoList={toDoList}
+            setToDoList={setToDoList}
+            completedTask={completedTask}
+            setCompletedTask={setCompletedTask}
+            remainingTasks={remainingTasks}
           />
-          <div>
-            <SubTitle
-              toDoList={toDoList}
-              setToDoList={setToDoList}
-              completedTask={completedTask}
-              setCompletedTask={setCompletedTask}
-              remainingTasks={remainingTasks}
-            />
 
-            <TaskList ref={animationParent}>
-              {toDoList.length === 0 ? (
-                <FeedBack>Nenhuma tarefa foi adicionada</FeedBack>
-              ) : (
-                toDoList.map((element, index, array) => {
-                  return (
-                    <TaskItem
-                      key={element.key}
-                      taskId={element._id}
-                      array={array}
-                      index={index}
-                      description={element.description}
-                      task={element}
-                      handleFinish={handleSetFinishTask}
-                      edited={handleEdit}
-                      cancelEdited={handleCancelEdit}
-                      remove={handleRemove}
-                      isFinished={element.isFinished}
-                      id={element._id}
-                      position={handlePositionTask}
-                      editId={editId}
-                    />
-                  );
-                })
-              )}
-            </TaskList>
-          </div>
-        </MainContainer>
-      </ContainerPages>
-    </>
+          <TaskList ref={animationParent}>
+            {toDoList.length === 0 ? (
+              <FeedBack>Nenhuma tarefa foi adicionada</FeedBack>
+            ) : (
+              toDoList.map((element, index, array) => {
+                return (
+                  <TaskItem
+                    key={element.key}
+                    taskId={element._id}
+                    array={array}
+                    index={index}
+                    description={element.description}
+                    task={element}
+                    handleFinish={handleSetFinishTask}
+                    edited={handleEdit}
+                    cancelEdited={handleCancelEdit}
+                    remove={handleRemove}
+                    isFinished={element.isFinished}
+                    id={element._id}
+                    position={handlePositionTask}
+                    editId={editId}
+                  />
+                );
+              })
+            )}
+          </TaskList>
+        </div>
+      </MainContainer>
+    </ContainerPages>
   );
 };
 

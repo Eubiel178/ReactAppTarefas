@@ -2,12 +2,9 @@ import { Link } from "react-router-dom";
 import { useEffect, useContext, useState } from "react";
 
 import {
-  Container,
   NavContainer,
-  NavContainerCloseAnimation,
   NavItems,
   ButtonSwitchTheme,
-  CloseNavBarContainer,
   OpenNavBarContainer,
 } from "./Styles";
 
@@ -46,17 +43,36 @@ export const NavBar = () => {
     // eslint-disable-next-line
   }, []);
   return (
-    <Container>
+    <>
+      <OpenNavBarContainer
+        isOpen={isOpen}
+        style={{ visibility: isOpen === true && "hidden" }}
+      >
+        <button
+          onClick={() => {
+            setIsOpen(true);
+          }}
+        >
+          <span>
+            <AiOutlineMenu />
+          </span>
+        </button>
+      </OpenNavBarContainer>
+
       <NavContainer style={{ display: isOpen === false && "none" }}>
-        <NavItems>
+        <NavItems isOpen={isOpen}>
           <div>
-            <CloseNavBarContainer>
-              <button onClick={() => setIsOpen(false)}>
+            <li>
+              <button
+                onClick={() => {
+                  setIsOpen(false);
+                }}
+              >
                 <span>
                   <IoClose />
                 </span>
               </button>
-            </CloseNavBarContainer>
+            </li>
           </div>
 
           <div>
@@ -102,11 +118,12 @@ export const NavBar = () => {
 
           <div>
             <li>
-              <button onClick={() => setModalIsOpen(true)}>
+              <button onClick={() => setModalIsOpen(!modalIsOpen)}>
                 <span>
-                  <BiUser style={{ fontSize: "25px" }} />
+                  <BiUser />
                 </span>
               </button>
+
               <ModalProfile
                 modalIsOpen={modalIsOpen}
                 setModalIsOpen={setModalIsOpen}
@@ -119,25 +136,6 @@ export const NavBar = () => {
           </div>
         </NavItems>
       </NavContainer>
-
-      <NavContainerCloseAnimation
-        style={{ display: isOpen === true && "none" }}
-      ></NavContainerCloseAnimation>
-
-      <OpenNavBarContainer
-        isOpen={isOpen}
-        style={{ visibility: isOpen === true && "hidden" }}
-      >
-        <button
-          onClick={() => {
-            setIsOpen(true);
-          }}
-        >
-          <span>
-            <AiOutlineMenu />
-          </span>
-        </button>
-      </OpenNavBarContainer>
-    </Container>
+    </>
   );
 };
