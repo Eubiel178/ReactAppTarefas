@@ -14,22 +14,18 @@ const AppRoutes = () => {
 
   return (
     <Router>
-      {auth ? (
-        <Routes>
-          <Route path="/home" exact element={<Pages.Home />} />
-          <Route path="/home/list" exact element={<Pages.List />} />
-          <Route
-            path="/home/list-checked"
-            exact
-            element={<Pages.ListChecked />}
-          />
-        </Routes>
-      ) : (
-        <Routes>
-          <Route path="/" exact element={<Pages.Login />} />
-          <Route path="/register" exact element={<Pages.Register />} />
-        </Routes>
-      )}
+      <Routes>
+        <Route path="/home" exact element={<Pages.Home />} />
+        <Route path="/home/list" exact element={<Pages.List />} />
+        <Route
+          path="/home/list-checked"
+          exact
+          element={<Pages.ListChecked />}
+        />
+
+        <Route path="/" exact element={<Pages.Login />} />
+        <Route path="/register" exact element={<Pages.Register />} />
+      </Routes>
     </Router>
   );
 };

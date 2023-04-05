@@ -9,7 +9,6 @@ import { TaskList, MainContainer, FeedBack } from "./Styles";
 //libs
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 import { v4 as uuidv4 } from "uuid";
-import Swal from "sweetalert2";
 
 //page utills
 import { add, remove, edit, get } from "../../../utils/task";
@@ -17,48 +16,18 @@ import { add, remove, edit, get } from "../../../utils/task";
 //components
 import { ContainerPages, Title, NavBar } from "../../../components/Index";
 import { EditForm, SubTitle, TaskItem } from "../components/Index";
+import { swalModal } from "../../../utils/swalModal";
+import { useNavigate } from "react-router-dom";
+import { isLogged } from "../../../utils/isLogged";
 
 const List = () => {
   const [editId, setEditId] = useState("");
   const [loading, setLoading] = useState(false);
   const [animationParent] = useAutoAnimate();
-  const {
-    input,
-    setInput,
-    userJson,
-    completedTask,
-    setCompletedTask,
-    remainingTasks,
-    setRemainingTasks,
-    setToDoList,
-    toDoList,
-  } = useContext(Contexts);
-
-  const swalModal = (title) => {
-    if (title) {
-      return Swal.fire({
-        title: title,
-        icon: "question",
-        iconHtml: "?",
-        confirmButtonText: "Sim",
-        cancelButtonText: "Não",
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        showCancelButton: true,
-        showCloseButton: true,
-
-        preConfirm: (value) => {
-          return value;
-        },
-      });
-    } else {
-      return Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "Tarefas concluidas não podem ser editada!",
-      });
-    }
-  };
+  const [toDoList, setToDoList] = useState([]);
+  const navigate = useNavigate();
+  const { input, setInput, userJson, setUserJson, setAuth } =
+    useContext(Contexts);
 
   const handleOnSubmit = async (event) => {
     event.preventDefault();
@@ -89,7 +58,6 @@ const List = () => {
         await add(task);
 
         setToDoList([task, ...toDoList]);
-        setRemainingTasks(remainingTasks + 1);
       }
 
       setInput("");
@@ -121,22 +89,12 @@ const List = () => {
   const handleRemove = async (task, index) => {
     const newArray = [...toDoList];
 
-    if (task.isFinished === false) {
-      const { value } = await swalModal("Deseja remover essa tarefa?");
+    const { value } = await swalModal("Deseja remover essa tarefa?");
 
-      if (value === true) {
-        await remove(task._id);
-
-        newArray.splice(index, 1);
-        setRemainingTasks(remainingTasks - 1);
-        setToDoList(newArray);
-      }
-    } else {
+    if (value === true) {
       await remove(task._id);
 
       newArray.splice(index, 1);
-
-      setCompletedTask(completedTask - 1);
       setToDoList(newArray);
     }
   };
@@ -157,8 +115,6 @@ const List = () => {
 
         newArray[index].isFinished = true;
 
-        setRemainingTasks(remainingTasks - 1);
-        setCompletedTask(completedTask + 1);
         setToDoList(newArray);
       }
     } else if (task.isFinished === false) {
@@ -173,8 +129,6 @@ const List = () => {
 
         newArray[index].isFinished = true;
 
-        setRemainingTasks(remainingTasks - 1);
-        setCompletedTask(completedTask + 1);
         setToDoList(newArray);
       }
     }
@@ -216,7 +170,13 @@ const List = () => {
         return parseInt(currentElement.index) - parseInt(nextElement.index);
       });
 
-      setToDoList(list);
+      const unCheckedList = list.filter((element) => {
+        return element.isFinished === false;
+      });
+
+      setToDoList(unCheckedList);
+
+      isLogged(setUserJson, setAuth, navigate);
     })();
 
     // eslint-disable-next-line
@@ -235,13 +195,7 @@ const List = () => {
           load={loading}
         />
         <div>
-          <SubTitle
-            toDoList={toDoList}
-            setToDoList={setToDoList}
-            completedTask={completedTask}
-            setCompletedTask={setCompletedTask}
-            remainingTasks={remainingTasks}
-          />
+          <SubTitle toDoList={toDoList} setToDoList={setToDoList} />
 
           <TaskList ref={animationParent}>
             {toDoList.length === 0 ? (

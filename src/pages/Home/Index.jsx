@@ -17,6 +17,8 @@ import {
   TextContainer,
   Loading,
 } from "./Styles";
+import { isLogged } from "../../utils/isLogged";
+import { Link, useNavigate } from "react-router-dom";
 
 const Home = () => {
   const [loading, setLoading] = useState(true);
@@ -24,8 +26,9 @@ const Home = () => {
     { name: "Group A", value: 0 },
     { name: "Group B", value: 0 },
   ]);
+  const { mode, userJson, setUserJson, setAuth } = useContext(Contexts);
 
-  const { mode, userJson } = useContext(Contexts);
+  const navigate = useNavigate();
 
   const lighColors = ["#90ee90", "#ffa500"];
   const darkColors = ["#30503a", "#BE5504"];
@@ -77,6 +80,8 @@ const Home = () => {
       ]);
 
       setLoading(false);
+
+      isLogged(setUserJson, setAuth, navigate);
     })();
 
     // eslint-disable-next-line
@@ -119,11 +124,20 @@ const Home = () => {
               </UserProgress>
 
               <TextContainer>
-                <Text color={colors[0]}>
-                  <span></span>Tarefas concluidas: {data[0].value}
-                </Text>
-                <Text color={colors[1]}>
-                  <span></span>Tarefas restantes: {data[1].value}
+                <Link to="/home/list-checked">
+                  <Text color={colors[0]}>
+                    <span></span>Tarefas concluidas: {data[0].value}
+                  </Text>
+                </Link>
+
+                <Link to="/home/list">
+                  <Text color={colors[1]}>
+                    <span></span>Tarefas restantes: {data[1].value}
+                  </Text>
+                </Link>
+
+                <Text>
+                  <span></span>Total: {data[1].value + data[0].value}
                 </Text>
               </TextContainer>
             </Content>

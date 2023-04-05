@@ -5,24 +5,42 @@ import { Container, TitleContainer, Title, Button } from "./Styles";
 import Swal from "sweetalert2";
 import { remove } from "../../../../utils/task";
 
-export const SubTitle = ({ toDoList }) => {
+export const SubTitle = ({ toDoList, setToDoList }) => {
   const clearList = async () => {
-    const completed = toDoList.filter((element) => {
-      return element.isFinished === true;
+    const { value } = await Swal.fire({
+      title: "Deseja remover todas as tarefas?",
+      icon: "question",
+      iconHtml: "?",
+      confirmButtonText: "Sim",
+      cancelButtonText: "Não",
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      showCancelButton: true,
+      showCloseButton: true,
+
+      preConfirm: (value) => {
+        return value;
+      },
     });
 
-    if (toDoList.length > 0 && completed.length === toDoList.length) {
-      Swal.fire("Bom Trabalho!", "Você completou todas as tarefa", "success");
+    if (value === true) {
+      const newArray = [...toDoList];
 
-      completed.forEach(async (element) => {
-        await remove(element._id);
-      });
-    } else {
-      Swal.fire({
-        icon: "error",
-        title: "",
-        text: "Você não completou todas as tarefa!",
-      });
+      try {
+        await newArray.forEach(async (element) => {
+          await remove(element._id);
+        });
+
+        Swal.fire("Bom trabalho!", "  ", "success");
+
+        setToDoList([]);
+      } catch (error) {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Algo deu errado",
+        });
+      }
     }
   };
 

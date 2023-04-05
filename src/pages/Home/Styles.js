@@ -64,7 +64,7 @@ export const User = styled.div`
   position: absolute;
   color: ${(props) => props.theme.color};
   font-weight: 900;
-  bottom: 2%;
+  bottom: 0em;
   left: 50%;
   transform: translate(-50%, -50%);
 `;

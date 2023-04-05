@@ -20,19 +20,14 @@ import {
 } from "./Styles";
 
 const TaskItem = ({
-  array,
   taskId,
   index,
   description,
   task,
-  handleFinish,
-  edited,
-  cancelEdited,
+  handleSetFinishTask,
   remove,
   isFinished,
   id,
-  position,
-  editId,
 }) => {
   const swalModal = () => {
     description.length > 110 &&
@@ -68,7 +63,7 @@ const TaskItem = ({
           <ConcluedButton
             type="checkbox"
             onChange={() => {
-              handleFinish(task, taskId, index);
+              handleSetFinishTask(task, taskId, index);
             }}
             checked={isFinished === true && true}
           />
