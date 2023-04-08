@@ -166,12 +166,12 @@ const List = () => {
     (async () => {
       const list = await get();
 
-      list.sort((currentElement, nextElement) => {
-        return parseInt(currentElement.index) - parseInt(nextElement.index);
-      });
-
       const unCheckedList = list.filter((element) => {
         return element.isFinished === false;
+      });
+
+      unCheckedList.sort((currentElement, nextElement) => {
+        return parseInt(currentElement.index) - parseInt(nextElement.index);
       });
 
       setToDoList(unCheckedList);

@@ -7,7 +7,9 @@ export const Container = styled.div`
   padding-top: 2em;
 `;
 
-export const TitleContainer = styled.div``;
+export const TitleContainer = styled.div`
+  margin-bottom: 2em;
+`;
 
 export const Title = styled.h2`
   margin-top: 1.5em;

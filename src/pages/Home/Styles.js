@@ -61,12 +61,11 @@ export const Image = styled.img`
 `;
 
 export const User = styled.div`
+  text-align: center;
   position: absolute;
   color: ${(props) => props.theme.color};
   font-weight: 900;
-  bottom: 0em;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  bottom: 0.5em;
 `;
 
 export const TextContainer = styled.div`
