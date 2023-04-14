@@ -21,9 +21,13 @@ import { Link, useNavigate } from "react-router-dom";
 
 const Home = () => {
   const [loading, setLoading] = useState(true);
+  const [completed, setCompleted] = useState({
+    true: 0,
+    false: 0,
+  });
   const [data, setData] = useState([
-    { name: "Group A", value: 0 },
-    { name: "Group B", value: 0 },
+    { name: "Group A", value: completed.true },
+    { name: "Group B", value: completed.false },
   ]);
   const { mode, userJson, setUserJson, setAuth } = useContext(Contexts);
 
@@ -62,24 +66,31 @@ const Home = () => {
   useEffect(() => {
     (async () => {
       const list = await get();
-      let completedTrue = 0;
-      let completedFalse = 0;
+      let isConclued = 0;
+      let isNotConclued = 0;
 
       list.forEach((element) => {
         if (element.isFinished) {
-          completedTrue = completedTrue + 1;
+          isConclued = isConclued + 1;
         } else {
-          completedFalse = completedFalse + 1;
+          isNotConclued = isNotConclued + 1;
         }
       });
 
-      setData([
-        { name: "Group A", value: completedTrue },
-        { name: "Group B", value: completedFalse },
-      ]);
+      setData(
+        isConclued && isNotConclued === 0
+          ? [
+              { name: "Group A", value: 50 },
+              { name: "Group B", value: 50 },
+            ]
+          : [
+              { name: "Group A", value: isConclued },
+              { name: "Group B", value: isNotConclued },
+            ]
+      );
 
       setLoading(false);
-
+      setCompleted({ true: isConclued, false: isNotConclued });
       isLogged(setUserJson, setAuth, navigate);
     })();
 
@@ -124,18 +135,18 @@ const Home = () => {
               <TextContainer>
                 <Link to="/home/list-checked">
                   <Text color={colors[0]}>
-                    <span></span>Tarefas concluidas: {data[0].value}
+                    <span></span>Tarefas concluidas: {completed.true}
                   </Text>
                 </Link>
 
                 <Link to="/home/list">
                   <Text color={colors[1]}>
-                    <span></span>Tarefas restantes: {data[1].value}
+                    <span></span>Tarefas restantes: {completed.false}
                   </Text>
                 </Link>
 
                 <Text>
-                  <span></span>Total: {data[1].value + data[0].value}
+                  <span></span>Total: {completed.true + completed.false}
                 </Text>
               </TextContainer>
             </Content>
