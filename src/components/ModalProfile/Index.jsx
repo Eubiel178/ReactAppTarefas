@@ -88,6 +88,7 @@ export const ModalProfile = ({
 
         setUserJson(user);
       } catch (error) {
+        console.log(error);
         Swal.fire({
           icon: "error",
           title: "É necessário utilizar foto menores ou igual a 10mb!",

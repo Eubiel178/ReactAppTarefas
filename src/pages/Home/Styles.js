@@ -38,26 +38,15 @@ export const UserProgress = styled.div`
   display: flex;
   justify-content: center;
 
-  svg,
-  img {
+  svg {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-  }
-
-  svg {
     display: block;
     width: 40em;
     height: 40em;
   }
-`;
-
-export const Image = styled.img`
-  display: block;
-  border-radius: 50%;
-  width: 200px;
-  height: 200px;
 `;
 
 export const User = styled.div`
@@ -79,7 +68,7 @@ export const Text = styled.p`
   width: 100%;
   font-weight: 500;
   color: ${(props) => props.theme.color};
-  padding: 0.8em 0em;
+  padding: 0.8em 0em 0.5em;
   border-top: solid 1px rgba(0, 0, 0, 0.5);
 
   span {

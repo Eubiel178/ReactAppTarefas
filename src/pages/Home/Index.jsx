@@ -11,7 +11,6 @@ import {
   Container,
   Content,
   UserProgress,
-  Image,
   User,
   Text,
   TextContainer,
@@ -117,7 +116,6 @@ const Home = () => {
                     ))}
                   </Pie>
                 </PieChart>
-                <Image src={userJson.img} alt="User" />
                 <User>
                   <p>{userJson.name}</p>
                 </User>
