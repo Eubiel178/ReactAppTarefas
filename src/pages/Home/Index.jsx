@@ -78,7 +78,7 @@ const Home = () => {
       });
 
       setData(
-        isConclued && isNotConclued === 0
+        isConclued === 0 && isNotConclued === 0
           ? [
               { name: "Group A", value: 50 },
               { name: "Group B", value: 50 },
