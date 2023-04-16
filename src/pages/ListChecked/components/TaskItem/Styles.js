@@ -1,46 +1,54 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
+
+// const readMoreActive = keyframes`
+// 0%{
+
+// 50%{
+
+// 75%{
+// }
+// 85%{
+// }
+// 100%{
+// }
+// `;
 
 export const TaskContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 1em;
+  background-color: ${(props) => props.theme.background_button};
+  border-radius: 10px;
+  padding: 10px 0px 10px 10px;
 `;
 
-export const TaskDescription = styled.div``;
-
-export const Task = styled.p`
+export const TaskDescription = styled.div`
   text-align: justify;
   word-break: break-all;
   font-size: 14px;
   display: flex;
   align-items: center;
-  font-weight: 600;
-  cursor: grabbing;
+  font-weight: 500;
 `;
+
+export const Task = styled.p`
+  color: ${(props) => props.theme.color};
+
+  button {
+    background-color: transparent;
+    border: transparent;
+    color: #808080;
+  }
+`;
+
+export const ReadMoreActive = styled.span``;
 
 export const ConcluedButton = styled.input`
   display: block;
   width: 1.2em;
   height: 1.2em;
-
-  :hover {
-    cursor: grab;
-  }
-`;
-
-export const TextInAndroid = styled.button`
-  text-align: start;
-  background-color: transparent;
-  border: none;
-  padding-left: 0.5em;
-  font-weight: 600;
-  color: ${(props) => props.theme.color};
-`;
-
-export const Text = styled.span`
-  padding-left: 0.5em;
-  color: ${(props) => props.theme.color};
+  margin-right: 0.5em;
 `;
 
 export const Container = styled.div`

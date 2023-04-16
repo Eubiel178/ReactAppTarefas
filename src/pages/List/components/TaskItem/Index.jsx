@@ -6,16 +6,13 @@ import { MdOutlineBlock } from "react-icons/md";
 
 //libs
 
-import Swal from "sweetalert2";
-
 //styled-components
 import {
   TaskContainer,
   TaskDescription,
   Task,
   ConcluedButton,
-  TextInAndroid,
-  Text,
+  ReadMoreActive,
   Container,
   ActionContainer,
   PositionStyle,
@@ -24,6 +21,7 @@ import {
   ButtonCancelEdit,
   ButtonRemove,
 } from "./Styles";
+import { useState } from "react";
 
 export const TaskItem = ({
   array,
@@ -40,60 +38,52 @@ export const TaskItem = ({
   position,
   editId,
 }) => {
-  const swalModal = () => {
-    description.length > 110 &&
-      Swal.fire({
-        title: description,
-        showCancelButton: true,
-        showConfirmButton: false,
-        cancelButtonText: "Fechar",
-        cancelButtonColor: "#f27474",
-        showClass: {
-          popup: "animate__animated animate__fadeInDown",
-        },
-        hideClass: {
-          popup: "animate__animated animate__fadeOutUp",
-        },
-      });
-  };
+  const [isReadMoreActive, setIsReadMoreActive] = useState(false);
 
-  const handleDescription = (string) => {
-    if (window.screen.width <= 500 && string.length > 110) {
-      const newString = string.substring(0, 110);
+  const handleDescription = (text) => {
+    if (text.length > 110) {
+      const newString = [
+        text.substring(0, 110),
+        text.substring(110, text.length),
+      ];
 
-      return newString + "...";
+      return (
+        <Task id={id}>
+          {newString[0]}
+          <ReadMoreActive
+            style={{ display: isReadMoreActive === false && "none" }}
+          >
+            {newString[1]}
+          </ReadMoreActive>
+          <button
+            onClick={() => {
+              setIsReadMoreActive(!isReadMoreActive);
+            }}
+          >
+            {isReadMoreActive ? "Ler menos" : "Ler mais..."}
+          </button>
+        </Task>
+      );
     } else {
-      return string;
+      return <Task>{text}</Task>;
     }
   };
 
   return (
-    <TaskContainer style={{ display: isFinished === true && "none" }}>
+    <TaskContainer
+      style={{ display: isFinished === true && "none" }}
+      activeReadMore={isReadMoreActive}
+    >
       <TaskDescription>
-        <Task id={id}>
-          <ConcluedButton
-            type="checkbox"
-            onChange={() => {
-              handleFinish(task, taskId, index);
-            }}
-            checked={isFinished === true && true}
-          />
+        <ConcluedButton
+          type="checkbox"
+          onChange={() => {
+            handleFinish(task, taskId, index);
+          }}
+          checked={isFinished === true && true}
+        />
 
-          {window.screen.width <= 500 ? (
-            <TextInAndroid
-              onClick={swalModal}
-              style={{ textDecoration: isFinished === true && "line-through" }}
-            >
-              <span> {handleDescription(description)}</span>
-            </TextInAndroid>
-          ) : (
-            <Text
-              style={{ textDecoration: isFinished === true && "line-through" }}
-            >
-              <span> {handleDescription(description)}</span>
-            </Text>
-          )}
-        </Task>
+        <> {handleDescription(description)}</>
       </TaskDescription>
 
       <Container>
@@ -112,7 +102,7 @@ export const TaskItem = ({
 
             <button
               style={{
-                color: index === array.length - 1 && "#ccc",
+                color: index === array.length - 1 && "#686868",
               }}
               onClick={() => {
                 position("bottom", task, index);

@@ -171,7 +171,7 @@ const List = () => {
       });
 
       unCheckedList.sort((currentElement, nextElement) => {
-        return parseInt(currentElement.index) - parseInt(nextElement.index);
+        return parseInt(nextElement.index) - parseInt(currentElement.index);
       });
 
       setToDoList(unCheckedList);
@@ -194,36 +194,35 @@ const List = () => {
           isEdit={editId}
           load={loading}
         />
-        <div>
-          <SubTitle toDoList={toDoList} setToDoList={setToDoList} />
 
-          <TaskList ref={animationParent}>
-            {toDoList.length === 0 ? (
-              <FeedBack>Nenhuma tarefa foi adicionada</FeedBack>
-            ) : (
-              toDoList.map((element, index, array) => {
-                return (
-                  <TaskItem
-                    key={element.key}
-                    taskId={element._id}
-                    array={array}
-                    index={index}
-                    description={element.description}
-                    task={element}
-                    handleFinish={handleSetFinishTask}
-                    edited={handleEdit}
-                    cancelEdited={handleCancelEdit}
-                    remove={handleRemove}
-                    isFinished={element.isFinished}
-                    id={element._id}
-                    position={handlePositionTask}
-                    editId={editId}
-                  />
-                );
-              })
-            )}
-          </TaskList>
-        </div>
+        <SubTitle toDoList={toDoList} setToDoList={setToDoList} />
+
+        <TaskList ref={animationParent}>
+          {toDoList.length === 0 ? (
+            <FeedBack>Nenhuma tarefa foi adicionada</FeedBack>
+          ) : (
+            toDoList.map((element, index, array) => {
+              return (
+                <TaskItem
+                  key={element.key}
+                  taskId={element._id}
+                  array={array}
+                  index={index}
+                  description={element.description}
+                  task={element}
+                  handleFinish={handleSetFinishTask}
+                  edited={handleEdit}
+                  cancelEdited={handleCancelEdit}
+                  remove={handleRemove}
+                  isFinished={element.isFinished}
+                  id={element._id}
+                  position={handlePositionTask}
+                  editId={editId}
+                />
+              );
+            })
+          )}
+        </TaskList>
       </MainContainer>
     </ContainerPages>
   );

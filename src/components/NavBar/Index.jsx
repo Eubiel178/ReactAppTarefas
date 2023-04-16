@@ -63,11 +63,7 @@ export const NavBar = () => {
         <NavItems isOpen={isOpen}>
           <div>
             <li>
-              <button
-                onClick={() => {
-                  setIsOpen(false);
-                }}
-              >
+              <button onClick={() => setIsOpen(false)}>
                 <span>
                   <IoClose />
                 </span>

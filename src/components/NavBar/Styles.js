@@ -52,9 +52,10 @@ export const NavContainer = styled.nav`
   position: fixed;
   top: 0em;
   bottom: 0em;
-  z-index: 11;
+  z-index: 1;
   display: flex;
-  flex-direction: column;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.72);
 
   button {
     background: transparent;

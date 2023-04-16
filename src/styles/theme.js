@@ -2,7 +2,7 @@ export const lightTheme = {
   background_navbar: "#eFEFfF",
   background_card: "#eFEFfF",
   background_page: "#E1E1E1",
-  color: "#3e3b3b ",
+  color: "#E1E1E1",
   color_icon: "#3e3b3b",
   title: "#212121",
   background_button: "rgba(0, 0, 0, 0.5)",
