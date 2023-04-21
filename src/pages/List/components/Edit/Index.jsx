@@ -8,16 +8,22 @@ import { useContext } from "react";
 //styled-components
 import { FormContainer, Button, Input } from "./Styles";
 
-export const EditForm = ({ AddTask, setInput, isEdit, load }) => {
+export const EditForm = ({ setModalState, setInput, isEdit, load }) => {
   const { input } = useContext(Contexts);
+
+  const handleModal = (event) => {
+    event.preventDefault();
+
+    setModalState(true);
+  };
 
   const handleTask = (event) => {
     setInput(event.target.value);
   };
 
   return (
-    <form onSubmit={AddTask}>
-      <FormContainer>
+    <form onSubmit={handleModal}>
+      <FormContainer id="form_add_task">
         <Input
           onChange={handleTask}
           type="text"

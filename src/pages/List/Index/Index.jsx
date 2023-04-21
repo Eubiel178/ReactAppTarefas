@@ -4,11 +4,23 @@ import Contexts from "../../../contexts/Contexts";
 import { useContext, useState, useEffect } from "react";
 
 //styled-components
-import { TaskList, MainContainer, FeedBack } from "./Styles";
+import {
+  ModalContainer,
+  Loading,
+  Modal,
+  ButtonUrgency,
+  UrgencyListColors,
+  TaskList,
+  MainContainer,
+  FeedBack,
+  HeaderModal,
+} from "./Styles";
 
 //libs
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 import { v4 as uuidv4 } from "uuid";
+import { IoClose } from "react-icons/io5";
+import ReactLoading from "react-loading";
 
 //page utills
 import { add, remove, edit, get } from "../../../utils/task";
@@ -25,26 +37,29 @@ const List = () => {
   const [loading, setLoading] = useState(false);
   const [animationParent] = useAutoAnimate();
   const [toDoList, setToDoList] = useState([]);
+  const [isOpenModal, setIsOpenModal] = useState(false);
+
+  const colors = ["#FF0000", "#ffa500", "#00ff80"];
   const navigate = useNavigate();
+
   const { input, setInput, userJson, setUserJson, setAuth } =
     useContext(Contexts);
 
-  const handleOnSubmit = async (event) => {
-    event.preventDefault();
-
+  const handleOnSubmit = async (color) => {
     const _id = userJson._id;
 
     if (loading === false) {
       setLoading(true);
 
-      if (toDoList.length > 0 && editId) {
-        await edit({ description: input }, editId);
+      if (editId) {
+        await edit({ description: input, urgency: color }, editId);
 
         const indexTaskEdit = toDoList.findIndex((element) => {
           return element._id === editId;
         });
 
         toDoList[indexTaskEdit].description = input;
+        toDoList[indexTaskEdit].urgency = color;
       } else if (input) {
         const task = {
           description: input,
@@ -53,6 +68,7 @@ const List = () => {
           _id: uuidv4(),
           index: toDoList.length,
           key: uuidv4(),
+          urgency: color,
         };
 
         await add(task);
@@ -62,6 +78,7 @@ const List = () => {
 
       setInput("");
       setEditId("");
+      setIsOpenModal(false);
       setLoading(false);
     }
   };
@@ -89,13 +106,26 @@ const List = () => {
   const handleRemove = async (task, index) => {
     const newArray = [...toDoList];
 
-    const { value } = await swalModal("Deseja remover essa tarefa?");
+    if (task._id === editId) {
+      const { value } = await swalModal(
+        "Essa tarefa esta sendo editada no momento! Deseja remover essa tarefa?"
+      );
 
-    if (value === true) {
-      await remove(task._id);
+      if (value === true) {
+        setEditId("");
+        await remove(task._id);
 
-      newArray.splice(index, 1);
-      setToDoList(newArray);
+        newArray.splice(index, 1);
+        setToDoList(newArray);
+      }
+    } else {
+      const { value } = await swalModal("Deseja remover essa tarefa?");
+
+      if (value === true) {
+        await remove(task._id);
+        newArray.splice(index, 1);
+        setToDoList(newArray);
+      }
     }
   };
 
@@ -125,7 +155,7 @@ const List = () => {
       if (value === true) {
         const newArray = [...toDoList];
 
-        await edit({ isFinished: true }, taskId);
+        await edit({ isFinished: true, urgency: "#90ee90" }, taskId);
 
         newArray[index].isFinished = true;
 
@@ -184,12 +214,64 @@ const List = () => {
 
   return (
     <ContainerPages>
+      <ModalContainer style={{ display: isOpenModal === false && "none" }}>
+        {loading ? (
+          <Loading>
+            <ReactLoading type="spin" color="red" height="5em" width="5em" />
+          </Loading>
+        ) : (
+          <Modal>
+            <HeaderModal>
+              <h3>Classificar tarefa</h3>
+
+              <button onClick={() => setIsOpenModal(false)}>
+                <IoClose style={{ fontSize: "25px" }} />
+              </button>
+            </HeaderModal>
+            <UrgencyListColors>
+              <div>
+                <ButtonUrgency
+                  color={colors[0]}
+                  onClick={() => {
+                    handleOnSubmit(colors[0]);
+                  }}
+                >
+                  <div></div> <span>Urgente</span>
+                </ButtonUrgency>
+              </div>
+
+              <div>
+                <ButtonUrgency
+                  color={colors[1]}
+                  onClick={() => {
+                    handleOnSubmit(colors[1]);
+                  }}
+                >
+                  <div></div> <span>Pouco urgente</span>
+                </ButtonUrgency>
+              </div>
+
+              <div>
+                <ButtonUrgency
+                  color={colors[2]}
+                  onClick={() => {
+                    handleOnSubmit(colors[2]);
+                  }}
+                >
+                  <div></div> <span>Não urgente ou finalizada</span>
+                </ButtonUrgency>
+              </div>
+            </UrgencyListColors>
+          </Modal>
+        )}
+      </ModalContainer>
+
       <NavBar />
       <MainContainer>
         <Title text="ADICIONAR TAREFAS" />
 
         <EditForm
-          AddTask={handleOnSubmit}
+          setModalState={setIsOpenModal}
           setInput={setInput}
           isEdit={editId}
           load={loading}

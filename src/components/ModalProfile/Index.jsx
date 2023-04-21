@@ -44,6 +44,7 @@ export const ModalProfile = ({
       right: 0,
       bottom: 0,
       backgroundColor: mode ? "rgb(0 0 0 / 72%)" : "rgba(255, 255, 255, 0.75)",
+      zIndex: 2,
     },
     content: {
       top: "50%",

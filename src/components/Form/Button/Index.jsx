@@ -2,6 +2,7 @@ import { ButtonItem } from "./Styles";
 
 import ReactLoading from "react-loading";
 
+
 export const Button = ({ value, loading }) => {
   return (
     <div>

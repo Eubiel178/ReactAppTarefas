@@ -6,10 +6,20 @@ export default createGlobalStyle`
   padding: 0;
   box-sizing: border-box;
   font-family:arial;
-  cursor: grabbing !important;
+
 }
 
 body::-webkit-scrollbar {
   display: none;
+}
+
+button{
+  cursor: pointer ;
+background-color: none;
+border: none;
+}
+
+a{
+  color: initial;
 }
 `;

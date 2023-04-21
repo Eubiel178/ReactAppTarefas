@@ -42,7 +42,6 @@ export const OpenNavBarContainer = styled.div`
   button {
     background: transparent;
     border: 0px;
-    cursor: grab;
     color: ${(props) => props.theme.color};
     font-size: 1.8em;
   }
@@ -56,11 +55,11 @@ export const NavContainer = styled.nav`
   display: flex;
   width: 100%;
   background-color: rgba(0, 0, 0, 0.72);
+  display: flex;
 
   button {
-    background: transparent;
+    background-color: transparent;
     border: 0px;
-    cursor: grab;
   }
 
   span {
@@ -81,7 +80,6 @@ export const NavItems = styled.ul`
   justify-content: space-between;
   background-color: ${(props) => props.theme.background_navbar};
   animation: ${({ isOpen }) => (isOpen ? OpenNav : CloseNav)} 0.3s linear 1;
-  box-shadow: 3px 0px 8px #00000024;
 
   li {
     display: flex;
@@ -101,6 +99,11 @@ export const NavItems = styled.ul`
     height: initial;
     border-radius: 0px 1em 1em 0px;
   }
+`;
+
+export const ClickAwayClose = styled.button`
+  width: 100%;
+  height: 100%;
 `;
 
 export const ButtonSwitchTheme = styled.button`

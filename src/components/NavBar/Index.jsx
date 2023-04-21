@@ -3,6 +3,7 @@ import { useEffect, useContext, useState } from "react";
 
 import {
   NavContainer,
+  ClickAwayClose,
   NavItems,
   ButtonSwitchTheme,
   OpenNavBarContainer,
@@ -81,6 +82,7 @@ export const NavBar = () => {
                 </Link>
               </button>
             </li>
+
             <li>
               <ButtonSwitchTheme
                 onClick={() => {
@@ -131,6 +133,11 @@ export const NavBar = () => {
             </li>
           </div>
         </NavItems>
+
+        <ClickAwayClose
+          style={{ display: isOpen === false && "none" }}
+          onClick={() => setIsOpen(false)}
+        ></ClickAwayClose>
       </NavContainer>
     </>
   );

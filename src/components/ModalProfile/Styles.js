@@ -1,6 +1,6 @@
 import styled, { keyframes } from "styled-components";
 
-export const animateModal = keyframes`
+const animateModal = keyframes`
  0% {
      transform: scale(0);
  }
@@ -9,7 +9,6 @@ export const animateModal = keyframes`
      transform: scale(0.75);
  }
 
- 
  80% {
      transform: scale(.95);
  }
@@ -35,7 +34,6 @@ export const Header = styled.div`
 `;
 
 export const Loggout = styled.button`
-  cursor: grab;
   background: none;
   border: none;
   color: red;
@@ -62,7 +60,7 @@ export const ImageContainer = styled.div`
   }
 
   label {
-    cursor: grab;
+    cursor: pointer;
   }
 
   div {

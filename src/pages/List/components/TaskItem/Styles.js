@@ -19,8 +19,9 @@ export const TaskContainer = styled.div`
   justify-content: space-between;
   margin-bottom: 1em;
   background-color: ${(props) => props.theme.background_button};
-  border-radius: 10px;
+  border-radius: 0px 10px 10px 0px;
   padding: 10px 0px 10px 10px;
+  border-left: solid 4px ${({ color }) => color};
 `;
 
 export const TaskDescription = styled.div`
@@ -33,17 +34,18 @@ export const TaskDescription = styled.div`
 `;
 
 export const Task = styled.p`
-  color: ${(props) => props.theme.color};
+  color: ${(props) => props.theme.taskitem.color};
 
   button {
     background-color: transparent;
     border: transparent;
-    color: #808080;
+    color: ${(props) => props.theme.taskitem.button_readmore};
   }
 `;
 
-export const ReadMoreActive = styled.span``;
-
+export const ReadMoreActive = styled.span`
+  color: ${(props) => props.theme.taskitem.button_readmore};
+`;
 export const ConcluedButton = styled.input`
   display: block;
   width: 1.2em;
@@ -77,7 +79,10 @@ export const PositionStyle = styled.div`
     background: transparent;
     padding: 0.5em;
     font-size: 17px;
-    color: ${(props) => props.theme.color_icon};
+
+    a {
+      color: ${(props) => props.theme.color_icon};
+    }
   }
 
   button:first-child {
@@ -98,7 +103,10 @@ export const DivButtons = styled.div`
 
 export const ButtonEdit = styled.button`
   margin-right: 0.5em;
-  color: ${(props) => props.theme.color_icon};
+
+  a {
+    color: ${(props) => props.theme.color_icon};
+  }
 `;
 
 export const ButtonCancelEdit = styled(ButtonEdit)`

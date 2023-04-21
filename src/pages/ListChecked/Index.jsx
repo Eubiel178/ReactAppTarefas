@@ -51,12 +51,12 @@ const ListChecked = () => {
     (async () => {
       const list = await get();
 
-      list.sort((currentElement, nextElement) => {
-        return parseInt(currentElement.index) - parseInt(nextElement.index);
-      });
-
       const checkedList = list.filter((element) => {
         return element.isFinished === true;
+      });
+
+      checkedList.sort((currentElement, nextElement) => {
+        return parseInt(nextElement.index) - parseInt(currentElement.index);
       });
 
       setListChecked(checkedList);

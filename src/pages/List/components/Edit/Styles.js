@@ -19,7 +19,7 @@ export const Button = styled.button`
   border: 1px solid rgba(0, 0, 0, 0.137);
   font-size: 16px;
   height: 100%;
-  width: 5em;
+  width: 6em;
   margin-left: 1em;
 
   div {

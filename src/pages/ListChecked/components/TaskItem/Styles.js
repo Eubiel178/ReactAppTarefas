@@ -19,8 +19,9 @@ export const TaskContainer = styled.div`
   justify-content: space-between;
   margin-bottom: 1em;
   background-color: ${(props) => props.theme.background_button};
-  border-radius: 10px;
+  border-radius: 0px 10px 10px 0px;
   padding: 10px 0px 10px 10px;
+  border-left: solid 4px #00ff80;
 `;
 
 export const TaskDescription = styled.div`
@@ -33,16 +34,18 @@ export const TaskDescription = styled.div`
 `;
 
 export const Task = styled.p`
-  color: ${(props) => props.theme.color};
+  color: ${(props) => props.theme.taskitem.color};
 
   button {
     background-color: transparent;
     border: transparent;
-    color: #808080;
+    color: ${(props) => props.theme.taskitem.button_readmore};
   }
 `;
 
-export const ReadMoreActive = styled.span``;
+export const ReadMoreActive = styled.span`
+  color: ${(props) => props.theme.taskitem.button_readmore};
+`;
 
 export const ConcluedButton = styled.input`
   display: block;

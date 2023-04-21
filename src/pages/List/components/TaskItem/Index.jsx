@@ -43,7 +43,7 @@ export const TaskItem = ({
   const handleDescription = (text) => {
     if (text.length > 110) {
       const newString = [
-        text.substring(0, 110),
+        text.substring(0, 110) + " ",
         text.substring(110, text.length),
       ];
 
@@ -73,6 +73,7 @@ export const TaskItem = ({
     <TaskContainer
       style={{ display: isFinished === true && "none" }}
       activeReadMore={isReadMoreActive}
+      color={task.urgency}
     >
       <TaskDescription>
         <ConcluedButton
@@ -124,7 +125,9 @@ export const TaskItem = ({
                   edited(task);
                 }}
               >
-                <BsPencil />
+                <a href="#form_add_task">
+                  <BsPencil />
+                </a>
               </ButtonEdit>
             )}
 
