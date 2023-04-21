@@ -97,7 +97,7 @@ As seguintes ferramentas foram usadas na construção do projeto:
 
 ## 🦸 Autor
 
-<img style="border-radius: 50%;" width="100px;" alt=""/>
+<img style="border-radius: 50%;" width="100px;" src="https://eubiel178.github.io/gabrieldeveloper/image/photo.jpg"/>
 <br />
 <sub><b>Gabriel Santos 🚀</b></sub></a>
  <br />
