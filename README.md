@@ -40,7 +40,7 @@ Projeto desenvolvido por **Gabriel da Silva** e [oferecido](https://www.instagra
 
 Este projeto é divido em duas partes:
 
-1. <a href="https://github.com/Eubiel178/Api-For-TodoList">Backend</a>)
+1. <a href="https://github.com/Eubiel178/Api-For-TodoList">Backend</a>
 2. <a href="#">Frontend</a>
 
 ### Pré-requisitos
