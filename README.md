@@ -40,7 +40,7 @@ Projeto desenvolvido por **Gabriel da Silva** e [oferecido](https://www.instagra
 
 Este projeto é divido em duas partes:
 
-1. <a href="https://github.com/Eubiel178/Api-For-TodoList">Backend</a>)
+1. <a href="https://github.com/Eubiel178/Api-For-TodoList">Backend</a>
 2. <a href="#">Frontend</a>
 
 ### Pré-requisitos
@@ -86,16 +86,18 @@ As seguintes ferramentas foram usadas na construção do projeto:
 
 <table>
   <tr>
-    <td align="center"><a ><img style="border-radius: 50%;"  width="100px;" alt=""/><br /><sub><b></b></sub></a><br /><a href="https://www.instagram.com/tech_gabriel/" >👨‍🚀</a></td>
+    <td align="center">
+  <a href="https://eubiel178.github.io/gabrieldeveloper/">
+    
+    <img style="border-radius: 50%;"  width="100px;" alt=""/><br /><sub><b></b></sub></a><br /><a href="https://www.instagram.com/tech_gabriel/" >👨‍🚀</a></td>
   </tr>
 
 </table>
 
 ## 🦸 Autor
 
-<a href="https://eubiel178.github.io/gabrieldeveloper/">
- <img style="border-radius: 50%;" src="https://eubiel178.github.io/gabrieldeveloper/image/photo.jpg"width="100px;" alt=""/>
- <br />
- <sub><b>Gabriel Santos 🚀</b></sub></a>
+<img style="border-radius: 50%;" src="https://eubiel178.github.io/gabrieldeveloper/image/photo.jpg"width="100px;" alt=""/>
+<br />
+<sub><b>Gabriel Santos 🚀</b></sub></a>
 
  <br />
