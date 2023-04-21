@@ -88,16 +88,16 @@ As seguintes ferramentas foram usadas na construção do projeto:
   <tr>
     <td align="center">
   <a href="https://eubiel178.github.io/gabrieldeveloper/">
-    
-    <img style="border-radius: 50%;"  width="100px;" alt=""/><br /><sub><b></b></sub></a><br /><a href="https://www.instagram.com/tech_gabriel/" >👨‍🚀</a></td>
+  <img style="border-radius: 50%;"  width="100px;" src="https://eubiel178.github.io/gabrieldeveloper/image/photo.jpg" alt=""/>
+  <br />
+  <sub><b></b></sub></a><br /><a href="https://www.instagram.com/tech_gabriel/" >👨‍🚀</a></td>
   </tr>
 
 </table>
 
 ## 🦸 Autor
 
-<img style="border-radius: 50%;" src="https://eubiel178.github.io/gabrieldeveloper/image/photo.jpg"width="100px;" alt=""/>
+<img style="border-radius: 50%;" width="100px;" alt=""/>
 <br />
 <sub><b>Gabriel Santos 🚀</b></sub></a>
-
  <br />
