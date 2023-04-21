@@ -1,82 +1,101 @@
-# To Do List
+<p align="center">
+  <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/tgmarinho/README-ecoleta?color=%2304D361">
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<a href="https://www.instagram.com/tech_gabriel/">Siga no Instagram</a>
 
-## Available Scripts
+</p>
 
-In the project directory, you can run:
+<h1 align="center">
+  React App Todo List
+</h1>
 
-### `npm start`
+<p align="center">
+ <a href="#-sobre-o-projeto">Sobre</a> •
+ <a href="#-funcionalidades">Funcionalidades</a> •
+ <a href="#-como-executar-o-projeto">Como executar</a> • 
+ <a href="#-tecnologias">Tecnologias</a> • 
+ <a href="#-contribuidores">Contribuidores</a> • 
+ <a href="#-autor">Autor</a> • 
+</p>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 💻 Sobre o projeto
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Todo List - é uma forma de organizar tarefas do dia a dia.
 
-### `npm test`
+Projeto desenvolvido por **Gabriel da Silva** e [oferecido](https://www.instagram.com/tech_gabriel/) pelo mesmo. Gabriel é um desenvolvedor com experiência profissional na área de desenvolvimento web, com atuação em projetos voluntários e trabalho freelancer na área. Formação técnica em desenvolvimento web, e atualmente se especializando em Front-end. Conhecimento na linguagem de programação javascript e habilidades em html5, css3, react, nodejs. Facilidade de aprendizado, comunicação, relacionamento interpessoal e vivência com trabalhos em grupos..
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## ⚙️ Funcionalidades
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- [x] Usuarios porem se cadastrar na plataforma web enviando:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+  - [x] Nome de usuario
+  - [x] Email
+  - [x] Senha
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---
 
-### `npm run eject`
+## 🚀 Como executar o projeto
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Este projeto é divido em duas partes:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. <a href="https://github.com/Eubiel178/Api-For-TodoList">Backend</a>)
+2. <a href="#">Frontend</a>
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Pré-requisitos
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
+[Git](https://git-scm.com), [Node.js](https://nodejs.org/en/).
+Além disto é bom ter um editor para trabalhar com o código como [VSCode](https://code.visualstudio.com/)
 
-## Learn More
+#### 🧭 Rodando a aplicação web (Frontend)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```bash
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+# Clone este repositório
+$ git clone https://github.com/Eubiel178/ReactAppTarefas.git todo_list
 
-### Code Splitting
+# Acesse a pasta do projeto no seu terminal/cmd
+$ cd todo_list
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+# Instale as dependências
+$ npm install ou npm i
 
-### Analyzing the Bundle Size
+# Execute a aplicação em modo de desenvolvimento
+$ npm start
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+---
 
-### Making a Progressive Web App
+## 🛠 Tecnologias
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+As seguintes ferramentas foram usadas na construção do projeto:
 
-### Advanced Configuration
+#### **Website** ([React](https://reactjs.org/) + [JavasCript](https://developer.mozilla.org/pt-BR/docs/Learn/JavaScript/First_steps/What_is_JavaScript))
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- **[React Router Dom](https://github.com/ReactTraining/react-router/tree/master/packages/react-router-dom)**
+- **[React Icons](https://react-icons.github.io/react-icons/)**
+- **[Axios](https://github.com/axios/axios)**
 
-### Deployment
+> Veja o arquivo [package.json](https://github.com/Eubiel178/ReactAppTarefas/blob/main/package.json)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## 👨‍💻 Contribuidores
 
-### `npm run build` fails to minify
+💜 Um super thanks 👏 para a pessoa responsavel que fez esse produto sair do campo da ideia e entrar nas lojas de aplicativos :)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<table>
+  <tr>
+    <td align="center"><a ><img style="border-radius: 50%;"  width="100px;" alt=""/><br /><sub><b></b></sub></a><br /><a href="https://www.instagram.com/tech_gabriel/" >👨‍🚀</a></td>
+  </tr>
 
-## Technologies used
+</table>
 
-### Libraries
+## 🦸 Autor
 
-styled components
+<a href="https://eubiel178.github.io/gabrieldeveloper/">
+ <img style="border-radius: 50%;" src="https://eubiel178.github.io/gabrieldeveloper/image/photo.jpg"width="100px;" alt=""/>
+ <br />
+ <sub><b>Gabriel Santos 🚀</b></sub></a>
 
-axios
-
-react-router-dom
-
-react-icons
+ <br />
