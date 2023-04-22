@@ -76,38 +76,60 @@ export const TaskItem = ({
       ];
 
       return (
-        <Task id={id} isReadMoreActive={isReadMoreActive}>
-          <button
-            onClick={() => {
-              window.screen.width <= 500 &&
-                handleSetFinishTask(
-                  task,
-                  taskId,
-                  index,
-                  setToDoList,
-                  editId,
-                  setInput,
-                  setEditId
-                );
-            }}
-          >
-            <span>{newString[0]}</span>
+        <>
+          {window.screen.width <= 500 ? (
+            <Task id={id} isReadMoreActive={isReadMoreActive}>
+              <button
+                onClick={() => {
+                  window.screen.width <= 500 &&
+                    handleSetFinishTask(
+                      task,
+                      taskId,
+                      index,
+                      setToDoList,
+                      editId,
+                      setInput,
+                      setEditId
+                    );
+                }}
+              >
+                <span>{newString[0]}</span>
 
-            <ReadMoreActive
-              style={{ display: isReadMoreActive === false && "none" }}
-            >
-              {newString[1]}
-            </ReadMoreActive>
-          </button>
+                <ReadMoreActive
+                  style={{ display: isReadMoreActive === false && "none" }}
+                >
+                  {newString[1]}
+                </ReadMoreActive>
+              </button>
 
-          <button
-            onClick={() => {
-              setIsReadMoreActive(!isReadMoreActive);
-            }}
-          >
-            {isReadMoreActive ? "Ler menos" : "Ler mais..."}
-          </button>
-        </Task>
+              <button
+                onClick={() => {
+                  setIsReadMoreActive(!isReadMoreActive);
+                }}
+              >
+                {isReadMoreActive ? "Ler menos" : "Ler mais..."}
+              </button>
+            </Task>
+          ) : (
+            <Text>
+              <span>{newString[0]}</span>
+
+              <ReadMoreActive
+                style={{ display: isReadMoreActive === false && "none" }}
+              >
+                {newString[1]}
+              </ReadMoreActive>
+
+              <button
+                onClick={() => {
+                  setIsReadMoreActive(!isReadMoreActive);
+                }}
+              >
+                {isReadMoreActive ? "Ler menos" : "Ler mais..."}
+              </button>
+            </Text>
+          )}
+        </>
       );
     } else {
       return (

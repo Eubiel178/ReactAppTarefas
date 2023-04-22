@@ -56,6 +56,10 @@ export const TaskDescription = styled.div`
   @media (max-width: 500px) {
     margin-left: 10px;
   }
+
+  @media (min-width: 500px) {
+    margin-left: 10px;
+  }
 `;
 
 export const Text = styled.p`
@@ -63,6 +67,10 @@ export const Text = styled.p`
   font-weight: 500;
   text-align: left;
   padding-left: 10px;
+
+  @media (min-width: 500px) {
+    margin-left: 10px;
+  }
 `;
 
 export const Task = styled.p`

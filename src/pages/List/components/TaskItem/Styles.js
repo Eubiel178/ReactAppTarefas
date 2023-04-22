@@ -26,6 +26,10 @@ export const TaskContainer = styled.div`
   @media (max-width: 500px) {
     padding-right: 10px;
   }
+
+  @media (min-width: 500px) {
+    margin-left: 10px;
+  }
 `;
 
 export const UrgencyButtonBorder = styled.button`
@@ -38,7 +42,9 @@ export const UrgencyButtonBorder = styled.button`
 `;
 
 export const TaskDescription = styled.div`
-  text-align: justify;
+  display: flex;
+  align-items: flex-start;
+  height: 100%;
   word-break: break-all;
   display: flex;
   margin-left: 10px;
@@ -50,12 +56,20 @@ export const TaskDescription = styled.div`
   @media (max-width: 500px) {
     margin-left: 10px;
   }
+
+  @media (min-width: 500px) {
+    margin-left: 10px;
+  }
 `;
 
 export const Text = styled.p`
   font-size: 14px;
   font-weight: 500;
   text-align: left;
+
+  @media (min-width: 500px) {
+    margin-left: 10px;
+  }
 `;
 
 export const Task = styled.p`
