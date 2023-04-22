@@ -13,7 +13,7 @@ export const lightTheme = {
   },
   taskitem: {
     color: "#fff",
-    button_readmore: " black",
+    button_readmore: "black",
   },
 };
 

@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { get } from "../../utils/task";
+import { get } from "../../utils/backend/task";
 import { PieChart, Pie, Cell } from "recharts";
 import ReactLoading from "react-loading";
 
@@ -16,7 +16,7 @@ import {
   TextContainer,
   Loading,
 } from "./Styles";
-import { isLogged } from "../../utils/isLogged";
+import { isLogged } from "../../utils/frontend/isLogged";
 import { Link, useNavigate } from "react-router-dom";
 
 const Home = () => {

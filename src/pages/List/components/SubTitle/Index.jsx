@@ -3,7 +3,7 @@ import { Container, TitleContainer, Title, Button } from "./Styles";
 
 //libs
 import Swal from "sweetalert2";
-import { remove } from "../../../../utils/task";
+import { remove } from "../../../../utils/backend/task";
 
 export const SubTitle = ({ toDoList, setToDoList }) => {
   const clearList = async () => {

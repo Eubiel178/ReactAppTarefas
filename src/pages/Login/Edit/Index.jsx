@@ -8,7 +8,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 //page utills
-import { getOne, login } from "../../../utils/user";
+import { getOne, login } from "../../../utils/backend/user";
 
 //components
 import {

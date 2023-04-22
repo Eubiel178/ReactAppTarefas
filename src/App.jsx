@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import { ThemeProvider } from "styled-components";
 import { lightTheme, darkTheme } from "./styles/theme";
 
-import { getOne } from "./utils/user";
+import { getOne } from "./utils/backend/user";
 
 const App = () => {
   const [input, setInput] = useState("");

@@ -18,7 +18,7 @@ import { AiOutlineMenu, AiOutlineHome } from "react-icons/ai";
 import { BiUser } from "react-icons/bi";
 
 //imports local
-import { getSaveMode, saveMode } from "../../utils/mode";
+import { getSaveMode, saveMode } from "../../utils/frontend/mode";
 import Contexts from "../../contexts/Contexts";
 import { ModalProfile } from "../Index";
 

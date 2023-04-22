@@ -1,6 +1,4 @@
 <p align="center">
-  <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/tgmarinho/README-ecoleta?color=%2304D361">
-
 <a href="https://www.instagram.com/tech_gabriel/">Siga no Instagram</a>
 
 </p>

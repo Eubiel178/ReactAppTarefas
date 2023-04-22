@@ -1,33 +1,63 @@
 //icons
 import { FaTrashAlt } from "react-icons/fa";
-
-//libs
+import { AiOutlineCaretUp, AiOutlineCaretDown } from "react-icons/ai";
 
 //styled-components
+
 import {
   TaskContainer,
   TaskDescription,
   Task,
-  ReadMoreActive,
+  Text,
   ConcluedButton,
+  ReadMoreActive,
   Container,
+  ActionContainerInMobile,
   ActionContainer,
+  PositionStyle,
   DivButtons,
   ButtonRemove,
 } from "./Styles";
+
 import { useState } from "react";
 
+import {
+  handlePosition,
+  handleRemove,
+  handleSetFinishTask,
+} from "../../../../utils/frontend/task";
+import { ModalUrgencyTask } from "../../../../components/Index";
+import { edit } from "../../../../utils/backend/task";
+
 const TaskItem = ({
+  array,
   taskId,
   index,
   description,
   task,
-  handleSetFinishTask,
-  remove,
   isFinished,
   id,
+  setToDoList,
+  toDoList,
 }) => {
   const [isReadMoreActive, setIsReadMoreActive] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleEditUrgency = async (color) => {
+    const newArray = [...toDoList];
+    if (loading === false) {
+      setLoading(true);
+
+      await edit({ urgency: color, isFinished: false }, id);
+
+      newArray[index].isFinished = false;
+
+      setToDoList(newArray);
+      setIsOpen(false);
+      setLoading(false);
+    }
+  };
 
   const handleDescription = (text) => {
     if (text.length > 110) {
@@ -37,13 +67,32 @@ const TaskItem = ({
       ];
 
       return (
-        <Task id={id}>
-          {newString[0]}
-          <ReadMoreActive
-            style={{ display: isReadMoreActive === false && "none" }}
+        <Task id={id} isReadMoreActive={isReadMoreActive}>
+          <button
+            onClick={() => {
+              window.screen.width <= 500 &&
+                handleSetFinishTask(
+                  task,
+                  taskId,
+                  index,
+                  toDoList,
+                  setToDoList,
+                  "",
+                  "",
+                  "",
+                  setIsOpen
+                );
+            }}
           >
-            {newString[1]}
-          </ReadMoreActive>
+            <span>{newString[0]}</span>
+
+            <ReadMoreActive
+              style={{ display: isReadMoreActive === false && "none" }}
+            >
+              {newString[1]}
+            </ReadMoreActive>
+          </button>
+
           <button
             onClick={() => {
               setIsReadMoreActive(!isReadMoreActive);
@@ -54,38 +103,121 @@ const TaskItem = ({
         </Task>
       );
     } else {
-      return <Task>{text}</Task>;
+      return (
+        <Text>
+          <span>{text}</span>
+        </Text>
+      );
     }
   };
 
   return (
-    <TaskContainer style={{ display: isFinished === false && "none" }}>
-      <TaskDescription>
-        <ConcluedButton
-          type="checkbox"
-          onChange={() => {
-            handleSetFinishTask(task, taskId, index);
-          }}
-          checked={isFinished === true && true}
-        />
+    <>
+      <ModalUrgencyTask
+        loading={loading}
+        isOpenModal={isOpen}
+        setIsOpenModal={setIsOpen}
+        action={handleEditUrgency}
+      />
 
-        <> {handleDescription(description)}</>
-      </TaskDescription>
+      <TaskContainer style={{ display: isFinished === false && "none" }}>
+        <TaskDescription>
+          <ConcluedButton
+            type="checkbox"
+            onClick={() => {
+              handleSetFinishTask(
+                task,
+                taskId,
+                index,
+                toDoList,
+                setToDoList,
+                "",
+                "",
+                "",
+                setIsOpen
+              );
+            }}
+            checked={isFinished === true && true}
+          />
 
-      <Container>
-        <ActionContainer>
-          <DivButtons>
-            <ButtonRemove
-              onClick={() => {
-                remove(task, index);
-              }}
-            >
-              <FaTrashAlt />
-            </ButtonRemove>
-          </DivButtons>
-        </ActionContainer>
-      </Container>
-    </TaskContainer>
+          {handleDescription(description)}
+        </TaskDescription>
+
+        <Container>
+          {window.screen.width <= 500 ? (
+            <ActionContainerInMobile>
+              <button
+                style={{
+                  color: index === 0 ? "#686868" : "#0000FF",
+                }}
+                onClick={() => {
+                  handlePosition("up", task, index, array, setToDoList);
+                }}
+              >
+                <AiOutlineCaretUp />
+              </button>
+
+              <DivButtons>
+                <ButtonRemove
+                  onClick={() => {
+                    handleRemove(task, index, toDoList, "", setToDoList, "");
+                  }}
+                >
+                  <FaTrashAlt />
+                </ButtonRemove>
+              </DivButtons>
+
+              <button
+                style={{
+                  color: index === array.length - 1 ? "#686868" : "#0000FF",
+                }}
+                onClick={() => {
+                  handlePosition("bottom", task, index, array, setToDoList);
+                }}
+              >
+                <AiOutlineCaretDown />
+              </button>
+            </ActionContainerInMobile>
+          ) : (
+            <ActionContainer>
+              <PositionStyle>
+                <button
+                  style={{
+                    color: index === 0 ? "#686868" : "#0000FF",
+                  }}
+                  onClick={() => {
+                    handlePosition("up", task, index, array, setToDoList);
+                  }}
+                >
+                  <AiOutlineCaretUp />
+                </button>
+
+                <button
+                  style={{
+                    color: index === array.length - 1 ? "#686868" : "#0000FF",
+                  }}
+                  onClick={() => {
+                    handlePosition("bottom", task, index, array, setToDoList);
+                  }}
+                >
+                  <AiOutlineCaretDown />
+                </button>
+              </PositionStyle>
+
+              <DivButtons>
+                <ButtonRemove
+                  onClick={() => {
+                    handleRemove(task, index, toDoList, "", setToDoList);
+                  }}
+                >
+                  <FaTrashAlt />
+                </ButtonRemove>
+              </DivButtons>
+            </ActionContainer>
+          )}
+        </Container>
+      </TaskContainer>
+    </>
   );
 };
 

@@ -15,7 +15,7 @@ import {
 } from "./Styles";
 
 import Contexts from "../../contexts/Contexts";
-import { editUser, getOne, logOff } from "../../utils/user";
+import { editUser, getOne, logOff } from "../../utils/backend/user";
 
 import Photo from "../../images/profile.jpg";
 

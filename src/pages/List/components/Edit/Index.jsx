@@ -1,14 +1,12 @@
 import Contexts from "../../../../contexts/Contexts";
 
-import ReactLoading from "react-loading";
-
 //hooks
 import { useContext } from "react";
 
 //styled-components
 import { FormContainer, Button, Input } from "./Styles";
 
-export const EditForm = ({ setModalState, setInput, isEdit, load }) => {
+export const EditForm = ({ setModalState, setInput, isEdit }) => {
   const { input } = useContext(Contexts);
 
   const handleModal = (event) => {
@@ -33,20 +31,9 @@ export const EditForm = ({ setModalState, setInput, isEdit, load }) => {
           required
         />
 
-        {load ? (
-          <Button>
-            <ReactLoading
-              height="1em"
-              width="1em"
-              type="spin"
-              color="#ffffff"
-            />
-          </Button>
-        ) : (
-          <Button type="submit">
-            <div>{isEdit !== "" ? "Atualizar" : "Salvar"}</div>
-          </Button>
-        )}
+        <Button type="submit">
+          <div>{isEdit !== "" ? "Atualizar" : "Salvar"}</div>
+        </Button>
       </FormContainer>
     </form>
   );

@@ -1,5 +1,5 @@
 import Swal from "sweetalert2";
-import { getOne } from "./user";
+import { getOne } from "../backend/user";
 
 export const isLogged = async (setUser, setAuth, navigate) => {
   try {

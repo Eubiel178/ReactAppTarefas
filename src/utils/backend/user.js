@@ -1,4 +1,4 @@
-import api from "../services/api";
+import api from "../../services/api";
 
 export const register = async (body) => {
   const { status } = await api.post("/users", body).catch((error) => {

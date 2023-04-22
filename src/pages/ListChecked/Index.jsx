@@ -5,10 +5,10 @@ import { useAutoAnimate } from "@formkit/auto-animate/react";
 import { ContainerPages, NavBar, Title } from "../../components/Index";
 
 import TaskItem from "./components/TaskItem/Index";
-import { edit, remove, get } from "../../utils/task";
+import { edit, remove, get } from "../../utils/backend/task";
 import { useEffect, useState, useContext } from "react";
-import { swalModal } from "../../utils/swalModal";
-import { isLogged } from "../../utils/isLogged";
+import { swalModal } from "../../utils/frontend/swalModal";
+import { isLogged } from "../../utils/frontend/isLogged";
 import Contexts from "../../contexts/Contexts";
 import { useNavigate } from "react-router-dom";
 
@@ -27,22 +27,6 @@ const ListChecked = () => {
       await remove(task._id);
 
       newArray.splice(index, 1);
-      setListChecked(newArray);
-    }
-  };
-
-  const handleSetFinishTask = async (task, taskId, index) => {
-    const { value } = await swalModal(
-      "Deseja mesmo desmarcar esta tarefa como concluida?"
-    );
-
-    if (value === true) {
-      const newArray = [...listChecked];
-
-      await edit({ isFinished: false }, taskId);
-
-      newArray[index].isFinished = false;
-
       setListChecked(newArray);
     }
   };
@@ -85,10 +69,10 @@ const ListChecked = () => {
                   index={index}
                   description={element.description}
                   task={element}
-                  remove={handleRemove}
                   isFinished={element.isFinished}
                   id={element._id}
-                  handleSetFinishTask={handleSetFinishTask}
+                  setToDoList={setListChecked}
+                  toDoList={listChecked}
                 />
               );
             })

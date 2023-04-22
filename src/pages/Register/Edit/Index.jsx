@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { schema } from "./ValidationForm";
 
 //page utills
-import { register } from "../../../utils/user";
+import { register } from "../../../utils/backend/user";
 
 //components
 import {
