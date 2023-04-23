@@ -26,7 +26,7 @@ Projeto desenvolvido por **Gabriel da Silva** e [oferecido](https://www.instagra
 
 ## ⚙️ Funcionalidades
 
-- [x] Usuarios porem se cadastrar na plataforma web enviando:
+- [x] Usuarios podem se cadastrar na plataforma web enviando:
 
   - [x] Nome de usuario
   - [x] Email
