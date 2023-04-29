@@ -31,7 +31,11 @@ Projeto desenvolvido por **Gabriel da Silva** e [oferecido](https://www.instagra
   - [x] Nome de usuario
   - [x] Email
   - [x] Senha
+  
+- [x] Usuarios podem cadastrar tarefas na plataforma web enviando:
 
+  - [x] Descricao
+  - [x] Classificacao( urgente, pouco urgente, nao urgente ou finalizada)
 ---
 
 ## 🚀 Como executar o projeto
