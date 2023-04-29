@@ -8,10 +8,10 @@ import {
   TaskContainer,
   TaskDescription,
   Task,
-  Text,
   ConcluedButton,
   ReadMoreActive,
   Container,
+  ButtonReadMore,
   ActionContainerInMobile,
   ActionContainer,
   PositionStyle,
@@ -67,68 +67,61 @@ const TaskItem = ({
       ];
 
       return (
-        <>
-          {window.screen.width <= 500 ? (
-            <Task id={id} isReadMoreActive={isReadMoreActive}>
-              <button
-                onClick={() => {
-                  window.screen.width <= 500 &&
-                    handleSetFinishTask(
-                      task,
-                      taskId,
-                      index,
-                      toDoList,
-                      setToDoList,
-                      "",
-                      "",
-                      "",
-                      setIsOpen
-                    );
-                }}
-              >
-                <span>{newString[0]}</span>
+        <Task id={id} isReadMoreActive={isReadMoreActive}>
+          <button
+            onClick={() => {
+              handleSetFinishTask(
+                task,
+                taskId,
+                index,
+                toDoList,
+                setToDoList,
+                "",
+                "",
+                "",
+                setIsOpen
+              );
+            }}
+          >
+            <span>{newString[0]}</span>
 
-                <ReadMoreActive
-                  style={{ display: isReadMoreActive === false && "none" }}
-                >
-                  {newString[1]}
-                </ReadMoreActive>
-              </button>
+            <ReadMoreActive
+              style={{ display: isReadMoreActive === false && "none" }}
+            >
+              {newString[1]}
+            </ReadMoreActive>
+          </button>
 
-              <button
-                onClick={() => {
-                  setIsReadMoreActive(!isReadMoreActive);
-                }}
-              >
-                {isReadMoreActive ? "Ler menos" : "Ler mais..."}
-              </button>
-            </Task>
-          ) : (
-            <Text>
-              <span>{newString[0]}</span>
-
-              <ReadMoreActive
-                style={{ display: isReadMoreActive === false && "none" }}
-              >
-                {newString[1]}
-              </ReadMoreActive>
-
-              <button
-                onClick={() => {
-                  setIsReadMoreActive(!isReadMoreActive);
-                }}
-              >
-                {isReadMoreActive ? "Ler menos" : "Ler mais..."}
-              </button>
-            </Text>
-          )}
-        </>
+          <ButtonReadMore
+            onClick={() => {
+              setIsReadMoreActive(!isReadMoreActive);
+            }}
+          >
+            {isReadMoreActive ? "Ler menos" : "Ler mais..."}
+          </ButtonReadMore>
+        </Task>
       );
     } else {
       return (
-        <Text>
-          <span>{text}</span>
-        </Text>
+        <Task id={id} isReadMoreActive={isReadMoreActive}>
+          <button
+            onClick={() => {
+              handleSetFinishTask(
+                task,
+                taskId,
+                index,
+                toDoList,
+                setToDoList,
+                "",
+                "",
+                "",
+                setIsOpen
+              );
+            }}
+          >
+            <span>{text}</span>
+          </button>
+        </Task>
       );
     }
   };

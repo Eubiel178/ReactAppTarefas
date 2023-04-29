@@ -1,9 +1,16 @@
 import styled from "styled-components";
 
-export const Form = styled.form`
+export const Container = styled.div`
+  width: 100%;
+  position: relative;
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 100%;
-  width: 60%;
+  justify-content: center;
+`;
+
+export const Form = styled.form`
+  width: 70%;
+
+  @media (max-width: 480px) {
+    position: absolute;
+  }
 `;

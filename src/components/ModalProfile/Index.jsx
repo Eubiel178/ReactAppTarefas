@@ -43,7 +43,7 @@ export const ModalProfile = ({
       left: 0,
       right: 0,
       bottom: 0,
-      backgroundColor: mode ? "rgb(0 0 0 / 72%)" : "rgba(255, 255, 255, 0.75)",
+      backgroundColor: "rgb(0 0 0 / 72%)",
       zIndex: 2,
     },
     content: {
@@ -55,7 +55,7 @@ export const ModalProfile = ({
       transform: "translate(-50%, -50%)",
       height: "30em",
       width: "22em",
-      backgroundColor: mode ? "#282A36" : "#E1E1E1",
+      backgroundColor: mode ? "#282A36" : "#484b6a",
       border: "1px solid rgb(0 0 0 / 44%)",
       boxShadow: "6px 6px 8px #00000030",
       transitionDuration: "5s",

@@ -1,5 +1,9 @@
-import { Form } from "./Styles";
+import { Container, Form } from "./Styles";
 
 export const FormContainer = ({ children, ...rest }) => {
-  return <Form {...rest}>{children}</Form>;
+  return (
+    <Container>
+      <Form {...rest}>{children}</Form>
+    </Container>
+  );
 };

@@ -107,6 +107,11 @@ export const handlePosition = async (
 
       setToDoList(newArray);
 
+      await Promise.all([
+        edit({ index: task.index }, topTask._id),
+        edit({ index: topTask.index }, task._id),
+      ]);
+
       await edit({ index: task.index }, topTask._id);
       await edit({ index: topTask.index }, task._id);
     }
@@ -121,8 +126,10 @@ export const handlePosition = async (
 
       setToDoList(newArray);
 
-      await edit({ index: task.index }, bottomTask._id);
-      await edit({ index: bottomTask.index }, task._id);
+      await Promise.all([
+        edit({ index: task.index }, bottomTask._id),
+        edit({ index: bottomTask.index }, task._id),
+      ]);
     }
   }
 };

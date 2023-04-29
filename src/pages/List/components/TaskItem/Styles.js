@@ -1,17 +1,4 @@
-import styled, { keyframes } from "styled-components";
-
-// const readMoreActive = keyframes`
-// 0%{
-
-// 50%{
-
-// 75%{
-// }
-// 85%{
-// }
-// 100%{
-// }
-// `;
+import styled from "styled-components";
 
 export const TaskContainer = styled.div`
   position: relative;
@@ -32,6 +19,11 @@ export const TaskContainer = styled.div`
   }
 `;
 
+export const ButtonReadMore = styled.button`
+  color: ${(props) => props.theme.task_item.button_readmore};
+  font-weight: 900;
+`;
+
 export const UrgencyButtonBorder = styled.button`
   position: absolute;
   background-color: ${({ color }) => color};
@@ -43,14 +35,14 @@ export const UrgencyButtonBorder = styled.button`
 
 export const TaskDescription = styled.div`
   display: flex;
-  align-items: flex-start;
   height: 100%;
+  align-items: flex-start;
   word-break: break-all;
   display: flex;
   margin-left: 10px;
 
   span {
-    color: ${(props) => props.theme.taskitem.color};
+    color: ${(props) => props.theme.task_item.color};
   }
 
   @media (max-width: 500px) {
@@ -62,20 +54,9 @@ export const TaskDescription = styled.div`
   }
 `;
 
-export const Text = styled.p`
-  font-size: 14px;
-  font-weight: 500;
-  text-align: left;
-
-  @media (min-width: 500px) {
-    margin-left: 10px;
-  }
-`;
-
 export const Task = styled.p`
   button {
     font-size: 14px;
-    font-weight: 500;
     text-align: left;
   }
 
@@ -88,11 +69,6 @@ export const Task = styled.p`
     margin-right: ${({ isReadMoreActive }) =>
       isReadMoreActive ? "0.5em" : "0px"};
   }
-
-  button:nth-child(2) {
-    color: ${(props) => props.theme.taskitem.button_readmore};
-    margin-top: 1em;
-  }
 `;
 
 export const ReadMoreActive = styled.span`
@@ -104,7 +80,7 @@ export const ConcluedButton = styled.input`
   display: block;
   width: 1.2em;
   height: 1.2em;
-  margin: 10px 0px;
+  margin: 10px 10px 0px 0px;
 
   @media (max-width: 500px) {
     display: none;

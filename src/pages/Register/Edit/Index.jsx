@@ -73,42 +73,40 @@ const EditForm = () => {
 
   return (
     <FormContainer onSubmit={handleSubmit(handleRegister)}>
-      <div>
-        <InputRHF
-          name="name"
-          type="text"
-          placeholder="Nome"
-          control={control}
-          error={errors?.name && errors.name?.message}
-        />
+      <InputRHF
+        name="name"
+        type="text"
+        placeholder="Nome"
+        control={control}
+        error={errors?.name && errors.name?.message}
+      />
 
-        <InputRHF
-          name="email"
-          type="email"
-          placeholder="example@gmail.com"
-          control={control}
-          error={errors?.email && errors.email?.message}
-        />
+      <InputRHF
+        name="email"
+        type="email"
+        placeholder="example@gmail.com"
+        control={control}
+        error={errors?.email && errors.email?.message}
+      />
 
-        <InputPassword
-          name="password"
-          placeholder="Senha"
-          control={control}
-          error={errors?.password && errors.password?.message}
-        />
+      <InputPassword
+        name="password"
+        placeholder="Senha"
+        control={control}
+        error={errors?.password && errors.password?.message}
+      />
 
-        <InputPassword
-          name="password_confirmation"
-          placeholder="Repita sua senha"
-          control={control}
-          error={
-            errors?.password_confirmation &&
-            errors.password_confirmation?.message
-          }
-        />
+      <InputPassword
+        name="password_confirmation"
+        placeholder="Repita sua senha"
+        control={control}
+        error={
+          errors?.password_confirmation && errors.password_confirmation?.message
+        }
+      />
 
-        <Button value="Criar Conta" loading={loading} />
-      </div>
+      <Button value="Criar Conta" loading={loading} />
+
       <div>
         <ButtonLink to="/" text="Já tem uma conta" textLink="Login" />
       </div>

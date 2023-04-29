@@ -1,19 +1,19 @@
 export const lightTheme = {
-  background_navbar: "#eFEFfF",
-  background_card: "#eFEFfF",
-  background_page: "#E1E1E1",
-  color: "black",
-  color_icon: "#3e3b3b",
-  title: "#212121",
-  background_button: "rgba(0, 0, 0, 0.5)",
+  background_navbar: "#484b6a",
+  background_card: "#484b6a",
+  background_page: "#9394a5",
+  color: "#fff",
+  color_icon: "#fff",
+  title: "#d64c42",
+  background_button: "#484b6a",
   switch_theme_button: { color: "black" },
-  background_grafic_text: "#9f98985e",
+  background_grafic_text: "#9f98985e ",
   border: {
     color: "black",
   },
-  taskitem: {
+  task_item: {
     color: "#fff",
-    button_readmore: "black",
+    button_readmore: "#d64c42",
   },
 };
 
@@ -30,7 +30,7 @@ export const darkTheme = {
   border: {
     color: "#fff",
   },
-  taskitem: {
+  task_item: {
     color: "#fff",
     button_readmore: " #808080",
   },

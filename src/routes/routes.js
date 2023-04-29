@@ -1,8 +1,3 @@
-import Contexts from "../contexts/Contexts";
-
-//hooks
-import { useContext } from "react";
-
 //libs
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
@@ -10,8 +5,6 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import * as Pages from "../pages/Index";
 
 const AppRoutes = () => {
-  const { auth } = useContext(Contexts);
-
   return (
     <Router>
       <Routes>
@@ -22,7 +15,7 @@ const AppRoutes = () => {
           exact
           element={<Pages.ListChecked />}
         />
-
+        <Route path="/home/sticky-note" exact element={<Pages.StickyNote />} />
         <Route path="/" exact element={<Pages.Login />} />
         <Route path="/register" exact element={<Pages.Register />} />
       </Routes>

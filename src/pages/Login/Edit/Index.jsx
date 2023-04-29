@@ -80,23 +80,21 @@ const EditForm = () => {
 
   return (
     <FormContainer onSubmit={handleSubmit(handleLogin)}>
-      <div>
-        <InputRHF
-          name="email"
-          type="email"
-          placeholder="Seu email"
-          control={control}
-          error={errors?.email && errors.email?.message}
-        />
-        <InputPassword
-          name="password"
-          placeholder="Sua senha"
-          control={control}
-          error={errors?.password && errors.password?.message}
-        />
-        {status && <Error>{status}</Error>}
-        <Button value="Logar" loading={loading} />
-      </div>
+      <InputRHF
+        name="email"
+        type="email"
+        placeholder="Seu email"
+        control={control}
+        error={errors?.email && errors.email?.message}
+      />
+      <InputPassword
+        name="password"
+        placeholder="Sua senha"
+        control={control}
+        error={errors?.password && errors.password?.message}
+      />
+      {status && <Error>{status}</Error>}
+      <Button value="Logar" loading={loading} />
 
       <div>
         <ButtonLink

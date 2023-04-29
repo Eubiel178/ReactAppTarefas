@@ -1,17 +1,4 @@
-import styled, { keyframes } from "styled-components";
-
-// const readMoreActive = keyframes`
-// 0%{
-
-// 50%{
-
-// 75%{
-// }
-// 85%{
-// }
-// 100%{
-// }
-// `;
+import styled from "styled-components";
 
 export const TaskContainer = styled.div`
   position: relative;
@@ -24,6 +11,17 @@ export const TaskContainer = styled.div`
   border-radius: 0px 10px 10px 0px;
   padding: 10px 1em 10px 0px;
   border-left: solid 4px #00ff80;
+
+  /* 
+  div:nth-child(1n + 3) {
+    background-color: #a10251 !important;
+    color: #fff;
+  }
+
+  div:nth-child(1n + 1) {
+    background-color: red !important;
+    color: #fff;
+  } */
 `;
 
 export const UrgencyButtonBorder = styled.button`
@@ -39,34 +37,24 @@ export const TaskDescription = styled.div`
   text-align: justify;
   word-break: break-all;
   display: flex;
+
   span {
-    color: ${(props) => props.theme.taskitem.color};
+    color: ${(props) => props.theme.task_item.color};
   }
 
   span:nth-child(1) {
-    padding-right: ${({ activeReadMore }) =>
-      !activeReadMore === true ? "0px" : "0.5em"};
+    padding-right: ${({ isReadMoreActive }) =>
+      isReadMoreActive ? "0px" : "0.5em"};
   }
 
   span:nth-child(2) {
-    margin-right: ${({ activeReadMore }) =>
-      !activeReadMore === true ? "0.5em" : "0px"};
+    margin-right: ${({ isReadMoreActive }) =>
+      isReadMoreActive ? "0.5em" : "0px"};
   }
 
   @media (max-width: 500px) {
     margin-left: 10px;
   }
-
-  @media (min-width: 500px) {
-    margin-left: 10px;
-  }
-`;
-
-export const Text = styled.p`
-  font-size: 14px;
-  font-weight: 500;
-  text-align: left;
-  padding-left: 10px;
 
   @media (min-width: 500px) {
     margin-left: 10px;
@@ -89,11 +77,11 @@ export const Task = styled.p`
     margin-right: ${({ isReadMoreActive }) =>
       isReadMoreActive ? "0.5em" : "0px"};
   }
+`;
 
-  button:nth-child(2) {
-    color: ${(props) => props.theme.taskitem.button_readmore};
-    margin-top: 1em;
-  }
+export const ButtonReadMore = styled.button`
+  color: ${(props) => props.theme.task_item.button_readmore};
+  font-weight: 900;
 `;
 
 export const ReadMoreActive = styled.span`
@@ -105,7 +93,7 @@ export const ConcluedButton = styled.input`
   display: block;
   width: 1.2em;
   height: 1.2em;
-  margin: 10px 0px;
+  margin: 10px 10px 0px 0px;
 
   @media (max-width: 500px) {
     display: none;
