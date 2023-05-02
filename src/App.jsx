@@ -6,6 +6,7 @@ import { ThemeProvider } from "styled-components";
 import { lightTheme, darkTheme } from "./styles/theme";
 
 import { getOne } from "./utils/backend/user";
+import { getSaveMode } from "./utils/frontend/mode";
 
 const App = () => {
   const [input, setInput] = useState("");
@@ -23,6 +24,7 @@ const App = () => {
     if (token) {
       (async () => {
         const user = await getOne(token);
+ 
 
         if (user.name) {
           setUserJson(user);
@@ -58,9 +60,7 @@ const App = () => {
             setIsOpen,
           }}
         >
-          <main>
-            <AppRoutes />
-          </main>
+          <AppRoutes />
         </Contexts.Provider>
       </ThemeProvider>
     </>

@@ -17,6 +17,7 @@ const AppRoutes = () => {
         />
         <Route path="/home/sticky-note" exact element={<Pages.StickyNote />} />
         <Route path="/" exact element={<Pages.Login />} />
+        <Route path="/home/profile" exact element={<Pages.Profile />} />
         <Route path="/register" exact element={<Pages.Register />} />
       </Routes>
     </Router>

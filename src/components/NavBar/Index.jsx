@@ -1,5 +1,6 @@
-import { Link } from "react-router-dom";
-import { useEffect, useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { AiOutlineLogin } from "react-icons/ai";
 
 import {
   NavContainer,
@@ -20,11 +21,31 @@ import { BiUser } from "react-icons/bi";
 //imports local
 import { getSaveMode, saveMode } from "../../utils/frontend/mode";
 import Contexts from "../../contexts/Contexts";
-import { ModalProfile } from "../Index";
+import Swal from "sweetalert2";
+import { logOff } from "../../utils/backend/user";
 
 export const NavBar = () => {
-  const [modalIsOpen, setModalIsOpen] = useState(false);
-  const { mode, setMode, userJson, isOpen, setIsOpen } = useContext(Contexts);
+  const { mode, setMode, isOpen, setIsOpen, setAuth } = useContext(Contexts);
+
+  const navigate = useNavigate();
+
+  const handleLogOff = async () => {
+    Swal.fire({
+      title: "Deseja deslogar?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Sim",
+      cancelButtonText: "Não",
+      preConfirm: () => {
+        logOff();
+        Swal.fire("Usuario deslogado com sucesso!", "", "success");
+        navigate("/");
+        setAuth(false);
+      },
+    });
+  };
 
   const handleMode = () => {
     setMode(!mode);
@@ -32,31 +53,19 @@ export const NavBar = () => {
     saveMode(!mode);
   };
 
-  useEffect(() => {
-    const getMode = getSaveMode();
-
-    if (getMode === "true") {
-      setMode(true);
-    } else {
-      setMode(false);
-    }
-
-    // eslint-disable-next-line
-  }, []);
   return (
     <>
-      <OpenNavBarContainer
-        isOpen={isOpen}
-        style={{ visibility: isOpen === true && "hidden" }}
-      >
+      <OpenNavBarContainer>
         <button
           onClick={() => {
             setIsOpen(true);
           }}
         >
-          <span>
-            <AiOutlineMenu />
-          </span>
+          <AiOutlineMenu />
+        </button>
+
+        <button onClick={handleLogOff}>
+          <AiOutlineLogin />
         </button>
       </OpenNavBarContainer>
 
@@ -89,7 +98,13 @@ export const NavBar = () => {
                   handleMode();
                 }}
               >
-                <span>{mode ? <MdLightMode /> : <MdModeNight />}</span>
+                <span>
+                  {mode ? (
+                    <MdLightMode style={{ color: "#f49e12" }} />
+                  ) : (
+                    <MdModeNight style={{ color: "#d4dee1" }} />
+                  )}
+                </span>
               </ButtonSwitchTheme>
             </li>
 
@@ -116,20 +131,11 @@ export const NavBar = () => {
 
           <div>
             <li>
-              <button onClick={() => setModalIsOpen(!modalIsOpen)}>
+              <Link to="/home/profile">
                 <span>
                   <BiUser />
                 </span>
-              </button>
-
-              <ModalProfile
-                modalIsOpen={modalIsOpen}
-                setModalIsOpen={setModalIsOpen}
-                name={userJson.name}
-                email={userJson.email}
-                img={userJson.img}
-                id={userJson._id}
-              />
+              </Link>
             </li>
           </div>
         </NavItems>

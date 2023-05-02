@@ -8,6 +8,8 @@
     "@formkit/auto-animate": "^1.0.0-beta.3",
     "@hookform/resolvers": "^2.9.10",
     "@react-icons/all-files": "^4.1.0",
+    "@sweetalert2/theme-borderless": "^5.0.15",
+    "@sweetalert2/themes": "^5.0.15",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^13.5.0",
@@ -27,7 +29,7 @@
     "react-ui": "^1.0.0-beta.32",
     "recharts": "^2.5.0",
     "styled-components": "^5.3.5",
-    "sweetalert2": "^11.4.33",
+    "sweetalert2": "^11.7.3",
     "uuid": "^9.0.0",
     "web-vitals": "^2.1.4",
     "yup": "^0.32.11"

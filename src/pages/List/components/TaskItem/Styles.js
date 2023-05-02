@@ -5,18 +5,10 @@ export const TaskContainer = styled.div`
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  margin-bottom: 1em;
-  background-color: ${(props) => props.theme.background_button};
+  background-color: ${(props) => props.theme.task_item.background};
   border-radius: 0px 10px 10px 0px;
   padding: 10px 1em 10px 0px;
-
-  @media (max-width: 500px) {
-    padding-right: 10px;
-  }
-
-  @media (min-width: 500px) {
-    margin-left: 10px;
-  }
+  margin-bottom: 1em;
 `;
 
 export const ButtonReadMore = styled.button`

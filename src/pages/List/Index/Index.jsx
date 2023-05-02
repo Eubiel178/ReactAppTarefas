@@ -4,10 +4,10 @@ import Contexts from "../../../contexts/Contexts";
 import { useContext, useState, useEffect } from "react";
 
 //styled-components
-import { TaskList, MainContainer, FeedBack } from "./Styles";
+import { MainContainer, FeedBack } from "./Styles";
 
 //libs
-import { useAutoAnimate } from "@formkit/auto-animate/react";
+
 import { v4 as uuidv4 } from "uuid";
 
 //page utills
@@ -19,6 +19,7 @@ import {
   Title,
   NavBar,
   ModalUrgencyTask,
+  ListItem,
 } from "../../../components/Index";
 import { EditForm, SubTitle, TaskItem } from "../components/Index";
 import { swalModal } from "../../../utils/frontend/swalModal";
@@ -28,7 +29,6 @@ import { isLogged } from "../../../utils/frontend/isLogged";
 const List = () => {
   const [editId, setEditId] = useState("");
   const [loading, setLoading] = useState(false);
-  const [animationParent] = useAutoAnimate();
   const [toDoList, setToDoList] = useState([]);
   const [isOpenModal, setIsOpenModal] = useState(false);
 
@@ -135,7 +135,7 @@ const List = () => {
 
         <SubTitle toDoList={toDoList} setToDoList={setToDoList} />
 
-        <TaskList ref={animationParent}>
+        <ListItem>
           {toDoList.length === 0 ? (
             <FeedBack>Nenhuma tarefa foi adicionada</FeedBack>
           ) : (
@@ -159,7 +159,7 @@ const List = () => {
               );
             })
           )}
-        </TaskList>
+        </ListItem>
       </MainContainer>
     </ContainerPages>
   );

@@ -2,26 +2,14 @@ import styled from "styled-components";
 
 export const TaskContainer = styled.div`
   position: relative;
-  width: 100%;
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  margin-bottom: 1em;
-  background-color: ${(props) => props.theme.background_button};
+  background-color: ${(props) => props.theme.task_item.background};
   border-radius: 0px 10px 10px 0px;
   padding: 10px 1em 10px 0px;
+  margin-bottom: 1em;
   border-left: solid 4px #00ff80;
-
-  /* 
-  div:nth-child(1n + 3) {
-    background-color: #a10251 !important;
-    color: #fff;
-  }
-
-  div:nth-child(1n + 1) {
-    background-color: red !important;
-    color: #fff;
-  } */
 `;
 
 export const UrgencyButtonBorder = styled.button`

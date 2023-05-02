@@ -37,13 +37,22 @@ const CloseNav = keyframes`
 `;
 
 export const OpenNavBarContainer = styled.div`
-  margin: 1em 0em 0em 1em;
+  margin: 1em;
+  display: flex;
+  justify-content: space-between;
 
   button {
     background: transparent;
     border: 0px;
-    color: ${(props) => props.theme.color};
     font-size: 1.8em;
+  }
+
+  button:nth-child(1) {
+    color: ${(props) => props.theme.color};
+  }
+
+  button:nth-child(2) {
+    color: red;
   }
 `;
 
@@ -64,7 +73,7 @@ export const NavContainer = styled.nav`
 
   span {
     color: ${(props) => props.theme.color};
-    font-size: 2em;
+    font-size: 22px;
   }
 
   @media (max-width: 480px) {

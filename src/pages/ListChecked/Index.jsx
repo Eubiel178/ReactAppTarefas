@@ -1,8 +1,11 @@
-import { FeedBack, MainContainer, TaskList } from "./Styles";
+import { FeedBack, MainContainer } from "./Styles";
 
-import { useAutoAnimate } from "@formkit/auto-animate/react";
-
-import { ContainerPages, NavBar, Title } from "../../components/Index";
+import {
+  ContainerPages,
+  ListItem,
+  NavBar,
+  Title,
+} from "../../components/Index";
 
 import TaskItem from "./components/TaskItem/Index";
 import { get } from "../../utils/backend/task";
@@ -13,7 +16,6 @@ import Contexts from "../../contexts/Contexts";
 import { useNavigate } from "react-router-dom";
 
 const ListChecked = () => {
-  const [animationParent] = useAutoAnimate();
   const [listChecked, setListChecked] = useState([]);
   const { setUserJson, setAuth } = useContext(Contexts);
   const navigate = useNavigate();
@@ -43,7 +45,7 @@ const ListChecked = () => {
       <NavBar />
       <MainContainer>
         <Title text="Tarefas Concluidas" />
-        <TaskList ref={animationParent}>
+        <ListItem>
           {listChecked.length === 0 ? (
             <FeedBack>Nenhuma tarefa foi concluida</FeedBack>
           ) : (
@@ -64,7 +66,7 @@ const ListChecked = () => {
               );
             })
           )}
-        </TaskList>
+        </ListItem>
       </MainContainer>
     </ContainerPages>
   );

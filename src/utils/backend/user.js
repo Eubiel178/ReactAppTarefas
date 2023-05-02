@@ -20,8 +20,6 @@ export const login = async (body) => {
 
 export const editUser = async (body, id) => {
   const response = await api.patch(`/users/${id}`, body);
-
-  console.log(response);
 };
 
 export const getOne = async (id) => {

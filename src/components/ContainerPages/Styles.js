@@ -5,11 +5,10 @@ export const ContainerContent = styled.div`
   flex-direction: column;
   background: ${(props) => props.theme.background_page};
   position: absolute;
-  top: 0;
   left: 0;
-  /* z-index: 11; */
-  width: 100%;
-  height: 100%;
+  right: 0;
+  top: 0;
+  bottom: 0;
   overflow: hidden;
   overflow-y: auto;
 

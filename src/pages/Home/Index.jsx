@@ -1,11 +1,10 @@
 import { useContext, useEffect, useState } from "react";
 import { get } from "../../utils/backend/task";
 import { PieChart, Pie, Cell } from "recharts";
-import ReactLoading from "react-loading";
 
 import Contexts from "../../contexts/Contexts";
 
-import { ContainerPages, NavBar } from "../../components/Index";
+import { ContainerPages, NavBar, LoadingPage } from "../../components/Index";
 
 import {
   Container,
@@ -14,7 +13,6 @@ import {
   User,
   Text,
   TextContainer,
-  Loading,
 } from "./Styles";
 import { isLogged } from "../../utils/frontend/isLogged";
 import { Link, useNavigate } from "react-router-dom";
@@ -99,9 +97,7 @@ const Home = () => {
   return (
     <>
       {loading ? (
-        <Loading>
-          <ReactLoading type="spin" color={"red"} height="5em" width="5em" />
-        </Loading>
+        <LoadingPage />
       ) : (
         <ContainerPages>
           <NavBar />

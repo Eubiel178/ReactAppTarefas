@@ -1,8 +1,9 @@
 export { ContainerPages } from "./ContainerPages/Index";
-export { ModalProfile } from "./ModalProfile/Index";
 export { Title } from "./Title/Index";
 export { NavBar } from "./NavBar/Index";
 export { ModalUrgencyTask } from "./ModalUrgencyTask/Index";
+export { ListItem } from "./ListItem/Index";
+export {LoadingPage} from "./LoadingPage/Index"
 
 //accounts
 export { Body } from "./Body/Index";
